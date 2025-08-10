@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" data-theme="matrix">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Viewer</title>
+  <meta name="theme-color" content="#050807" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/main.js"></script>
+</head>
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="./"><span class="glyph">◇</span> Vincent Viitala</a>
+    <nav aria-label="Primary" class="nav">
+      <a class="nav-link" href="essays/">Essays</a>
+      <a class="nav-link" href="projects/">Projects</a>
+      <a class="nav-link" href="links/">Links</a>
+      <a class="nav-link" href="cv/">CV / About</a>
+      <a class="nav-link" href="contact/">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button id="cmdk" class="btn btn-ghost"><span>⌘K</span></button>
+    </div>
+  </div>
+</header>
+<div id="progress" class="progress" aria-hidden="true"><span></span></div>
+<main class="container" role="main">
+  <article id="content"></article>
+</main>
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="left">
+      <p class="muted">© 2025 Vincent Viitala — “Reading the code behind appearance.”</p>
+      <p class="muted">WCAG AA. Built with vanilla HTML/CSS/JS. </p>
+    </div>
+    <div class="right">
+      <a href="rss.xml" class="tag">RSS</a>
+      <a href="https://github.com/" target="_blank" rel="noopener" class="tag">GitHub</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <a href="contact/" class="tag">Contact</a>
+    </div>
+  </div>
+  </footer>
+<script>
+const article = document.getElementById('content');
+function qs(key){ return new URLSearchParams(location.search).get(key) || ''; }
+function toPath(type, slug){ return `${type}/${slug}.html`; }
+
+function parseFrontMatter(text){
+  if (!/^---\n/.test(text)) return null;
+  const end = text.indexOf('\n---');
+  if (end === -1) return null;
+  const yaml = text.slice(4, end).trim();
+  const body = text.slice(end + 4).trim();
+  const meta = {};
+  yaml.split(/\n+/).forEach(line => {
+    const m = line.match(/^([A-Za-z0-9_]+):\s*(.*)$/);
+    if (!m) return;
+    const k = m[1].trim();
+    let v = m[2].trim();
+    if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) v = v.slice(1,-1);
+    meta[k] = v;
+  });
+  return { meta, body };
+}
+
+(async function(){
+  const type = qs('type'); // 'essays' | 'projects'
+  const slug = qs('slug');
+  if (!type || !slug) { article.innerHTML = '<p class="muted">Missing content.</p>'; return; }
+  try{
+    const res = await fetch(toPath(type, slug), { cache: 'no-store' });
+    const text = await res.text();
+    if (/<!doctype html>/i.test(text)) {
+      // Extract the article inner HTML from full page to avoid double chrome
+      const doc = new DOMParser().parseFromString(text, 'text/html');
+      const el = doc.querySelector('article');
+      article.innerHTML = el ? el.outerHTML : doc.body.innerHTML;
+      document.title = (doc.querySelector('title')?.textContent || 'Viewer');
+      return;
+    }
+    // Render from front matter
+    const fm = parseFrontMatter(text);
+    if (!fm) { article.innerHTML = '<p>Nothing to render.</p>'; return; }
+    const { meta, body } = fm;
+    const label = type==='essays'
+      ? `${meta.topic || 'Essay'} • ${(meta.minutes||'5')} min read • <time datetime="${meta.date||''}">${(meta.date||'').slice(0,10)}</time>`
+      : `${meta.year || new Date().getFullYear()} • ${meta.domain || 'Project'}`;
+    article.innerHTML = `
+      <p class="small-label">${label}</p>
+      <h1>${meta.title || slug}</h1>
+      ${meta.description ? `<p class="lead">${meta.description}</p>` : ''}
+      <div>${body}</div>
+    `;
+    document.title = `${meta.title || slug} — Vincent Viitala`;
+  } catch {
+    article.innerHTML = '<p>Failed to load content.</p>';
+  }
+})();
+</script>
+</body>
+</html>
+
+

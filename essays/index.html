@@ -137,7 +137,7 @@ async function fetchEssaysFromSitemap() {
           const m = small.match(/(\d+)\s*min/i);
           const minutes = m ? parseInt(m[1], 10) : 5;
           const date = d.querySelector('time')?.getAttribute('datetime') || '1970-01-01';
-          return { title, slug, topic, synopsis, minutes, date };
+          return { title, slug, topic, synopsis, minutes, date, fromFM: false };
         }
 
         // Fallback: front matter only
@@ -150,6 +150,7 @@ async function fetchEssaysFromSitemap() {
             synopsis: fm.description || '',
             minutes: parseInt(fm.minutes, 10) || 5,
             date: fm.date || '1970-01-01',
+            fromFM: true,
           };
         }
         return null;
@@ -168,7 +169,7 @@ function render() {
     .filter(e => e.title.toLowerCase().includes(q) || e.synopsis.toLowerCase().includes(q))
     .sort((a,b) => (a.date<b.date?1:-1))
     .map(e => `
-      <a class="card" href="./${e.slug}.html">
+      <a class="card" href="${e.fromFM ? '../view.html?type=essays&slug='+e.slug : './'+e.slug+'.html'}">
         <div class="small-label">${e.topic} • ${e.minutes} min</div>
         <h3>${e.title}</h3>
         <p class="muted">${e.synopsis}</p>
