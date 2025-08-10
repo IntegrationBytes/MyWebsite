@@ -1,0 +1,15 @@
+{
+  "name": "Vincent Viitala",
+  "short_name": "Vincent Viitala",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050807",
+  "theme_color": "#050807",
+  "icons": [
+    {
+      "src": "/assets/img/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ]
+}

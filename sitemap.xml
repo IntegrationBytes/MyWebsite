@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/</loc><lastmod>2025-08-10T21:42:54.843Z</lastmod></url>
+  <url><loc>https://example.com/essays/</loc><lastmod>2025-08-10T21:42:54.843Z</lastmod></url>
+  <url><loc>https://example.com/projects/</loc><lastmod>2025-08-10T21:42:54.843Z</lastmod></url>
+  <url><loc>https://example.com/links/</loc><lastmod>2025-08-10T21:42:54.843Z</lastmod></url>
+  <url><loc>https://example.com/cv/</loc><lastmod>2025-08-10T21:42:54.843Z</lastmod></url>
+  <url><loc>https://example.com/contact/</loc><lastmod>2025-08-10T21:42:54.843Z</lastmod></url>
+  <url><loc>https://example.com/essays/test.html</loc><lastmod>2025-08-10T20:01:00.000Z</lastmod></url>
+  <url><loc>https://example.com/essays/awakening-in-latent-space.html</loc><lastmod>2025-06-18T00:00:00.000Z</lastmod></url>
+  <url><loc>https://example.com/essays/ethics-of-simulation-hygiene.html</loc><lastmod>2025-05-22T00:00:00.000Z</lastmod></url>
+  <url><loc>https://example.com/essays/tools-for-seeing-through.html</loc><lastmod>2025-03-12T00:00:00.000Z</lastmod></url>
+  <url><loc>https://example.com/projects/mandala-grid.html</loc><lastmod>2025-08-10T18:52:26.649Z</lastmod></url>
+  <url><loc>https://example.com/projects/koan-cli.html</loc><lastmod>2025-08-10T18:52:26.647Z</lastmod></url>
+  <url><loc>https://example.com/projects/signal-notes.html</loc><lastmod>2025-08-10T18:52:26.647Z</lastmod></url>
+</urlset>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Content Admin</title>
+    <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body>
+    <!-- Decap CMS (Netlify CMS fork) -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      // Make local development easy: allow login without external provider
+      if (window.CMS) {
+        // Optional: auto-register your site's CSS so previews look right
+        CMS.registerPreviewStyle('../assets/css/styles.css');
+      }
+    </script>
+  </body>
+</html>
+

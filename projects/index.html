@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en" data-theme="matrix">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects — Vincent Viitala</title>
+  <meta name="description" content="Selected projects: utilities, research, and generative geometry." />
+  <meta name="theme-color" content="#050807" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="Essays RSS" href="../rss.xml" />
+  <link rel="manifest" href="../site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projects — Vincent Viitala">
+  <meta property="og:description" content="Selected projects: utilities, research, and generative geometry.">
+  <meta property="og:url" content="/projects/">
+  <meta property="og:image" content="../assets/img/og-default.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Projects — Vincent Viitala">
+  <meta name="twitter:description" content="Selected projects: utilities, research, and generative geometry.">
+  <meta name="twitter:image" content="/assets/img/og-default.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;600&family=Source+Serif+4:opsz@8..60&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script defer src="../assets/js/main.js"></script>
+  <script defer src="../assets/js/beacon.js"></script>
+</head>
+
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="../"><span class="glyph">◇</span> Vincent Viitala</a>
+    <nav aria-label="Primary" class="nav">
+      <a class="nav-link " href="../essays/" aria-current=false>Essays</a>
+<a class="nav-link active" href="../projects/" aria-current=page>Projects</a>
+<a class="nav-link " href="../links/" aria-current=false>Links</a>
+<a class="nav-link " href="../cv/" aria-current=false>CV / About</a>
+<a class="nav-link " href="../contact/" aria-current=false>Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button id="cmdk" class="btn btn-ghost" aria-label="Open Command Palette (Ctrl/⌘K)"><span>⌘K</span></button>
+    </div>
+  </div>
+</header>
+<div id="progress" class="progress" aria-hidden="true"><span></span></div>
+<div id="cmdk-overlay" class="cmdk" hidden>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command Palette">
+    <input id="cmdk-input" type="text" placeholder="Type a command or search…" aria-label="Command input" />
+    <ul id="cmdk-list" class="cmdk-list" role="listbox">
+      <li data-action="go:../essays/">Enter Essays</li>
+      <li data-action="go:../projects/">View Projects</li>
+      <li data-action="go:../links/">Links</li>
+      <li data-action="go:../cv/">Open CV / About</li>
+      <li data-action="go:../contact/">Contact</li>
+       
+      <li data-action="search">Site Search…</li>
+    </ul>
+    <button id="cmdk-close" class="btn btn-ghost small">Close</button>
+  </div>
+</div>
+<main class="container" role="main">
+
+<section>
+  <h1>Projects</h1>
+  <p class="lead">Grid/list toggle; filter by year, domain, and stack.</p>
+  <div class="grid" style="grid-template-columns: 1fr 2fr;">
+    <aside class="card">
+      <div class="small-label">Filters</div>
+      <div style="display:grid; gap:8px; margin-top:8px;">
+        <label>Year</label>
+        <select id="year">
+          <option value="All">All</option>
+          <option>2025</option>
+          <option>2024</option>
+        </select>
+        <label>Domain</label>
+        <select id="domain">
+          <option value="All">All</option>
+          <option>Utilities</option>
+          <option>Generative</option>
+          <option>Research</option>
+        </select>
+        <label>Stack</label>
+        <input id="stack" type="text" placeholder="e.g., TypeScript" />
+      </div>
+    </aside>
+    <div>
+      <div id="project-list" class="grid cols-3"></div>
+    </div>
+  </div>
+</section>
+<script>
+const list = document.getElementById('project-list');
+const year = document.getElementById('year');
+const domain = document.getElementById('domain');
+const stack = document.getElementById('stack');
+let projects = [];
+
+function toLocalPath(url) {
+  try { return new URL(url, location.origin).pathname; } catch { return url; }
+}
+
+async function fetchProjectsFromSitemap(){
+  try {
+    const res = await fetch('../sitemap.xml', { cache: 'no-store' });
+    const xml = await res.text();
+    const doc = new DOMParser().parseFromString(xml, 'application/xml');
+    const urls = Array.from(doc.querySelectorAll('url loc'))
+      .map(n => n.textContent || '')
+      .filter(u => /\/projects\/.+\.html$/i.test(u));
+
+    const parseFrontMatter = (text) => {
+      if (!/^---\n/.test(text)) return null;
+      const end = text.indexOf('\n---');
+      if (end === -1) return null;
+      const yaml = text.slice(4, end).trim();
+      const meta = {};
+      yaml.split(/\n+/).forEach(line => {
+        const m = line.match(/^([A-Za-z0-9_]+):\s*(.*)$/);
+        if (!m) return;
+        const key = m[1].trim();
+        let val = m[2].trim();
+        if (/^".*"$/.test(val) || /^'.*'$/.test(val)) val = val.slice(1, -1);
+        meta[key] = val;
+      });
+      return meta;
+    };
+
+    const fetchOne = async (url) => {
+      try {
+        const r = await fetch(toLocalPath(url), { cache: 'no-store' });
+        const html = await r.text();
+        const slug = toLocalPath(url).split('/').pop().replace(/\.html$/,'');
+
+        const d = new DOMParser().parseFromString(html, 'text/html');
+        const h1 = (d.querySelector('h1')?.textContent || '').trim();
+        if (h1) {
+          const title = h1;
+          const oneLiner = (d.querySelector('meta[name="description"]').getAttribute('content') || '').trim();
+          const small = (d.querySelector('.small-label')?.textContent || '').trim();
+          const parts = small.split('•').map(s=>s.trim());
+          const yr = parseInt((parts[0]||'').replace(/[^0-9]/g,''),10) || new Date().getFullYear();
+          const dom = parts[1] || 'Project';
+          const badges = Array.from(d.querySelectorAll('.badge')).map(b=> (b.textContent||'').trim()).filter(Boolean);
+          return { title, slug, year: yr, domain: dom, stack: badges, oneLiner };
+        }
+
+        const fm = parseFrontMatter(html);
+        if (fm) {
+          const stack = (fm.stack || '').split(',').map(s=>s.trim()).filter(Boolean);
+          return {
+            title: fm.title || slug,
+            slug,
+            year: parseInt(fm.year, 10) || new Date().getFullYear(),
+            domain: fm.domain || 'Project',
+            stack,
+            oneLiner: fm.description || '',
+          };
+        }
+        return null;
+      } catch { return null; }
+    };
+    const results = await Promise.all(urls.map(fetchOne));
+    projects = results.filter(Boolean);
+  } catch { projects = []; }
+}
+
+function render(){
+  const s = (stack.value||'').toLowerCase();
+  list.innerHTML = (projects||[])
+    .filter(p => year.value==="All" || String(p.year)===year.value)
+    .filter(p => domain.value==="All" || p.domain===domain.value)
+    .filter(p => !s || (p.stack||[]).join(' ').toLowerCase().includes(s))
+    .map(p => `
+      <a class="card" href="./${p.slug}.html">
+        <div class="small-label">${p.year} • ${p.domain}</div>
+        <h3>${p.title}</h3>
+        <p class="muted">${p.oneLiner}</p>
+        <p>${(p.stack||[]).map(t=>'<span class="badge">'+t+'</span>').join(' ')}</p>
+      </a>`)
+    .join('');
+}
+
+year.addEventListener('change', render);
+domain.addEventListener('change', render);
+stack.addEventListener('input', render);
+
+(async ()=>{ await fetchProjectsFromSitemap(); render(); })();
+</script>
+
+</main>
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="left">
+      <p class="muted">© 2025 Vincent Viitala — “Reading the code behind appearance.”</p>
+      <p class="muted">WCAG AA. Built with vanilla HTML/CSS/JS. </p>
+    </div>
+    <div class="right">
+      <a href="../rss.xml" class="tag">RSS</a>
+      <a href="https://github.com/" target="_blank" rel="noopener" class="tag">GitHub</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <a href="../contact/" class="tag">Contact</a>
+    </div>
+  </div>
+</footer>
+<script defer src="../assets/js/coderain.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+local_backend: true
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "essays"
+    label: "Essays"
+    label_singular: "Essay"
+    folder: "essays"
+    create: true
+    extension: "html"
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Topic", name: "topic", widget: "select", options: ["Metaphysics","Ethics of AI","Consciousness","Tools for Thought"] }
+      - { label: "Minutes", name: "minutes", widget: "number", value_type: "int", min: 1, max: 60 }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Body (HTML)", name: "body", widget: "text" }
+
+  - name: "projects"
+    label: "Projects"
+    label_singular: "Project"
+    folder: "projects"
+    create: true
+    extension: "html"
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Domain", name: "domain", widget: "select", options: ["Utilities","Generative","Research"] }
+      - { label: "Stack (comma separated)", name: "stack", widget: "string" }
+      - { label: "Body (HTML)", name: "body", widget: "text" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Homepage"
+        name: "home"
+        file: "index.html"
+        fields:
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Lead", name: "hero_lead", widget: "text" }
+

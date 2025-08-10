@@ -1,0 +1,14 @@
+{
+  "name": "matrix-as-maya-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:content": "node ./scripts/generate.mjs",
+    "build": "npm run build:content"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
+
+

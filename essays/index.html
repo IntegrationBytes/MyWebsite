@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" data-theme="matrix">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Essays — Vincent Viitala</title>
+  <meta name="description" content="Essays on metaphysics, AI ethics, consciousness, and tools for thought." />
+  <meta name="theme-color" content="#050807" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="Essays RSS" href="../rss.xml" />
+  <link rel="manifest" href="../site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Essays — Vincent Viitala">
+  <meta property="og:description" content="Essays on metaphysics, AI ethics, consciousness, and tools for thought.">
+  <meta property="og:url" content="/essays/">
+  <meta property="og:image" content="../assets/img/og-default.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Essays — Vincent Viitala">
+  <meta name="twitter:description" content="Essays on metaphysics, AI ethics, consciousness, and tools for thought.">
+  <meta name="twitter:image" content="/assets/img/og-default.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;600&family=Source+Serif+4:opsz@8..60&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script defer src="../assets/js/main.js"></script>
+  <script defer src="../assets/js/beacon.js"></script>
+</head>
+
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="../"><span class="glyph">◇</span> Vincent Viitala</a>
+    <nav aria-label="Primary" class="nav">
+      <a class="nav-link active" href="../essays/" aria-current=page>Essays</a>
+<a class="nav-link " href="../projects/" aria-current=false>Projects</a>
+<a class="nav-link " href="../links/" aria-current=false>Links</a>
+<a class="nav-link " href="../cv/" aria-current=false>CV / About</a>
+<a class="nav-link " href="../contact/" aria-current=false>Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button id="cmdk" class="btn btn-ghost" aria-label="Open Command Palette (Ctrl/⌘K)"><span>⌘K</span></button>
+    </div>
+  </div>
+</header>
+<div id="progress" class="progress" aria-hidden="true"><span></span></div>
+<div id="cmdk-overlay" class="cmdk" hidden>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command Palette">
+    <input id="cmdk-input" type="text" placeholder="Type a command or search…" aria-label="Command input" />
+    <ul id="cmdk-list" class="cmdk-list" role="listbox">
+      <li data-action="go:../essays/">Enter Essays</li>
+      <li data-action="go:../projects/">View Projects</li>
+      <li data-action="go:../links/">Links</li>
+      <li data-action="go:../cv/">Open CV / About</li>
+      <li data-action="go:../contact/">Contact</li>
+       
+      <li data-action="search">Site Search…</li>
+    </ul>
+    <button id="cmdk-close" class="btn btn-ghost small">Close</button>
+  </div>
+</div>
+<main class="container" role="main">
+
+<section>
+  <h1>Essays</h1>
+  <p class="lead">Reading the code behind appearance. Topics: Metaphysics, Ethics of AI, Consciousness, Tools for Thought.</p>
+  <div class="grid" style="grid-template-columns: 1fr 2fr;">
+    <aside class="card">
+      <div class="small-label">Filters</div>
+      <div style="display:grid; gap:8px; margin-top:8px;">
+        <button class="btn small" data-filter="All">All</button>
+        <button class="btn small" data-filter="Metaphysics">Metaphysics</button>
+        <button class="btn small" data-filter="Ethics of AI">Ethics of AI</button>
+        <button class="btn small" data-filter="Consciousness">Consciousness</button>
+        <button class="btn small" data-filter="Tools for Thought">Tools for Thought</button>
+      </div>
+      <div style="margin-top: 12px;">
+        <label for="search">Search</label>
+        <input id="search" type="text" placeholder="Search essays…">
+      </div>
+  <p class="small-label" style="margin-top: 12px;"><a href="../rss.xml">RSS feed</a></p>
+    </aside>
+    <div>
+      <div id="essay-list" class="list"></div>
+    </div>
+  </div>
+</section>
+<script>
+const list = document.getElementById('essay-list');
+const search = document.getElementById('search');
+let active = 'All';
+let essays = [];
+
+function toLocalPath(url) {
+  try { return new URL(url, location.origin).pathname; } catch { return url; }
+}
+
+async function fetchEssaysFromSitemap() {
+  try {
+    const res = await fetch('../sitemap.xml', { cache: 'no-store' });
+    const xml = await res.text();
+    const doc = new DOMParser().parseFromString(xml, 'application/xml');
+    const urls = Array.from(doc.querySelectorAll('url loc'))
+      .map(n => n.textContent || '')
+      .filter(u => /\/essays\/.+\.html$/i.test(u));
+
+    const parseFrontMatter = (text) => {
+      if (!/^---\n/.test(text)) return null;
+      const end = text.indexOf('\n---');
+      if (end === -1) return null;
+      const yaml = text.slice(4, end).trim();
+      const meta = {};
+      yaml.split(/\n+/).forEach(line => {
+        const m = line.match(/^([A-Za-z0-9_]+):\s*(.*)$/);
+        if (!m) return;
+        const key = m[1].trim();
+        let val = m[2].trim();
+        if (/^".*"$/.test(val) || /^'.*'$/.test(val)) val = val.slice(1, -1);
+        meta[key] = val;
+      });
+      return meta;
+    };
+
+    const fetchOne = async (url) => {
+      try {
+        const r = await fetch(toLocalPath(url), { cache: 'no-store' });
+        const html = await r.text();
+        const slug = toLocalPath(url).split('/').pop().replace(/\.html$/, '');
+
+        // Try HTML document parse first
+        const d = new DOMParser().parseFromString(html, 'text/html');
+        const h1 = (d.querySelector('h1')?.textContent || '').trim();
+        if (h1) {
+          const title = h1;
+          const synopsis = (d.querySelector('meta[name="description"]').getAttribute('content') || '').trim();
+          const small = (d.querySelector('.small-label')?.textContent || '').trim();
+          const topic = (small.split('•')[0] || '').trim();
+          const m = small.match(/(\d+)\s*min/i);
+          const minutes = m ? parseInt(m[1], 10) : 5;
+          const date = d.querySelector('time')?.getAttribute('datetime') || '1970-01-01';
+          return { title, slug, topic, synopsis, minutes, date };
+        }
+
+        // Fallback: front matter only
+        const fm = parseFrontMatter(html);
+        if (fm) {
+          return {
+            title: fm.title || slug,
+            slug,
+            topic: fm.topic || 'Essay',
+            synopsis: fm.description || '',
+            minutes: parseInt(fm.minutes, 10) || 5,
+            date: fm.date || '1970-01-01',
+          };
+        }
+        return null;
+      } catch { return null; }
+    };
+
+    const results = await Promise.all(urls.map(fetchOne));
+    essays = results.filter(Boolean);
+  } catch { essays = []; }
+}
+
+function render() {
+  const q = (search.value || '').toLowerCase();
+  list.innerHTML = (essays || [])
+    .filter(e => active==='All' || e.topic===active)
+    .filter(e => e.title.toLowerCase().includes(q) || e.synopsis.toLowerCase().includes(q))
+    .sort((a,b) => (a.date<b.date?1:-1))
+    .map(e => `
+      <a class="card" href="./${e.slug}.html">
+        <div class="small-label">${e.topic} • ${e.minutes} min</div>
+        <h3>${e.title}</h3>
+        <p class="muted">${e.synopsis}</p>
+      </a>`)
+    .join('');
+}
+
+document.querySelectorAll('[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => { active = btn.getAttribute('data-filter'); render(); });
+});
+search.addEventListener('input', render);
+
+(async () => { await fetchEssaysFromSitemap(); render(); })();
+</script>
+
+</main>
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="left">
+      <p class="muted">© 2025 Vincent Viitala — “Reading the code behind appearance.”</p>
+      <p class="muted">WCAG AA. Built with vanilla HTML/CSS/JS. </p>
+    </div>
+    <div class="right">
+       <a href="../rss.xml" class="tag">RSS</a>
+      <a href="https://github.com/" target="_blank" rel="noopener" class="tag">GitHub</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+       <a href="../contact/" class="tag">Contact</a>
+    </div>
+  </div>
+</footer>
+<script defer src="../assets/js/coderain.js"></script>
+</body>
+</html>
