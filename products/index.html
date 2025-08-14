@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" data-theme="matrix">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Products — Vincent Viitala</title>
+  <meta name="description" content="Fixed-scope AI products packaged for fast outcomes." />
+  <meta name="theme-color" content="#050807" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script defer src="../assets/js/config.js"></script>
+  <script defer src="../assets/js/main.js"></script>
+</head>
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="../"><span class="glyph">◇</span> Vincent Viitala</a>
+    <nav aria-label="Primary" class="nav">
+      <a class="nav-link" href="../services/">Services</a>
+      <a class="nav-link" href="../essays/">Essays</a>
+      <a class="nav-link" href="../projects/">Projects</a>
+    </nav>
+    <div class="header-actions">
+      <button id="cmdk" class="btn btn-ghost" aria-label="Open Command Palette (Ctrl/⌘K)"><span>⌘K</span></button>
+    </div>
+  </div>
+</header>
+<div id="progress" class="progress" aria-hidden="true"><span></span></div>
+<main class="container" role="main">
+  <section>
+    <h1>Products</h1>
+    <p class="lead">Packaged offerings with transparent scope, timelines, and deliverables.</p>
+    <div id="grid" class="grid cols-3"></div>
+  </section>
+  <script>
+    const products = [
+      { id:'linkedin', name:'LinkedIn Thought‑Leadership', pdf:'../assets/pdf/linkedin.pdf', deliverables:['Voice kit','10 drafted posts','Scheduling setup'], price:'$2,000 pilot' },
+      { id:'videokb', name:'Video → Knowledge', pdf:'../assets/pdf/videokb.pdf', deliverables:['Chapters & notes','FAQs','Search'], price:'$3,000 pilot' },
+      { id:'leadgen', name:'AI Lead Gen Engine', pdf:'../assets/pdf/leadgen.pdf', deliverables:['ICP research','enrichment','outreach scripts'], price:'$4,000 pilot + rev‑share' },
+      { id:'support', name:'Support Automation', pdf:'../assets/pdf/support.pdf', deliverables:['RAG bot','routing','macros'], price:'$3,000 pilot' },
+      { id:'programmatic', name:'Programmatic Pages', pdf:'../assets/pdf/programmatic.pdf', deliverables:['Templates','QA workflow','OG images'], price:'$3,500 pilot' },
+      { id:'salesqa', name:'Sales Call QA & Coaching', pdf:'../assets/pdf/salesqa.pdf', deliverables:['Summaries','objections','nudge pack'], price:'$2,500 pilot' }
+    ];
+    const grid = document.getElementById('grid');
+    function buyHref(id){ return (window.PRODUCT_LINKS && window.PRODUCT_LINKS[id]) || (window.CALENDLY_URL || '#'); }
+    grid.innerHTML = products.map(p => `
+      <div class="card">
+        <h3>${p.name}</h3>
+        <p class="muted">${p.deliverables.join(' • ')}</p>
+        <p><span class="badge">${p.price}</span></p>
+        <p>
+          <a class="btn" href="${buyHref(p.id)}" target="_blank" rel="noopener">Buy / Book</a>
+          <a class="btn btn-ghost" href="${p.pdf}" target="_blank" rel="noopener">PDF</a>
+        </p>
+      </div>
+    `).join('');
+  </script>
+</main>
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="left">
+      <p class="muted">© 2025 Vincent Viitala — “Reading the code behind appearance.”</p>
+      <p class="muted">WCAG AA. Built with vanilla HTML/CSS/JS. </p>
+    </div>
+    <div class="right">
+      <a href="../rss.xml" class="tag">RSS</a>
+      <a href="https://github.com/" target="_blank" rel="noopener" class="tag">GitHub</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <a href="../contact/" class="tag">Contact</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
+
+
+
+
+

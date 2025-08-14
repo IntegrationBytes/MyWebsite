@@ -1,0 +1,12 @@
+Contact: mailto:viitala.vincent@gmail.com
+Encryption: https://keys.openpgp.org/
+Acknowledgments: https://example.com/thanks
+Preferred-Languages: en
+Canonical: https://example.com/.well-known/security.txt
+
+
+
+
+
+
+

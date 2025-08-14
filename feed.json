@@ -1,0 +1,37 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Vincent Viitala — Essays",
+  "home_page_url": "https://example.com/",
+  "feed_url": "https://example.com/feed.json",
+  "description": "Essays on metaphysics, AI ethics, consciousness, and tools for thought.",
+  "items": [
+    {
+      "id": "https://example.com/essays/test.html",
+      "url": "https://example.com/essays/test.html",
+      "title": "Test",
+      "content_text": "Hello Description",
+      "date_published": "2025-08-10T20:01:00.000Z"
+    },
+    {
+      "id": "https://example.com/essays/awakening-in-latent-space.html",
+      "url": "https://example.com/essays/awakening-in-latent-space.html",
+      "title": "Awakening in Latent Space",
+      "content_text": "On models, maps, and the illusion of self in predictive systems.",
+      "date_published": "2025-06-18T00:00:00.000Z"
+    },
+    {
+      "id": "https://example.com/essays/ethics-of-simulation-hygiene.html",
+      "url": "https://example.com/essays/ethics-of-simulation-hygiene.html",
+      "title": "Ethics of Simulation Hygiene",
+      "content_text": "When attention is compute: why care rituals matter for minds, human and machine.",
+      "date_published": "2025-05-22T00:00:00.000Z"
+    },
+    {
+      "id": "https://example.com/essays/tools-for-seeing-through.html",
+      "url": "https://example.com/essays/tools-for-seeing-through.html",
+      "title": "Tools for Seeing Through",
+      "content_text": "A console of quiet affordances for inquiry and letting-go.",
+      "date_published": "2025-03-12T00:00:00.000Z"
+    }
+  ]
+}

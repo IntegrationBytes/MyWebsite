@@ -11,7 +11,9 @@ npx serve . -l 8101   # or any static server
 ### Content build
 
 ```bash
-SITE_URL=https://yourdomain.com npm run build
+SITE_URL=https://yourdomain.com \
+WEBMENTION_DOMAIN=yourdomain.com \
+npm run build
 ```
 
 ### Deploy to GitHub Pages
@@ -22,12 +24,42 @@ SITE_URL=https://yourdomain.com npm run build
 
 Workflow: `.github/workflows/deploy.yml` builds `sitemap.xml` and `rss.xml`, then publishes everything to Pages.
 
-### Analytics with Prometheus + Grafana (outline)
+### Analytics
 
-Static sites don’t expose server metrics. To use Prometheus/Grafana for page views:
+- Umami: set `window.UMAMI_WEBSITE_ID` (and optional `window.UMAMI_HOST`) in `assets/js/config.js`.
+- Page views beacon remains optional via `assets/js/beacon.js` with `data-endpoint`.
 
-- Add a tiny beacon script that POSTs a hit to a collector (Edge function, tiny Node server, or a Pushgateway) with fields: path, referrer, user-agent hash, ts.
-- Collector exposes a `/metrics` endpoint exporting counters/histograms Prometheus scrapes.
-- Grafana dashboards visualize `page_views_total{path=...}` etc.
+### Comments
 
-This repo includes a noop beacon you can enable via an environment variable. See `assets/js/beacon.js`.
+- Giscus: set `window.GISCUS_*` values in `assets/js/config.js` to enable embeds on essay pages and in `view.html`.
+
+### Search
+
+- Pagefind: the build adds a static index under `/_pagefind`. Use the Search page at `/search/`.
+
+### Feeds & OG images
+- Add business modules (feature toggles)
+
+Runtime configuration lives in `assets/js/config.js`. You can enable/disable modules without code changes:
+
+- `FEATURE_SERVICES` (default true): exposes `/services/` and adds “Services” to nav.
+- `FEATURE_SPEAKING` (default false): exposes `/speaking/` and adds “Speaking” to nav.
+- `FEATURE_PRESS` (default false): exposes `/press/` and adds “Press” to nav.
+- `FEATURE_COMMUNITY` (default false): exposes `/community/` and adds it to nav.
+- `FEATURE_STATUS` (default false): adds a “Status” link to nav if `STATUS_PAGE_URL` is set.
+
+Other integration variables:
+
+- `CALENDLY_URL`: used by Services/Speaking “Book” buttons if set.
+- `STATUS_PAGE_URL`: external status page link.
+- `REFERRAL_PARAM` (default `ref`): when present in the URL, it’s preserved across internal links for attribution.
+
+Activation steps:
+
+1) Edit `assets/js/config.js` and set the toggles and URLs you need.
+2) Optionally add assets to `press/` and set download links.
+3) Rebuild: `SITE_URL=https://yourdomain npm run build`.
+
+
+- Build writes `rss.xml` and `feed.json`. It also attempts OG images under `assets/img/og/*.png`. If font missing, OG generation is skipped.
+

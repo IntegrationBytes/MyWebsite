@@ -9,6 +9,7 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="alternate" type="application/rss+xml" title="Essays RSS" href="rss.xml" />
   <link rel="manifest" href="site.webmanifest">
+  <link rel="search" type="application/opensearchdescription+xml" title="Vincent Viitala Search" href="/opensearch.xml" />
   <meta property="og:type" content="website">
   <meta property="og:title" content="Vincent Viitala — Mind, code, and the exit door.">
   <meta property="og:description" content="Technologist & essayist exploring consciousness, computation, and the seams of reality.">
@@ -22,6 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;600&family=Source+Serif+4:opsz@8..60&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/config.js"></script>
   <script defer src="assets/js/main.js"></script>
   <!-- Optional pageview beacon. Set window.BEACON_ENDPOINT to enable. -->
   <script defer src="assets/js/beacon.js"></script>
@@ -69,6 +71,7 @@
     <div class="cta">
       <a class="btn" href="essays/">Enter Essays</a>
       <a class="btn" href="projects/">View Projects</a>
+      <a class="btn btn-ghost" href="search/">Search</a>
     </div>
     <div class="kpis">
       <div class="card">
@@ -82,6 +85,10 @@
       <div class="card">
         <div class="small-label">Subscribe</div>
         <div>Occasional letters on mind, code, and modern myth—low noise.</div>
+        <form id="subscribe" class="inline-form" style="margin-top:8px; display:flex; gap:8px;">
+          <input type="email" name="email" placeholder="you@example.com" required>
+          <button class="btn small" type="submit">Join</button>
+        </form>
       </div>
     </div>
   </div>
@@ -236,6 +243,27 @@
     </div>
   </div>
 </footer>
+<script>
+// Minimal Listmonk subscribe handler
+document.addEventListener('DOMContentLoaded', function(){
+  const form = document.getElementById('subscribe');
+  if (!form) return;
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const email = (new FormData(form).get('email')||'').toString();
+    const base = window.LISTMONK_URL || '';
+    const list = window.LISTMONK_LIST_ID || '';
+    if (!base || !list) { alert('Subscription not configured.'); return; }
+    try {
+      const res = await fetch(base.replace(/\/$/,'') + '/api/public/subscription', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ email, lists: [list], status: 'enabled', name: '' })
+      });
+      if (res.ok) alert('Check your inbox to confirm.'); else alert('Failed to subscribe.');
+    } catch { alert('Failed to subscribe.'); }
+  });
+});
+</script>
 <script defer src="assets/js/coderain.js"></script>
 </body>
 </html>

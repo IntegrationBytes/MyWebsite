@@ -1,0 +1,14 @@
+/* TEAM */
+Developer: Vincent Viitala
+Site: https://example.com/
+Contact: viitala.vincent@gmail.com
+
+/* THANKS */
+Readers, collaborators, and open-source maintainers.
+
+
+
+
+
+
+

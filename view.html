@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#050807" />
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/config.js"></script>
   <script defer src="assets/js/main.js"></script>
 </head>
 <body>
@@ -28,6 +29,9 @@
 <div id="progress" class="progress" aria-hidden="true"><span></span></div>
 <main class="container" role="main">
   <article id="content"></article>
+  <section id="viewer-comments" class="card" style="margin-top: 16px;">
+    <div class="small-label">Comments</div>
+  </section>
 </main>
 <footer class="site-footer" role="contentinfo">
   <div class="container footer-inner">
@@ -95,6 +99,28 @@ function parseFrontMatter(text){
       <div>${body}</div>
     `;
     document.title = `${meta.title || slug} — Vincent Viitala`;
+    // hydrate comments via Giscus if configured
+    try {
+      if (window.GISCUS_REPO && window.GISCUS_REPO_ID && window.GISCUS_CATEGORY && window.GISCUS_CATEGORY_ID) {
+        const s = document.createElement('script');
+        s.src = 'https://giscus.app/client.js';
+        s.async = true;
+        s.setAttribute('data-giscus','true');
+        s.setAttribute('data-repo', window.GISCUS_REPO);
+        s.setAttribute('data-repo-id', window.GISCUS_REPO_ID);
+        s.setAttribute('data-category', window.GISCUS_CATEGORY);
+        s.setAttribute('data-category-id', window.GISCUS_CATEGORY_ID);
+        s.setAttribute('data-mapping', window.GISCUS_MAPPING || 'pathname');
+        s.setAttribute('data-strict', '1');
+        s.setAttribute('data-reactions-enabled', '1');
+        s.setAttribute('data-emit-metadata', '0');
+        s.setAttribute('data-input-position', 'bottom');
+        s.setAttribute('data-theme', 'light');
+        s.setAttribute('data-lang', window.GISCUS_LANG || 'en');
+        s.crossOrigin = 'anonymous';
+        document.getElementById('viewer-comments').appendChild(s);
+      }
+    } catch {}
   } catch {
     article.innerHTML = '<p>Failed to load content.</p>';
   }

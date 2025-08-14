@@ -4,10 +4,18 @@
   "type": "module",
   "scripts": {
     "build:content": "node ./scripts/generate.mjs",
-    "build": "npm run build:content"
+    "build:search": "pagefind --source . --output-subdir _pagefind --force-language en",
+    "build": "npm run build:content && npm run build:search"
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "satori": "^0.11.0",
+    "pagefind": "^1.1.0",
+    "shiki": "^1.22.0",
+    "pdfkit": "^0.15.0"
   }
 }
 

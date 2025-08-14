@@ -22,6 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;600&family=Source+Serif+4:opsz@8..60&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/styles.css">
+  <script defer src="../assets/js/config.js"></script>
   <script defer src="../assets/js/main.js"></script>
   <script defer src="../assets/js/beacon.js"></script>
 </head>
@@ -53,7 +54,7 @@
       <li data-action="go:../cv/">Open CV / About</li>
       <li data-action="go:../contact/">Contact</li>
        
-      <li data-action="search">Site Search…</li>
+       <li data-action="search">Site Search…</li>
     </ul>
     <button id="cmdk-close" class="btn btn-ghost small">Close</button>
   </div>
@@ -74,8 +75,7 @@
         <button class="btn small" data-filter="Tools for Thought">Tools for Thought</button>
       </div>
       <div style="margin-top: 12px;">
-        <label for="search">Search</label>
-        <input id="search" type="text" placeholder="Search essays…">
+        <a class="btn small" href="../search/">Open full‑site search</a>
       </div>
   <p class="small-label" style="margin-top: 12px;"><a href="../rss.xml">RSS feed</a></p>
     </aside>
@@ -86,7 +86,6 @@
 </section>
 <script>
 const list = document.getElementById('essay-list');
-const search = document.getElementById('search');
 let active = 'All';
 let essays = [];
 
@@ -163,7 +162,7 @@ async function fetchEssaysFromSitemap() {
 }
 
 function render() {
-  const q = (search.value || '').toLowerCase();
+  const q = '';
   list.innerHTML = (essays || [])
     .filter(e => active==='All' || e.topic===active)
     .filter(e => e.title.toLowerCase().includes(q) || e.synopsis.toLowerCase().includes(q))
@@ -180,7 +179,7 @@ function render() {
 document.querySelectorAll('[data-filter]').forEach(btn => {
   btn.addEventListener('click', () => { active = btn.getAttribute('data-filter'); render(); });
 });
-search.addEventListener('input', render);
+// deprecated local search input removed; use Pagefind page
 
 (async () => { await fetchEssaysFromSitemap(); render(); })();
 </script>
