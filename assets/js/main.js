@@ -168,6 +168,12 @@ try {
 // Expand/collapse service summaries (progressive enhancement)
 document.addEventListener('DOMContentLoaded', () => {
   try {
+    // Track CTA clicks (Umami, if available)
+    document.querySelectorAll('.track-cta').forEach((el) => {
+      el.addEventListener('click', () => {
+        try { if (window.umami && typeof window.umami.track === 'function') window.umami.track('cta_click', { id: (el.textContent || '').trim() }); } catch {}
+      });
+    });
     document.querySelectorAll('[data-expand]')?.forEach(a => {
       a.addEventListener('click', () => {
         const id = a.getAttribute('data-expand');
@@ -184,8 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
       panels.forEach(p => anyHidden ? p.removeAttribute('hidden') : p.setAttribute('hidden',''));
       toggle.textContent = anyHidden ? 'Collapse all' : 'Expand all';
     });
-    // Inline book buttons respect CALENDLY_URL
-    document.querySelectorAll('.book-svc').forEach(b => {
+    // Inline book and hero buttons respect CALENDLY_URL
+    document.querySelectorAll('.book-svc, #book-hero').forEach(b => {
       const u = window.CALENDLY_URL || '';
       if (u) b.setAttribute('href', u); else b.remove();
     });
