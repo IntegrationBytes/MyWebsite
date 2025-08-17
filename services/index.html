@@ -21,9 +21,12 @@
   <div class="container header-inner">
     <a class="brand" href="../"><span class="glyph">◇</span> Vincent Viitala</a>
     <nav aria-label="Primary" class="nav">
-      <a class="nav-link" href="../projects/">Projects</a>
-      <a class="nav-link" href="../cv/">About</a>
-      <a class="nav-link" href="../contact/">Contact</a>
+      <a class="nav-link active" href="../services/" aria-current="page">Services</a>
+      <a class="nav-link" href="../projects/" aria-current="false">Projects</a>
+      <a class="nav-link" href="../books/" aria-current="false">Books</a>
+      <a class="nav-link" href="../links/" aria-current="false">Links</a>
+      <a class="nav-link" href="../cv/" aria-current="false">CV / About</a>
+      <a class="nav-link" href="../contact/" aria-current="false">Contact</a>
     </nav>
     <div class="header-actions">
       <button id="cmdk" class="btn btn-ghost" aria-label="Open Command Palette (Ctrl/⌘K)"><span>⌘K</span></button>
@@ -31,14 +34,31 @@
   </div>
 </header>
 <div id="progress" class="progress" aria-hidden="true"><span></span></div>
+
+<div id="cmdk-overlay" class="cmdk" hidden>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command Palette">
+    <input id="cmdk-input" type="text" placeholder="Type a command or search…" aria-label="Command input" />
+    <ul id="cmdk-list" class="cmdk-list" role="listbox">
+      <li data-action="go:../services/">Explore Services</li>
+      <li data-action="go:../projects/">View Projects</li>
+      <li data-action="go:../books/">Browse Books</li>
+      <li data-action="go:../links/">Links</li>
+      <li data-action="go:../cv/">CV / About</li>
+      <li data-action="go:../contact/">Contact</li>
+      <li data-action="search">Site Search…</li>
+    </ul>
+    <button id="cmdk-close" class="btn btn-ghost small">Close</button>
+  </div>
+</div>
+
 <main class="container" role="main">
   <section>
-    <h1>Services</h1>
+    <h1 class="reveal">Services</h1>
     <p class="lead">High-leverage AI and data services that look complex from the outside, but we ship fast and reliably.</p>
     <div class="cta" style="margin:8px 0 16px; display:flex; gap:8px; flex-wrap:wrap;">
       <button id="expand-toggle" class="btn small" type="button">Expand all</button>
     </div>
-    <div class="grid cols-3">
+    <div class="grid cols-3 reveal">
       <div class="card" id="svc-leadgen"><h3>AI Lead Gen Engine</h3><p class="muted">Identify, enrich, and outreach to ICPs with LLM‑powered research + warm intro scoring. Fixed‑fee pilot, rev‑share optional.</p><p><a class="tag" data-expand="leadgen">Learn more</a></p><div class="exp" id="exp-leadgen" hidden><ul><li>What you get: ICP + scoring, enriched accounts, first‑touch drafts</li><li>Why this works: multi‑source research, scoring, personalized templates</li><li>Pilot price: $7,500 (3–4 weeks)</li></ul><p><a class="btn small book-svc" href="#">Book a call</a> <a class="btn small btn-ghost" href="../assets/pdf/leadgen.pdf" target="_blank" rel="noopener">Open PDF</a></p></div></div>
       <div class="card" id="svc-support"><h3>Support Automation</h3><p class="muted">RAG over docs, intent routing, and human‑in‑the‑loop macros. Deflect tickets; measure CSAT.</p><p><a class="tag" data-expand="support">Learn more</a></p><div class="exp" id="exp-support" hidden><ul><li>What you get: deflection on top intents, assist macros, CSAT tracking</li><li>Why this works: intent routing + RAG with guardrails</li><li>Pilot price: $8,500 (4 weeks)</li></ul><p><a class="btn small book-svc" href="#">Book a call</a> <a class="btn small btn-ghost" href="../assets/pdf/support.pdf" target="_blank" rel="noopener">Open PDF</a></p></div></div>
       <div class="card" id="svc-copilots"><h3>Ops Copilots</h3><p class="muted">Internal GPT tools for sales, success, and finance (summaries, QA, reporting).</p><p><a class="tag" data-expand="copilots">Learn more</a></p><div class="exp" id="exp-copilots" hidden><ul><li>What you get: secure internal tools for one high‑value workflow</li><li>Why this works: action whitelists + approvals, audit trails</li><li>Pilot price: $6,500 (3 weeks)</li></ul><p><a class="btn small book-svc" href="#">Book a call</a> <a class="btn small btn-ghost" href="../assets/pdf/copilots.pdf" target="_blank" rel="noopener">Open PDF</a></p></div></div>

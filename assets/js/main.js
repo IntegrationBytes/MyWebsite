@@ -98,22 +98,93 @@ try {
           }).join('');
         }).catch(()=>{});
       }
-      // Inject optional nav items based on feature toggles
-      const nav = document.querySelector('header .nav');
-      if (nav) {
-        const addLink = (href, label) => {
-          const a = document.createElement('a');
-          a.className = 'nav-link';
-          a.href = href; a.textContent = label; nav.appendChild(a);
-        };
-        if (window.FEATURE_SERVICES) addLink('/services/', 'Services');
-        if (window.FEATURE_SPEAKING) addLink('/speaking/', 'Speaking');
-        if (window.FEATURE_PRESS) addLink('/press/', 'Press');
-        if (window.FEATURE_COMMUNITY) addLink('/community/', 'Community');
-        if (window.FEATURE_STATUS && window.STATUS_PAGE_URL) addLink(window.STATUS_PAGE_URL, 'Status');
-        // Ops link intentionally hidden from public nav; access directly via /admin/
-        if (window.FEATURE_PRODUCTS) addLink('/products/', 'Products');
+      // Build a consistent, single-source-of-truth navigation on every page
+      try {
+        // Small delay to ensure DOM is fully ready
+        setTimeout(() => {
+          const nav = document.querySelector('header .nav');
+          if (nav) {
+            const path = window.location.pathname || '/';
+            if (path.startsWith('/admin/')) { /* keep admin nav untouched */ return; }
+            
+            const base = (path === '/' || path === '/index.html' || path === '') ? '' : '../';
+            const active = (() => {
+              const p = path.toLowerCase();
+              if (p.includes('/services')) return 'services';
+              if (p.includes('/projects')) return 'projects';
+              if (p.includes('/books')) return 'books';
+              if (p.includes('/links')) return 'links';
+              if (p.includes('/cv')) return 'cv';
+              if (p.includes('/contact')) return 'contact';
+              if (p.includes('/products')) return 'products';
+              return 'home';
+            })();
+
+            const items = [
+              { href: base + 'services/', text: 'Services', section: 'services' },
+              { href: base + 'projects/', text: 'Projects', section: 'projects' },
+              { href: base + 'books/', text: 'Books', section: 'books' },
+              { href: base + 'links/', text: 'Links', section: 'links' },
+              { href: base + 'cv/', text: 'CV / About', section: 'cv' },
+              { href: base + 'contact/', text: 'Contact', section: 'contact' }
+            ];
+            // Optionally show Products in the menu if enabled
+            if (window.FEATURE_PRODUCTS) {
+              // insert before Contact for predictable placement
+              items.splice(items.length - 1, 0, { href: base + 'products/', text: 'Products', section: 'products' });
+            }
+
+            // Clear any existing content and rebuild
+            nav.innerHTML = '';
+            items.forEach(item => {
+              const link = document.createElement('a');
+              link.className = `nav-link ${item.section === active ? 'active' : ''}`;
+              link.href = item.href;
+              link.setAttribute('aria-current', item.section === active);
+              link.textContent = item.text;
+              nav.appendChild(link);
+            });
+            
+            console.log('Navigation rebuilt with', items.length, 'items, active:', active);
+          }
+        }, 50);
+      } catch (err) {
+        console.warn('Failed to rebuild navigation:', err);
       }
+      // Progressive reveal animations using IntersectionObserver (respects reduced motion)
+      try {
+        const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) {
+          document.querySelectorAll('.reveal').forEach(el => {
+            el.classList.add('is-visible');
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+          });
+        } else if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries, obs) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              const target = entry.target;
+
+              // If this is a stagger container, set delays on children and flag container visible
+              if (target.classList.contains('reveal-stagger')) {
+                const children = Array.from(target.children);
+                children.forEach((child, i) => child.style.setProperty('--reveal-delay', `${Math.min(i * 80, 600)}ms`));
+                target.classList.add('is-visible');
+                obs.unobserve(target);
+                continue;
+              }
+
+              // Otherwise reveal the target element itself
+              target.classList.add('is-visible');
+              obs.unobserve(target);
+            }
+          }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+          document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-stagger').forEach(el => observer.observe(el));
+        } else {
+          document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-stagger').forEach(el => el.classList.add('is-visible'));
+        }
+      } catch {}
       // Referral tracking param preservation
       try {
         const refKey = window.REFERRAL_PARAM || 'ref';

@@ -32,10 +32,12 @@
   <div class="container header-inner">
     <a class="brand" href="../"><span class="glyph">◇</span> Vincent Viitala</a>
     <nav aria-label="Primary" class="nav">
-      <a class="nav-link active" href="../projects/" aria-current=page>Projects</a>
-<a class="nav-link " href="../links/" aria-current=false>Links</a>
-<a class="nav-link " href="../cv/" aria-current=false>CV / About</a>
-<a class="nav-link " href="../contact/" aria-current=false>Contact</a>
+      <a class="nav-link" href="../services/" aria-current="false">Services</a>
+      <a class="nav-link active" href="../projects/" aria-current="page">Projects</a>
+      <a class="nav-link" href="../books/" aria-current="false">Books</a>
+      <a class="nav-link" href="../links/" aria-current="false">Links</a>
+      <a class="nav-link" href="../cv/" aria-current="false">CV / About</a>
+      <a class="nav-link" href="../contact/" aria-current="false">Contact</a>
     </nav>
     <div class="header-actions">
       <button id="cmdk" class="btn btn-ghost" aria-label="Open Command Palette (Ctrl/⌘K)"><span>⌘K</span></button>
@@ -60,11 +62,11 @@
 </div>
 <main class="container" role="main">
 
-<section>
+<section class="reveal">
   <h1>Projects</h1>
   <p class="lead">Grid/list toggle; filter by year, domain, and stack.</p>
   <div class="grid" style="grid-template-columns: 1fr 2fr;">
-    <aside class="card">
+    <aside class="card reveal">
       <div class="small-label">Filters</div>
       <div style="display:grid; gap:8px; margin-top:8px;">
         <label>Year</label>
@@ -84,7 +86,7 @@
         <input id="stack" type="text" placeholder="e.g., TypeScript" />
       </div>
     </aside>
-    <div>
+    <div class="reveal-stagger">
       <div id="project-list" class="grid cols-3"></div>
     </div>
   </div>

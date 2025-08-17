@@ -33,11 +33,12 @@
   <div class="container header-inner">
     <a class="brand" href="./"><span class="glyph">◇</span> Vincent Viitala</a>
     <nav aria-label="Primary" class="nav">
-      <a class="nav-link " href="services/" aria-current=false>Services</a>
-<a class="nav-link " href="projects/" aria-current=false>Projects</a>
-<a class="nav-link " href="links/" aria-current=false>Links</a>
-<a class="nav-link " href="cv/" aria-current=false>CV / About</a>
-<a class="nav-link " href="contact/" aria-current=false>Contact</a>
+      <a class="nav-link" href="services/" aria-current="false">Services</a>
+      <a class="nav-link" href="projects/" aria-current="false">Projects</a>
+      <a class="nav-link" href="books/" aria-current="false">Books</a>
+      <a class="nav-link" href="links/" aria-current="false">Links</a>
+      <a class="nav-link" href="cv/" aria-current="false">CV / About</a>
+      <a class="nav-link" href="contact/" aria-current="false">Contact</a>
     </nav>
     <div class="header-actions">
       <button id="cmdk" class="btn btn-ghost" aria-label="Open Command Palette (Ctrl/⌘K)"><span>⌘K</span></button>
@@ -51,6 +52,7 @@
     <ul id="cmdk-list" class="cmdk-list" role="listbox">
       <li data-action="go:services/">Explore Services</li>
       <li data-action="go:projects/">View Projects</li>
+      <li data-action="go:books/">Browse Books</li>
       <li data-action="go:links/">Links</li>
       <li data-action="go:cv/">CV / About</li>
       <li data-action="go:contact/">Contact</li>
@@ -62,8 +64,8 @@
 </div>
 <main class="container" role="main">
 
-<section class="hero">
-  <div class="left">
+<section class="hero reveal">
+  <div class="left reveal">
     <p class="small-label">Driving Innovation in AI & Technology</p>
     <h1>Vincent Viitala - AI Engineer & Full-Stack Developer</h1>
     <p class="lead">I build dependable AI that ships. Python, Java, and JavaScript end-to-end from idea to production. Ex‑founder (7‑person fintech, exited). BSc Data Science & AI (Maastricht). Hands‑on, relentless, and measured by outcomes.</p>
@@ -92,12 +94,12 @@
       </div>
     </div>
   </div>
-  <div class="right">
+  <div class="right reveal-zoom">
     <canvas id="code-rain" style="position:absolute; inset:0; width:100%; height:100%; opacity:.28; pointer-events:none;"></canvas>
   </div>
 </section>
 
-<section class="card">
+<section class="card reveal">
   <h2>Selected Services</h2>
   <div class="grid cols-3">
     <a class="card track-cta" href="services/#svc-leadgen">
@@ -124,7 +126,7 @@
   <p>If we can’t demonstrate movement on the agreed KPI by Week 2 of a pilot, cancel with no further obligation.</p>
 </section>
 
-<section>
+<section class="reveal">
   <h2>Selected Work</h2>
   <div id="home-projects" class="grid cols-3"></div>
 </section>

@@ -1,0 +1,11 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0BAF6C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C9B279;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="300" fill="url(#bookGradient)"/>
+  <text x="100" y="150" text-anchor="middle" fill="#050807" font-family="serif" font-size="18" font-weight="bold">BOOK</text>
+  <text x="100" y="180" text-anchor="middle" fill="#050807" font-family="serif" font-size="14">COVER</text>
+</svg>

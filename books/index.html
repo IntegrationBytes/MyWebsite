@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" data-theme="matrix">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Books - Vincent Viitala</title>
+  <meta name="description" content="A curated collection of books that have shaped my thinking on AI, technology, philosophy, and the future of human-computer interaction." />
+  <meta name="theme-color" content="#050807" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Books - Vincent Viitala">
+  <meta property="og:description" content="A curated collection of books that have shaped my thinking on AI, technology, and philosophy.">
+  <meta property="og:url" content="/books/">
+  <meta property="og:image" content="../assets/img/og-default.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;600&family=Source+Serif+4:opsz@8..60&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/books.css">
+  <script defer src="../assets/js/config.js"></script>
+  <script defer src="../assets/js/books-goodreads.js"></script>
+  <script defer src="../assets/js/main.js"></script>
+  <script defer src="../assets/js/beacon.js"></script>
+</head>
+
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="../"><span class="glyph">◇</span> Vincent Viitala</a>
+    <nav aria-label="Primary" class="nav">
+      <a class="nav-link" href="../services/" aria-current="false">Services</a>
+      <a class="nav-link" href="../projects/" aria-current="false">Projects</a>
+      <a class="nav-link active" href="../books/" aria-current="page">Books</a>
+      <a class="nav-link" href="../links/" aria-current="false">Links</a>
+      <a class="nav-link" href="../cv/" aria-current="false">CV / About</a>
+      <a class="nav-link" href="../contact/" aria-current="false">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button id="cmdk" class="btn btn-ghost" aria-label="Open Command Palette (Ctrl/⌘K)"><span>⌘K</span></button>
+    </div>
+  </div>
+</header>
+
+<div id="progress" class="progress" aria-hidden="true"><span></span></div>
+
+<div id="cmdk-overlay" class="cmdk" hidden>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command Palette">
+    <input id="cmdk-input" type="text" placeholder="Type a command or search…" aria-label="Command input" />
+    <ul id="cmdk-list" class="cmdk-list" role="listbox">
+      <li data-action="go:/services/">Explore Services</li>
+      <li data-action="go:/projects/">View Projects</li>
+      <li data-action="go:/books/">Browse Books</li>
+      <li data-action="go:/links/">Links</li>
+      <li data-action="go:/cv/">CV / About</li>
+      <li data-action="go:/contact/">Contact</li>
+      <li data-action="search">Site Search…</li>
+    </ul>
+    <button id="cmdk-close" class="btn btn-ghost small">Close</button>
+  </div>
+</div>
+
+<main class="container" role="main">
+  <section class="books-hero reveal">
+    <p class="small-label">Curated Collection</p>
+    <h1>Books That Shape Thinking</h1>
+    <p class="lead">A carefully curated selection of books that have influenced my approach to AI, technology, philosophy, and the intersection of human and machine intelligence. Each book represents a different perspective on building the future.</p>
+  </section>
+
+  <section class="books-filters reveal">
+    <div class="filter-group">
+      <button class="filter-btn active" data-category="all">All Books</button>
+      <button class="filter-btn" data-category="ai">AI & Technology</button>
+      <button class="filter-btn" data-category="philosophy">Philosophy</button>
+      <button class="filter-btn" data-category="business">Business</button>
+      <button class="filter-btn" data-category="science">Science</button>
+    </div>
+  </section>
+
+  <section class="books-grid-container reveal">
+    <div id="books-grid" class="books-grid">
+      <!-- Books will be populated by JavaScript -->
+    </div>
+    
+    <div class="books-pagination">
+      <button id="prev-page" class="btn btn-ghost" disabled>← Previous</button>
+      <div class="page-info">
+        <span id="page-current">1</span> of <span id="page-total">1</span>
+      </div>
+      <button id="next-page" class="btn btn-ghost">Next →</button>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="left">
+      <p class="muted">© 2025 Vincent Viitala</p>
+      <p class="muted">AI engineer building dependable systems. Available for challenging work.</p>
+    </div>
+    <div class="right">
+      <a href="https://github.com/" target="_blank" rel="noopener" class="tag">GitHub</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <a href="../contact/" class="tag">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
