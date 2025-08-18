@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://example.com/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/essays/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/projects/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/search/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/services/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/products/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/speaking/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/press/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/community/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/privacy/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/terms/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/books/</loc><lastmod>2025-08-16T22:05:00.000Z</lastmod></url>
-  <url><loc>https://example.com/links/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/cv/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
-  <url><loc>https://example.com/contact/</loc><lastmod>2025-08-14T10:27:26.714Z</lastmod></url>
+  <url><loc>https://example.com/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/essays/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/projects/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/search/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/services/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/products/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/speaking/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/press/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/community/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/privacy/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/terms/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/links/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/cv/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
+  <url><loc>https://example.com/contact/</loc><lastmod>2025-08-18T23:17:03.137Z</lastmod></url>
   <url><loc>https://example.com/essays/test.html</loc><lastmod>2025-08-10T20:01:00.000Z</lastmod></url>
   <url><loc>https://example.com/essays/awakening-in-latent-space.html</loc><lastmod>2025-06-18T00:00:00.000Z</lastmod></url>
   <url><loc>https://example.com/essays/ethics-of-simulation-hygiene.html</loc><lastmod>2025-05-22T00:00:00.000Z</lastmod></url>

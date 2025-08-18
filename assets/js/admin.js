@@ -120,6 +120,86 @@
       target.innerHTML = pdfs.map(id => `<a class="tag" href="../assets/pdf/${id}.pdf" target="_blank">${id}.pdf</a>`).join(' ');
     }
   } catch {}
+
+  // Books Admin: lightweight JSON editor for books-selected.json
+  try {
+    const root = document.getElementById('books-admin');
+    if (root) {
+      root.innerHTML = `<div class="grid cols-2">
+        <div>
+          <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+            <button class="btn small" id="books-load">Load</button>
+            <button class="btn small" id="books-save">Save</button>
+            <button class="btn small" id="books-add">Add new</button>
+            <span class="small-label" id="books-status" style="margin-left:auto;"></span>
+          </div>
+          <table id="books-table" class="table"></table>
+        </div>
+        <div>
+          <h3>Selected Book</h3>
+          <form id="book-form" class="card" style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+            <label class="small-label">Title<input name="title" type="text"></label>
+            <label class="small-label">Author<input name="author" type="text"></label>
+            <label class="small-label">My Rating<input name="my_rating" type="text"></label>
+            <label class="small-label">Average Rating<input name="average_rating" type="text"></label>
+            <label class="small-label">Publisher<input name="publisher" type="text"></label>
+            <label class="small-label">Year<input name="year_published" type="text"></label>
+            <label class="small-label">Pages<input name="num_pages" type="text"></label>
+            <label class="small-label">ISBN<input name="isbn" type="text"></label>
+            <label class="small-label">ISBN13<input name="isbn13" type="text"></label>
+            <label class="small-label" style="grid-column:1/-1;">Review<textarea name="my_review" rows="6"></textarea></label>
+            <label class="small-label">Slug<input name="slug" type="text"></label>
+            <label class="small-label">Category<select name="category"><option>ai</option><option>business</option><option>philosophy</option><option>science</option></select></label>
+            <label class="small-label">Cover URL<input name="cover_url" type="text"></label>
+          </form>
+        </div>
+      </div>`;
+
+      const $ = (s, el=document) => el.querySelector(s);
+      const table = $('#books-table');
+      const form = $('#book-form');
+      const status = $('#books-status');
+      let books = [];
+      let currentIndex = -1;
+
+      const renderTable = () => {
+        table.innerHTML = `<tr><th>Title</th><th>Author</th><th>My★</th><th>Year</th><th>Slug</th></tr>` +
+          books.map((b,i)=>`<tr data-i="${i}" class="${i===currentIndex?'active':''}"><td>${b.title||''}</td><td>${b.author||''}</td><td>${b.my_rating||''}</td><td>${b.year_published||''}</td><td>${b.slug||''}</td></tr>`).join('');
+        table.querySelectorAll('tr[data-i]')?.forEach(tr => tr.addEventListener('click', () => { select(parseInt(tr.getAttribute('data-i'))); }));
+      };
+      const select = (i) => {
+        currentIndex = i;
+        const b = books[i] || {};
+        for (const el of form.elements) { if (el.name && el.tagName) el.value = b[el.name] ?? ''; }
+        renderTable();
+      };
+      const readForm = () => {
+        const b = {}; for (const el of form.elements) { if (el.name) b[el.name] = el.value; }
+        if (!b.slug && b.title && b.author) b.slug = (b.title + '-' + b.author).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+        return b;
+      };
+
+      $('#books-load')?.addEventListener('click', async ()=>{
+        const r = await fetch('../assets/data/books-selected.json?ts=' + Date.now(), { cache:'no-store' });
+        books = await r.json();
+        renderTable(); select(0); status.textContent = `Loaded ${books.length} books`;
+      });
+      $('#books-save')?.addEventListener('click', async ()=>{
+        if (currentIndex>=0) books[currentIndex] = readForm();
+        try {
+          // In static hosting, we cannot write files. Offer a download instead.
+          const blob = new Blob([JSON.stringify(books, null, 2)], { type:'application/json' });
+          const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'books-selected.json'; a.click();
+          status.textContent = 'Downloaded updated JSON. Replace assets/data/books-selected.json to apply.';
+        } catch { status.textContent = 'Save failed in static environment'; }
+      });
+      $('#books-add')?.addEventListener('click', ()=>{
+        books.push({ title:'', author:'', my_rating:'', average_rating:'', year_published:'', num_pages:'', publisher:'', my_review:'', slug:'', isbn:'', isbn13:'', category:'philosophy', cover_url:'' });
+        renderTable(); select(books.length-1);
+      });
+      form.addEventListener('input', ()=>{ if (currentIndex>=0) books[currentIndex] = readForm(); });
+    }
+  } catch {}
 })();
 
 

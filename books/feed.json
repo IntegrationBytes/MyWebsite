@@ -1,0 +1,407 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Vincent Viitala — Book Reviews",
+  "home_page_url": "https://vincentviitala.com/books/",
+  "feed_url": "https://vincentviitala.com/books/feed.json",
+  "items": [
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-lean-startup-eric-ries.html",
+      "url": "https://vincentviitala.com/books/reviews/the-lean-startup-eric-ries.html",
+      "title": "The Lean Startup — Review & Notes",
+      "content_text": "A great book for finding what your startup should exactly do in order to create something that has any value at all. I will read this if/when I start my own startup.",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/zero-to-one-notes-on-startups-or-how-to-build-the-future-peter-thiel.html",
+      "url": "https://vincentviitala.com/books/reviews/zero-to-one-notes-on-startups-or-how-to-build-the-future-peter-thiel.html",
+      "title": "Zero to One: Notes on Startups, or How to Build the Future — Review & Notes",
+      "content_text": "One of those really good books to learn from no matter what is the context. This book tells how we are mistaking alot of competition for great place to start a company. You also learn alot other stuff about economics(one",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-hard-thing-about-hard-things-building-a-business-when-there-are-no-easy-answers-straight-talk-on-the-challenges-of-entrepreneurship-ben-horowitz.html",
+      "url": "https://vincentviitala.com/books/reviews/the-hard-thing-about-hard-things-building-a-business-when-there-are-no-easy-answers-straight-talk-on-the-challenges-of-entrepreneurship-ben-horowitz.html",
+      "title": "The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers―Straight Talk on the Challenges of Entrepreneurship — Review & Notes",
+      "content_text": "The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers―Straight Talk on the Challenges of Entrepreneurship by Ben Horowitz",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/good-to-great-why-some-companies-make-the-leap-and-others-don-t-jim-collins.html",
+      "url": "https://vincentviitala.com/books/reviews/good-to-great-why-some-companies-make-the-leap-and-others-don-t-jim-collins.html",
+      "title": "Good to Great: Why Some Companies Make the Leap... and Others Don't — Review & Notes",
+      "content_text": "Good to Great: Why Some Companies Make the Leap... and Others Don't by Jim Collins",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/blue-ocean-strategy-how-to-create-uncontested-market-space-and-make-the-competition-irrelevant-w-chan-kim.html",
+      "url": "https://vincentviitala.com/books/reviews/blue-ocean-strategy-how-to-create-uncontested-market-space-and-make-the-competition-irrelevant-w-chan-kim.html",
+      "title": "Blue Ocean Strategy: How to Create Uncontested Market Space and Make the Competition Irrelevant — Review & Notes",
+      "content_text": "Rereading before going ahead on my own.",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/rework-jason-fried.html",
+      "url": "https://vincentviitala.com/books/reviews/rework-jason-fried.html",
+      "title": "Rework — Review & Notes",
+      "content_text": "Rework by Jason Fried",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/venture-deals-be-smarter-than-your-lawyer-and-venture-capitalist-brad-feld.html",
+      "url": "https://vincentviitala.com/books/reviews/venture-deals-be-smarter-than-your-lawyer-and-venture-capitalist-brad-feld.html",
+      "title": "Venture Deals: Be Smarter Than Your Lawyer and Venture Capitalist — Review & Notes",
+      "content_text": "Venture Deals: Be Smarter Than Your Lawyer and Venture Capitalist by Brad Feld",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/crossing-the-chasm-marketing-and-selling-high-tech-products-to-mainstream-customers-geoffrey-a-moore.html",
+      "url": "https://vincentviitala.com/books/reviews/crossing-the-chasm-marketing-and-selling-high-tech-products-to-mainstream-customers-geoffrey-a-moore.html",
+      "title": "Crossing the Chasm: Marketing and Selling High-Tech Products to Mainstream Customers — Review & Notes",
+      "content_text": "Crossing the Chasm: Marketing and Selling High-Tech Products to Mainstream Customers by Geoffrey A. Moore",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/how-to-develop-self-confidence-influence-people-by-public-speaking-dale-carnegie.html",
+      "url": "https://vincentviitala.com/books/reviews/how-to-develop-self-confidence-influence-people-by-public-speaking-dale-carnegie.html",
+      "title": "How to Develop Self-Confidence & Influence People by Public Speaking — Review & Notes",
+      "content_text": "How to Develop Self-Confidence & Influence People by Public Speaking by Dale Carnegie",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/never-split-the-difference-negotiating-as-if-your-life-depended-on-it-chris-voss.html",
+      "url": "https://vincentviitala.com/books/reviews/never-split-the-difference-negotiating-as-if-your-life-depended-on-it-chris-voss.html",
+      "title": "Never Split the Difference: Negotiating As If Your Life Depended On It — Review & Notes",
+      "content_text": "Never Split the Difference: Negotiating As If Your Life Depended On It by Chris Voss",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/artificial-intelligence-a-modern-approach-stuart-russell.html",
+      "url": "https://vincentviitala.com/books/reviews/artificial-intelligence-a-modern-approach-stuart-russell.html",
+      "title": "Artificial Intelligence: A Modern Approach — Review & Notes",
+      "content_text": "Artificial Intelligence: A Modern Approach by Stuart Russell",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/superintelligence-paths-dangers-strategies-nick-bostrom.html",
+      "url": "https://vincentviitala.com/books/reviews/superintelligence-paths-dangers-strategies-nick-bostrom.html",
+      "title": "Superintelligence: Paths, Dangers, Strategies — Review & Notes",
+      "content_text": "Superintelligence: Paths, Dangers, Strategies by Nick Bostrom",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/life-3-0-being-human-in-the-age-of-artificial-intelligence-max-tegmark.html",
+      "url": "https://vincentviitala.com/books/reviews/life-3-0-being-human-in-the-age-of-artificial-intelligence-max-tegmark.html",
+      "title": "Life 3.0: Being Human in the Age of Artificial Intelligence — Review & Notes",
+      "content_text": "Interestingly philosophical topic and for that reason I will start studying independently this field. As a high school student this will be my greatest challenge yet.",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/ai-superpowers-china-silicon-valley-and-the-new-world-order-kai-fu-lee.html",
+      "url": "https://vincentviitala.com/books/reviews/ai-superpowers-china-silicon-valley-and-the-new-world-order-kai-fu-lee.html",
+      "title": "AI Superpowers: China, Silicon Valley, and the New World Order — Review & Notes",
+      "content_text": "AI Superpowers: China, Silicon Valley, and the New World Order by Kai-Fu Lee",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/human-compatible-artificial-intelligence-and-the-problem-of-control-stuart-russell.html",
+      "url": "https://vincentviitala.com/books/reviews/human-compatible-artificial-intelligence-and-the-problem-of-control-stuart-russell.html",
+      "title": "Human Compatible: Artificial Intelligence and the Problem of Control — Review & Notes",
+      "content_text": "Amazing book, which I don't clearly understand well enough. Nobody does. I shall study this problem to the max degree using my not deep learning general intelligence. Also I will make career or something out of this as i",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/weapons-of-math-destruction-how-big-data-increases-inequality-and-threatens-democracy-cathy-o-neil.html",
+      "url": "https://vincentviitala.com/books/reviews/weapons-of-math-destruction-how-big-data-increases-inequality-and-threatens-democracy-cathy-o-neil.html",
+      "title": "Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy — Review & Notes",
+      "content_text": "Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy by Cathy O'Neil",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-second-machine-age-work-progress-and-prosperity-in-a-time-of-brilliant-technologies-erik-brynjolfsson.html",
+      "url": "https://vincentviitala.com/books/reviews/the-second-machine-age-work-progress-and-prosperity-in-a-time-of-brilliant-technologies-erik-brynjolfsson.html",
+      "title": "The Second Machine Age: Work, Progress, and Prosperity in a Time of Brilliant Technologies — Review & Notes",
+      "content_text": "The Second Machine Age: Work, Progress, and Prosperity in a Time of Brilliant Technologies by Erik Brynjolfsson",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/thinking-fast-and-slow-daniel-kahneman.html",
+      "url": "https://vincentviitala.com/books/reviews/thinking-fast-and-slow-daniel-kahneman.html",
+      "title": "Thinking, Fast and Slow — Review & Notes",
+      "content_text": "Thinking, Fast and Slow by Daniel Kahneman",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-black-swan-the-impact-of-the-highly-improbable-nassim-nicholas-taleb.html",
+      "url": "https://vincentviitala.com/books/reviews/the-black-swan-the-impact-of-the-highly-improbable-nassim-nicholas-taleb.html",
+      "title": "The Black Swan: The Impact of the Highly Improbable — Review & Notes",
+      "content_text": "The Black Swan: The Impact of the Highly Improbable by Nassim Nicholas Taleb",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/nudge-improving-decisions-about-health-wealth-and-happiness-richard-h-thaler.html",
+      "url": "https://vincentviitala.com/books/reviews/nudge-improving-decisions-about-health-wealth-and-happiness-richard-h-thaler.html",
+      "title": "Nudge: Improving Decisions About Health, Wealth, and Happiness — Review & Notes",
+      "content_text": "Nudge: Improving Decisions About Health, Wealth, and Happiness by Richard H. Thaler",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/predictably-irrational-the-hidden-forces-that-shape-our-decisions-dan-ariely.html",
+      "url": "https://vincentviitala.com/books/reviews/predictably-irrational-the-hidden-forces-that-shape-our-decisions-dan-ariely.html",
+      "title": "Predictably Irrational: The Hidden Forces That Shape Our Decisions — Review & Notes",
+      "content_text": "Predictably Irrational: The Hidden Forces That Shape Our Decisions by Dan Ariely",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/antifragile-things-that-gain-from-disorder-nassim-nicholas-taleb.html",
+      "url": "https://vincentviitala.com/books/reviews/antifragile-things-that-gain-from-disorder-nassim-nicholas-taleb.html",
+      "title": "Antifragile: Things That Gain from Disorder — Review & Notes",
+      "content_text": "Hey this book Rock 'n' Rolls. As many fellow Rockers have said: \"Rock 'n' Roll ain't death & thus antifragile\".",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/man-s-search-for-meaning-viktor-e-frankl.html",
+      "url": "https://vincentviitala.com/books/reviews/man-s-search-for-meaning-viktor-e-frankl.html",
+      "title": "Man's Search for Meaning — Review & Notes",
+      "content_text": "Man's Search for Meaning by Viktor E. Frankl",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/hands-on-machine-learning-with-scikit-learn-keras-and-tensor-flow-concepts-tools-and-techniques-to-build-intelligent-systems-colour-edition-aur-lien-g-ron.html",
+      "url": "https://vincentviitala.com/books/reviews/hands-on-machine-learning-with-scikit-learn-keras-and-tensor-flow-concepts-tools-and-techniques-to-build-intelligent-systems-colour-edition-aur-lien-g-ron.html",
+      "title": "Hands-On Machine Learning with Scikit-Learn, Keras and Tensor Flow: Concepts, Tools and Techniques to Build Intelligent Systems (Colour Edition) — Review & Notes",
+      "content_text": "Hands-On Machine Learning with Scikit-Learn, Keras and Tensor Flow: Concepts, Tools and Techniques to Build Intelligent Systems (Colour Edition) by Aurélien Géron",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-scout-mindset-why-some-people-see-things-clearly-and-others-don-t-julia-galef.html",
+      "url": "https://vincentviitala.com/books/reviews/the-scout-mindset-why-some-people-see-things-clearly-and-others-don-t-julia-galef.html",
+      "title": "The Scout Mindset: Why Some People See Things Clearly and Others Don't — Review & Notes",
+      "content_text": "The Scout Mindset: Why Some People See Things Clearly and Others Don't by Julia Galef",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/quiet-the-power-of-introverts-in-a-world-that-can-t-stop-talking-susan-cain.html",
+      "url": "https://vincentviitala.com/books/reviews/quiet-the-power-of-introverts-in-a-world-that-can-t-stop-talking-susan-cain.html",
+      "title": "Quiet: The Power of Introverts in a World That Can't Stop Talking — Review & Notes",
+      "content_text": "Quiet: The Power of Introverts in a World That Can't Stop Talking by Susan Cain",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/sapiens-a-brief-history-of-humankind-yuval-noah-harari.html",
+      "url": "https://vincentviitala.com/books/reviews/sapiens-a-brief-history-of-humankind-yuval-noah-harari.html",
+      "title": "Sapiens: A Brief History of Humankind — Review & Notes",
+      "content_text": "Sapiens: A Brief History of Humankind by Yuval Noah Harari",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/shoe-dog-a-memoir-by-the-creator-of-nike-phil-knight.html",
+      "url": "https://vincentviitala.com/books/reviews/shoe-dog-a-memoir-by-the-creator-of-nike-phil-knight.html",
+      "title": "Shoe Dog: A Memoir by the Creator of Nike — Review & Notes",
+      "content_text": "Shoe Dog: A Memoir by the Creator of Nike by Phil Knight",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/steve-jobs-walter-isaacson.html",
+      "url": "https://vincentviitala.com/books/reviews/steve-jobs-walter-isaacson.html",
+      "title": "Steve Jobs — Review & Notes",
+      "content_text": "Steve Jobs by Walter Isaacson",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/endurance-shackleton-s-incredible-voyage-alfred-lansing.html",
+      "url": "https://vincentviitala.com/books/reviews/endurance-shackleton-s-incredible-voyage-alfred-lansing.html",
+      "title": "Endurance: Shackleton's Incredible Voyage — Review & Notes",
+      "content_text": "Endurance: Shackleton's Incredible Voyage by Alfred Lansing",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/guns-germs-and-steel-the-fates-of-human-societies-jared-diamond.html",
+      "url": "https://vincentviitala.com/books/reviews/guns-germs-and-steel-the-fates-of-human-societies-jared-diamond.html",
+      "title": "Guns, Germs, and Steel: The Fates of Human Societies — Review & Notes",
+      "content_text": "Basically explains why learn geography and not nation names(that's man-made fake geography).",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/on-time-on-target-launch-your-life-like-a-titan-ii-icbm-kirk-kuhn.html",
+      "url": "https://vincentviitala.com/books/reviews/on-time-on-target-launch-your-life-like-a-titan-ii-icbm-kirk-kuhn.html",
+      "title": "On Time On Target- Launch your life like a Titan II ICBM — Review & Notes",
+      "content_text": "On Time On Target- Launch your life like a Titan II ICBM by Kirk Kuhn",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/meditations-on-first-philosophy-ren-descartes.html",
+      "url": "https://vincentviitala.com/books/reviews/meditations-on-first-philosophy-ren-descartes.html",
+      "title": "Meditations on First Philosophy — Review & Notes",
+      "content_text": "Meditations on First Philosophy by René Descartes",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-art-of-war-sun-tzu.html",
+      "url": "https://vincentviitala.com/books/reviews/the-art-of-war-sun-tzu.html",
+      "title": "The Art of War — Review & Notes",
+      "content_text": "The Art of War by Sun Tzu",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/principles-life-and-work-ray-dalio.html",
+      "url": "https://vincentviitala.com/books/reviews/principles-life-and-work-ray-dalio.html",
+      "title": "Principles: Life and Work — Review & Notes",
+      "content_text": "Principles: Life and Work by Ray Dalio",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/homo-deus-a-history-of-tomorrow-yuval-noah-harari.html",
+      "url": "https://vincentviitala.com/books/reviews/homo-deus-a-history-of-tomorrow-yuval-noah-harari.html",
+      "title": "Homo Deus: A History of Tomorrow — Review & Notes",
+      "content_text": "I sadly agree with many points of this book. Even though this is really depressing. I think it holds much of truth. But we may never know the future. Philosophy says so, so there's no arguing with that.",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-sovereign-individual-mastering-the-transition-to-the-information-age-james-dale-davidson.html",
+      "url": "https://vincentviitala.com/books/reviews/the-sovereign-individual-mastering-the-transition-to-the-information-age-james-dale-davidson.html",
+      "title": "The Sovereign Individual: Mastering the Transition to the Information Age — Review & Notes",
+      "content_text": "Reread this later on I must. A book about facts is here at last.",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-7-habits-of-highly-effective-people-powerful-lessons-in-personal-change-stephen-r-covey.html",
+      "url": "https://vincentviitala.com/books/reviews/the-7-habits-of-highly-effective-people-powerful-lessons-in-personal-change-stephen-r-covey.html",
+      "title": "The 7 Habits of Highly Effective People: Powerful Lessons in Personal Change — Review & Notes",
+      "content_text": "The 7 Habits of Highly Effective People: Powerful Lessons in Personal Change by Stephen R. Covey",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/think-and-grow-rich-napoleon-hill.html",
+      "url": "https://vincentviitala.com/books/reviews/think-and-grow-rich-napoleon-hill.html",
+      "title": "Think and Grow Rich — Review & Notes",
+      "content_text": "Think and Grow Rich by Napoleon Hill",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/deep-work-rules-for-focused-success-in-a-distracted-world-cal-newport.html",
+      "url": "https://vincentviitala.com/books/reviews/deep-work-rules-for-focused-success-in-a-distracted-world-cal-newport.html",
+      "title": "Deep Work: Rules for Focused Success in a Distracted World — Review & Notes",
+      "content_text": "Deep Work: Rules for Focused Success in a Distracted World by Cal Newport",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/atomic-habits-an-easy-proven-way-to-build-good-habits-break-bad-ones-james-clear.html",
+      "url": "https://vincentviitala.com/books/reviews/atomic-habits-an-easy-proven-way-to-build-good-habits-break-bad-ones-james-clear.html",
+      "title": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones — Review & Notes",
+      "content_text": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones by James Clear",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/getting-things-done-the-art-of-stress-free-productivity-david-allen.html",
+      "url": "https://vincentviitala.com/books/reviews/getting-things-done-the-art-of-stress-free-productivity-david-allen.html",
+      "title": "Getting Things Done: The Art of Stress-Free Productivity — Review & Notes",
+      "content_text": "Getting Things Done: The Art of Stress-Free Productivity by David    Allen",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-power-of-habit-why-we-do-what-we-do-in-life-and-business-charles-duhigg.html",
+      "url": "https://vincentviitala.com/books/reviews/the-power-of-habit-why-we-do-what-we-do-in-life-and-business-charles-duhigg.html",
+      "title": "The Power of Habit: Why We Do What We Do in Life and Business — Review & Notes",
+      "content_text": "The Power of Habit: Why We Do What We Do in Life and Business by Charles Duhigg",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/animal-farm-1984-george-orwell.html",
+      "url": "https://vincentviitala.com/books/reviews/animal-farm-1984-george-orwell.html",
+      "title": "Animal Farm / 1984 — Review & Notes",
+      "content_text": "Animal Farm / 1984 by George Orwell",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/brave-new-world-aldous-huxley.html",
+      "url": "https://vincentviitala.com/books/reviews/brave-new-world-aldous-huxley.html",
+      "title": "Brave New World — Review & Notes",
+      "content_text": "Brave New World is philosophic horror story, which seems(to some people) realistic view of future and thus the horror is produced if that which is described in the book is morally bad to those people who think in that wa",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/atlas-shrugged-ayn-rand.html",
+      "url": "https://vincentviitala.com/books/reviews/atlas-shrugged-ayn-rand.html",
+      "title": "Atlas Shrugged — Review & Notes",
+      "content_text": "Atlas Shrugged by Ayn Rand",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-road-to-dune-frank-herbert.html",
+      "url": "https://vincentviitala.com/books/reviews/the-road-to-dune-frank-herbert.html",
+      "title": "The Road to Dune — Review & Notes",
+      "content_text": "I mean this was my last Dune. Will not pursue the other books. I've already read more than 99% people about this series. So I'm happy.",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-fountainhead-ayn-rand.html",
+      "url": "https://vincentviitala.com/books/reviews/the-fountainhead-ayn-rand.html",
+      "title": "The Fountainhead — Review & Notes",
+      "content_text": "I can see on modern days that many people life out of other people. For example those who want likes in Instagram, Snapchat, Facebook, etc... It's really a illusion of happiness that comes from those likes. And that ener",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/snow-crash-neal-stephenson.html",
+      "url": "https://vincentviitala.com/books/reviews/snow-crash-neal-stephenson.html",
+      "title": "Snow Crash — Review & Notes",
+      "content_text": "Snow Crash by Neal Stephenson",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-algorithm-design-manual-steven-s-skiena.html",
+      "url": "https://vincentviitala.com/books/reviews/the-algorithm-design-manual-steven-s-skiena.html",
+      "title": "The Algorithm Design Manual — Review & Notes",
+      "content_text": "The Algorithm Design Manual by Steven S. Skiena",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/cracking-the-coding-interview-150-programming-questions-and-solutions-gayle-laakmann-mcdowell.html",
+      "url": "https://vincentviitala.com/books/reviews/cracking-the-coding-interview-150-programming-questions-and-solutions-gayle-laakmann-mcdowell.html",
+      "title": "Cracking the Coding Interview: 150 Programming Questions and Solutions — Review & Notes",
+      "content_text": "Cracking the Coding Interview: 150 Programming Questions and Solutions by Gayle Laakmann McDowell",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/introduction-to-algorithms-thomas-h-cormen.html",
+      "url": "https://vincentviitala.com/books/reviews/introduction-to-algorithms-thomas-h-cormen.html",
+      "title": "Introduction to Algorithms — Review & Notes",
+      "content_text": "Introduction to Algorithms by Thomas H. Cormen",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-clean-coder-a-code-of-conduct-for-professional-programmers-robert-c-martin.html",
+      "url": "https://vincentviitala.com/books/reviews/the-clean-coder-a-code-of-conduct-for-professional-programmers-robert-c-martin.html",
+      "title": "The Clean Coder: A Code of Conduct for Professional Programmers — Review & Notes",
+      "content_text": "The Clean Coder: A Code of Conduct for Professional Programmers by Robert C. Martin",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/algorithms-robert-sedgewick.html",
+      "url": "https://vincentviitala.com/books/reviews/algorithms-robert-sedgewick.html",
+      "title": "Algorithms — Review & Notes",
+      "content_text": "Algorithms by Robert Sedgewick",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/grokking-algorithms-an-illustrated-guide-for-programmers-and-other-curious-people-aditya-y-bhargava.html",
+      "url": "https://vincentviitala.com/books/reviews/grokking-algorithms-an-illustrated-guide-for-programmers-and-other-curious-people-aditya-y-bhargava.html",
+      "title": "Grokking Algorithms An Illustrated Guide For Programmers and Other Curious People — Review & Notes",
+      "content_text": "Grokking Algorithms An Illustrated Guide For Programmers and Other Curious People by Aditya Y. Bhargava",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/algorithms-to-live-by-the-computer-science-of-human-decisions-brian-christian.html",
+      "url": "https://vincentviitala.com/books/reviews/algorithms-to-live-by-the-computer-science-of-human-decisions-brian-christian.html",
+      "title": "Algorithms to Live By: The Computer Science of Human Decisions — Review & Notes",
+      "content_text": "Algorithms to Live By: The Computer Science of Human Decisions by Brian  Christian",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    },
+    {
+      "id": "https://vincentviitala.com/books/reviews/the-master-algorithm-how-the-quest-for-the-ultimate-learning-machine-will-remake-our-world-pedro-domingos.html",
+      "url": "https://vincentviitala.com/books/reviews/the-master-algorithm-how-the-quest-for-the-ultimate-learning-machine-will-remake-our-world-pedro-domingos.html",
+      "title": "The Master Algorithm: How the Quest for the Ultimate Learning Machine Will Remake Our World — Review & Notes",
+      "content_text": "The Master Algorithm: How the Quest for the Ultimate Learning Machine Will Remake Our World by Pedro Domingos",
+      "date_published": "2025-08-18T22:04:35.251Z"
+    }
+  ]
+}

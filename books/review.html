@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en" data-theme="matrix">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Review</title>
+  <meta name="theme-color" content="#050807" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/books.css">
+  <script defer src="../assets/js/config.js"></script>
+  <script defer src="../assets/js/main.js"></script>
+  <script>
+  function qs(key) { return new URLSearchParams(location.search).get(key) || ''; }
+  function stars(value){
+    const rating = parseFloat(value || '0') || 0;
+    const full = Math.floor(rating);
+    const half = rating % 1 >= 0.5 ? 1 : 0;
+    const empty = 5 - full - half;
+    return '★'.repeat(full) + (half ? '☆' : '') + '☆'.repeat(empty);
+  }
+  function ldForBook(b){
+    return {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "name": b.title,
+      "author": b.author ? {"@type":"Person","name": b.author} : undefined,
+      "isbn": b.isbn13 || b.isbn || undefined,
+      "image": b.cover_url || undefined,
+      "datePublished": b.year_published || undefined,
+      "publisher": b.publisher || undefined,
+      "url": `/books/reviews/${encodeURIComponent(b.slug)}.html`,
+      "review": b.my_review ? [{
+        "@type": "Review",
+        "reviewBody": b.my_review,
+        "reviewRating": b.my_rating ? {"@type": "Rating", "ratingValue": b.my_rating, "bestRating": "5"} : undefined
+      }] : undefined,
+      "aggregateRating": b.average_rating ? {"@type":"AggregateRating","ratingValue": b.average_rating, "bestRating":"5"} : undefined
+    };
+  }
+
+  async function load(){
+    const slug = qs('slug');
+    const container = document.getElementById('review');
+    if (!slug) { container.innerHTML = '<p class="muted">Missing book.</p>'; return; }
+    try{
+      const res = await fetch('../assets/data/books-selected.json?ts=' + Date.now(), { cache: 'no-store' });
+      const books = await res.json();
+      const book = books.find(b => b.slug === slug) || books.find(b => (b.slug||'') === decodeURIComponent(slug));
+      if (!book) { container.innerHTML = '<p class="muted">Book not found.</p>'; return; }
+      document.title = `${book.title} — Book Review`;
+      // SEO: canonical + JSON-LD
+      const link = document.createElement('link');
+      link.rel = 'canonical'; link.href = `/books/reviews/${encodeURIComponent(book.slug)}.html`;
+      document.head.appendChild(link);
+      const ld = document.createElement('script');
+      ld.type = 'application/ld+json';
+      ld.textContent = JSON.stringify(ldForBook(book));
+      document.head.appendChild(ld);
+      const cover = book.cover_url
+        ? `<img src="${book.cover_url}" alt="${book.title} cover" onerror="this.outerHTML='<div class=\'book-cover-placeholder\'>${book.title}</div>'">`
+        : `<div class="book-cover-placeholder">${book.title}</div>`;
+      const related = books.filter(x => x.slug !== book.slug).slice(0,6).map(x => {
+        const p = `/books/reviews/${encodeURIComponent(x.slug)}.html`;
+        return `<li><a href="${p}">${x.title}</a></li>`;
+      }).join('');
+
+      // Breadcrumbs JSON-LD
+      const breadcrumbs = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Books", "item": "/books/" },
+          { "@type": "ListItem", "position": 2, "name": book.title, "item": `/books/reviews/${encodeURIComponent(book.slug)}.html` }
+        ]
+      };
+      const ldB = document.createElement('script'); ldB.type='application/ld+json'; ldB.textContent = JSON.stringify(breadcrumbs); document.head.appendChild(ldB);
+
+      container.innerHTML = `
+        <nav class="breadcrumb"><a href="./">← Books</a></nav>
+        <header class="review-header">
+          <div class="book-meta">
+            <div class="book-cover-large">${cover}</div>
+            <div class="book-details">
+              <h1>${book.title}</h1>
+              <div class="book-author">by ${book.author || 'Unknown'}</div>
+              <div class="book-rating"><span class="book-stars">${stars(book.my_rating)}</span><span class="rating-text"> ${book.my_rating || '—'}/5 (avg ${book.average_rating || '—'})</span></div>
+              <div class="muted" style="margin-bottom:12px;">
+                ${book.publisher || '—'} • ${book.year_published || '—'} • ${book.num_pages || '—'} pages
+              </div>
+            </div>
+          </div>
+        </header>
+        <article class="review-content">
+          ${book.my_review ? book.my_review.replace(/\n/g,'<br>') : `
+            <div class="review-placeholder">
+              <h2>No long review yet</h2>
+              <p>This page supports longer personal reviews. Goodreads review field will be shown here if present.</p>
+              <ul>
+                <li>Notes on key ideas</li>
+                <li>Memorable quotes</li>
+                <li>How it changed my thinking</li>
+              </ul>
+            </div>
+          `}
+          <hr>
+          <h3>Related reviews</h3>
+          <ul>${related}</ul>
+        </article>
+      `;
+    } catch {
+      container.innerHTML = '<p class="muted">Failed to load.</p>';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', load);
+  </script>
+</head>
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="../"><span class="glyph">◇</span> Vincent Viitala</a>
+    <nav aria-label="Primary" class="nav">
+      <a class="nav-link" href="../services/" aria-current="false">Services</a>
+      <a class="nav-link" href="../projects/" aria-current="false">Projects</a>
+      <a class="nav-link active" href="../books/" aria-current="page">Books</a>
+      <a class="nav-link" href="../links/" aria-current="false">Links</a>
+      <a class="nav-link" href="../cv/" aria-current="false">CV / About</a>
+      <a class="nav-link" href="../contact/" aria-current="false">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button id="cmdk" class="btn btn-ghost" aria-label="Open Command Palette (Ctrl/⌘K)"><span>⌘K</span></button>
+    </div>
+  </div>
+</header>
+<div id="progress" class="progress" aria-hidden="true"><span></span></div>
+
+<main class="container" role="main">
+  <section id="review" class="book-review"></section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="left">
+      <p class="muted">© 2025 Vincent Viitala</p>
+      <p class="muted">AI engineer building dependable systems. Available for challenging work.</p>
+    </div>
+    <div class="right">
+      <a href="https://github.com/" target="_blank" rel="noopener" class="tag">GitHub</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <a href="../contact/" class="tag">Contact</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
+
+

@@ -18,6 +18,14 @@
   --shadow: 0 10px 30px rgba(0,0,0,.35);
 }
 
+/* Local font (optional for OG generation); not required in runtime */
+@font-face {
+  font-family: 'InterLocal';
+  src: url('/assets/img/og-default.svg'); /* dummy fallback; OG script loads its own */
+  font-weight: 400;
+  font-style: normal;
+}
+
 :root[data-theme="dharma"] {
   --bg: #F4F7F5;
   --fg: #08110E;

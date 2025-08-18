@@ -231,6 +231,22 @@ try {
       }
     }
   } catch {}
+  // URL normalization: strip UTMs and enforce trailing slash on top-level sections
+  try {
+    const url = new URL(location.href);
+    const params = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'];
+    let touched = false;
+    params.forEach(p => { if (url.searchParams.has(p)) { url.searchParams.delete(p); touched = true; } });
+    // Enforce trailing slash for section indexes (e.g., /books)
+    if (/^\/(books|services|projects|links|cv|contact)\/?$/.test(url.pathname)) {
+      if (!url.pathname.endsWith('/')) { url.pathname += '/'; touched = true; }
+    }
+    if (touched) {
+      const canonical = url.pathname + (url.search || '') + (url.hash || '');
+      const link = document.createElement('link'); link.rel='canonical'; link.href=canonical; document.head.appendChild(link);
+      history.replaceState({}, '', canonical);
+    }
+  } catch {}
     } catch {}
   })();
 } catch (err) {
