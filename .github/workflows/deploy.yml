@@ -1,69 +1,27 @@
-name: Deploy static site to GitHub Pages
+name: Deploy to Cloudflare Pages
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
-
-env:
-  SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
         with:
-          node-version: 20
-
-      - name: Generate content (sitemap + rss)
-        run: |
-          npm i --no-audit --no-fund
-          SITE_URL="${SITE_URL}" npm run build
-
-      - name: Prepare artifact
-        run: |
-          mkdir -p dist
-          rsync -av --delete \
-            --exclude '.git' \
-            --exclude '.github' \
-            --exclude 'node_modules' \
-            --exclude 'scripts' \
-            --exclude 'package*.json' \
-            --exclude 'README.md' \
-            ./ dist/
-          touch dist/.nojekyll
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
+          directory: ./
+          # If your static site outputs to a subfolder (e.g., 'dist' or 'build'),
+          # change the 'directory' above accordingly, e.g., 'directory: dist' or 'directory: build'.
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
