@@ -106,7 +106,7 @@ try {
           if (nav) {
             const path = window.location.pathname || '/';
             if (path.startsWith('/admin/')) { /* keep admin nav untouched */ return; }
-            
+
             const base = (path === '/' || path === '/index.html' || path === '') ? '' : '../';
             const active = (() => {
               const p = path.toLowerCase();
@@ -144,13 +144,51 @@ try {
               link.textContent = item.text;
               nav.appendChild(link);
             });
-            
+
+            // Update mobile menu navigation if it exists
+            const mobileNav = document.querySelector('.mobile-nav');
+            if (mobileNav) {
+              mobileNav.innerHTML = '';
+              items.forEach(item => {
+                const link = document.createElement('a');
+                link.className = `nav-link ${item.section === active ? 'active' : ''}`;
+                link.href = item.href;
+                link.setAttribute('aria-current', item.section === active);
+                link.textContent = item.text;
+                mobileNav.appendChild(link);
+              });
+              console.log('Mobile navigation updated with', items.length, 'items');
+            } else {
+              console.warn('Mobile navigation container not found for updating - will retry');
+              // Retry after a short delay to ensure mobile menu is created
+              setTimeout(() => {
+                const retryMobileNav = document.querySelector('.mobile-nav');
+                if (retryMobileNav) {
+                  retryMobileNav.innerHTML = '';
+                  items.forEach(item => {
+                    const link = document.createElement('a');
+                    link.className = `nav-link ${item.section === active ? 'active' : ''}`;
+                    link.href = item.href;
+                    link.setAttribute('aria-current', item.section === active);
+                    link.textContent = item.text;
+                    retryMobileNav.appendChild(link);
+                  });
+                  console.log('Mobile navigation updated on retry with', items.length, 'items');
+                } else {
+                  console.error('Mobile navigation container still not found after retry');
+                }
+              }, 200);
+            }
+
             console.log('Navigation rebuilt with', items.length, 'items, active:', active);
           }
         }, 50);
       } catch (err) {
         console.warn('Failed to rebuild navigation:', err);
       }
+
+      
+
       // Progressive reveal animations using IntersectionObserver (respects reduced motion)
       try {
         const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -199,38 +237,191 @@ try {
         }
       } catch {}
 
-  // Global conversion CTAs: sticky button and header book link
-  try {
-    const bookUrl = window.CALENDLY_URL || '';
-    if (bookUrl) {
-      // Header book link
-      const header = document.querySelector('header .header-actions');
-      if (header && !document.getElementById('book-top')) {
-        const a = document.createElement('a');
-        a.id = 'book-top';
-        a.className = 'btn';
-        a.href = bookUrl; a.textContent = 'Book call';
-        header.prepend(a);
-      }
-      // Sticky bottom-right CTA
-      if (!document.getElementById('sticky-book')) {
-        const btn = document.createElement('a');
-        btn.id = 'sticky-book';
-        btn.href = bookUrl; btn.textContent = 'Book a 30‑min call';
-        btn.style.position = 'fixed';
-        btn.style.right = '16px'; btn.style.bottom = '16px';
-        btn.style.zIndex = '60';
-        btn.style.padding = '10px 12px'; btn.style.borderRadius = '12px';
-        btn.style.background = 'color-mix(in oklab, var(--bg) 85%, transparent)';
-        btn.style.border = '1px solid color-mix(in oklab, var(--fg) 16%, transparent)';
-        btn.style.fontFamily = 'JetBrains Mono, ui-monospace'; btn.style.fontSize = '12px';
-        btn.style.color = 'var(--fg)'; btn.style.textDecoration = 'none';
-        btn.onmouseenter = () => btn.style.boxShadow = '0 0 0 1px var(--matrix-neo), inset 0 0 12px rgba(0,255,149,.08)';
-        btn.onmouseleave = () => btn.style.boxShadow = 'none';
-        document.body.appendChild(btn);
-      }
+      // Mobile menu functionality - delayed to ensure navigation is built first
+    try {
+      setTimeout(() => {
+        console.log('Initializing mobile menu...');
+        // Create mobile menu toggle button
+        const headerInner = document.querySelector('.header-inner');
+        console.log('Header inner found:', !!headerInner);
+        if (headerInner && !document.getElementById('mobile-menu-toggle')) {
+          const toggleBtn = document.createElement('button');
+          toggleBtn.id = 'mobile-menu-toggle';
+          toggleBtn.className = 'mobile-menu-toggle';
+          toggleBtn.setAttribute('aria-label', 'Toggle navigation menu');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+          toggleBtn.innerHTML = `
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          `;
+          headerInner.appendChild(toggleBtn);
+          console.log('Mobile menu toggle button created');
+
+          // Create mobile menu overlay
+          if (!document.getElementById('mobile-menu-overlay')) {
+            console.log('Creating mobile menu overlay...');
+            const overlay = document.createElement('div');
+            overlay.id = 'mobile-menu-overlay';
+            overlay.className = 'mobile-menu-overlay';
+            overlay.setAttribute('aria-hidden', 'true');
+
+            const overlayContent = document.createElement('div');
+            overlayContent.className = 'mobile-menu-content';
+
+            // Add close button
+            const closeButton = document.createElement('button');
+            closeButton.className = 'mobile-menu-close';
+            closeButton.setAttribute('aria-label', 'Close navigation menu');
+            closeButton.innerHTML = '×';
+            overlayContent.appendChild(closeButton);
+
+            // Create mobile navigation container (will be populated by nav rebuild)
+            const mobileNav = document.createElement('nav');
+            mobileNav.className = 'mobile-nav';
+            overlayContent.appendChild(mobileNav);
+
+            overlay.appendChild(overlayContent);
+            document.body.appendChild(overlay);
+            console.log('Mobile menu overlay created successfully');
+
+            // Immediately populate mobile nav with current navigation items
+            const currentNav = document.querySelector('header .nav');
+            if (currentNav) {
+              const navItems = currentNav.querySelectorAll('.nav-link');
+              if (navItems.length > 0) {
+                mobileNav.innerHTML = '';
+                navItems.forEach(item => {
+                  const clone = item.cloneNode(true);
+                  mobileNav.appendChild(clone);
+                });
+                console.log('Mobile nav populated immediately with', navItems.length, 'items');
+              } else {
+                // Fallback: Create default navigation items
+                console.log('No existing nav items found, creating default items');
+                const base = (window.location.pathname === '/' || window.location.pathname === '/index.html') ? '' : '../';
+                const defaultItems = [
+                  { href: base + 'services/', text: 'Services', section: 'services' },
+                  { href: base + 'projects/', text: 'Projects', section: 'projects' },
+                  { href: base + 'books/', text: 'Books', section: 'books' },
+                  { href: base + 'links/', text: 'Links', section: 'links' },
+                  { href: base + 'cv/', text: 'CV / About', section: 'cv' },
+                  { href: base + 'contact/', text: 'Contact', section: 'contact' }
+                ];
+
+                mobileNav.innerHTML = '';
+                defaultItems.forEach(item => {
+                  const link = document.createElement('a');
+                  link.className = 'nav-link';
+                  link.href = item.href;
+                  link.textContent = item.text;
+                  mobileNav.appendChild(link);
+                });
+                console.log('Mobile nav populated with fallback items');
+              }
+            }
+
+            // Mobile menu toggle functionality
+            function toggleMobileMenu() {
+              const isOpen = overlay.getAttribute('aria-hidden') === 'false';
+              console.log('Toggle mobile menu - Current state:', isOpen ? 'open' : 'closed');
+
+              toggleBtn.setAttribute('aria-expanded', !isOpen);
+              overlay.setAttribute('aria-hidden', isOpen);
+
+              if (!isOpen) {
+                // Opening menu
+                console.log('Opening mobile menu');
+                document.body.style.overflow = 'hidden';
+                overlay.style.display = 'block';
+                // Force reflow
+                overlay.offsetHeight;
+                overlay.classList.add('open');
+
+                // Debug: Check if mobile nav has content
+                const mobileNav = overlay.querySelector('.mobile-nav');
+                if (mobileNav) {
+                  console.log('Mobile nav found with', mobileNav.children.length, 'children');
+                  console.log('Mobile nav content:', mobileNav.innerHTML);
+                } else {
+                  console.warn('Mobile nav not found in overlay');
+                }
+              } else {
+                // Closing menu
+                console.log('Closing mobile menu');
+                document.body.style.overflow = '';
+                overlay.classList.remove('open');
+                setTimeout(() => {
+                  overlay.style.display = 'none';
+                }, 300); // Match CSS transition duration
+              }
+            }
+
+            // Event listeners
+            toggleBtn.addEventListener('click', toggleMobileMenu);
+
+            // Close menu when clicking close button
+            closeButton.addEventListener('click', toggleMobileMenu);
+
+            // Close menu when clicking overlay background
+            overlay.addEventListener('click', (e) => {
+              if (e.target === overlay) {
+                toggleMobileMenu();
+              }
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+              if (e.key === 'Escape' && overlay.getAttribute('aria-hidden') === 'false') {
+                toggleMobileMenu();
+              }
+            });
+
+            // Close menu when clicking mobile nav links
+            overlay.addEventListener('click', (e) => {
+              if (e.target.classList.contains('nav-link')) {
+                toggleMobileMenu();
+              }
+            });
+          }
+        }
+      }, 100); // Delay to ensure navigation rebuild is complete
+    } catch (err) {
+      console.warn('Failed to initialize mobile menu:', err);
     }
-  } catch {}
+
+    // Global conversion CTAs: sticky button and header book link
+    try {
+      const bookUrl = window.CALENDLY_URL || '';
+      if (bookUrl) {
+        // Header book link
+        const header = document.querySelector('header .header-actions');
+        if (header && !document.getElementById('book-top')) {
+          const a = document.createElement('a');
+          a.id = 'book-top';
+          a.className = 'btn';
+          a.href = bookUrl; a.textContent = 'Book call';
+          header.prepend(a);
+        }
+        // Sticky bottom-right CTA
+        if (!document.getElementById('sticky-book')) {
+          const btn = document.createElement('a');
+          btn.id = 'sticky-book';
+          btn.href = bookUrl; btn.textContent = 'Book a 30‑min call';
+          btn.style.position = 'fixed';
+          btn.style.right = '16px'; btn.style.bottom = '16px';
+          btn.style.zIndex = '60';
+          btn.style.padding = '10px 12px'; btn.style.borderRadius = '12px';
+          btn.style.background = 'color-mix(in oklab, var(--bg) 85%, transparent)';
+          btn.style.border = '1px solid color-mix(in oklab, var(--fg) 16%, transparent)';
+          btn.style.fontFamily = 'JetBrains Mono, ui-monospace'; btn.style.fontSize = '12px';
+          btn.style.color = 'var(--fg)'; btn.style.textDecoration = 'none';
+          btn.onmouseenter = () => btn.style.boxShadow = '0 0 0 1px var(--matrix-neo), inset 0 0 12px rgba(0,255,149,.08)';
+          btn.onmouseleave = () => btn.style.boxShadow = 'none';
+          document.body.appendChild(btn);
+        }
+      }
+    } catch {}
   // URL normalization: strip UTMs and enforce trailing slash on top-level sections
   try {
     const url = new URL(location.href);

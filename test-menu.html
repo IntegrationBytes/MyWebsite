@@ -2,27 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Menu Component Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mobile Menu Test</title>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="./"><span class="glyph">◇</span> Test</a>
+    <a class="brand" href="./"><span class="glyph">◇</span> Mobile Menu Test</a>
     <nav aria-label="Primary" class="nav">
-      <!-- Menu items will be populated by menu-component.js -->
+      <!-- Menu items will be populated by main.js -->
     </nav>
+    <div class="header-actions">
+      <button class="btn" onclick="alert('Action button')">Action</button>
+    </div>
   </div>
 </header>
 
 <main class="container">
-  <h1>Menu Component Test</h1>
-  <p>Check console for debug logs and verify menu items appear above.</p>
+  <h1>Mobile Menu Test</h1>
+  <p>Resize your browser to mobile size or use mobile device to test the hamburger menu.</p>
+  <p>The mobile menu should appear when screen width is less than 768px.</p>
+
+  <div class="card" style="margin: 20px 0;">
+    <h3>Test Instructions:</h3>
+    <ol>
+      <li>Resize browser to mobile width (&lt; 768px)</li>
+      <li>Click the hamburger menu button (☰)</li>
+      <li>Menu should slide in from the right</li>
+      <li>Click outside or on a menu item to close</li>
+      <li>Press Escape key to close menu</li>
+    </ol>
+    <button onclick="debugMobileMenu()" style="margin-top: 10px; padding: 8px 12px; background: var(--matrix-neo); color: black; border: none; border-radius: 6px; cursor: pointer;">🔧 Debug: Force Show Menu</button>
+    <button onclick="checkMobileMenuStatus()" style="margin-top: 10px; padding: 8px 12px; background: var(--wire-iris); color: white; border: none; border-radius: 6px; cursor: pointer;">📊 Check Menu Status</button>
+  </div>
+
+  <div class="card" style="margin: 20px 0;">
+    <h3>Current Screen Size:</h3>
+    <p id="screen-size">Loading...</p>
+  </div>
 </main>
 
-<script src="assets/js/menu-component-fixed.js"></script>
+<script defer src="assets/js/config.js"></script>
+<script defer src="assets/js/main.js"></script>
 <script>
-console.log('Test page loaded');
+console.log('Mobile menu test page loaded');
+
+// Display current screen size
+function updateScreenSize() {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  document.getElementById('screen-size').textContent = `${width}px × ${height}px (Mobile menu: ${width < 768 ? 'visible' : 'hidden'})`;
+}
+
+window.addEventListener('resize', updateScreenSize);
+updateScreenSize();
+
+// Debug function to force show mobile menu
+function debugMobileMenu() {
+  const overlay = document.getElementById('mobile-menu-overlay');
+  if (overlay) {
+    overlay.classList.add('debug');
+    console.log('Debug mode: Mobile menu forced visible');
+
+    // Check mobile nav content
+    const mobileNav = overlay.querySelector('.mobile-nav');
+    if (mobileNav) {
+      console.log('Debug: Mobile nav has', mobileNav.children.length, 'children');
+      console.log('Debug: Mobile nav content:', mobileNav.innerHTML);
+    }
+
+    setTimeout(() => {
+      overlay.classList.remove('debug');
+      console.log('Debug mode: Mobile menu returned to normal');
+    }, 5000); // Remove debug mode after 5 seconds
+  } else {
+    console.warn('Mobile menu overlay not found');
+  }
+}
+
+// Function to check mobile menu status
+function checkMobileMenuStatus() {
+  const overlay = document.getElementById('mobile-menu-overlay');
+  const toggle = document.getElementById('mobile-menu-toggle');
+
+  if (overlay) {
+    const isOpen = overlay.getAttribute('aria-hidden') === 'false';
+    const mobileNav = overlay.querySelector('.mobile-nav');
+    const itemCount = mobileNav ? mobileNav.children.length : 0;
+
+    console.log('Mobile menu status:');
+    console.log('- Overlay exists:', !!overlay);
+    console.log('- Toggle exists:', !!toggle);
+    console.log('- Currently open:', isOpen);
+    console.log('- Mobile nav items:', itemCount);
+
+    return { overlay: !!overlay, toggle: !!toggle, isOpen, itemCount };
+  } else {
+    console.log('Mobile menu not found');
+    return { overlay: false, toggle: false, isOpen: false, itemCount: 0 };
+  }
+}
 </script>
 </body>
 </html>
