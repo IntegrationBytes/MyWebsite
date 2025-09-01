@@ -239,6 +239,12 @@ input[type="text"], input[type="email"], textarea { width:100%; padding: 10px 12
 input[type="number"] { width:100%; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(230,243,234,0.16); border: 1px solid color-mix(in oklab, var(--fg) 16%, transparent); background: rgba(5,8,7,0.85); background: color-mix(in oklab, var(--bg) 85%, transparent); color: var(--fg); }
 .roi-input { height: 38px; line-height: 1.3; box-shadow: inset 0 1px 0 rgba(255,255,255,.02); }
 .roi-input:focus { outline: 2px solid var(--matrix-neo); outline-offset: 2px; box-shadow: 0 0 0 1px var(--matrix-neo), inset 0 1px 0 rgba(255,255,255,.02); }
+select { width:100%; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(230,243,234,0.16); border: 1px solid color-mix(in oklab, var(--fg) 16%, transparent); background: rgba(5,8,7,0.85); background: color-mix(in oklab, var(--bg) 85%, transparent); color: var(--fg); }
+
+/* Wizard progress */
+.wizard-progress { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.wizard-progress .bar { width: 100%; height: 6px; border-radius: 999px; background: color-mix(in oklab, var(--fg) 10%, transparent); overflow: hidden; }
+.wizard-progress .bar span { display:block; height:100%; width:50%; background: var(--matrix-neo); box-shadow: inset 0 0 8px rgba(0,255,149,.45); transition: width .3s ease; }
 label { font-size: 13px; font-family: "JetBrains Mono", ui-monospace; color: var(--fg-dim); display:block; margin-bottom: 6px; }
 
 /* Links and focus */
@@ -249,7 +255,13 @@ a:hover { color: var(--matrix-neo); border-bottom-color: var(--matrix-neo); }
 /* Reduced motion aware */
 @media (prefers-reduced-motion: reduce) {
   .card:hover { transform: none; }
+  /* Ensure content isn't hidden when motion is reduced */
+  .reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-stagger { opacity: 1 !important; transform: none !important; animation: none !important; }
 }
+
+/* Safety override: ensure content is visible even if reveal JS fails */
+.reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-stagger { opacity: 1; transform: none; }
+.reveal.is-visible, .reveal-left.is-visible, .reveal-right.is-visible, .reveal-zoom.is-visible, .reveal-stagger.is-visible { opacity: 1; transform: none; }
 
 /* Code blocks */
 pre, code { font-family: "JetBrains Mono", ui-monospace; background: rgba(5,8,7,0.88); background: color-mix(in oklab, var(--bg) 88%, transparent); border: 1px solid rgba(230,243,234,0.14); border: 1px solid color-mix(in oklab, var(--fg) 14%, transparent); border-radius: 12px; }

@@ -293,6 +293,15 @@ try {
           document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-stagger').forEach(el => el.classList.add('is-visible'));
         }
       } catch {}
+      // Defensive fallback: if reveal never ran, force content visible
+      try {
+        setTimeout(() => {
+          const nodes = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-stagger');
+          // If first content area still fully transparent, reveal all
+          const needsReveal = Array.from(nodes).slice(0, 3).some(n => getComputedStyle(n).opacity === '0');
+          if (needsReveal) nodes.forEach(n => { n.classList.add('is-visible'); n.style.opacity = '1'; n.style.transform = 'none'; });
+        }, 350);
+      } catch {}
       // Referral tracking param preservation
       try {
         const refKey = window.REFERRAL_PARAM || 'ref';
@@ -611,31 +620,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const panel = document.createElement('div');
           panel.className = 'card';
-          panel.style.position = 'absolute'; panel.style.left = '50%'; panel.style.top = '8%';
-          panel.style.transform = 'translateX(-50%)'; panel.style.width = 'min(920px, 96vw)'; panel.style.maxHeight = '84vh'; panel.style.overflow = 'auto'; panel.style.padding = '16px';
+          panel.style.position = 'absolute'; panel.style.left = '50%'; panel.style.top = '6%';
+          panel.style.transform = 'translateX(-50%)'; panel.style.width = 'min(860px, 96vw)'; panel.style.maxHeight = '88vh'; panel.style.overflow = 'auto'; panel.style.padding = '16px';
 
           const close = document.createElement('button');
           close.className = 'btn btn-ghost small'; close.textContent = 'Close';
           close.style.float = 'right'; close.addEventListener('click', () => { overlay.style.display = 'none'; overlay.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; });
           panel.appendChild(close);
 
-          const h2 = document.createElement('h2'); h2.textContent = 'Book a 30‑min fit call'; panel.appendChild(h2);
-          const p = document.createElement('p'); p.className = 'muted'; p.textContent = 'Answer 3 quick questions to focus the call.'; panel.appendChild(p);
+          const h2 = document.createElement('h2'); h2.textContent = 'Book a 30‑min AI roadmap call'; panel.appendChild(h2);
+          const p = document.createElement('p'); p.className = 'muted'; p.textContent = 'Takes ~45 seconds. These questions focus our time on your business outcomes.'; panel.appendChild(p);
+
+          const progress = document.createElement('div');
+          progress.id = 'sched-progress';
+          progress.className = 'small-label';
+          progress.textContent = 'Step 1 of 2';
+          progress.style.margin = '6px 0 8px';
+          panel.appendChild(progress);
 
           const form = document.createElement('form'); form.id = 'scheduler-form'; form.style.display = 'grid'; form.style.gap = '10px';
           form.innerHTML = `
-            <label class="small-label">Which outcome first?</label>
+            <label class="small-label">What outcome are you aiming for?</label>
             <select name="outcome" required>
               <option value="">Select…</option>
-              <option>Pipeline</option>
-              <option>Support</option>
-              <option>Ops</option>
+              <option>More qualified pipeline</option>
+              <option>Reduce support tickets</option>
+              <option>Automate internal busywork</option>
+              <option>Other</option>
             </select>
-            <label class="small-label">KPIs you want to move?</label>
-            <input type="text" name="kpis" placeholder="SQLs, CSAT, cycle time, cost…" required>
-            <label class="small-label">Systems we’ll touch</label>
-            <input type="text" name="systems" placeholder="CRM, Helpdesk, ERP, data warehouse…" required>
-            <button class="btn" type="submit">Continue</button>
+            <span class="muted" style="font-size:12px;">Why this matters: it helps us target the highest‑impact opportunity first.</span>
+
+            <label class="small-label">Biggest constraint right now?</label>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:8px;">
+              <label class="tag"><input type="checkbox" name="constraints" value="Limited team time" style="margin-right:6px;"> Limited team time</label>
+              <label class="tag"><input type="checkbox" name="constraints" value="Data scattered" style="margin-right:6px;"> Data scattered</label>
+              <label class="tag"><input type="checkbox" name="constraints" value="Tool limitations" style="margin-right:6px;"> Tool limitations</label>
+              <label class="tag"><input type="checkbox" name="constraints" value="Budget guardrails" style="margin-right:6px;"> Budget guardrails</label>
+              <label class="tag"><input type="checkbox" name="constraints" value="Not sure yet" style="margin-right:6px;"> Not sure yet</label>
+            </div>
+            <span class="muted" style="font-size:12px;">This shows where to design around risks.</span>
+
+            <label class="small-label">Team size</label>
+            <select name="team_size" required>
+              <option value="">Select…</option>
+              <option>1–10</option>
+              <option>11–50</option>
+              <option>51–200</option>
+              <option>200+</option>
+            </select>
+
+            <label class="small-label">Desired timeframe</label>
+            <select name="timeframe" required>
+              <option value="">Select…</option>
+              <option>ASAP (this month)</option>
+              <option>1–2 months</option>
+              <option>This quarter</option>
+              <option>Exploring options</option>
+            </select>
+
+            <label class="small-label">How will we measure success?</label>
+            <select name="success" required>
+              <option value="">Select…</option>
+              <option>SQLs per SDR</option>
+              <option>CSAT / ticket deflection</option>
+              <option>Cycle time reduction</option>
+              <option>Cost saved / hours saved</option>
+              <option>Other</option>
+            </select>
+            <input type="text" name="notes" placeholder="Optional: any context (e.g., ‘HubSpot + Zendesk; EU market; 2 SDRs’)" />
+            <button class="btn" type="submit">Continue → Schedule</button>
             <span id="sched-status" class="muted" aria-live="polite"></span>
           `;
           panel.appendChild(form);
@@ -644,6 +697,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
           overlay.appendChild(panel);
           overlay.addEventListener('click', (e) => { if (e.target === overlay) close.click(); });
+          // Close on Escape
+          overlay.addEventListener('keydown', (e) => { if (e.key === 'Escape') close.click(); });
           document.body.appendChild(overlay);
 
           form.addEventListener('submit', async (e) => {
@@ -652,16 +707,37 @@ document.addEventListener('DOMContentLoaded', () => {
             const url = window.CALENDLY_URL || '';
             if (!url) { document.getElementById('sched-status').textContent = 'Scheduler unavailable. Please use Contact.'; return; }
             await ensureCalendlyScript();
+            // Move to step 2
+            progress.textContent = 'Step 2 of 2';
+            const existing = document.getElementById('sched-next'); if (existing) existing.remove();
+            const next = document.createElement('div');
+            next.id = 'sched-next';
+            next.innerHTML = '<div class="callout console"><div class="title">What to expect</div><ul class="muted"><li>We\'ll clarify your goal and constraints</li><li>We\'ll map a 4‑week pilot with a clear KPI</li><li>If it\'s a fit, we\'ll agree on next steps. Otherwise, I\'ll send a brief summary you can use internally.</li></ul></div>';
+            panel.insertBefore(next, calendlyWrap);
+            // Show Calendly inline scheduler
             calendlyWrap.innerHTML = '';
-            calendlyWrap.style.minHeight = '680px';
+            calendlyWrap.style.minHeight = '620px';
+            try { panel.scrollTo({ top: 0, behavior: 'smooth' }); } catch {}
             // Initialize inline Calendly widget
             try { window.Calendly?.initInlineWidget?.({ url, parentElement: calendlyWrap, prefill: {} }); } catch {}
           });
 
+          // Reset function so every open starts fresh
+          overlay.resetWizard = () => {
+            try {
+              const prog = document.getElementById('sched-progress'); if (prog) prog.textContent = 'Step 1 of 2';
+              const next = document.getElementById('sched-next'); if (next) next.remove();
+              const cal = document.getElementById('calendly-inline'); if (cal) cal.innerHTML = '';
+              document.getElementById('sched-status')?.textContent = '';
+              document.getElementById('scheduler-form')?.reset();
+              panel.scrollTop = 0;
+            } catch {}
+          };
+
           return overlay;
         };
 
-        const openOverlay = (e) => { e.preventDefault(); const ov = createOverlay(); ov.style.display = 'block'; ov.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; };
+        const openOverlay = (e) => { e.preventDefault(); const ov = createOverlay(); ov.resetWizard?.(); ov.style.display = 'block'; ov.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; };
         document.querySelectorAll('#book-hero, .book-svc').forEach(el => { el.addEventListener('click', openOverlay); });
       }
     } catch {}
