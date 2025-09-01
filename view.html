@@ -35,7 +35,7 @@
 <footer class="site-footer" role="contentinfo">
   <div class="container footer-inner">
     <div class="left">
-      <p class="muted">© 2025 Vincent Viitala — “Reading the code behind appearance.”</p>
+      <p class="muted">© 2025 Vincent Viitala - “Reading the code behind appearance.”</p>
       <p class="muted">WCAG AA. Built with vanilla HTML/CSS/JS. </p>
     </div>
     <div class="right">
@@ -97,7 +97,7 @@ function parseFrontMatter(text){
       ${meta.description ? `<p class="lead">${meta.description}</p>` : ''}
       <div>${body}</div>
     `;
-    document.title = `${meta.title || slug} — Vincent Viitala`;
+    document.title = `${meta.title || slug} - Vincent Viitala`;
     // hydrate comments via Giscus if configured
     try {
       if (window.GISCUS_REPO && window.GISCUS_REPO_ID && window.GISCUS_CATEGORY && window.GISCUS_CATEGORY_ID) {

@@ -49,7 +49,7 @@
       const books = await res.json();
       const book = books.find(b => b.slug === slug) || books.find(b => (b.slug||'') === decodeURIComponent(slug));
       if (!book) { container.innerHTML = '<p class="muted">Book not found.</p>'; return; }
-      document.title = `${book.title} — Book Review`;
+      document.title = `${book.title} - Book Review`;
       // SEO: canonical + JSON-LD
       const link = document.createElement('link');
       link.rel = 'canonical'; link.href = `/books/reviews/${encodeURIComponent(book.slug)}.html`;
@@ -85,9 +85,9 @@
             <div class="book-details">
               <h1>${book.title}</h1>
               <div class="book-author">by ${book.author || 'Unknown'}</div>
-              <div class="book-rating"><span class="book-stars">${stars(book.my_rating)}</span><span class="rating-text"> ${book.my_rating || '—'}/5 (avg ${book.average_rating || '—'})</span></div>
+              <div class="book-rating"><span class="book-stars">${stars(book.my_rating)}</span><span class="rating-text"> ${book.my_rating || '-'}/5 (avg ${book.average_rating || '-'})</span></div>
               <div class="muted" style="margin-bottom:12px;">
-                ${book.publisher || '—'} • ${book.year_published || '—'} • ${book.num_pages || '—'} pages
+                ${book.publisher || '-'} • ${book.year_published || '-'} • ${book.num_pages || '-'} pages
               </div>
             </div>
           </div>

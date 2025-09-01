@@ -73,6 +73,18 @@ try {
       }
     } catch {}
 
+    // Inject Microsoft Clarity if configured
+    try {
+      const clarity = window.CLARITY_ID || '';
+      if (clarity && !window.clarity) {
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", clarity);
+      }
+    } catch {}
+
     // Post-load enhancements: share URLs and webmentions list
     try {
       const currentUrl = (function(){
@@ -111,6 +123,9 @@ try {
             const active = (() => {
               const p = path.toLowerCase();
               if (p.includes('/services')) return 'services';
+              if (p.includes('/business')) return 'business';
+              if (p.includes('/case-studies')) return 'case-studies';
+              if (p.includes('/faq')) return 'faq';
               if (p.includes('/projects')) return 'projects';
               if (p.includes('/books')) return 'books';
               if (p.includes('/links')) return 'links';
@@ -122,10 +137,16 @@ try {
 
             const items = [
               { href: base + 'services/', text: 'Services', section: 'services' },
+              // Inserted via feature flag to keep menu flexible
+              // Placed immediately after Services for business-facing users
+              // (falls back to omission if disabled)
+              ...(window.FEATURE_BUSINESS ? [{ href: base + 'business/', text: 'Solutions', section: 'business' }] : []),
               { href: base + 'projects/', text: 'Projects', section: 'projects' },
+              { href: base + 'case-studies/', text: 'Case Studies', section: 'case-studies' },
+              { href: base + 'faq/', text: 'FAQ', section: 'faq' },
               { href: base + 'books/', text: 'Books', section: 'books' },
               { href: base + 'links/', text: 'Links', section: 'links' },
-              { href: base + 'cv/', text: 'CV / About', section: 'cv' },
+              { href: base + 'cv/', text: 'About', section: 'cv' },
               { href: base + 'contact/', text: 'Contact', section: 'contact' }
             ];
             // Optionally show Products in the menu if enabled
@@ -179,6 +200,55 @@ try {
                 }
               }, 200);
             }
+
+            // Ensure Command Palette contains Solutions entry and targeted variants + Case Studies/FAQ
+            try {
+              const cmdkList = document.getElementById('cmdk-list');
+              if (cmdkList && window.FEATURE_BUSINESS) {
+                const businessAction = `go:${base}business/`;
+                const exists = cmdkList.querySelector(`li[data-action="${businessAction}"]`);
+                if (!exists) {
+                  const li = document.createElement('li');
+                  li.setAttribute('data-action', businessAction);
+                  li.textContent = 'Solutions';
+                  const searchLi = cmdkList.querySelector('li[data-action="search"]');
+                  if (searchLi) cmdkList.insertBefore(li, searchLi); else cmdkList.appendChild(li);
+                }
+
+                // Targeted variants
+                const businessTargets = [
+                  { text: 'Solutions: SMB Owners', path: `${base}business/smb/` },
+                  { text: 'Solutions: B2B SaaS', path: `${base}business/saas/` },
+                  { text: 'Solutions: Agencies', path: `${base}business/agencies/` },
+                  { text: 'Solutions: E-commerce', path: `${base}business/ecommerce/` },
+                  { text: 'Solutions: Professional Services', path: `${base}business/professional-services/` }
+                ];
+                const searchLi = cmdkList.querySelector('li[data-action="search"]');
+                for (const t of businessTargets) {
+                  const action = 'go:' + t.path;
+                  if (!cmdkList.querySelector(`li[data-action="${action}"]`)) {
+                    const li = document.createElement('li');
+                    li.setAttribute('data-action', action);
+                    li.textContent = t.text;
+                    if (searchLi) cmdkList.insertBefore(li, searchLi); else cmdkList.appendChild(li);
+                  }
+                }
+                // Case Studies & FAQ
+                const extra = [
+                  { text: 'Case Studies', path: `${base}case-studies/` },
+                  { text: 'FAQ', path: `${base}faq/` },
+                  { text: 'About', path: `${base}cv/` }
+                ];
+                for (const t of extra) {
+                  const action = 'go:' + t.path;
+                  if (!cmdkList.querySelector(`li[data-action="${action}"]`)) {
+                    const li = document.createElement('li'); li.setAttribute('data-action', action); li.textContent = t.text;
+                    const searchLi2 = cmdkList.querySelector('li[data-action="search"]');
+                    if (searchLi2) cmdkList.insertBefore(li, searchLi2); else cmdkList.appendChild(li);
+                  }
+                }
+              }
+            } catch {}
 
             console.log('Navigation rebuilt with', items.length, 'items, active:', active);
           }
@@ -302,6 +372,7 @@ try {
                 const base = (window.location.pathname === '/' || window.location.pathname === '/index.html') ? '' : '../';
                 const defaultItems = [
                   { href: base + 'services/', text: 'Services', section: 'services' },
+                  ...(window.FEATURE_BUSINESS ? [{ href: base + 'business/', text: 'For Business', section: 'business' }] : []),
                   { href: base + 'projects/', text: 'Projects', section: 'projects' },
                   { href: base + 'books/', text: 'Books', section: 'books' },
                   { href: base + 'links/', text: 'Links', section: 'links' },
@@ -400,7 +471,7 @@ try {
           const a = document.createElement('a');
           a.id = 'book-top';
           a.className = 'btn';
-          a.href = bookUrl; a.textContent = 'Book call';
+          a.href = bookUrl; a.textContent = 'Book your AI strategy call';
           header.prepend(a);
         }
         // Sticky bottom-right CTA
@@ -422,14 +493,53 @@ try {
         }
       }
     } catch {}
+    // Hello bar for capacity on business pages (non-hover, no tooltip)
+    try {
+      if (window.FEATURE_HELLOBAR && (location.pathname||'').includes('/business')){
+        if (!document.getElementById('hello-bar')){
+          const bar = document.createElement('div');
+          bar.id = 'hello-bar';
+          bar.style.position = 'sticky'; bar.style.top = '64px'; bar.style.zIndex = '40';
+          bar.style.padding = '8px 12px'; bar.style.textAlign = 'center';
+          bar.style.background = 'color-mix(in oklab, var(--bg) 92%, transparent)';
+          bar.style.borderBottom = '1px solid color-mix(in oklab, var(--fg) 10%, transparent)';
+          const span = document.createElement('span');
+          span.className = 'small-label';
+          span.textContent = 'Capacity: 1–2 pilots at a time. Next start: within 2 weeks.';
+          // Ensure no title/tooltip is set to avoid hover glitch
+          span.removeAttribute('title');
+          bar.appendChild(span);
+          const container = document.querySelector('main');
+          container?.prepend(bar);
+        }
+      }
+    } catch {}
+    // Exit intent lead magnet (simple)
+    try {
+      if (window.FEATURE_EXIT_INTENT && !sessionStorage.getItem('leadmag-shown')){
+        const showLeadmag = () => {
+          sessionStorage.setItem('leadmag-shown','1');
+          const ov = document.createElement('div'); ov.id='leadmag'; ov.style.position='fixed'; ov.style.inset='0'; ov.style.background='rgba(0,0,0,.6)'; ov.style.zIndex='80';
+          const panel = document.createElement('div'); panel.className='card'; panel.style.position='absolute'; panel.style.left='50%'; panel.style.top='10%'; panel.style.transform='translateX(-50%)'; panel.style.width='min(680px, 94vw)'; panel.style.padding='16px';
+          panel.innerHTML = '<h2>Free: 4‑Week AI Pilot Checklist</h2><p class="muted">Get the steps, roles, and risks to ship an AI pilot that moves a KPI.</p>';
+          const form = document.createElement('form'); form.style.display='grid'; form.style.gap='8px'; form.innerHTML = '<input type="email" placeholder="you@example.com" required><button class="btn" type="submit">Send it</button><span class="muted" id="lm-status"></span>';
+          const close = document.createElement('button'); close.className='btn btn-ghost small'; close.textContent='Close'; close.style.float='right'; close.onclick = ()=>document.body.removeChild(ov);
+          panel.prepend(close); panel.appendChild(form); ov.appendChild(panel); ov.addEventListener('click', (e)=>{ if(e.target===ov) close.click(); }); document.body.appendChild(ov);
+          form.addEventListener('submit', (e)=>{ e.preventDefault(); document.getElementById('lm-status').textContent='Thanks — check your inbox.'; try{ window.umami?.track?.('leadmag_submit'); }catch{} });
+        };
+        document.addEventListener('mouseleave', (e)=>{ if (e.clientY<=0) showLeadmag(); }, { once:true });
+      }
+    } catch {}
   // URL normalization: strip UTMs and enforce trailing slash on top-level sections
   try {
     const url = new URL(location.href);
     const params = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'];
     let touched = false;
     params.forEach(p => { if (url.searchParams.has(p)) { url.searchParams.delete(p); touched = true; } });
+    // Fix accidental double path like /business/business/
+    if (url.pathname === '/business/business/') { url.pathname = '/business/'; touched = true; }
     // Enforce trailing slash for section indexes (e.g., /books)
-    if (/^\/(books|services|projects|links|cv|contact)\/?$/.test(url.pathname)) {
+    if (/^\/(books|services|business|case-studies|faq|projects|links|cv|contact)\/?$/.test(url.pathname)) {
       if (!url.pathname.endsWith('/')) { url.pathname += '/'; touched = true; }
     }
     if (touched) {
@@ -452,6 +562,11 @@ document.addEventListener('DOMContentLoaded', () => {
         try { if (window.umami && typeof window.umami.track === 'function') window.umami.track('cta_click', { id: (el.textContent || '').trim() }); } catch {}
       });
     });
+    // Additional CRO instrumentation
+    try {
+      const hero = document.getElementById('book-hero');
+      hero?.addEventListener('click', () => { try { window.umami?.track?.('hero_cta_click'); } catch {} });
+    } catch {}
     document.querySelectorAll('[data-expand]')?.forEach(a => {
       a.addEventListener('click', () => {
         const id = a.getAttribute('data-expand');
@@ -459,6 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!panel) return;
         const isHidden = panel.hasAttribute('hidden');
         if (isHidden) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', '');
+        try { window.umami?.track?.('service_card_open', { id }); } catch {}
       });
     });
     const toggle = document.getElementById('expand-toggle');
@@ -473,5 +589,81 @@ document.addEventListener('DOMContentLoaded', () => {
       const u = window.CALENDLY_URL || '';
       if (u) b.setAttribute('href', u); else b.remove();
     });
+    // On Business pages, show an embedded scheduler overlay with 3 qualifying questions
+    try {
+      if ((location.pathname || '').toLowerCase().includes('/business')) {
+        const ensureCalendlyScript = () => new Promise((resolve) => {
+          if (document.querySelector('script[data-calendly]')) return resolve();
+          const s = document.createElement('script');
+          s.src = 'https://assets.calendly.com/assets/external/widget.js';
+          s.async = true; s.setAttribute('data-calendly','true');
+          s.onload = () => resolve();
+          document.head.appendChild(s);
+        });
+
+        const createOverlay = () => {
+          if (document.getElementById('scheduler-overlay')) return document.getElementById('scheduler-overlay');
+          const overlay = document.createElement('div');
+          overlay.id = 'scheduler-overlay';
+          overlay.setAttribute('aria-hidden', 'true');
+          overlay.style.position = 'fixed'; overlay.style.inset = '0'; overlay.style.background = 'rgba(0,0,0,.5)';
+          overlay.style.display = 'none'; overlay.style.zIndex = '70';
+
+          const panel = document.createElement('div');
+          panel.className = 'card';
+          panel.style.position = 'absolute'; panel.style.left = '50%'; panel.style.top = '8%';
+          panel.style.transform = 'translateX(-50%)'; panel.style.width = 'min(920px, 96vw)'; panel.style.maxHeight = '84vh'; panel.style.overflow = 'auto'; panel.style.padding = '16px';
+
+          const close = document.createElement('button');
+          close.className = 'btn btn-ghost small'; close.textContent = 'Close';
+          close.style.float = 'right'; close.addEventListener('click', () => { overlay.style.display = 'none'; overlay.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; });
+          panel.appendChild(close);
+
+          const h2 = document.createElement('h2'); h2.textContent = 'Book a 30‑min fit call'; panel.appendChild(h2);
+          const p = document.createElement('p'); p.className = 'muted'; p.textContent = 'Answer 3 quick questions to focus the call.'; panel.appendChild(p);
+
+          const form = document.createElement('form'); form.id = 'scheduler-form'; form.style.display = 'grid'; form.style.gap = '10px';
+          form.innerHTML = `
+            <label class="small-label">Which outcome first?</label>
+            <select name="outcome" required>
+              <option value="">Select…</option>
+              <option>Pipeline</option>
+              <option>Support</option>
+              <option>Ops</option>
+            </select>
+            <label class="small-label">KPIs you want to move?</label>
+            <input type="text" name="kpis" placeholder="SQLs, CSAT, cycle time, cost…" required>
+            <label class="small-label">Systems we’ll touch</label>
+            <input type="text" name="systems" placeholder="CRM, Helpdesk, ERP, data warehouse…" required>
+            <button class="btn" type="submit">Continue</button>
+            <span id="sched-status" class="muted" aria-live="polite"></span>
+          `;
+          panel.appendChild(form);
+
+          const calendlyWrap = document.createElement('div'); calendlyWrap.id = 'calendly-inline'; calendlyWrap.style.marginTop = '12px'; panel.appendChild(calendlyWrap);
+
+          overlay.appendChild(panel);
+          overlay.addEventListener('click', (e) => { if (e.target === overlay) close.click(); });
+          document.body.appendChild(overlay);
+
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            try { window.umami?.track?.('scheduler_submit'); } catch {}
+            const url = window.CALENDLY_URL || '';
+            if (!url) { document.getElementById('sched-status').textContent = 'Scheduler unavailable. Please use Contact.'; return; }
+            await ensureCalendlyScript();
+            calendlyWrap.innerHTML = '';
+            calendlyWrap.style.minHeight = '680px';
+            // Initialize inline Calendly widget
+            try { window.Calendly?.initInlineWidget?.({ url, parentElement: calendlyWrap, prefill: {} }); } catch {}
+          });
+
+          return overlay;
+        };
+
+        const openOverlay = (e) => { e.preventDefault(); const ov = createOverlay(); ov.style.display = 'block'; ov.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; };
+        document.querySelectorAll('#book-hero, .book-svc').forEach(el => { el.addEventListener('click', openOverlay); });
+      }
+    } catch {}
   } catch {}
 });

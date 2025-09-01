@@ -236,6 +236,9 @@ main, footer { position: relative; z-index: 1; }
 
 /* Forms */
 input[type="text"], input[type="email"], textarea { width:100%; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(230,243,234,0.16); border: 1px solid color-mix(in oklab, var(--fg) 16%, transparent); background: rgba(5,8,7,0.85); background: color-mix(in oklab, var(--bg) 85%, transparent); color: var(--fg); }
+input[type="number"] { width:100%; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(230,243,234,0.16); border: 1px solid color-mix(in oklab, var(--fg) 16%, transparent); background: rgba(5,8,7,0.85); background: color-mix(in oklab, var(--bg) 85%, transparent); color: var(--fg); }
+.roi-input { height: 38px; line-height: 1.3; box-shadow: inset 0 1px 0 rgba(255,255,255,.02); }
+.roi-input:focus { outline: 2px solid var(--matrix-neo); outline-offset: 2px; box-shadow: 0 0 0 1px var(--matrix-neo), inset 0 1px 0 rgba(255,255,255,.02); }
 label { font-size: 13px; font-family: "JetBrains Mono", ui-monospace; color: var(--fg-dim); display:block; margin-bottom: 6px; }
 
 /* Links and focus */

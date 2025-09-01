@@ -6,6 +6,8 @@ window.SITE_URL = window.SITE_URL || 'https://example.com';
 // Analytics (Umami)
 window.UMAMI_WEBSITE_ID = window.UMAMI_WEBSITE_ID || '7085dcec-ca13-4cab-9cdf-4edf79ca1e05';
 window.UMAMI_HOST = window.UMAMI_HOST || 'https://cloud.umami.is';
+// Session analytics / heatmaps (optional)
+window.CLARITY_ID = window.CLARITY_ID || '';
 
 // Comments (Giscus)
 window.GISCUS_REPO = window.GISCUS_REPO || '';
@@ -31,6 +33,10 @@ window.FEATURE_SPEAKING = window.FEATURE_SPEAKING ?? false;
 window.FEATURE_COMMUNITY = window.FEATURE_COMMUNITY ?? false;
 window.FEATURE_STATUS = window.FEATURE_STATUS ?? false;
 window.FEATURE_PRODUCTS = window.FEATURE_PRODUCTS ?? true;
+window.FEATURE_BUSINESS = window.FEATURE_BUSINESS ?? true;
+window.FEATURE_AB_TEST = window.FEATURE_AB_TEST ?? true;
+window.FEATURE_HELLOBAR = window.FEATURE_HELLOBAR ?? true;
+window.FEATURE_EXIT_INTENT = window.FEATURE_EXIT_INTENT ?? true;
 
 // Integrations for optional modules
 window.CALENDLY_URL = window.CALENDLY_URL || 'https://calendly.com/viitala-vincent/30min';
