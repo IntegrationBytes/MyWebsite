@@ -16,41 +16,30 @@
   <div class="container header-inner">
     <a class="brand" href="../"><span class="glyph">◇</span> Vincent Viitala</a>
     <nav aria-label="Primary" class="nav">
+      <a class="nav-link" href="../services/">Services</a>
       <a class="nav-link" href="../projects/">Projects</a>
-      <a class="nav-link" href="../cv/">About</a>
+      <a class="nav-link" href="../books/">Books</a>
+      <a class="nav-link" href="../links/">Links</a>
+      <a class="nav-link" href="../cv/">CV / About</a>
       <a class="nav-link" href="../contact/">Contact</a>
     </nav>
     <div class="header-actions">
-      <button id="cmdk" class="btn btn-ghost" aria-label="Open Command Palette (Ctrl/⌘K)"><span>⌘K</span></button>
     </div>
   </div>
 </header>
 <div id="progress" class="progress" aria-hidden="true"><span></span></div>
+
 <main class="container" role="main">
-  <section>
+  <section class="reveal">
     <h1>Speaking</h1>
-    <p class="lead">Keynotes and workshops for teams exploring AI, ethics, and the craft of attention.</p>
-    <ul>
-      <li>Awakening in Latent Space</li>
-      <li>Simulation Hygiene</li>
-      <li>Quiet Interfaces: building for calm focus</li>
-    </ul>
-    <div class="cta" style="margin-top:16px;">
-      <a class="btn" id="book-speaking" href="#">Request booking</a>
-    </div>
+    <p class="lead">Talks and workshops on consciousness, computation, and humane interfaces.</p>
   </section>
-  <script>
-    document.addEventListener('DOMContentLoaded', function(){
-      const u = window.CALENDLY_URL || '';
-      const a = document.getElementById('book-speaking'); if (u && a) a.href = u; else a.removeAttribute('href');
-    });
-  </script>
 </main>
+
 <footer class="site-footer" role="contentinfo">
   <div class="container footer-inner">
     <div class="left">
-      <p class="muted">© 2025 Vincent Viitala - “Reading the code behind appearance.”</p>
-      <p class="muted">WCAG AA. Built with vanilla HTML/CSS/JS. </p>
+      <p class="muted">© 2025 Vincent Viitala</p>
     </div>
     <div class="right">
       <a href="../rss.xml" class="tag">RSS</a>
@@ -60,14 +49,6 @@
     </div>
   </div>
 </footer>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-

@@ -16,38 +16,30 @@
   <div class="container header-inner">
     <a class="brand" href="../"><span class="glyph">◇</span> Vincent Viitala</a>
     <nav aria-label="Primary" class="nav">
+      <a class="nav-link " href="../services/" aria-current=false>Services</a>
       <a class="nav-link " href="../projects/" aria-current=false>Projects</a>
-      <a class="nav-link " href="../cv/" aria-current=false>About</a>
+      <a class="nav-link " href="../books/" aria-current=false>Books</a>
+      <a class="nav-link " href="../links/" aria-current=false>Links</a>
+      <a class="nav-link " href="../cv/" aria-current=false>CV / About</a>
       <a class="nav-link " href="../contact/" aria-current=false>Contact</a>
     </nav>
     <div class="header-actions">
-      <button id="cmdk" class="btn btn-ghost" aria-label="Open Command Palette (Ctrl/⌘K)"><span>⌘K</span></button>
     </div>
   </div>
 </header>
 <div id="progress" class="progress" aria-hidden="true"><span></span></div>
+
 <main class="container" role="main">
-  <section>
+  <section class="reveal">
     <h1>Community</h1>
-    <p class="lead">Participate through GitHub Discussions (Giscus), Webmentions, or Discord/Matrix.</p>
-    <ul>
-      <li>Post comments under essays (GitHub account required).</li>
-      <li>Reply publicly anywhere and send a webmention.</li>
-      <li>Join chat: <a href="#" id="chat-link">Discord/Matrix</a></li>
-    </ul>
+    <p class="lead">Gathering places and discussion channels.</p>
   </section>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const chat = localStorage.getItem('COMMUNITY_CHAT_URL') || '';
-      const a = document.getElementById('chat-link'); if (a && chat) a.href = chat;
-    });
-  </script>
 </main>
+
 <footer class="site-footer" role="contentinfo">
   <div class="container footer-inner">
     <div class="left">
-      <p class="muted">© 2025 Vincent Viitala - “Reading the code behind appearance.”</p>
-      <p class="muted">WCAG AA. Built with vanilla HTML/CSS/JS. </p>
+      <p class="muted">© 2025 Vincent Viitala</p>
     </div>
     <div class="right">
       <a href="../rss.xml" class="tag">RSS</a>
@@ -57,14 +49,6 @@
     </div>
   </div>
 </footer>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-

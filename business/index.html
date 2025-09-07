@@ -3,16 +3,88 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Solutions - Vincent Viitala</title>
+  <title>Business Solutions - Vincent Viitala</title>
   <meta name="description" content="Practical AI outcomes for leaders: more qualified pipeline, faster support, leaner ops. Fixed‑scope pilots with a Week‑2 guarantee." />
   <meta name="theme-color" content="#050807" />
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Solutions - Vincent Viitala">
+  <meta property="og:title" content="Business Solutions - Vincent Viitala">
   <meta property="og:description" content="Practical AI for growing businesses. 4‑week pilots. See results by week 2 or pay nothing.">
   <meta property="og:url" content="/business/">
   <meta property="og:image" content="../assets/img/og-default.svg">
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/css/styles.css">
+  <style>
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-guarantee {
+      margin-left: 24px;
+    }
+
+    .mini-guarantee {
+      font-size: 14px;
+      padding: 12px 16px;
+      margin: 0;
+      min-width: 200px;
+    }
+
+    .mini-guarantee .title {
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .mini-guarantee p {
+      font-size: 12px;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .trust-badges {
+      margin-top: 16px;
+    }
+
+    .guarantee-section {
+      margin-top: 24px;
+    }
+
+    .trust-badges .badge {
+      font-size: 11px;
+      padding: 4px 8px;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero .left, .hero .right {
+        width: 100%;
+      }
+
+      .guarantee-section {
+        margin-top: 16px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  </style>
   <script defer src="../assets/js/config.js"></script>
   <script defer src="../assets/js/main.js"></script>
 </head>
@@ -22,302 +94,293 @@
     <a class="brand" href="../"><span class="glyph">◇</span> Vincent Viitala</a>
     <nav aria-label="Primary" class="nav">
       <a class="nav-link" href="../services/" aria-current="false">Services</a>
-      <a class="nav-link active" href="../business/" aria-current="page">Solutions</a>
-      <a class="nav-link" href="../case-studies/" aria-current="false">Case Studies</a>
       <a class="nav-link" href="../projects/" aria-current="false">Projects</a>
       <a class="nav-link" href="../books/" aria-current="false">Books</a>
       <a class="nav-link" href="../links/" aria-current="false">Links</a>
-      <a class="nav-link" href="../faq/" aria-current="false">FAQ</a>
-      <a class="nav-link" href="../cv/" aria-current="false">About</a>
+      <a class="nav-link" href="../cv/" aria-current="false">CV / About</a>
       <a class="nav-link" href="../contact/" aria-current="false">Contact</a>
     </nav>
     <div class="header-actions">
-      <button id="cmdk" class="btn btn-ghost" aria-label="Open Command Palette (Ctrl/⌘K)"><span>⌘K</span></button>
     </div>
   </div>
 </header>
 <div id="progress" class="progress" aria-hidden="true"><span></span></div>
 
-<div id="cmdk-overlay" class="cmdk" hidden>
-  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command Palette">
-    <input id="cmdk-input" type="text" placeholder="Type a command or search…" aria-label="Command input" />
-    <ul id="cmdk-list" class="cmdk-list" role="listbox">
-      <li data-action="go:../business/">Solutions</li>
-      <li data-action="go:../services/">Explore Services</li>
-      <li data-action="go:../case-studies/">Case Studies</li>
-      <li data-action="go:../projects/">View Projects</li>
-      <li data-action="go:../books/">Browse Books</li>
-      <li data-action="go:../links/">Links</li>
-      <li data-action="go:../faq/">FAQ</li>
-      <li data-action="go:../cv/">About</li>
-      <li data-action="go:../contact/">Contact</li>
-      <li data-action="search">Site Search…</li>
-    </ul>
-    <button id="cmdk-close" class="btn btn-ghost small">Close</button>
-  </div>
-</div>
-
 <main class="container" role="main">
-  <section class="reveal">
-    <h1>Transform your operations with AI that works – in just 4 weeks</h1>
-    <p class="lead">For growing businesses ready to automate without the enterprise price tag.</p>
-    <div class="cta" style="margin:8px 0 8px; display:flex; gap:8px; flex-wrap:wrap;">
-      <a id="book-hero" class="btn track-cta" href="https://calendly.com/viitala-vincent/30min">Get your AI roadmap → 30‑min strategy call</a>
-      <a class="btn btn-ghost" href="#pilot-plan">See 4‑week pilot plan</a>
+  <section class="hero reveal">
+    <div class="left reveal">
+      <p class="small-label">Transform your operations with AI that works – in just 4 weeks</p>
+      <h1>For growing businesses ready to automate without the enterprise price tag.</h1>
+      <div class="cta">
+        <a id="book-hero" class="btn track-cta" href="#contact">Get your AI roadmap → 30‑min strategy call</a>
+        <a class="btn track-cta" href="#process">See 4‑week pilot plan</a>
+      </div>
+      <div class="guarantee-section">
+        <div class="callout console">
+          <div class="title">Guarantee</div>
+          <p>Simple guarantee: See results by week 2 or pay nothing.</p>
+        </div>
+      </div>
     </div>
-    <div class="callout console" style="margin-top:6px;">
-      <div class="title">Guarantee</div>
-      <p class="muted">Simple guarantee: See results by week 2 or pay nothing.</p>
-    </div>
-    <div class="grid cols-3" style="margin-top:10px;">
-      <div class="small-label">Trust</div>
-      <div class="small-label">GDPR‑compliant</div>
-      <div class="small-label">Security‑minded</div>
-    </div>
-    <div class="grid cols-3" style="margin-top:12px;">
-      <div class="card"><div class="small-label">Ops</div><p class="muted">Custom automation that cuts manual work by 60%</p></div>
-      <div class="card"><div class="small-label">Engineering</div><p class="muted">Automate repetitive engineering tasks to save 10+ hours weekly</p></div>
-      <div class="card"><div class="small-label">Growth</div><p class="muted">Generate 2× more qualified leads, fully GDPR‑compliant</p></div>
+    <div class="right reveal">
     </div>
   </section>
 
-  <section class="grid cols-3 reveal">
+  <section class="reveal">
+    <h2>What I build</h2>
+    <div class="grid cols-3">
+
     <div class="card">
+        <div class="small-label">Growth</div>
       <h3>Build a predictable pipeline of qualified leads</h3>
       <p class="muted">I'll build AI that researches prospects, scores leads, and personalizes every first contact.</p>
-      <ul class="muted" style="margin-top:6px;">
+        <ul class="muted" style="margin: 12px 0;">
         <li>Previously built lead gen systems generating 200+ SQLs/month</li>
         <li>Full GDPR compliance built in from day one</li>
       </ul>
-      <p style="margin-top:8px;"><a class="tag" data-expand="leadgen">See detailed scope →</a></p>
-      <div class="exp" id="exp-leadgen" hidden>
-        <div class="grid cols-2">
-          <div>
-            <div class="small-label">Goals</div>
-            <ul class="muted"><li>Achieve 50+ qualified leads per month</li><li>Double SQLs per SDR without increasing workload</li><li>Cut cost per opportunity by 40%</li></ul>
-            <div class="small-label">Deliverables</div>
-            <ul class="muted"><li>Ideal customer profile: focuses outreach on accounts most likely to convert</li><li>Custom lead scoring: identifies your best prospects automatically</li><li>Personalized first‑touch drafts: increases replies without extra work</li></ul>
-          </div>
-          <div>
-            <div class="small-label">Timeline</div>
-            <ul class="muted"><li>Week 1: Define your ideal customer and map your data</li><li>Week 2: Establish baseline scoring and validate with your team</li><li>Week 3: Generate personalized first contacts and test on a small segment</li><li>Week 4: Review results and iterate for rollout</li></ul>
-            <div class="small-label">What I need</div>
-            <ul class="muted"><li>Read‑only CRM access — analyze what converts (no risk to data integrity)</li><li>Sales lead time — 2–3 hours/week for quick decisions and feedback</li></ul>
-          </div>
-        </div>
-        <p class="muted">Investment: $7,500 for 4‑week pilot</p>
+        <a class="btn small" href="../services/#svc-leadgen">See detailed scope →</a>
       </div>
-    </div>
+
     <div class="card">
+        <div class="small-label">Support</div>
       <h3>Cut support tickets by 40% with intelligent automation</h3>
       <p class="muted">Reduce support tickets by ~40% with smart routing and AI‑powered responses.</p>
-      <ul class="muted" style="margin-top:6px;">
+        <ul class="muted" style="margin: 12px 0;">
         <li>Maintains or improves customer satisfaction scores</li>
         <li>Safe routing with guardrails</li>
       </ul>
-      <p style="margin-top:8px;"><a class="tag" data-expand="support">See detailed scope →</a></p>
-      <div class="exp" id="exp-support" hidden>
-        <div class="grid cols-2">
-          <div>
-            <div class="small-label">Goals</div>
-            <ul class="muted"><li>Achieve 40% ticket deflection while maintaining CSAT</li><li>Improve first response time by 50%</li></ul>
-            <div class="small-label">Deliverables</div>
-            <ul class="muted"><li>Smart intent routing: sends tickets to the right place the first time</li><li>AI‑assisted responses: faster replies with consistent tone</li><li>Knowledge integration: answers from your docs without copy‑paste</li></ul>
-          </div>
-          <div>
-            <div class="small-label">Timeline</div>
-            <ul class="muted"><li>Week 1: Intake and map your top issues</li><li>Week 2: Build smart routing that sends tickets to the right place</li><li>Week 3: Create response macros and test on a small cohort</li><li>Week 4: QA and CSAT review, tune and roll out</li></ul>
-            <div class="small-label">What I need</div>
-            <ul class="muted"><li>List of your top 10 support issues — takes ~30 minutes to compile</li><li>Read‑only helpdesk access — map current workflows safely</li></ul>
-          </div>
-        </div>
-        <p class="muted">Investment: $8,500 for 4‑week pilot</p>
+        <a class="btn small" href="../services/#svc-support">See detailed scope →</a>
       </div>
-    </div>
+
     <div class="card">
+        <div class="small-label">Operations</div>
       <h3>Reclaim 10+ hours per week from repetitive tasks</h3>
       <p class="muted">Automate reports, proposals, and summaries inside the tools your team already uses.</p>
-      <ul class="muted" style="margin-top:6px;">
+        <ul class="muted" style="margin: 12px 0;">
         <li>Built‑in approvals and whitelists to keep humans in control</li>
         <li>Audit trails and access controls for security and compliance</li>
       </ul>
-      <p style="margin-top:8px;"><a class="tag" data-expand="copilots">See detailed scope →</a></p>
-      <div class="exp" id="exp-copilots" hidden>
-        <div class="grid cols-2">
-          <div>
-            <div class="small-label">Goals</div>
-            <ul class="muted"><li>Complete routine tasks 3× faster</li><li>Reduce manual steps by 60%</li></ul>
-            <div class="small-label">Deliverables</div>
-            <ul class="muted"><li>Custom automation tool: built right into your existing workflow</li><li>Clear approvals: you decide what actions are allowed</li><li>Reporting dashboard: see time saved and impact</li></ul>
-          </div>
-          <div>
-            <div class="small-label">Timeline</div>
-            <ul class="muted"><li>Week 1: Workflow spec with your team</li><li>Week 2: Prototype and confirm user flows</li><li>Week 3: Connect to your existing tools (Slack, CRM, etc.)</li><li>Week 4: Harden and roll out with training</li></ul>
-            <div class="small-label">What I need</div>
-            <ul class="muted"><li>Tool access — limited and read‑only where possible</li><li>One champion who knows the workflow inside‑out — ~2 hours/week</li></ul>
-          </div>
-        </div>
-        <p class="muted">Investment: $6,500 for 3‑week pilot</p>
+        <a class="btn small" href="../services/#svc-copilots">See detailed scope →</a>
       </div>
+
     </div>
   </section>
 
-  <section id="pilot-plan" class="card reveal">
+  <section class="reveal" id="process">
     <h2>How I work (fast)</h2>
-    <ul class="muted">
-      <li>Weekly, visible progress in non‑technical language.</li>
-      <li>Baseline first, then iterate – avoid spending on unproven ideas.</li>
-      <li>Metrics tied to business outcomes (pipeline, CSAT, cycle time, cost).</li>
-      <li>Security & compliance from day one.</li>
-    </ul>
-    <div class="grid cols-3" style="margin-top:8px;">
-      <div class="card"><div class="small-label">Week 0–1</div><h3>Discovery</h3><p class="muted">Map bottlenecks and choose the highest‑impact AI opportunity.</p></div>
-      <div class="card"><div class="small-label">Week 1–4</div><h3>Pilot</h3><p class="muted">Build and test a working solution with your real data.</p></div>
-      <div class="card"><div class="small-label">After</div><h3>Scale</h3><p class="muted">Roll out across your team with training and ongoing optimization.</p></div>
+    <div class="grid cols-3" style="margin-bottom: 24px;">
+      <div class="card">
+        <div class="small-label">Weekly, visible progress</div>
+        <p class="muted">in non‑technical language.</p>
+      </div>
+      <div class="card">
+        <div class="small-label">Baseline first, then iterate</div>
+        <p class="muted">– avoid spending on unproven ideas.</p>
+      </div>
+      <div class="card">
+        <div class="small-label">Metrics tied to business outcomes</div>
+        <p class="muted">(pipeline, CSAT, cycle time, cost).</p>
+      </div>
+      <div class="card">
+        <div class="small-label">Security & compliance</div>
+        <p class="muted">from day one.</p>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 32px;">
+      <div class="card">
+        <h3>Week 0–1</h3>
+        <h4>Discovery</h4>
+        <p class="muted">Map bottlenecks and choose the highest‑impact AI opportunity.</p>
+      </div>
+      <div class="card">
+        <h3>Week 1–4</h3>
+        <h4>Pilot</h4>
+        <p class="muted">Build and test a working solution with your real data.</p>
+      </div>
+      <div class="card">
+        <h3>After</h3>
+        <h4>Scale</h4>
+        <p class="muted">Roll out across your team with training and ongoing optimization.</p>
+      </div>
     </div>
   </section>
 
   <section class="reveal">
     <h2>Selected results</h2>
-    <div class="list">
+    <div class="grid cols-3">
       <div class="card">
         <div class="small-label">TopicalBase Oy</div>
+        <h3>ERP + Data App</h3>
         <p class="muted">Designed and shipped a custom ERP + data app; improved operations and engagement.</p>
       </div>
       <div class="card">
         <div class="small-label">SHS Sähkö Oy</div>
+        <h3>Automation Tool</h3>
         <p class="muted">Automation tool that saved engineering time with rules‑based placement.</p>
       </div>
       <div class="card">
         <div class="small-label">Advisory</div>
+        <h3>Market Analysis</h3>
         <p class="muted">Quarterly market analysis turned into clear decisions and durable advantage.</p>
       </div>
     </div>
   </section>
 
-
-
-  <section class="card reveal">
+  <section class="reveal">
     <h2>About Vincent</h2>
-    <p class="muted">I’m Vincent. During my BCs in Data Science & AI at Maastricht, I’ve spent the last several months building AI solutions that actually ship. I code alongside your team, not from a PowerPoint. My focus: practical AI that generates ROI, not research papers, I already do that on academia.</p>
+    <p class="lead">I’m Vincent. During my BCs in Data Science & AI at Maastricht, I've spent the last several months building AI solutions that actually ship. I code alongside your team, not from a PowerPoint. My focus: practical AI that generates ROI, not research papers, I already do that on academia.</p>
   </section>
 
-  <section class="card reveal">
+  <section class="reveal">
     <h2>Is this for me?</h2>
-    <div class="grid cols-3">
-      <div><div class="small-label">Best fit</div><ul class="muted"><li>SMB founders with 10–50 employees facing scaling challenges</li><li>B2B SaaS ops/PM leaders with growing customer bases</li><li>Agencies with repetitive workflows and high QA demands</li><li>E‑commerce heads focused on conversion and support</li></ul></div>
-      <div><div class="small-label">Pre‑reqs</div><ul class="muted"><li>One team member who can dedicate 2–3 hours/week</li><li>Access to relevant data and tools</li><li>Ability to ship to production</li></ul></div>
-      <div><div class="small-label">Not a fit</div><ul class="muted"><li>Companies looking for pure research or custom LLM training</li><li>No data access or blocking security constraints</li><li>Requests to “build an LLM from scratch”</li></ul></div>
+    <div class="grid cols-2">
+      <div>
+        <h3>Best fit</h3>
+        <ul class="muted">
+          <li>SMB founders with 10–50 employees facing scaling challenges</li>
+          <li>B2B SaaS ops/PM leaders with growing customer bases</li>
+          <li>Agencies with repetitive workflows and high QA demands</li>
+          <li>E‑commerce heads focused on conversion and support</li>
+        </ul>
+        <h4>Pre‑reqs</h4>
+        <ul class="muted">
+          <li>One team member who can dedicate 2–3 hours/week</li>
+          <li>Access to relevant data and tools</li>
+          <li>Ability to ship to production</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Not a fit</h3>
+        <ul class="muted">
+          <li>Companies looking for pure research or custom LLM training</li>
+          <li>No data access or blocking security constraints</li>
+          <li>Requests to "build an LLM from scratch"</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="card reveal">
+  <section class="reveal">
     <h2>Guarantee & IP</h2>
-    <p><strong>Zero‑risk guarantee.</strong> We’ll agree on specific metrics upfront. If you don’t see movement by week 2, cancel instantly and keep everything we’ve built.</p>
+    <p class="lead">Zero‑risk guarantee. We'll agree on specific metrics upfront. If you don't see movement by week 2, cancel instantly and keep everything we've built.</p>
     <p class="muted">All deliverables and code are transferred to you at completion.</p>
   </section>
 
-  <section class="card reveal">
+  <section class="reveal">
     <h2>Investment & capacity</h2>
-    <p><strong>Investment:</strong> $7,500–$9,500 for a 4‑week pilot. Most clients see ROI within 60 days.</p>
+    <p class="lead">Investment: $7,500–$9,500 for a 4‑week pilot. Most clients see ROI within 60 days.</p>
     <p class="muted">Capacity: I run 1–2 pilots at a time. Next start: within 2 weeks.</p>
   </section>
 
   <section class="reveal">
     <h2>Tailored pages</h2>
-    <div class="grid cols-3">
-      <a class="card" href="./smb/"><h3>SMB Owners</h3><p class="muted">Turn 60‑hour weeks into 40 with AI automation.</p></a>
-      <a class="card" href="./saas/"><h3>B2B SaaS</h3><p class="muted">Reduce churn by 20% with AI‑powered customer success.</p></a>
-      <a class="card" href="./agencies/"><h3>Agencies</h3><p class="muted">Handle 2× more clients without adding headcount.</p></a>
-      <a class="card" href="./ecommerce/"><h3>E‑commerce</h3><p class="muted">Boost conversion rates with AI merchandising.</p></a>
-      <a class="card" href="./professional-services/"><h3>Professional Services</h3><p class="muted">Utilization, proposals, and knowledge reuse.</p></a>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>SMB Owners</h3>
+        <p class="muted">Turn 60‑hour weeks into 40 with AI automation.</p>
+        <a class="btn small" href="#contact">Book a call</a>
+      </div>
+      <div class="card">
+        <h3>B2B SaaS</h3>
+        <p class="muted">Reduce churn by 20% with AI‑powered customer success.</p>
+        <a class="btn small" href="#contact">Book a call</a>
+      </div>
+      <div class="card">
+        <h3>Agencies</h3>
+        <p class="muted">Handle 2× more clients without adding headcount.</p>
+        <a class="btn small" href="#contact">Book a call</a>
+      </div>
+      <div class="card">
+        <h3>E‑commerce</h3>
+        <p class="muted">Boost conversion rates with AI merchandising.</p>
+        <a class="btn small" href="#contact">Book a call</a>
+      </div>
+      <div class="card">
+        <h3>Professional Services</h3>
+        <p class="muted">Utilization, proposals, and knowledge reuse.</p>
+        <a class="btn small" href="#contact">Book a call</a>
+      </div>
     </div>
   </section>
 
-  <section class="card reveal">
+  <section class="reveal">
     <h2>What you can expect</h2>
-    <ul class="muted">
+    <ul class="muted" style="max-width: 600px; margin: 0 auto;">
       <li>Clear, non‑technical language and weekly progress you can see.</li>
-      <li>Baseline first, then iteration – so you don’t over-spend on unproven ideas.</li>
+      <li>Baseline first, then iteration – so you don't over-spend on unproven ideas.</li>
       <li>Metrics that tie to business outcomes (pipeline, CSAT, cycle‑time, cost).</li>
       <li>Security and compliance considered from day one.</li>
     </ul>
   </section>
 
-
-
-
-  <section class="card reveal">
+  <section class="reveal">
     <h2>FAQ</h2>
-    <details><summary>How do you handle data and security?</summary><p class="muted">Access is scoped minimally with audit logs. I’m security‑minded from day one and comfortable with GDPR‑compliant workflows.</p></details>
-    <details><summary>Who owns the work?</summary><p class="muted">You do. IP and code transfer to you at completion.</p></details>
-    <details><summary>What happens after the 4‑week pilot?</summary><p class="muted">We keep what works, harden it, and roll out with training. Then we expand to adjacent use‑cases based on ROI.</p></details>
-    <details><summary>Do I need technical knowledge?</summary><p class="muted">No. I communicate in plain language and show weekly progress in your terms.</p></details>
-    <details><summary>How is this different from other AI consultants?</summary><p class="muted">I build in production alongside your team, align on clear KPIs, and avoid bloated research or slideware.</p></details>
-    <details><summary>What if my data isn’t ready?</summary><p class="muted">That’s common. We’ll map sources, start lean, and create the smallest useful connectors to prove value.</p></details>
-    <details><summary>Can you integrate with our tools?</summary><p class="muted">Yes — common integrations include HubSpot, Salesforce, Zendesk, Intercom, Google Sheets, and custom APIs.</p></details>
+    <details style="max-width: 600px; margin: 0 auto 16px;">
+      <summary>How do you handle data and security?</summary>
+      <p class="muted">All data stays on your infrastructure. I work within your security boundaries and follow your compliance requirements.</p>
+    </details>
+    <details style="max-width: 600px; margin: 0 auto 16px;">
+      <summary>Who owns the work?</summary>
+      <p class="muted">You own everything we build. Code, documentation, and all deliverables are transferred to you at completion.</p>
+    </details>
+    <details style="max-width: 600px; margin: 0 auto 16px;">
+      <summary>What happens after the 4‑week pilot?</summary>
+      <p class="muted">We scale the solution across your team with training, monitoring, and optimization for 60 days.</p>
+    </details>
+    <details style="max-width: 600px; margin: 0 auto 16px;">
+      <summary>Do I need technical knowledge?</summary>
+      <p class="muted">No. I'll handle the technical implementation while keeping you updated in business terms.</p>
+    </details>
+    <details style="max-width: 600px; margin: 0 auto 16px;">
+      <summary>How is this different from other AI consultants?</summary>
+      <p class="muted">I code alongside your team and focus on shipping working solutions, not just PowerPoint presentations.</p>
+    </details>
+    <details style="max-width: 600px; margin: 0 auto 16px;">
+      <summary>What if my data isn't ready?</summary>
+      <p class="muted">We start with discovery and baseline measurement. Data readiness is part of the scoping process.</p>
+    </details>
+    <details style="max-width: 600px; margin: 0 auto 16px;">
+      <summary>Can you integrate with our tools?</summary>
+      <p class="muted">Yes. I work within your existing tech stack and integrate with your current tools and workflows.</p>
+    </details>
   </section>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type": "Question", "name": "How do you handle data and security?", "acceptedAnswer": {"@type": "Answer", "text": "Access is scoped minimally with audit logs. I’m security‑minded from day one and comfortable with GDPR‑compliant workflows."}},
-      {"@type": "Question", "name": "Who owns the work?", "acceptedAnswer": {"@type": "Answer", "text": "You do. IP and code transfer to you at completion."}},
-      {"@type": "Question", "name": "What happens after the 4‑week pilot?", "acceptedAnswer": {"@type": "Answer", "text": "We keep what works, harden it, and roll out with training. Then we expand to adjacent use‑cases based on ROI."}},
-      {"@type": "Question", "name": "Do I need technical knowledge?", "acceptedAnswer": {"@type": "Answer", "text": "No. I communicate in plain language and show weekly progress in your terms."}},
-      {"@type": "Question", "name": "How is this different from other AI consultants?", "acceptedAnswer": {"@type": "Answer", "text": "I build in production alongside your team, align on clear KPIs, and avoid bloated research or slideware."}},
-      {"@type": "Question", "name": "What if my data isn’t ready?", "acceptedAnswer": {"@type": "Answer", "text": "That’s common. We’ll map sources, start lean, and create the smallest useful connectors to prove value."}},
-      {"@type": "Question", "name": "Can you integrate with our tools?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — common integrations include HubSpot, Salesforce, Zendesk, Intercom, Google Sheets, and custom APIs."}}
-    ]
-  }
-  </script>
-
-  <section class="card reveal">
+  <section class="reveal" id="contact">
     <h2>Contact</h2>
-    <p>Let’s discuss your AI opportunity. Email me at <a href="mailto:viitala.vincent@gmail.com">viitala.vincent@gmail.com</a> or message on LinkedIn. I respond within 24 hours, usually faster.</p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/vincent-viitala-225737185" target="_blank" rel="noopener">vincent‑viitala</a></p>
+    <p class="lead">Let's discuss your AI opportunity. Email me at viitala.vincent@gmail.com or message on LinkedIn. I respond within 24 hours, usually faster.</p>
+    <div class="cta">
+      <a class="btn" href="mailto:viitala.vincent@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/vincent-viitala-225737185" target="_blank" rel="noopener">LinkedIn: vincent‑viitala</a>
+    </div>
   </section>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": [
-      {"@type": "Service", "name": "More qualified pipeline in 3–4 weeks", "description": "I’ll build AI that researches prospects, scores leads, and personalizes every first contact.", "offers": {"@type": "Offer", "priceCurrency": "USD", "price": "7500"}},
-      {"@type": "Service", "name": "Deflect support and speed replies", "description": "Reduce support tickets by 40% with smart routing and AI‑powered responses.", "offers": {"@type": "Offer", "priceCurrency": "USD", "price": "8500"}},
-      {"@type": "Service", "name": "Cut internal busywork", "description": "Automate reports, proposals, and summaries inside your existing tools.", "offers": {"@type": "Offer", "priceCurrency": "USD", "price": "6500"}}
-    ]
-  }
-  </script>
-  <script>
-  // Safety: force reveal sections visible if animation script fails
-  try {
-    document.addEventListener('DOMContentLoaded', function(){
-      var nodes = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-stagger');
-      nodes.forEach(function(el){ el.classList.add('is-visible'); el.style.opacity='1'; el.style.transform='none'; });
-    });
-  } catch {}
-  </script>
-</main>
-<div class="container">
-<section class="card reveal">
+  <section class="reveal">
   <h2>Estimate your ROI</h2>
   <p class="muted">Quick calculator based on simple assumptions and typical benchmarks.</p>
-  <form id="roi-calc" style="display:grid; grid-template-columns: minmax(160px,1fr) minmax(260px,2fr); gap:10px 12px; align-items:center; max-width: 760px; margin: 0 auto;">
-    <label for="revenue">Monthly revenue ($)</label>
-    <input type="number" id="revenue" class="roi-input" value="100000" min="0">
-    <label for="lift">Expected lift (%)</label>
-    <input type="number" id="lift" class="roi-input" value="5" min="0" max="100">
-    <label for="margin">Gross margin (%)</label>
-    <input type="number" id="margin" class="roi-input" value="70" min="0" max="100">
-    <label for="cost">Pilot cost ($)</label>
-    <input type="number" id="cost" class="roi-input" value="7500" min="0">
-    <button class="btn" type="button" onclick="calcROI()" style="grid-column:1 / -1; justify-self:start;">Calculate</button>
-    <p id="roi-result" class="muted" style="grid-column:1 / -1;"></p>
+    <form class="card" oninput="calcROI()">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+        <div>
+          <label>Monthly Revenue ($)</label>
+          <input id="revenue" type="number" placeholder="100000" style="width:100%;">
+        </div>
+        <div>
+          <label>Expected Lift (%)</label>
+          <input id="lift" type="number" placeholder="5" style="width:100%;">
+        </div>
+        <div>
+          <label>Gross Margin (%)</label>
+          <input id="margin" type="number" placeholder="70" style="width:100%;">
+        </div>
+        <div>
+          <label>Pilot Cost ($)</label>
+          <input id="cost" type="number" placeholder="7500" style="width:100%;">
+        </div>
+      </div>
+      <button class="btn" type="button" onclick="calcROI()">Calculate</button>
+      <p id="roi-result" class="muted" style="margin-top: 16px;"></p>
   </form>
-  <details style="margin-top:6px; max-width: 760px; margin-left:auto; margin-right:auto;">
+    <details style="margin-top:16px; max-width: 760px; margin-left:auto; margin-right:auto;">
     <summary>Assumptions & methodology</summary>
     <ul class="muted">
       <li><strong>Lift</strong>: percent increase in revenue or cost savings driven by automation.</li>
@@ -327,7 +390,7 @@
     </ul>
   </details>
 </section>
-</div>
+</main>
 <script>
 function calcROI() {
   const rev = parseFloat(document.getElementById('revenue').value) || 0;
@@ -344,7 +407,7 @@ function calcROI() {
 <footer class="site-footer" role="contentinfo">
   <div class="container footer-inner">
     <div class="left">
-      <p class="muted">© 2025 Vincent Viitala – Practical AI that ships.</p>
+      <p class="muted">© 2025 Vincent Viitala</p>
     </div>
     <div class="right">
       <a href="../rss.xml" class="tag">RSS</a>
@@ -354,6 +417,7 @@ function calcROI() {
     </div>
   </div>
 </footer>
+
 </body>
 </html>
 
