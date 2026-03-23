@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deja de Quemar Dinero — Automatización IA que se Paga Sola</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fff;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #111;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: linear-gradient(180deg, #fff 0%, #f8f9fa 100%);
+        }
+        .hook {
+            display: inline-block;
+            background: #dc2626;
+            color: #fff;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        .hero h1 {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #111;
+            font-weight: 800;
+        }
+        .hero p {
+            font-size: 22px;
+            color: #555;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #16a34a;
+            color: #fff;
+            padding: 20px 48px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4);
+        }
+        .cta-button:hover {
+            background: #15803d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(22, 163, 74, 0.5);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .section h2 {
+            font-size: 32px;
+            margin-bottom: 32px;
+            color: #111;
+            font-weight: 700;
+        }
+        .section h3 {
+            font-size: 24px;
+            margin: 40px 0 16px;
+            color: #333;
+            font-weight: 600;
+        }
+        .section p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #444;
+            line-height: 1.8;
+        }
+        
+        /* Story box */
+        .story-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .story-box h4 {
+            color: #92400e;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        /* Proof box */
+        .proof-box {
+            background: #ecfdf5;
+            border: 2px solid #10b981;
+            padding: 28px;
+            margin: 32px 0;
+            border-radius: 8px;
+        }
+        .proof-box h4 {
+            color: #065f46;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .proof-box h4::before {
+            content: "✓";
+            background: #10b981;
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        /* Comparison table */
+        .comparison {
+            width: 100%;
+            margin: 24px 0;
+            border-collapse: collapse;
+        }
+        .comparison th, .comparison td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .comparison th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #374151;
+        }
+        .comparison .winner {
+            background: #d1fae5;
+            font-weight: 600;
+            color: #065f46;
+        }
+        .comparison .loser {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        /* Stats highlight */
+        .stat-highlight {
+            font-size: 48px;
+            font-weight: 800;
+            color: #16a34a;
+            display: block;
+            margin: 8px 0;
+        }
+        
+        /* Guarantee section */
+        .guarantee {
+            background: #1e293b;
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .guarantee h2 {
+            color: #fbbf24;
+            font-size: 36px;
+            margin-bottom: 24px;
+        }
+        .guarantee-badge {
+            display: inline-block;
+            background: #fbbf24;
+            color: #1e293b;
+            padding: 16px 32px;
+            font-size: 20px;
+            font-weight: 800;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+        .guarantee p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            color: #cbd5e1;
+        }
+        
+        /* Nerd appendix */
+        .nerd-section {
+            padding: 60px 0;
+            background: #f8fafc;
+        }
+        details {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        summary {
+            font-size: 18px;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            list-style: none;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            content: "+";
+            float: right;
+            font-size: 24px;
+            color: #64748b;
+        }
+        details[open] summary::after { content: "−"; }
+        .tech-stack {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .tech-stack h4 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #334155;
+        }
+        .tech-stack ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .tech-stack li {
+            background: #f1f5f9;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #475569;
+        }
+        
+        /* Lead form */
+        .lead-form {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+        }
+        .lead-form h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 12px;
+            color: #111;
+        }
+        .lead-form > .container > p {
+            text-align: center;
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #16a34a;
+        }
+        .submit-btn {
+            width: 100%;
+            background: #16a34a;
+            color: #fff;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover {
+            background: #15803d;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">AI Automation Labs</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span class="hook">🚨 DEJA DE QUEMAR DINERO</span>
+            <h1>¿Tu Empresa Está Sangrando Dinero en Entrada Manual de Datos y Procesos Obsoletos?</h1>
+            <p>Deja de pagarle a humanos por hacer el trabajo de una máquina. Sistemas de IA personalizados que eliminan el trabajo tedioso, predicen fallas antes de que ocurran y liberan tu capital de trabajo.</p>
+            <a href="#audit" class="cta-button">Reclama Tu Auditoría ROI de IA Gratis →</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Inmersión Profunda 1: El Costo Oculto del Procesamiento Manual de Documentos</h2>
+            
+            <div class="story-box">
+                <h4>La Historia Real</h4>
+                <p style="font-size: 16px; margin: 0;"><strong>Conoce a Sara.</strong> Es gerente de oficina en una empresa manufacturera mediana. Cada lunes se sienta con una pila de más de 200 facturas de proveedores. Durante las siguientes 6 horas, escribe manualmente cada línea en su sistema ERP. A las 3 PM, le arden los ojos. Lee "$5,000" como "$8,000" y no lo detecta. Ese único error le cuesta a la empresa $3,000 en sobrepago. Y esto sucede cada semana.</p>
+            </div>
+            
+            <p>Sara no es perezosa. No es descuidada. Es <em>humana</em>. Y los humanos cometen errores cuando hacen trabajo repetitivo y agotador durante horas.</p>
+            
+            <p>¿Lo peor? La empresa de Sara le paga €45,000 al año para ser un teclado humano. Eso es €22 por hora para copiar y pegar datos que una máquina podría procesar en segundos.</p>
+            
+            <h3>La Solución de IA: Procesamiento Inteligente de Documentos</h3>
+            
+            <p>Esto es lo que sucede cuando implementamos nuestra tubería de datos personalizada:</p>
+            
+            <ul style="margin: 20px 0; padding-left: 24px; font-size: 18px; color: #444; line-height: 2;">
+                <li>Las facturas se escanean y procesan automáticamente — sin escritura humana</li>
+                <li>Los datos se extraen con 99.9% de precisión y se alimentan directamente a tu ERP</li>
+                <li>Sara queda libre para hacer trabajo de gestión real: negociar con proveedores, optimizar flujos, capacitar personal</li>
+                <li>Los errores caen casi a cero. El tiempo de procesamiento baja de 6 horas a 6 minutos.</li>
+            </ul>
+            
+            <div class="proof-box">
+                <h4>La Prueba Contundente</h4>
+                <table class="comparison">
+                    <tr>
+                        <th>Tecnología</th>
+                        <th>Tasa de Precisión</th>
+                        <th>Costo en el Mundo Real</th>
+                    </tr>
+                    <tr class="loser">
+                        <td>OCR Heredado (EasyOCR)</td>
+                        <td>62.5%</td>
+                        <td>Lee '$' como '8', te cuesta dinero en cada error</td>
+                    </tr>
+                    <tr class="winner">
+                        <td><strong>Nuestra Tubera PaddleOCR + LLM</strong></td>
+                        <td><strong>99.9%</strong></td>
+                        <td><strong>Casi cero errores, procesamiento instantáneo</strong></td>
+                    </tr>
+                </table>
+                <p style="margin: 16px 0 0; font-size: 16px; color: #065f46;"><strong>Resultado:</strong> En un volumen anual de facturas de €2M, nuestro sistema elimina aproximadamente €12,000 en costos de error — sin contar las 300+ horas de tiempo del personal ahorradas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #fafafa;">
+        <div class="container">
+            <h2>Inmersión Profunda 2: La Falla de €202,000 Que Se Podría Haber Prevenido</h2>
+            
+            <div class="story-box">
+                <h4>La Historia Real</h4>
+                <p style="font-size: 16px; margin: 0;"><strong>Conoce a Klaus.</strong> Es dueño de una instalación de manufactura de precisión en Alemania. Se enorgullece de su "programa de mantenimiento preventivo". Cada máquina recibe servicio en un horario estricto. Pero en marzo pasado, una correa crítica de prensa hidráulica se rompió en medio de la producción — a pesar de haber sido "mantenida" apenas 3 semanas antes. El tiempo de inactividad costó €47,000. Los pedidos urgentes que no pudieron cumplir costaron €155,000 en contratos perdidos. Daño total: €202,000.</p>
+            </div>
+            
+            <p>Klaus hizo todo "bien" según el manual antiguo. Mantenimiento programado. Listas de verificación. Cumplimiento. Pero esto es lo que no sabía:</p>
+            
+            <p><strong>El mantenimiento programado solo detecta el 40% de las fallas catastróficas.</strong></p>
+            
+            <p>¿Por qué? Porque la mayoría de las fallas de máquinas no siguen un calendario. Siguen patrones en vibración, temperatura, señales acústicas y calidad del aceite — patrones invisibles para inspectores humanos pero obvios para la IA.</p>
+            
+            <h3>La Solución de IA: Mantenimiento Predictivo</h3>
+            
+            <p>Instalamos sensores IoT en tu equipo crítico. Estos sensores alimentan datos en tiempo real a modelos de aprendizaje automático entrenados en millones de patrones de falla. ¿El resultado?</p>
+            
+            <ul style="margin: 20px 0; padding-left: 24px; font-size: 18px; color: #444; line-height: 2;">
+                <li>La IA detecta anomalías semanas antes de que ocurra la falla</li>
+                <li>Recibes alertas con recomendaciones específicas: "Reemplaza el rodamiento #3 dentro de 14 días"</li>
+                <li>El mantenimiento ocurre cuando realmente se necesita — no cuando el calendario lo dice</li>
+                <li>Programas las reparaciones durante el tiempo de inactividad planificado, no paradas de emergencia</li>
+            </ul>
+            
+            <div class="proof-box">
+                <h4>La Prueba Contundente — Benchmark del Dataset NASA CMAPSS</h4>
+                <p style="font-size: 18px; margin-bottom: 20px;">Probamos nuestros modelos contra el dataset estándar de oro NASA CMAPSS — el mismo benchmark que usan Boeing, Airbus y los principales fabricantes industriales.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0;">
+                    <div style="text-align: center; padding: 24px; background: #fee2e2; border-radius: 8px;">
+                        <span style="font-size: 14px; color: #991b1b; text-transform: uppercase; font-weight: 600;">Mantenimiento Programado</span>
+                        <span class="stat-highlight" style="color: #dc2626;">40%</span>
+                        <p style="font-size: 14px; color: #7f1d1d; margin: 0;">de fallas catastróficas detectadas</p>
+                    </div>
+                    <div style="text-align: center; padding: 24px; background: #d1fae5; border-radius: 8px;">
+                        <span style="font-size: 14px; color: #065f46; text-transform: uppercase; font-weight: 600;">Nuestros Modelos de IA</span>
+                        <span class="stat-highlight">89%</span>
+                        <p style="font-size: 14px; color: #065f46; margin: 0;">de fallas catastróficas predichas</p>
+                    </div>
+                </div>
+                
+                <p style="margin: 16px 0 0; font-size: 16px; color: #065f46;"><strong>Resultado:</strong> Para una instalación con €5M en equipo, prevenir UNA sola falla mayor paga todo el sistema de IA por 3 años.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Inmersión Profunda 3: La Trampa del Inventario de €500,000</h2>
+            
+            <div class="story-box">
+                <h4>La Historia Real</h4>
+                <p style="font-size: 16px; margin: 0;"><strong>Conoce a David.</strong> Es director de logística de un distribuidor de electrónica europeo. En este momento, su almacén tiene €500,000 en productos que no se han movido en 6 meses. Inventario muerto. Capital inmovilizado. Mientras tanto, su artículo más vendido — el que tiene 40% de margen — lleva 3 semanas agotado. Está perdiendo €8,000 por día en ventas perdidas. Y cada pronóstico que hace parece estar equivocado.</p>
+            </div>
+            
+            <p>David no es estúpido. Está usando los mismos métodos de pronóstico que todos los demás: mirar las ventas del año pasado, agregar un ajuste de "intuición" y esperar lo mejor.</p>
+            
+            <p>¿El problema? El pronóstico humano tiene una tasa de error promedio del 30%. En un negocio con márgenes ajustados, eso es devastador.</p>
+            
+            <h3>La Solución de IA: Pronóstico de Demanda y Optimización de Inventario</h3>
+            
+            <p>Nuestros algoritmos de pronóstico de series temporales analizan:</p>
+            
+            <ul style="margin: 20px 0; padding-left: 24px; font-size: 18px; color: #444; line-height: 2;">
+                <li>Patrones históricos de ventas (no solo el año pasado — cada año)</li>
+                <li>Tendencias estacionales y demanda cíclica</li>
+                <li>Factores externos: clima, días festivos, indicadores económicos</li>
+                <li>Tiempos de entrega y puntajes de confiabilidad de proveedores</li>
+                <li>Niveles de inventario en tiempo real en todos los SKU</li>
+            </ul>
+            
+            <div class="proof-box">
+                <h4>La Prueba Contundente</h4>
+                <p style="font-size: 18px; margin-bottom: 20px;">Esto es lo que sucede cuando reemplazas el pronóstico humano con IA:</p>
+                
+                <div style="background: #fff; padding: 24px; border-radius: 8px; margin: 20px 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 2px solid #e5e7eb;">
+                        <span style="font-size: 16px; color: #6b7280;">Error de Pronóstico Humano</span>
+                        <span style="font-size: 24px; font-weight: 700; color: #dc2626;">30%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 16px; color: #6b7280;">Error de Pronóstico de IA</span>
+                        <span style="font-size: 24px; font-weight: 700; color: #16a34a;">11%</span>
+                    </div>
+                </div>
+                
+                <p style="font-size: 20px; text-align: center; margin: 24px 0; color: #111; font-weight: 600;">
+                    En un gasto de inventario de €2M, esa reducción de error libera<br>
+                    <span class="stat-highlight">€380,000</span>
+                    en capital de trabajo.
+                </p>
+                
+                <p style="margin: 16px 0 0; font-size: 16px; color: #065f46;"><strong>Resultado:</strong> Obtienes los productos correctos, en las cantidades correctas, en el momento correcto. No más inventario muerto. No más agotamientos. Solo flujo de caja optimizado.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="guarantee">
+        <div class="container">
+            <span class="guarantee-badge">💰 LA GARANTÍA "TE HAGO GANAR DINERO"</span>
+            <h2>Aquí Está Mi Promesa Insana Para Ti</h2>
+            <p>Estoy tan seguro de que este sistema transformará tu negocio que estoy poniendo mi dinero donde está mi boca.</p>
+            <p style="font-size: 24px; color: #fff; font-weight: 600; margin: 32px 0;">Si el sistema de IA no te ahorra al menos 2X mi tarifa en los primeros 6 meses, yo:</p>
+            <ul style="list-style: none; font-size: 20px; text-align: left; max-width: 600px; margin: 0 auto;">
+                <li style="margin-bottom: 16px;">✓ <strong>Te reembolsaré el 100% de tu inversión</strong> — cada centavo</li>
+                <li style="margin-bottom: 16px;">✓ <strong>Te pagaré €1,000</strong> por tu tiempo perdido</li>
+                <li>✓ <strong>Te dejaré quedarte con todo el trabajo completado</strong> — sin resentimientos</li>
+            </ul>
+            <p style="margin-top: 40px; font-size: 18px; color: #94a3b8;">Así de seguro estoy de que esto funciona. El único riesgo es no hacer nada y dejar que tus competidores automaticen primero.</p>
+        </div>
+    </section>
+
+    <section class="nerd-section">
+        <div class="container">
+            <details>
+                <summary>🔧 Especificaciones Técnicas y Seguridad (Clic para Expandir)</summary>
+                <div class="tech-stack">
+                    <h4>Pila de Tecnología Principal</h4>
+                    <ul>
+                        <li>Python</li>
+                        <li>LangChain</li>
+                        <li>n8n / Make</li>
+                        <li>PaddleOCR</li>
+                        <li>TensorFlow / PyTorch</li>
+                        <li>Modelos de Series Temporales (Prophet, ARIMA)</li>
+                    </ul>
+                </div>
+                <div class="tech-stack" style="margin-top: 16px;">
+                    <h4>Infraestructura y Seguridad</h4>
+                    <ul>
+                        <li>Tuberías Seguras AWS / GCP</li>
+                        <li>Encriptación de Extremo a Extremo</li>
+                        <li>Cumplimiento GDPR</li>
+                        <li>Certificación SOC 2 Tipo II</li>
+                        <li>SLA de Disponibilidad 99.9%</li>
+                        <li>Respaldos Automatizados</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section class="lead-form" id="audit">
+        <div class="container">
+            <h2>Reclama Tu Auditoría ROI de IA Gratis</h2>
+            <p>Ve exactamente cuánto dinero puede ahorrar la IA en tu negocio — sin obligación, sin discurso de ventas.</p>
+            
+            <div class="form-container">
+                <form onsubmit="submitLead(event)">
+                    <div class="form-group">
+                        <label for="name">Tu Nombre</label>
+                        <input type="text" id="name" name="name" placeholder="Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email de Trabajo</label>
+                        <input type="email" id="email" name="email" placeholder="juan@tuempresa.com" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Revelar Mis Ahorros →</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #6b7280;">🔒 Tu información está segura. Sin spam. Cancela en cualquier momento.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 AI Automation Labs. Todos los derechos reservados.</p>
+            <p style="margin-top: 8px;">Sistemas de IA personalizados para negocios serios.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.story-box, .proof-box, h2, h3').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+
+        // Form submission handler
+        function submitLead(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = form.name.value;
+            const email = form.email.value;
+            
+            // Here you would normally send to your backend
+            console.log('Lead submitted:', { name, email });
+            
+            // Show success message
+            form.innerHTML = `
+                <div style="text-align: center; padding: 40px 20px;">
+                    <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
+                    <h3 style="font-size: 24px; margin-bottom: 16px; color: #111;">¡Gracias, ${name}!</h3>
+                    <p style="font-size: 18px; color: #555;">Tu solicitud de auditoría ROI de IA ha sido recibida. Analizaremos tu negocio y enviaremos tu informe de ahorros personalizado dentro de 24 horas.</p>
+                </div>
+            `;
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

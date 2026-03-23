@@ -1,0 +1,5 @@
+.openclaw/
+.config/
+.npm*
+.Xdefaults
+.bashrc

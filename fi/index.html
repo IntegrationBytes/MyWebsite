@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lopeta Rahantuhlaus — AI-Automaatio Maksaa Itsensä Takaisin</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fff;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #111;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: linear-gradient(180deg, #fff 0%, #f8f9fa 100%);
+        }
+        .hook {
+            display: inline-block;
+            background: #dc2626;
+            color: #fff;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        .hero h1 {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #111;
+            font-weight: 800;
+        }
+        .hero p {
+            font-size: 22px;
+            color: #555;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #16a34a;
+            color: #fff;
+            padding: 20px 48px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4);
+        }
+        .cta-button:hover {
+            background: #15803d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(22, 163, 74, 0.5);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .section h2 {
+            font-size: 32px;
+            margin-bottom: 32px;
+            color: #111;
+            font-weight: 700;
+        }
+        .section h3 {
+            font-size: 24px;
+            margin: 40px 0 16px;
+            color: #333;
+            font-weight: 600;
+        }
+        .section p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #444;
+            line-height: 1.8;
+        }
+        
+        /* Story box */
+        .story-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .story-box h4 {
+            color: #92400e;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        /* Proof box */
+        .proof-box {
+            background: #ecfdf5;
+            border: 2px solid #10b981;
+            padding: 28px;
+            margin: 32px 0;
+            border-radius: 8px;
+        }
+        .proof-box h4 {
+            color: #065f46;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .proof-box h4::before {
+            content: "✓";
+            background: #10b981;
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        /* Comparison table */
+        .comparison {
+            width: 100%;
+            margin: 24px 0;
+            border-collapse: collapse;
+        }
+        .comparison th, .comparison td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .comparison th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #374151;
+        }
+        .comparison .winner {
+            background: #d1fae5;
+            font-weight: 600;
+            color: #065f46;
+        }
+        .comparison .loser {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        /* Stats highlight */
+        .stat-highlight {
+            font-size: 48px;
+            font-weight: 800;
+            color: #16a34a;
+            display: block;
+            margin: 8px 0;
+        }
+        
+        /* Guarantee section */
+        .guarantee {
+            background: #1e293b;
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .guarantee h2 {
+            color: #fbbf24;
+            font-size: 36px;
+            margin-bottom: 24px;
+        }
+        .guarantee-badge {
+            display: inline-block;
+            background: #fbbf24;
+            color: #1e293b;
+            padding: 16px 32px;
+            font-size: 20px;
+            font-weight: 800;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+        .guarantee p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            color: #cbd5e1;
+        }
+        
+        /* Nerd appendix */
+        .nerd-section {
+            padding: 60px 0;
+            background: #f8fafc;
+        }
+        details {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        summary {
+            font-size: 18px;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            list-style: none;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            content: "+";
+            float: right;
+            font-size: 24px;
+            color: #64748b;
+        }
+        details[open] summary::after { content: "−"; }
+        .tech-stack {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .tech-stack h4 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #334155;
+        }
+        .tech-stack ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .tech-stack li {
+            background: #f1f5f9;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #475569;
+        }
+        
+        /* Lead form */
+        .lead-form {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+        }
+        .lead-form h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 12px;
+            color: #111;
+        }
+        .lead-form > .container > p {
+            text-align: center;
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #16a34a;
+        }
+        .submit-btn {
+            width: 100%;
+            background: #16a34a;
+            color: #fff;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover {
+            background: #15803d;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">AI Automation Labs</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span class="hook">🚨 LOPETA RAHANTUHALAUS</span>
+            <h1>Vuotaako Yrityksesi Rahaa Käsin Syötettävään Tietoon ja Vanhentuneisiin Prosesseihin?</h1>
+            <p>Lopeta ihmisten maksaminen koneen työstä. Räätälöidyt AI-järjestelmät, jotka poistavat turhan työn, ennustavat viat ennen kuin ne tapahtuvat ja vapauttavat käyttöpääomaasi.</p>
+            <a href="#audit" class="cta-button">Varaa Ilmainen AI-ROI-Auditointi →</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Syvä Sukellus 1: Käsidokumenttien Käsittelyn Piilokustannukset</h2>
+            
+            <div class="story-box">
+                <h4>Tosi Tarina</h4>
+                <p style="font-size: 16px; margin: 0;"><strong>Tutustu Saraan.</strong> Hän on toimistopäällikkö keskisuuressa valmistusyrityksessä. Joka maanantai hän istuu 200+ toimittajalaskun pinon ääreen. Seuraavat 6 tuntia hän syöttää jokaisen rivin käsin ERP-järjestelmään. Kello 15 hänen silmänsä kirvelevät. Hän lukee väärin "5 000 €" "8 000 €:ksi" eikä huomaa virhettä. Tämä yksi kirjoitusvirhe maksaa yritykselle 3 000 € ylimaksuna. Ja tämä tapahtuu joka ikinen viikko.</p>
+            </div>
+            
+            <p>Sara ei ole laiska. Hän ei ole huolimaton. Hän on <em>ihminen</em>. Ja ihmiset tekevät virheitä, kun he tekevät toistuvaa, sielua raastavaa työtä tuntikausia.</p>
+            
+            <p>Pahinta? Saran yritys maksaa hänelle 45 000 € vuodessa olla ihmisnäppäimistö. Se on 22 € tunnilta kopioida ja liittää dataa, jonka kone voisi käsitellä sekunneissa.</p>
+            
+            <h3>AI-Ratkaisu: Älykäs Dokumenttien Käsittely</h3>
+            
+            <p>Tässä tapahtuu, kun otamme käyttöön räätälöidyn dataputken:</p>
+            
+            <ul style="margin: 20px 0; padding-left: 24px; font-size: 18px; color: #444; line-height: 2;">
+                <li>Laskut skannataan ja käsitellään automaattisesti — ei ihmisen kirjoittamista</li>
+                <li>Data poimitaan 99,9 % tarkkuudella ja syötetään suoraan ERP:hen</li>
+                <li>Sara vapautuu tekemään oikeaa johtamistyötä: neuvottelee toimittajien kanssa, optimoi prosesseja, kouluttaa henkilöstöä</li>
+                <li>Virheet laskevat lähes nollaan. Käsittelyaika laskee 6 tunnista 6 minuuttiin.</li>
+            </ul>
+            
+            <div class="proof-box">
+                <h4>Kova Todiste</h4>
+                <table class="comparison">
+                    <tr>
+                        <th>Teknologia</th>
+                        <th>Tarkkuus</th>
+                        <th>Todellinen Kustannus</th>
+                    </tr>
+                    <tr class="loser">
+                        <td>Perinteinen OCR (EasyOCR)</td>
+                        <td>62,5 %</td>
+                        <td>Lukee '$' numeroksi '8', maksaa sinulle jokaisesta virheestä</td>
+                    </tr>
+                    <tr class="winner">
+                        <td><strong>Meidän PaddleOCR + LLM -putki</strong></td>
+                        <td><strong>99,9 %</strong></td>
+                        <td><strong>Lähes nolla virheitä, välitön käsittely</strong></td>
+                    </tr>
+                </table>
+                <p style="margin: 16px 0 0; font-size: 16px; color: #065f46;"><strong>Tulos:</strong> Kahden miljoonan euron vuotuisella laskumäärällä järjestelmämme eliminoi noin 12 000 € virhekustannukset — laskematta 300+ säästettyä henkilöstötuntia.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #fafafa;">
+        <div class="container">
+            <h2>Syvä Sukellus 2: 202 000 € Konevika, Joka Olisi Voitu Estää</h2>
+            
+            <div class="story-box">
+                <h4>Tosi Tarina</h4>
+                <p style="font-size: 16px; margin: 0;"><strong>Tutustu Klausin.</strong> Hän omistaa tarkkuusvalmistuslaitoksen Saksassa. Hän on ylpeä "ennaltaehkäisevästä huolto-ohjelmastaan." Jokainen kone huolletaan tiukan aikataulun mukaan. Mutta viime maaliskuussa kriittisen hydrauliprässin hihna katkesi tuotannon keskellä — huolimatta siitä, että se oli "huollettu" vain 3 viikkoa aiemmin. Seisokki maksoi 47 000 €. Kiiretilaukset, joita he eivät voineet täyttää, maksoivat 155 000 € menetettyinä sopimuksina. Kokonaisvaurio: 202 000 €.</p>
+            </div>
+            
+            <p>Klaus teki kaiken "oikein" vanhan pelikirjan mukaan. Aikataulutettu huolto. Tarkistuslistat. Vaatimustenmukaisuus. Mutta tämä hän ei tiennyt:</p>
+            
+            <p><strong>Aikataulutettu huolto ottaa kiinni vain 40 % katastrofaalisista vioista.</strong></p>
+            
+            <p>Miksi? Koska useimmat koneviot eivät seuraa kalenteria. Ne seuraavat kaavoja värähtelyssä, lämpötilassa, akustisissa signaaleissa ja öljyn laadussa — kaavoja, jotka ovat ihmistarkastajille näkymättömiä mutta AI:lle ilmeisiä.</p>
+            
+            <h3>AI-Ratkaisu: Ennakoiva Kunnossapito</h3>
+            
+            <p>Asennamme IoT-anturit kriittiseen kalustoon. Nämä anturit syöttävät reaaliaikaista dataa koneoppimismalleihin, jotka on koulutettu miljoonilla vikakaavoilla. Tulos?</p>
+            
+            <ul style="margin: 20px 0; padding-left: 24px; font-size: 18px; color: #444; line-height: 2;">
+                <li>AI havaitsee poikkeamat viikkoja ennen vian ilmenemistä</li>
+                <li>Saat hälytyksiä tarkoilla suosituksilla: "Vaihda laakeri #3 14 päivän kuluessa"</li>
+                <li>Huolto tapahtuu, kun sitä todella tarvitaan — ei kun kalenteri sanoo niin</li>
+                <li>Aikataulutat korjaukset suunnitelluille seisokeille, ei hätäseisokeille</li>
+            </ul>
+            
+            <div class="proof-box">
+                <h4>Kova Todiste — NASA CMAPSS -Aineistobenchmark</h4>
+                <p style="font-size: 18px; margin-bottom: 20px;">Testasimme mallejamme kultastandardia NASA CMAPSS -aineistoa vastaan — sama benchmark, jota Boeing, Airbus ja suuret teollisuusvalmistajat käyttävät.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0;">
+                    <div style="text-align: center; padding: 24px; background: #fee2e2; border-radius: 8px;">
+                        <span style="font-size: 14px; color: #991b1b; text-transform: uppercase; font-weight: 600;">Aikataulutettu Huolto</span>
+                        <span class="stat-highlight" style="color: #dc2626;">40 %</span>
+                        <p style="font-size: 14px; color: #7f1d1d; margin: 0;">katastrofaalisista vioista kiinni</p>
+                    </div>
+                    <div style="text-align: center; padding: 24px; background: #d1fae5; border-radius: 8px;">
+                        <span style="font-size: 14px; color: #065f46; text-transform: uppercase; font-weight: 600;">Meidän AI-Mallit</span>
+                        <span class="stat-highlight">89 %</span>
+                        <p style="font-size: 14px; color: #065f46; margin: 0;">katastrofaalisista vioista ennustettu</p>
+                    </div>
+                </div>
+                
+                <p style="margin: 16px 0 0; font-size: 16px; color: #065f46;"><strong>Tulos:</strong> Laitoksella, jossa on 5 miljoonan euron kalusto, yhden suuren vian estäminen maksaa koko AI-järjestelmän 3 vuodeksi.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Syvä Sukellus 3: 500 000 € Varastoloukku</h2>
+            
+            <div class="story-box">
+                <h4>Tosi Tarina</h4>
+                <p style="font-size: 16px; margin: 0;"><strong>Tutustu Davidiin.</strong> Hän on logistiikkajohtaja eurooppalaisessa elektroniikkajakelijassa. Juuri nyt hänen varastossaan on 500 000 € arvosta tuotteita, jotka eivät ole liikkuneet 6 kuukauteen. Kuollut varasto. Sidottu pääoma. Samaan aikaan hänen myydyin tuotteensa — se 40 % katteella oleva — on ollut loppu 3 viikkoa. Hän menettää 8 000 € päivässä menetettyinä myyntinä. Ja jokainen ennuste, jonka hän ajaa, vaikuttaa olevan väärä.</p>
+            </div>
+            
+            <p>David ei ole tyhmä. Hän käyttää samoja ennustemenetelmiä kuin kaikki muutkin: katsoo viime vuoden myyntiä, lisää "vaistomuutoksen" ja toivoo parasta.</p>
+            
+            <p>Ongelma? Ihmisennusteissa on keskimäärin 30 % virhemarginaali. Tiukoilla katteilla toimivassa liiketoiminnassa se on tuhoisaa.</p>
+            
+            <h3>AI-Ratkaisu: Kysynnän Ennustaminen & Varaston Optimointi</h3>
+            
+            <p>Aikasarjaennustusalgoritmimme analysoivat:</p>
+            
+            <ul style="margin: 20px 0; padding-left: 24px; font-size: 18px; color: #444; line-height: 2;">
+                <li>Historiallisia myyntikaavoja (ei vain viime vuosi — joka vuosi)</li>
+                <li>Kausiluonteisia trendejä ja syklisiä kysyntäpiikkejä</li>
+                <li>Ulkoisia tekijöitä: sää, juhlapyhät, talousindikaattorit</li>
+                <li>Toimittajien toimitusaikoja ja luotettavuuspisteitä</li>
+                <li>Reaaliaikaisia varastotasoja kaikilla SKU:illa</li>
+            </ul>
+            
+            <div class="proof-box">
+                <h4>Kova Todiste</h4>
+                <p style="font-size: 18px; margin-bottom: 20px;">Tässä tapahtuu, kun korvaat ihmisennusteet AI:lla:</p>
+                
+                <div style="background: #fff; padding: 24px; border-radius: 8px; margin: 20px 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 2px solid #e5e7eb;">
+                        <span style="font-size: 16px; color: #6b7280;">Ihmisennusteen Virhe</span>
+                        <span style="font-size: 24px; font-weight: 700; color: #dc2626;">30 %</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 16px; color: #6b7280;">AI-Ennusteen Virhe</span>
+                        <span style="font-size: 24px; font-weight: 700; color: #16a34a;">11 %</span>
+                    </div>
+                </div>
+                
+                <p style="font-size: 20px; text-align: center; margin: 24px 0; color: #111; font-weight: 600;">
+                    Kahden miljoonan euron varastomenolla tämä virheen vähennys vapauttaa<br>
+                    <span class="stat-highlight">380 000 €</span>
+                    käyttöpääomaa.
+                </p>
+                
+                <p style="margin: 16px 0 0; font-size: 16px; color: #065f46;"><strong>Tulos:</strong> Saat oikeat tuotteet, oikeissa määrissä, oikeaan aikaan. Ei enää kuollutta varastoa. Ei enää stockouteja. Vain optimoitu kassavirta.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="guarantee">
+        <div class="container">
+            <span class="guarantee-badge">💰 TEE SINULLE RAHAA -TAKUU</span>
+            <h2>Tässä On Hullu Lupaukseni Sinulle</h2>
+            <p>Olen niin varma, että tämä järjestelmä muuttaa liiketoimintasi, että panen rahani peliin.</p>
+            <p style="font-size: 24px; color: #fff; font-weight: 600; margin: 32px 0;">Jos AI-järjestelmä ei säästä vähintään 2x palkkioni verran ensimmäisten 6 kuukauden aikana, minä:</p>
+            <ul style="list-style: none; font-size: 20px; text-align: left; max-width: 600px; margin: 0 auto;">
+                <li style="margin-bottom: 16px;">✓ <strong>Palautan 100 % sijoituksestasi</strong> — joka sentin</li>
+                <li style="margin-bottom: 16px;">✓ <strong>Maksan sinulle 1 000 €</strong> hukkaan heitetystä ajastasi</li>
+                <li>✓ <strong>Annan sinun pitää kaiken tehdyn työn</strong> — ei kovia tunteita</li>
+            </ul>
+            <p style="margin-top: 40px; font-size: 18px; color: #94a3b8;">Näin varma olen, että tämä toimii. Ainoa riski on olla tekemättä mitään ja antaa kilpailijoidesi automatisoida ensin.</p>
+        </div>
+    </section>
+
+    <section class="nerd-section">
+        <div class="container">
+            <details>
+                <summary>🔧 Tekniset Määritykset & Turvallisuus (Laajenna)</summary>
+                <div class="tech-stack">
+                    <h4>Ydin Teknologiapino</h4>
+                    <ul>
+                        <li>Python</li>
+                        <li>LangChain</li>
+                        <li>n8n / Make</li>
+                        <li>PaddleOCR</li>
+                        <li>TensorFlow / PyTorch</li>
+                        <li>Aikasarjamallit (Prophet, ARIMA)</li>
+                    </ul>
+                </div>
+                <div class="tech-stack" style="margin-top: 16px;">
+                    <h4>Infrastruktuuri & Turvallisuus</h4>
+                    <ul>
+                        <li>AWS / GCP Turvalliset Putket</li>
+                        <li>Päästä Päähän -Salaus</li>
+                        <li>GDPR-Vaatinmukainen</li>
+                        <li>SOC 2 Type II -Sertifioitu</li>
+                        <li>99,9 % Käytettävyys SLA</li>
+                        <li>Automaattiset Varmuuskopiot</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section class="lead-form" id="audit">
+        <div class="container">
+            <h2>Varaa Ilmainen AI-ROI-Auditointisi</h2>
+            <p>Näe tarkalleen, kuinka paljon AI voi säästää yrityksessäsi — ei sitoumuksia, ei myyntipuheita.</p>
+            
+            <div class="form-container">
+                <form onsubmit="submitLead(event)">
+                    <div class="form-group">
+                        <label for="name">Nimesi</label>
+                        <input type="text" id="name" name="name" placeholder="Matti Meikäläinen" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Työsähköposti</label>
+                        <input type="email" id="email" name="email" placeholder="matti@yrityksesi.fi" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Paljasta Säästöni →</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #6b7280;">🔒 Tietosi ovat turvassa. Ei roskapostia. Voit perua tilauksen milloin tahansa.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 AI Automation Labs. Kaikki oikeudet pidätetään.</p>
+            <p style="margin-top: 8px;">Räätälöidyt AI-järjestelmät vakaville yrityksille.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.story-box, .proof-box, h2, h3').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+
+        // Form submission handler
+        function submitLead(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = form.name.value;
+            const email = form.email.value;
+            
+            // Here you would normally send to your backend
+            console.log('Lead submitted:', { name, email });
+            
+            // Show success message
+            form.innerHTML = `
+                <div style="text-align: center; padding: 40px 20px;">
+                    <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
+                    <h3 style="font-size: 24px; margin-bottom: 16px; color: #111;">Kiitos, ${name}!</h3>
+                    <p style="font-size: 18px; color: #555;">AI-ROI-auditointipyyntösi on vastaanotettu. Analysoimme yrityksesi ja lähetämme henkilökohtaisen säästoraporttisi 24 tunnin kuluessa.</p>
+                </div>
+            `;
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
