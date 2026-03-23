@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fi" data-theme="matrix">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ota yhteyttä – Vincent Viitala</title>
+  <meta name="description" content="Pyydä ilmainen prosessikartoitus. 20 minuutin puhelu – saat konkreettisen arvion säästöpotentiaalista." />
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link rel="stylesheet" href="../../assets/css/i18n.css">
+  <script defer src="../../assets/js/config.js"></script>
+</head>
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="/fi/"><span class="glyph">◇</span> Vincent Viitala</a>
+    <nav aria-label="Päävalikko" class="nav">
+      <a class="nav-link" href="/fi/">Etusivu</a>
+      <a class="nav-link" href="/fi/palvelut/">Palvelut</a>
+      <a class="nav-link" href="/fi/tulokset/">Tulokset</a>
+      <a class="nav-link active" href="/fi/ota-yhteytta/" aria-current="page">Ota yhteyttä</a>
+    </nav>
+    <div class="lang-switcher">
+      <a href="/fi/ota-yhteytta/" class="lang-btn active">FI</a>
+      <a href="/en/contact/" class="lang-btn">EN</a>
+      <a href="/es/contacto/" class="lang-btn">ES</a>
+    </div>
+  </div>
+</header>
+<main class="container" role="main">
+  <section class="reveal" style="max-width:640px; margin:0 auto; padding:48px 0;">
+    <p class="small-label">Ilmainen kartoitus</p>
+    <h1>Aloitetaan keskustelu</h1>
+    <p class="lead">Kerro yksi prosessi, joka vaivaa eniten. Lasken, paljonko siinä on säästöpotentiaalia – ilmaiseksi, ilman sitoumuksia.</p>
+
+    <form class="lead-form card" id="contact-fi-form">
+      <input type="text" name="name" placeholder="Nimesi" required>
+      <input type="text" name="company" placeholder="Yritys" required>
+      <input type="email" name="email" placeholder="Sähköpostiosoite" required>
+      <input type="tel" name="phone" placeholder="Puhelinnumero">
+      <select name="service">
+        <option value="">Mistä palvelusta olet kiinnostunut?</option>
+        <option>Asiakirjojen automaattinen käsittely</option>
+        <option>Ennakoiva kunnossapito</option>
+        <option>Automaattiset johdon raportit</option>
+        <option>Kysyntäennuste & varastooptimointi</option>
+        <option>En ole varma – haluaisin lisätietoja</option>
+      </select>
+      <textarea name="message" rows="4" placeholder="Kuvaile lyhyesti ongelma tai prosessi, jota haluat automatisoida (valinnainen)"></textarea>
+      <button class="btn" type="submit">Pyydän yhteydenottoa</button>
+      <p id="contact-fi-msg" class="muted form-msg"></p>
+    </form>
+
+    <div style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(230,243,234,0.1);">
+      <p class="small-label">Tai suoraan</p>
+      <p class="muted">Vastailen sähköpostiin yleensä saman päivän aikana.</p>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="tag">GitHub</a>
+    </div>
+  </section>
+</main>
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="left"><p class="muted">© 2025 Vincent Viitala</p></div>
+    <div class="right">
+      <a href="/fi/" class="tag">Etusivu</a>
+      <a href="/fi/palvelut/" class="tag">Palvelut</a>
+    </div>
+  </div>
+</footer>
+<script>
+document.getElementById('contact-fi-form')?.addEventListener('submit', async function(e){
+  e.preventDefault();
+  const msg = document.getElementById('contact-fi-msg');
+  const data = Object.fromEntries(new FormData(this).entries());
+  data.lang = 'fi'; data.ts = Date.now(); data.path = location.pathname;
+  try {
+    if (window.LEADS_WEBHOOK_URL) {
+      await fetch(window.LEADS_WEBHOOK_URL, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data) });
+    }
+    msg.textContent = 'Kiitos! Otan yhteyttä 24 tunnin sisällä.';
+    this.reset();
+  } catch { msg.textContent = 'Jokin meni pieleen. Kokeile sähköpostia suoraan.'; }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" data-theme="matrix">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact – Vincent Viitala</title>
+  <meta name="description" content="Book a free 20-minute strategy call. I'll audit one process and show you exactly how much you could save." />
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link rel="stylesheet" href="../../assets/css/i18n.css">
+  <script defer src="../../assets/js/config.js"></script>
+</head>
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="/en/"><span class="glyph">◇</span> Vincent Viitala</a>
+    <nav aria-label="Primary" class="nav">
+      <a class="nav-link" href="/en/">Home</a>
+      <a class="nav-link" href="/en/services/">Services</a>
+      <a class="nav-link" href="/en/results/">Results</a>
+      <a class="nav-link active" href="/en/contact/" aria-current="page">Contact</a>
+    </nav>
+    <div class="lang-switcher">
+      <a href="/fi/ota-yhteytta/" class="lang-btn">FI</a>
+      <a href="/en/contact/" class="lang-btn active">EN</a>
+      <a href="/es/contacto/" class="lang-btn">ES</a>
+    </div>
+  </div>
+</header>
+<main class="container" role="main">
+  <section class="reveal" style="max-width:640px; margin:0 auto; padding:48px 0;">
+    <p class="small-label">Free Strategy Call</p>
+    <h1>Let's Talk</h1>
+    <p class="lead">Tell me about one process that costs you the most. I'll calculate the savings potential — no pitch, no obligation.</p>
+
+    <form class="lead-form card" id="contact-en-form">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="text" name="company" placeholder="Company" required>
+      </div>
+      <input type="email" name="email" placeholder="Work email" required>
+      <select name="service">
+        <option value="">Which service interests you?</option>
+        <option>Intelligent Document Processing</option>
+        <option>Predictive Maintenance AI</option>
+        <option>Automated Reporting & Anomaly Detection</option>
+        <option>Demand Forecasting & Inventory Optimization</option>
+        <option>AI-Powered Lead Qualification</option>
+        <option>Not sure — I'd like guidance</option>
+      </select>
+      <textarea name="message" rows="4" placeholder="Describe the process you want to automate, or your biggest operational pain point (optional)"></textarea>
+      <button class="btn" type="submit">Book Free Strategy Call</button>
+      <p id="contact-en-msg" class="muted form-msg"></p>
+    </form>
+
+    <div style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(230,243,234,0.1);">
+      <p class="small-label">Or reach me directly</p>
+      <p class="muted">I respond to emails same day, usually within a few hours.</p>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="tag">GitHub</a>
+    </div>
+  </section>
+</main>
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="left"><p class="muted">© 2025 Vincent Viitala</p></div>
+    <div class="right">
+      <a href="/en/" class="tag">Home</a>
+      <a href="/en/services/" class="tag">Services</a>
+    </div>
+  </div>
+</footer>
+<script>
+document.getElementById('contact-en-form')?.addEventListener('submit', async function(e){
+  e.preventDefault();
+  const msg = document.getElementById('contact-en-msg');
+  const data = Object.fromEntries(new FormData(this).entries());
+  data.lang = 'en'; data.ts = Date.now(); data.path = location.pathname;
+  try {
+    if (window.LEADS_WEBHOOK_URL) {
+      await fetch(window.LEADS_WEBHOOK_URL, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data) });
+    }
+    msg.textContent = "Got it — I'll be in touch within 24 hours.";
+    this.reset();
+  } catch { msg.textContent = 'Something went wrong. Please email directly.'; }
+});
+</script>
+</body>
+</html>

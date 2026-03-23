@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es" data-theme="matrix">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contacto – Vincent Viitala</title>
+  <meta name="description" content="Agenda una consulta gratuita de 30 minutos. Te mostraré exactamente cuánto podría ahorrar tu empresa con automatización." />
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link rel="stylesheet" href="../../assets/css/i18n.css">
+  <script defer src="../../assets/js/config.js"></script>
+</head>
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="/es/"><span class="glyph">◇</span> Vincent Viitala</a>
+    <nav aria-label="Navegación principal" class="nav">
+      <a class="nav-link" href="/es/">Inicio</a>
+      <a class="nav-link" href="/es/servicios/">Servicios</a>
+      <a class="nav-link" href="/es/resultados/">Resultados</a>
+      <a class="nav-link active" href="/es/contacto/" aria-current="page">Contacto</a>
+    </nav>
+    <div class="lang-switcher">
+      <a href="/fi/ota-yhteytta/" class="lang-btn">FI</a>
+      <a href="/en/contact/" class="lang-btn">EN</a>
+      <a href="/es/contacto/" class="lang-btn active">ES</a>
+    </div>
+  </div>
+</header>
+<main class="container" role="main">
+  <section class="reveal" style="max-width:640px; margin:0 auto; padding:48px 0;">
+    <p class="small-label">Consulta Gratuita</p>
+    <h1>Hablemos</h1>
+    <p class="lead">Cuéntame sobre el proceso que más tiempo o dinero te cuesta. Calcularé el potencial de ahorro — sin compromiso ni presión de venta.</p>
+
+    <form class="lead-form card" id="contact-es-form">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Tu nombre" required>
+        <input type="text" name="company" placeholder="Empresa" required>
+      </div>
+      <input type="email" name="email" placeholder="Correo corporativo" required>
+      <input type="tel" name="phone" placeholder="Teléfono (opcional)">
+      <select name="service">
+        <option value="">¿Qué servicio te interesa?</option>
+        <option>Automatización de Documentos</option>
+        <option>Mantenimiento Predictivo con IA</option>
+        <option>Reportes Automáticos y Detección de Anomalías</option>
+        <option>Pronóstico de Demanda e Inventario</option>
+        <option>Calificación de Leads con IA</option>
+        <option>No estoy seguro/a — me gustaría orientación</option>
+      </select>
+      <textarea name="message" rows="4" placeholder="Describe brevemente el proceso o el problema principal que quieres resolver (opcional)"></textarea>
+      <button class="btn" type="submit">Agendar Consulta Gratuita</button>
+      <p id="contact-es-msg" class="muted form-msg"></p>
+    </form>
+
+    <div style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(230,243,234,0.1);">
+      <p class="small-label">O escríbeme directamente</p>
+      <p class="muted">Respondo correos el mismo día, normalmente en pocas horas.</p>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="tag">GitHub</a>
+    </div>
+  </section>
+</main>
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="left"><p class="muted">© 2025 Vincent Viitala</p></div>
+    <div class="right">
+      <a href="/es/" class="tag">Inicio</a>
+      <a href="/es/servicios/" class="tag">Servicios</a>
+    </div>
+  </div>
+</footer>
+<script>
+document.getElementById('contact-es-form')?.addEventListener('submit', async function(e){
+  e.preventDefault();
+  const msg = document.getElementById('contact-es-msg');
+  const data = Object.fromEntries(new FormData(this).entries());
+  data.lang = 'es'; data.ts = Date.now(); data.path = location.pathname;
+  try {
+    if (window.LEADS_WEBHOOK_URL) {
+      await fetch(window.LEADS_WEBHOOK_URL, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data) });
+    }
+    msg.textContent = '¡Gracias! Me pondré en contacto en menos de 24 horas.';
+    this.reset();
+  } catch { msg.textContent = 'Algo salió mal. Por favor, escríbeme directamente.'; }
+});
+</script>
+</body>
+</html>

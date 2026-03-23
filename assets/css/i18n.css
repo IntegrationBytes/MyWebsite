@@ -1,0 +1,264 @@
+/* ============================================================
+   i18n.css  –  Supplemental styles for the localized pages
+   Lean, conversion-focused layout additions
+   ============================================================ */
+
+/* ── Language switcher ── */
+.lang-switcher {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.lang-btn {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(230,243,234,0.18);
+  color: var(--fg-dim, #A6CDB3);
+  text-decoration: none;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  line-height: 1;
+  min-height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.lang-btn:hover {
+  border-color: var(--matrix-neo, #00FF95);
+  color: var(--matrix-neo, #00FF95);
+}
+.lang-btn.active {
+  border-color: var(--matrix-neo, #00FF95);
+  color: var(--matrix-neo, #00FF95);
+  background: rgba(0,255,149,0.08);
+}
+
+/* ── Lean hero (replaces bloated hero) ── */
+.hero-lean {
+  padding: 72px 0 48px;
+  max-width: 760px;
+}
+.hero-lean h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 12px 0 20px;
+  letter-spacing: -0.5px;
+}
+.hero-lean .lead {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--fg-dim, #A6CDB3);
+  max-width: 620px;
+  margin-bottom: 28px;
+}
+
+/* ── CTA row ── */
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+/* ── Trust bar ── */
+.trust-bar {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 16px 0;
+  border-top: 1px solid rgba(230,243,234,0.10);
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--fg-dim, #A6CDB3);
+}
+.trust-icon { font-size: 1.1rem; }
+
+/* ── Section spacing ── */
+.reveal, section {
+  margin-bottom: 48px;
+}
+
+/* ── Service cards ── */
+.svc-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.svc-roi {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--matrix-neo, #00FF95);
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0,255,149,0.15);
+}
+
+/* ── Problem / Solution split ── */
+.card-flat {
+  padding: 32px;
+  border-radius: var(--radius, 16px);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(230,243,234,0.08);
+  margin-bottom: 48px;
+}
+.problem-card, .solution-card {
+  padding: 20px;
+  border-radius: 12px;
+}
+.problem-card {
+  background: rgba(255,80,80,0.04);
+  border: 1px solid rgba(255,80,80,0.12);
+}
+.solution-card {
+  background: rgba(0,255,149,0.04);
+  border: 1px solid rgba(0,255,149,0.12);
+}
+.problem-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  color: #ff7070;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.solution-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  color: var(--matrix-neo, #00FF95);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.problem-card ul, .solution-card ul {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.9;
+  color: var(--fg-dim, #A6CDB3);
+  font-size: 0.92rem;
+}
+
+/* ── Case study grid ── */
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-top: 16px;
+}
+.case-grid .small-label {
+  margin-bottom: 6px;
+}
+.result-highlight {
+  color: var(--matrix-neo, #00FF95);
+  font-weight: 600;
+}
+
+/* ── Steps ── */
+.step-card {
+  padding: 20px;
+}
+.step-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgba(0,255,149,0.25);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+/* ── Guarantee section ── */
+.guarantee-section {
+  border-left: 3px solid var(--matrix-neo, #00FF95);
+  padding-left: 24px;
+}
+.guarantee-section h2 { margin-top: 0; }
+.guarantee-section .lead {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ── CTA Section ── */
+.cta-section {
+  padding: 32px 0;
+  text-align: center;
+}
+.cta-section h2 { margin-bottom: 8px; }
+.cta-section .lead { margin-bottom: 28px; }
+
+/* ── Lead form ── */
+.lead-form {
+  display: grid;
+  gap: 12px;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: left;
+}
+.lead-form input,
+.lead-form select,
+.lead-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(230,243,234,0.15);
+  border-radius: 10px;
+  color: var(--fg, #E6F3EA);
+  font-family: Inter, sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+.lead-form select {
+  appearance: none;
+  cursor: pointer;
+}
+.lead-form input:focus,
+.lead-form select:focus,
+.lead-form textarea:focus {
+  outline: none;
+  border-color: var(--matrix-neo, #00FF95);
+  box-shadow: 0 0 0 2px rgba(0,255,149,0.1);
+}
+.lead-form input::placeholder,
+.lead-form textarea::placeholder {
+  color: var(--fg-dim, #A6CDB3);
+  opacity: 0.6;
+}
+.lead-form select option {
+  background: #0d1f14;
+  color: var(--fg, #E6F3EA);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.form-msg {
+  font-size: 0.88rem;
+  min-height: 20px;
+  text-align: center;
+}
+.lead-form .btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .trust-bar { gap: 14px; flex-direction: column; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-lean h1 { font-size: 2rem; }
+  .case-grid { grid-template-columns: 1fr; }
+  .lang-switcher { gap: 2px; }
+  .lang-btn { padding: 4px 8px; font-size: 11px; }
+}
