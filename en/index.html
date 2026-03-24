@@ -1,237 +1,193 @@
 <!doctype html>
-<html lang="en" data-theme="matrix">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vincent Viitala – AI & Data Science Consulting</title>
-  <meta name="description" content="I build automated AI systems that cut operational costs, eliminate manual work, and deliver measurable ROI. Value-based pricing: you pay from savings, not hours." />
-  <meta name="theme-color" content="#050807" />
+  <title>Vincent Viitala – AI Consulting for Enterprise</title>
+  <meta name="description" content="High-ticket AI consulting for Fortune 500 and Silicon Valley networks. Value-based pricing, measurable ROI." />
+  <meta name="theme-color" content="#0a0a0f" />
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="alternate" hreflang="fi" href="/fi/" />
   <link rel="alternate" hreflang="en" href="/en/" />
   <link rel="alternate" hreflang="es" href="/es/" />
   <link rel="alternate" hreflang="x-default" href="/en/" />
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Vincent Viitala – AI & Data Science Consulting">
-  <meta property="og:description" content="AI systems that pay for themselves. Value-based pricing, measurable ROI.">
+  <meta property="og:title" content="Vincent Viitala – AI Consulting for Enterprise">
+  <meta property="og:description" content="High-ticket AI consulting for Fortune 500 and Silicon Valley networks.">
   <meta property="og:url" content="/en/">
   <meta property="og:image" content="../assets/img/og-default.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/styles.css">
-  <link rel="stylesheet" href="../assets/css/i18n.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/executive-dark.css">
   <script defer src="../assets/js/config.js"></script>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="site-header" role="banner">
-  <div class="container header-inner">
-    <a class="brand" href="/en/"><span class="glyph">◇</span> Vincent Viitala</a>
-    <nav aria-label="Primary" class="nav">
-      <a class="nav-link active" href="/en/" aria-current="page">Home</a>
-      <a class="nav-link" href="/en/services/">Services</a>
-      <a class="nav-link" href="/en/results/">Results</a>
-      <a class="nav-link" href="/en/contact/">Contact</a>
-    </nav>
-    <div class="lang-switcher">
-      <a href="/fi/" class="lang-btn" title="Suomi">FI</a>
-      <a href="/en/" class="lang-btn active" title="English">EN</a>
-      <a href="/es/" class="lang-btn" title="Español">ES</a>
+<!-- Navigation -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/en/" class="nav-brand">Vincent Viitala</a>
+    <div class="nav-links">
+      <a href="/fi/" class="nav-link">FI</a>
+      <a href="/en/" class="nav-link active">EN</a>
+      <a href="/es/" class="nav-link">ES</a>
+      <a href="#contact" class="btn btn-primary hidden sm:flex">Book a Call</a>
     </div>
   </div>
-</header>
+</nav>
 
-<main class="container" role="main">
-
-  <!-- HERO -->
-  <section class="hero-lean reveal">
-    <p class="small-label">AI & Data Science · Northern Europe & Global</p>
-    <h1>AI That Pays<br>For Itself.</h1>
-    <p class="lead">
-      I design and deploy automated data systems that eliminate manual work, slash operational costs, 
-      and unlock compounding efficiency gains. No fluff — just measurable ROI.
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content animate-fade-in">
+    <p class="hero-eyebrow">AI Consulting for Enterprise</p>
+    <h1 class="hero-title">Automation That Pays<br><span class="text-gradient">For Itself</span></h1>
+    <p class="hero-description">
+      I help Fortune 500 companies and Silicon Valley startups build AI systems 
+      that cut costs and drive revenue. No hourly billing – you pay for results.
     </p>
-    <div class="cta-row">
-      <a class="btn" href="/en/contact/">Book a Strategy Call</a>
-      <a class="btn btn-ghost" href="/en/results/">See Case Studies</a>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary btn-lg">Start with a Strategy Call →</a>
+      <a href="#services" class="btn btn-secondary btn-lg">Explore Services</a>
     </div>
+  </div>
+</section>
 
-    <div class="trust-bar">
-      <div class="trust-item">
-        <span class="trust-icon">🎓</span>
-        <span>BSc Data Science & AI — Maastricht University</span>
+<!-- Trust -->
+<section class="trust">
+  <div class="container">
+    <p class="trust-label">Background & Network</p>
+    <div class="trust-grid">
+      <div class="animate-fade-in-delay-1">
+        <div class="trust-icon">🎓</div>
+        <p class="trust-title">BSc Data Science & AI</p>
+        <p class="trust-subtitle">Maastricht University</p>
       </div>
-      <div class="trust-item">
-        <span class="trust-icon">🚀</span>
-        <span>Ex-founder: built & exited 7-person fintech company</span>
+      <div class="animate-fade-in-delay-2">
+        <div class="trust-icon">🏢</div>
+        <p class="trust-title">Ex-Founder & Exit</p>
+        <p class="trust-subtitle">7-person fintech startup</p>
       </div>
-      <div class="trust-item">
-        <span class="trust-icon">💡</span>
-        <span>Value-based pricing — you pay from savings, not hours</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="reveal">
-    <h2>What I Build</h2>
-    <p class="lead muted">High-leverage AI systems for companies that want to move fast and keep results.</p>
-    <div class="grid cols-3">
-
-      <div class="card svc-card">
-        <div class="small-label">Operations</div>
-        <h3>Intelligent Document Processing</h3>
-        <p class="muted">Eliminate manual data entry across invoices, orders, and compliance documents. Integrates with your existing ERP or accounting stack.</p>
-        <div class="svc-roi">Replaces 2–3 FTEs · Saves €80K–€120K/yr</div>
-        <a class="tag" href="/en/services/#doc-processing">Learn more →</a>
-      </div>
-
-      <div class="card svc-card">
-        <div class="small-label">Manufacturing</div>
-        <h3>Predictive Maintenance AI</h3>
-        <p class="muted">Detect equipment failure before it happens. ML models trained on your sensor data, with automated alerts and a plain-language dashboard.</p>
-        <div class="svc-roi">1 prevented event = 2 years of service paid</div>
-        <a class="tag" href="/en/services/#predictive">Learn more →</a>
-      </div>
-
-      <div class="card svc-card">
-        <div class="small-label">Analytics</div>
-        <h3>Automated Reporting & Anomaly Detection</h3>
-        <p class="muted">Executive dashboards, financial summaries, and real-time anomaly alerts — generated automatically, delivered to your inbox before 8 AM.</p>
-        <div class="svc-roi">Saves 15–25 hrs/mo · ROI from month 1</div>
-        <a class="tag" href="/en/services/#reporting">Learn more →</a>
-      </div>
-
-      <div class="card svc-card">
-        <div class="small-label">Growth</div>
-        <h3>Demand Forecasting & Inventory Optimization</h3>
-        <p class="muted">Time-series forecasting for demand, automated reorder logic, and seasonal trend analysis. Free up working capital tied in overstock.</p>
-        <div class="svc-roi">15% inventory reduction = €150K freed capital</div>
-        <a class="tag" href="/en/services/#forecasting">Learn more →</a>
-      </div>
-
-      <div class="card svc-card">
-        <div class="small-label">Customer Ops</div>
-        <h3>AI-Powered Lead Qualification</h3>
-        <p class="muted">Multilingual chatbot trained on your catalog. Qualifies leads 24/7, routes to the right sales rep, drafts initial responses automatically.</p>
-        <div class="svc-roi">10–30 qualified leads/mo from existing traffic</div>
-        <a class="tag" href="/en/services/#leads">Learn more →</a>
-      </div>
-
-    </div>
-    <div class="cta-row" style="margin-top:16px;">
-      <a class="btn" href="/en/services/">Full Service Details</a>
-    </div>
-  </section>
-
-  <!-- CASE STUDY -->
-  <section class="reveal callout console">
-    <div class="title">Case Study · Nordic Manufacturer</div>
-    <div class="case-grid">
-      <div>
-        <div class="small-label">Problem</div>
-        <p>90 hours/week spent on manual invoice processing and order management. Errors were frequent; reporting was 3 days behind.</p>
-      </div>
-      <div>
-        <div class="small-label">Solution</div>
-        <p>End-to-end document automation with LLM-powered extraction. Integrated directly into existing ERP. Deployed in 3 weeks.</p>
-      </div>
-      <div>
-        <div class="small-label">Result</div>
-        <p class="result-highlight">€120,000 annual savings. Staff redeployed to revenue-generating work. Zero manual processing.</p>
+      <div class="animate-fade-in-delay-3">
+        <div class="trust-icon">🌐</div>
+        <p class="trust-title">Silicon Valley Network</p>
+        <p class="trust-subtitle">Connected to startups & VCs</p>
       </div>
     </div>
-    <a class="btn" style="margin-top:16px;" href="/en/results/">More Case Studies</a>
-  </section>
+  </div>
+</section>
 
-  <!-- HOW IT WORKS -->
-  <section class="reveal card-flat">
-    <h2>How It Works</h2>
-    <div class="grid cols-3">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <h3>Free Audit</h3>
-        <p class="muted">20-minute call. I identify your highest-ROI automation opportunity and calculate the savings potential.</p>
+<!-- Services -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="services-header">
+      <p class="text-label">Services</p>
+      <h2 class="heading-section">High-Ticket AI</h2>
+      <p class="text-lead" style="max-width: 36rem; margin: 1rem auto 0;">Three services with the highest immediate impact on enterprise bottom line.</p>
+    </div>
+    <div class="services-grid">
+      <div class="card">
+        <div class="card-icon">📄</div>
+        <h3 class="card-title">Document Automation</h3>
+        <p class="card-body">Invoices, orders, shipping documents – all processed automatically and integrated directly into your ERP or accounting system.</p>
+        <div class="card-footer">
+          <p class="card-metric">ROI: €30k–80k/year</p>
+          <p class="card-metric-sub">Savings: 80–120 h/month</p>
+        </div>
       </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <h3>2-Week Pilot</h3>
-        <p class="muted">We build a working prototype on your real data. You see results before committing to anything.</p>
+      <div class="card">
+        <div class="card-icon">⚙️</div>
+        <h3 class="card-title">Predictive Maintenance</h3>
+        <p class="card-body">AI analyzes equipment data and alerts you before failures occur. One prevented downtime pays for the service multiple times over.</p>
+        <div class="card-footer">
+          <p class="card-metric">ROI: €50k–500k</p>
+          <p class="card-metric-sub">Savings: 1–3 outages/year</p>
+        </div>
       </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <h3>Monthly Retainer</h3>
-        <p class="muted">Value-based fee scaled to savings generated. Includes monitoring, iteration, and support.</p>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3 class="card-title">Executive Reporting</h3>
+        <p class="card-body">Financial figures, sales reports, and anomaly alerts – automatically every morning. No more manual spreadsheet work.</p>
+        <div class="card-footer">
+          <p class="card-metric">ROI: €20k–40k/year</p>
+          <p class="card-metric-sub">Savings: 15–25 h/month</p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- GUARANTEE -->
-  <section class="reveal card-flat guarantee-section">
-    <h2>The Guarantee</h2>
-    <p class="lead">If we can't demonstrate measurable movement on the agreed KPI by the end of Week 2 — cancel. No further obligation, no invoice.</p>
-    <p class="muted">I'm confident enough in the results to take the risk. You shouldn't have to.</p>
-  </section>
-
-  <!-- CTA -->
-  <section class="reveal cta-section">
-    <h2>Start With a Free Audit</h2>
-    <p class="lead muted">Tell me about one process. I'll tell you exactly how much you could save — and whether it's worth automating.</p>
-    <form class="lead-form card" id="en-lead-form">
-      <div class="form-row">
-        <input type="text" name="name" placeholder="Your name" required>
-        <input type="text" name="company" placeholder="Company" required>
+<!-- Case Study -->
+<section class="case">
+  <div class="container">
+    <div class="case-card">
+      <p class="case-eyebrow">Case Study · Metal Industry</p>
+      <div class="case-grid">
+        <div>
+          <p class="case-label">Problem</p>
+          <p class="text-body">3 employees processing invoices 30 hours/week. Errors happened, data was scattered.</p>
+        </div>
+        <div>
+          <p class="case-label">Solution</p>
+          <p class="text-body">Automated document processing + ERP integration. Deployed in 3 weeks.</p>
+        </div>
+        <div>
+          <p class="case-label">Result</p>
+          <p class="case-value">€120k</p>
+          <p class="text-small">annual savings</p>
+        </div>
       </div>
-      <input type="email" name="email" placeholder="Work email" required>
-      <select name="service">
-        <option value="">Which service interests you?</option>
-        <option>Document Processing Automation</option>
-        <option>Predictive Maintenance AI</option>
-        <option>Automated Reporting</option>
-        <option>Demand Forecasting</option>
-        <option>AI Lead Qualification</option>
-        <option>Not sure — I'd like guidance</option>
-      </select>
-      <textarea name="message" rows="3" placeholder="Briefly describe the process you want to automate (optional)"></textarea>
-      <button class="btn" type="submit">Book Free Strategy Call</button>
-      <p id="en-form-msg" class="muted form-msg"></p>
-    </form>
-  </section>
+    </div>
+  </div>
+</section>
 
-</main>
+<!-- Guarantee -->
+<section class="section">
+  <div class="container">
+    <div class="guarantee">
+      <h2 class="guarantee-title">Guarantee</h2>
+      <p class="guarantee-text">
+        If we can't demonstrate measurable results within the first two-week pilot – 
+        cancel with no further obligations.
+      </p>
+      <p class="guarantee-note">
+        Value-based pricing: you pay a monthly fee tied to your savings, not hours worked.
+      </p>
+    </div>
+  </div>
+</section>
 
-<footer class="site-footer" role="contentinfo">
+<!-- Contact -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-header">
+      <p class="contact-eyebrow">Get Started</p>
+      <h2 class="contact-title">Book a Free Strategy Call</h2>
+      <p class="contact-description">
+        20-minute call. I'll review one of your processes and calculate concrete savings potential.
+      </p>
+    </div>
+    <div class="calendly-wrapper">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/viitala-vincent/30min" style="min-width:320px;height:700px;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
   <div class="container footer-inner">
-    <div class="left">
-      <p class="muted">© 2026 Vincent Viitala</p>
-      <p class="muted">AI & Data Science consulting. Northern Europe & global.</p>
-    </div>
-    <div class="right">
-      <a href="/fi/" class="tag">Suomeksi</a>
-      <a href="/es/" class="tag">Español</a>
-      <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="tag">GitHub</a>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
-      <a href="/en/contact/" class="tag">Contact</a>
+    <p class="footer-copyright">© 2026 Vincent Viitala</p>
+    <div class="footer-links">
+      <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      <a href="/fi/" class="footer-link">Suomi</a>
     </div>
   </div>
 </footer>
 
-<script>
-document.getElementById('en-lead-form')?.addEventListener('submit', async function(e){
-  e.preventDefault();
-  const msg = document.getElementById('en-form-msg');
-  const data = Object.fromEntries(new FormData(this).entries());
-  data.lang = 'en'; data.ts = Date.now(); data.path = location.pathname;
-  try {
-    if (window.LEADS_WEBHOOK_URL) {
-      await fetch(window.LEADS_WEBHOOK_URL, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data) });
-    }
-    msg.textContent = 'Got it — I\'ll be in touch within 24 hours.';
-    this.reset();
-  } catch { msg.textContent = 'Something went wrong. Please email directly.'; }
-});
-</script>
+<!-- Scripts -->
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="7085dcec-ca13-4cab-9cdf-4edf79ca1e05"></script>
+
 </body>
 </html>

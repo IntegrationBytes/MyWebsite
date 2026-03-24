@@ -3,56 +3,53 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vincent Viitala – AI & Data Science</title>
-  <meta name="description" content="AI engineer and Data Science consultant. Automated systems for traditional businesses. Finnish, English and Spanish." />
+  <title>Vincent Viitala – AI Consulting for Enterprise</title>
+  <meta name="description" content="High-ticket AI consulting for Fortune 500 and Silicon Valley networks. Value-based pricing, measurable ROI." />
+  <meta name="theme-color" content="#0a0a0f" />
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="alternate" hreflang="fi" href="/fi/" />
   <link rel="alternate" hreflang="en" href="/en/" />
   <link rel="alternate" hreflang="es" href="/es/" />
   <link rel="alternate" hreflang="x-default" href="/en/" />
-  <link rel="manifest" href="site.webmanifest">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Vincent Viitala – AI & Data Science">
-  <meta property="og:description" content="Automated AI systems for traditional businesses. Value-based pricing.">
+  <meta property="og:title" content="Vincent Viitala – AI Consulting for Enterprise">
+  <meta property="og:description" content="High-ticket AI consulting for Fortune 500 and Silicon Valley networks.">
   <meta property="og:url" content="/">
   <meta property="og:image" content="assets/img/og-default.svg">
-  <style>
-    body { margin: 0; background: #050807; color: #E6F3EA; font-family: Inter, system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; text-align: center; }
-    .picker { padding: 48px 24px; max-width: 480px; }
-    h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; }
-    p { color: #A6CDB3; margin-bottom: 32px; }
-    .lang-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .lang-card { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 28px; border: 1px solid rgba(230,243,234,0.15); border-radius: 14px; text-decoration: none; color: #E6F3EA; transition: all 0.2s ease; min-width: 110px; }
-    .lang-card:hover { border-color: #00FF95; color: #00FF95; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,255,149,0.1); }
-    .lang-flag { font-size: 2rem; }
-    .lang-name { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.3px; }
-    .lang-sub { font-size: 0.75rem; color: #A6CDB3; }
-    .glyph { color: #00FF95; }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/executive-dark.css">
+  <script defer src="assets/js/config.js"></script>
 </head>
 <body>
-<div class="picker">
-  <p style="font-family:monospace; font-size:1.8rem; margin-bottom:16px;"><span class="glyph">◇</span></p>
-  <h1>Vincent Viitala</h1>
-  <p>AI & Data Science · Choose your language</p>
-  <div class="lang-cards">
-    <a class="lang-card" href="/fi/">
-      <span class="lang-flag">🇫🇮</span>
-      <span class="lang-name">Suomi</span>
-      <span class="lang-sub">Finnish</span>
-    </a>
-    <a class="lang-card" href="/en/">
-      <span class="lang-flag">🌍</span>
-      <span class="lang-name">English</span>
-      <span class="lang-sub">International</span>
-    </a>
-    <a class="lang-card" href="/es/">
-      <span class="lang-flag">🌎</span>
-      <span class="lang-name">Español</span>
-      <span class="lang-sub">España & LATAM</span>
-    </a>
+
+<!-- Language Picker -->
+<div class="picker-page">
+  <div class="picker-card">
+    <div class="picker-glyph">◇</div>
+    <h1 class="picker-title">Vincent Viitala</h1>
+    <p class="picker-subtitle">AI Consulting for Enterprise · Choose your language</p>
+    <div class="picker-grid">
+      <a class="picker-option" href="/fi/">
+        <span class="picker-flag">🇫🇮</span>
+        <span class="picker-lang">Suomi</span>
+        <span class="picker-lang-sub">Finnish</span>
+      </a>
+      <a class="picker-option" href="/en/">
+        <span class="picker-flag">🌍</span>
+        <span class="picker-lang">English</span>
+        <span class="picker-lang-sub">International</span>
+      </a>
+      <a class="picker-option" href="/es/">
+        <span class="picker-flag">🌎</span>
+        <span class="picker-lang">Español</span>
+        <span class="picker-lang-sub">España & LATAM</span>
+      </a>
+    </div>
   </div>
 </div>
+
 <script>
 // Auto-redirect based on browser language preference
 (function(){
@@ -62,5 +59,6 @@
   else { window.location.replace('/en/'); }
 })();
 </script>
+
 </body>
 </html>
