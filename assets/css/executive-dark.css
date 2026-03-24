@@ -852,6 +852,236 @@ ul, ol {
 }
 
 /* ============================================
+   PROCESS TIMELINE
+   ============================================ */
+.timeline {
+  position: relative;
+  padding-left: var(--space-8);
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-purple) 50%, var(--void-border) 100%);
+}
+
+.timeline-step {
+  position: relative;
+  padding-bottom: var(--space-10);
+}
+
+.timeline-step:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: calc(-1 * var(--space-8) - 7px);
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  background: var(--void);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-full);
+  z-index: 1;
+}
+
+.timeline-step.completed .timeline-dot {
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.timeline-step.active .timeline-dot {
+  background: var(--accent);
+  box-shadow: 0 0 16px var(--accent-glow);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 12px var(--accent-glow); }
+  50% { box-shadow: 0 0 24px rgba(0, 212, 255, 0.4); }
+}
+
+.timeline-label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: var(--space-1);
+}
+
+.timeline-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-2);
+}
+
+.timeline-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* ============================================
+   PROGRESS BARS
+   ============================================ */
+.progress-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.progress-name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+}
+
+.progress-value {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--accent);
+}
+
+.progress-track {
+  height: 8px;
+  background: var(--void-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--gradient-hero);
+  transition: width 1.5s ease-out;
+}
+
+/* ============================================
+   TECH STACK BADGES
+   ============================================ */
+.tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+}
+
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--void-light);
+  border: 1px solid var(--void-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  transition: all var(--transition-base);
+}
+
+.tech-badge:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ============================================
+   STAT COUNTER
+   ============================================ */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .stats-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat {
+  text-align: center;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--void-light);
+  border: 1px solid var(--void-border-subtle);
+}
+
+.stat-number {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.stat-label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   SERVICES EXPANDED (with sub-detail)
+   ============================================ */
+.svc-detail-grid {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.svc-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.svc-detail-icon {
+  color: var(--accent);
+  font-size: var(--text-base);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ============================================
+   APPROACH SECTION
+   ============================================ */
+.approach-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .approach-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+}
+
+/* ============================================
    CALENDLY OVERRIDE (Dark mode compatibility)
    ============================================ */
 .calendly-inline-widget iframe {
