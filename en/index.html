@@ -1,313 +1,237 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="matrix">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Automation Solutions — Reduce Operational Costs</title>
-    <link rel="stylesheet" href="../assets/css/styles-dark.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vincent Viitala – AI & Data Science Consulting</title>
+  <meta name="description" content="I build automated AI systems that cut operational costs, eliminate manual work, and deliver measurable ROI. Value-based pricing: you pay from savings, not hours." />
+  <meta name="theme-color" content="#050807" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="fi" href="/fi/" />
+  <link rel="alternate" hreflang="en" href="/en/" />
+  <link rel="alternate" hreflang="es" href="/es/" />
+  <link rel="alternate" hreflang="x-default" href="/en/" />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Vincent Viitala – AI & Data Science Consulting">
+  <meta property="og:description" content="AI systems that pay for themselves. Value-based pricing, measurable ROI.">
+  <meta property="og:url" content="/en/">
+  <meta property="og:image" content="../assets/img/og-default.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/i18n.css">
+  <script defer src="../assets/js/config.js"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="#" class="logo">AI Automation Labs</a>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <span class="hook">Operational Efficiency</span>
-            <h1>Reduce Operational Costs Through Intelligent Automation</h1>
-            <p>Custom AI systems that streamline document processing, predict equipment maintenance needs, and optimize inventory management. Built for manufacturing and logistics companies.</p>
-            <a href="#audit" class="cta-button">Request a Free Consultation</a>
-        </div>
-    </section>
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="/en/"><span class="glyph">◇</span> Vincent Viitala</a>
+    <nav aria-label="Primary" class="nav">
+      <a class="nav-link active" href="/en/" aria-current="page">Home</a>
+      <a class="nav-link" href="/en/services/">Services</a>
+      <a class="nav-link" href="/en/results/">Results</a>
+      <a class="nav-link" href="/en/contact/">Contact</a>
+    </nav>
+    <div class="lang-switcher">
+      <a href="/fi/" class="lang-btn" title="Suomi">FI</a>
+      <a href="/en/" class="lang-btn active" title="English">EN</a>
+      <a href="/es/" class="lang-btn" title="Español">ES</a>
+    </div>
+  </div>
+</header>
 
-    <section class="section">
-        <div class="container">
-            <h2>Document Processing Automation</h2>
-            <p class="section-intro">Manual data entry from invoices, purchase orders, and shipping documents consumes significant staff time and introduces costly errors. Our document processing pipeline automates extraction and validation.</p>
-            
-            <h3>The Cost of Manual Processing</h3>
-            <p>Organizations processing high volumes of documents manually face predictable challenges: processing delays during peak periods, data entry errors requiring rework, and skilled staff spending time on repetitive tasks rather than value-added work.</p>
-            
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="metric">6+ hrs</div>
-                    <div class="label">Weekly processing time</div>
-                </div>
-                <div class="problem-card">
-                    <div class="metric">2-5%</div>
-                    <div class="label">Error rate (manual)</div>
-                </div>
-                <div class="problem-card">
-                    <div class="metric">€45k</div>
-                    <div class="label">Annual labor cost</div>
-                </div>
-            </div>
-            
-            <h3>Our Approach</h3>
-            <p>We implement intelligent document processing systems that extract data with high accuracy and integrate directly with your existing ERP or accounting software.</p>
-            
-            <div class="solution-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Document Ingestion</h4>
-                        <p>Documents are received via email, upload, or API and automatically queued for processing</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Data Extraction</h4>
-                        <p>AI models extract relevant fields with 99%+ accuracy, handling various document formats</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Validation & Integration</h4>
-                        <p>Data is validated against business rules and pushed to your systems automatically</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Exception Handling</h4>
-                        <p>Low-confidence extractions are flagged for human review, with learning feedback</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="highlight-box">
-                <h4>Accuracy Comparison</h4>
-                <div class="comparison">
-                    <div class="comparison-item before">
-                        <div class="label">Traditional OCR</div>
-                        <div class="value">60-75%</div>
-                        <div class="desc">Requires significant manual correction</div>
-                    </div>
-                    <div class="comparison-item after">
-                        <div class="label">Our Pipeline</div>
-                        <div class="value">99%+</div>
-                        <div class="desc">Production-tested accuracy</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<main class="container" role="main">
 
-    <section class="section section-alt">
-        <div class="container">
-            <h2>Predictive Maintenance</h2>
-            <p class="section-intro">Unplanned equipment downtime disrupts production schedules and creates expensive rush orders. Predictive maintenance uses equipment sensor data to identify potential failures before they occur.</p>
-            
-            <h3>Limitations of Scheduled Maintenance</h3>
-            <p>Fixed maintenance schedules catch some issues but miss many failure modes that develop between service intervals. Equipment condition varies based on usage patterns, environmental factors, and component quality.</p>
-            
-            <div class="highlight-box">
-                <h4>Failure Detection Rates</h4>
-                <div class="stats-row">
-                    <div class="stat-box negative">
-                        <div class="number">~40%</div>
-                        <div class="label">Scheduled maintenance</div>
-                    </div>
-                    <div class="stat-box positive">
-                        <div class="number">85-90%</div>
-                        <div class="label">With predictive models</div>
-                    </div>
-                </div>
-                <p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">Based on published benchmarks using NASA CMAPSS and similar industrial datasets</p>
-            </div>
-            
-            <h3>Implementation</h3>
-            <p>We deploy non-invasive sensors on critical equipment and build machine learning models trained on your specific machinery patterns.</p>
-            
-            <div class="solution-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Sensor Deployment</h4>
-                        <p>Vibration, temperature, and acoustic sensors installed on critical equipment</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Baseline Learning</h4>
-                        <p>Models learn normal operating patterns for each piece of equipment</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Anomaly Detection</h4>
-                        <p>Deviations from baseline trigger alerts with severity classification</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Maintenance Planning</h4>
-                        <p>Recommendations integrate with your maintenance scheduling system</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- HERO -->
+  <section class="hero-lean reveal">
+    <p class="small-label">AI & Data Science · Northern Europe & Global</p>
+    <h1>AI That Pays<br>For Itself.</h1>
+    <p class="lead">
+      I design and deploy automated data systems that eliminate manual work, slash operational costs, 
+      and unlock compounding efficiency gains. No fluff — just measurable ROI.
+    </p>
+    <div class="cta-row">
+      <a class="btn" href="/en/contact/">Book a Strategy Call</a>
+      <a class="btn btn-ghost" href="/en/results/">See Case Studies</a>
+    </div>
 
-    <section class="section">
-        <div class="container">
-            <h2>Demand Forecasting & Inventory Optimization</h2>
-            <p class="section-intro">Inventory carrying costs and stockout losses directly impact margins. Improved demand forecasting reduces both excess inventory and lost sales from stockouts.</p>
-            
-            <h3>Forecasting Challenges</h3>
-            <p>Traditional forecasting methods often rely heavily on historical averages and manual adjustments. They struggle with seasonality, promotional effects, and external market factors.</p>
-            
-            <div class="highlight-box">
-                <h4>Forecast Error Reduction</h4>
-                <div class="comparison">
-                    <div class="comparison-item before">
-                        <div class="label">Traditional Methods</div>
-                        <div class="value">25-35%</div>
-                        <div class="desc">Mean absolute percentage error</div>
-                    </div>
-                    <div class="comparison-item after">
-                        <div class="label">ML-Based Forecasting</div>
-                        <div class="value">10-15%</div>
-                        <div class="desc">With external factor integration</div>
-                    </div>
-                </div>
-            </div>
-            
-            <h3>Our Solution</h3>
-            <p>We build forecasting models that incorporate multiple data sources and learn complex demand patterns specific to your business.</p>
-            
-            <div class="solution-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Data Integration</h4>
-                        <p>Historical sales, seasonality, promotions, and external signals combined</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Model Training</h4>
-                        <p>Time-series models trained on your specific product categories</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Inventory Optimization</h4>
-                        <p>Reorder points and quantities calculated to minimize total cost</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Continuous Improvement</h4>
-                        <p>Models retrain as new data becomes available, adapting to changing patterns</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="big-number">
-                <div class="value">15-25%</div>
-                <div class="label">Typical inventory cost reduction</div>
-            </div>
-        </div>
-    </section>
+    <div class="trust-bar">
+      <div class="trust-item">
+        <span class="trust-icon">🎓</span>
+        <span>BSc Data Science & AI — Maastricht University</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">🚀</span>
+        <span>Ex-founder: built & exited 7-person fintech company</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">💡</span>
+        <span>Value-based pricing — you pay from savings, not hours</span>
+      </div>
+    </div>
+  </section>
 
-    <section class="guarantee">
-        <div class="container">
-            <h2>Our Commitment</h2>
-            <p>We stand behind our work. If our system doesn't deliver measurable cost savings within the agreed timeframe, we offer:</p>
-            <ul class="guarantee-list">
-                <li><span class="check">→</span> Full refund of implementation fees</li>
-                <li><span class="check">→</span> No questions asked cancellation</li>
-                <li><span class="check">→</span> Retention of all completed work</li>
-            </ul>
-        </div>
-    </section>
+  <!-- SERVICES -->
+  <section class="reveal">
+    <h2>What I Build</h2>
+    <p class="lead muted">High-leverage AI systems for companies that want to move fast and keep results.</p>
+    <div class="grid cols-3">
 
-    <section class="tech-section">
-        <div class="container">
-            <details>
-                <summary>Technical Specifications</summary>
-                <div class="tech-content">
-                    <h4>Technology Stack</h4>
-                    <ul>
-                        <li>Python / TensorFlow / PyTorch</li>
-                        <li>LangChain for LLM integration</li>
-                        <li>PaddleOCR for document processing</li>
-                        <li>Prophet / ARIMA for forecasting</li>
-                        <li>n8n / Make for workflow automation</li>
-                    </ul>
-                </div>
-                <div class="tech-content" style="margin-top: 16px;">
-                    <h4>Security & Compliance</h4>
-                    <ul>
-                        <li>End-to-end encryption</li>
-                        <li>GDPR compliant</li>
-                        <li>SOC 2 Type II certified infrastructure</li>
-                        <li>99.9% uptime SLA</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
-    </section>
+      <div class="card svc-card">
+        <div class="small-label">Operations</div>
+        <h3>Intelligent Document Processing</h3>
+        <p class="muted">Eliminate manual data entry across invoices, orders, and compliance documents. Integrates with your existing ERP or accounting stack.</p>
+        <div class="svc-roi">Replaces 2–3 FTEs · Saves €80K–€120K/yr</div>
+        <a class="tag" href="/en/services/#doc-processing">Learn more →</a>
+      </div>
 
-    <section class="lead-form" id="audit">
-        <div class="container">
-            <h2>Request a Consultation</h2>
-            <p>We'll analyze your current operations and identify automation opportunities specific to your business.</p>
-            
-            <div class="form-container">
-                <form onsubmit="submitLead(event)">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Business Email</label>
-                        <input type="email" id="email" name="email" placeholder="you@company.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Company</label>
-                        <input type="text" id="company" name="company" placeholder="Your company">
-                    </div>
-                    <button type="submit" class="submit-btn">Schedule Consultation</button>
-                </form>
-            </div>
-        </div>
-    </section>
+      <div class="card svc-card">
+        <div class="small-label">Manufacturing</div>
+        <h3>Predictive Maintenance AI</h3>
+        <p class="muted">Detect equipment failure before it happens. ML models trained on your sensor data, with automated alerts and a plain-language dashboard.</p>
+        <div class="svc-roi">1 prevented event = 2 years of service paid</div>
+        <a class="tag" href="/en/services/#predictive">Learn more →</a>
+      </div>
 
-    <footer>
-        <div class="container">
-            <p>© 2024 AI Automation Labs. All rights reserved.</p>
-        </div>
-    </footer>
+      <div class="card svc-card">
+        <div class="small-label">Analytics</div>
+        <h3>Automated Reporting & Anomaly Detection</h3>
+        <p class="muted">Executive dashboards, financial summaries, and real-time anomaly alerts — generated automatically, delivered to your inbox before 8 AM.</p>
+        <div class="svc-roi">Saves 15–25 hrs/mo · ROI from month 1</div>
+        <a class="tag" href="/en/services/#reporting">Learn more →</a>
+      </div>
 
-    <script>
-        function submitLead(event) {
-            event.preventDefault();
-            const form = event.target;
-            const name = form.name.value;
-            
-            form.innerHTML = `
-                <div style="text-align: center; padding: 40px 20px;">
-                    <div style="font-size: 48px; margin-bottom: 16px;">✓</div>
-                    <h3 style="font-size: 20px; margin-bottom: 12px; color: var(--text-primary);">Thank you, ${name}</h3>
-                    <p style="font-size: 15px; color: var(--text-secondary);">We'll be in touch within 24 hours to schedule your consultation.</p>
-                </div>
-            `;
-        }
-    </script>
+      <div class="card svc-card">
+        <div class="small-label">Growth</div>
+        <h3>Demand Forecasting & Inventory Optimization</h3>
+        <p class="muted">Time-series forecasting for demand, automated reorder logic, and seasonal trend analysis. Free up working capital tied in overstock.</p>
+        <div class="svc-roi">15% inventory reduction = €150K freed capital</div>
+        <a class="tag" href="/en/services/#forecasting">Learn more →</a>
+      </div>
+
+      <div class="card svc-card">
+        <div class="small-label">Customer Ops</div>
+        <h3>AI-Powered Lead Qualification</h3>
+        <p class="muted">Multilingual chatbot trained on your catalog. Qualifies leads 24/7, routes to the right sales rep, drafts initial responses automatically.</p>
+        <div class="svc-roi">10–30 qualified leads/mo from existing traffic</div>
+        <a class="tag" href="/en/services/#leads">Learn more →</a>
+      </div>
+
+    </div>
+    <div class="cta-row" style="margin-top:16px;">
+      <a class="btn" href="/en/services/">Full Service Details</a>
+    </div>
+  </section>
+
+  <!-- CASE STUDY -->
+  <section class="reveal callout console">
+    <div class="title">Case Study · Nordic Manufacturer</div>
+    <div class="case-grid">
+      <div>
+        <div class="small-label">Problem</div>
+        <p>90 hours/week spent on manual invoice processing and order management. Errors were frequent; reporting was 3 days behind.</p>
+      </div>
+      <div>
+        <div class="small-label">Solution</div>
+        <p>End-to-end document automation with LLM-powered extraction. Integrated directly into existing ERP. Deployed in 3 weeks.</p>
+      </div>
+      <div>
+        <div class="small-label">Result</div>
+        <p class="result-highlight">€120,000 annual savings. Staff redeployed to revenue-generating work. Zero manual processing.</p>
+      </div>
+    </div>
+    <a class="btn" style="margin-top:16px;" href="/en/results/">More Case Studies</a>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="reveal card-flat">
+    <h2>How It Works</h2>
+    <div class="grid cols-3">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Free Audit</h3>
+        <p class="muted">20-minute call. I identify your highest-ROI automation opportunity and calculate the savings potential.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>2-Week Pilot</h3>
+        <p class="muted">We build a working prototype on your real data. You see results before committing to anything.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Monthly Retainer</h3>
+        <p class="muted">Value-based fee scaled to savings generated. Includes monitoring, iteration, and support.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section class="reveal card-flat guarantee-section">
+    <h2>The Guarantee</h2>
+    <p class="lead">If we can't demonstrate measurable movement on the agreed KPI by the end of Week 2 — cancel. No further obligation, no invoice.</p>
+    <p class="muted">I'm confident enough in the results to take the risk. You shouldn't have to.</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="reveal cta-section">
+    <h2>Start With a Free Audit</h2>
+    <p class="lead muted">Tell me about one process. I'll tell you exactly how much you could save — and whether it's worth automating.</p>
+    <form class="lead-form card" id="en-lead-form">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="text" name="company" placeholder="Company" required>
+      </div>
+      <input type="email" name="email" placeholder="Work email" required>
+      <select name="service">
+        <option value="">Which service interests you?</option>
+        <option>Document Processing Automation</option>
+        <option>Predictive Maintenance AI</option>
+        <option>Automated Reporting</option>
+        <option>Demand Forecasting</option>
+        <option>AI Lead Qualification</option>
+        <option>Not sure — I'd like guidance</option>
+      </select>
+      <textarea name="message" rows="3" placeholder="Briefly describe the process you want to automate (optional)"></textarea>
+      <button class="btn" type="submit">Book Free Strategy Call</button>
+      <p id="en-form-msg" class="muted form-msg"></p>
+    </form>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="left">
+      <p class="muted">© 2026 Vincent Viitala</p>
+      <p class="muted">AI & Data Science consulting. Northern Europe & global.</p>
+    </div>
+    <div class="right">
+      <a href="/fi/" class="tag">Suomeksi</a>
+      <a href="/es/" class="tag">Español</a>
+      <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="tag">GitHub</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <a href="/en/contact/" class="tag">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('en-lead-form')?.addEventListener('submit', async function(e){
+  e.preventDefault();
+  const msg = document.getElementById('en-form-msg');
+  const data = Object.fromEntries(new FormData(this).entries());
+  data.lang = 'en'; data.ts = Date.now(); data.path = location.pathname;
+  try {
+    if (window.LEADS_WEBHOOK_URL) {
+      await fetch(window.LEADS_WEBHOOK_URL, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data) });
+    }
+    msg.textContent = 'Got it — I\'ll be in touch within 24 hours.';
+    this.reset();
+  } catch { msg.textContent = 'Something went wrong. Please email directly.'; }
+});
+</script>
 </body>
 </html>

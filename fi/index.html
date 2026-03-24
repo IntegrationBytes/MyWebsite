@@ -1,512 +1,216 @@
-<!DOCTYPE html>
-<html lang="fi">
+<!doctype html>
+<html lang="fi" data-theme="matrix">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[YRITYKSESI NIMI] — Tekoälyautomaatio B2B</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          navy: '#0d1b2a',
-          steel: '#1b2838',
-          'steel-light': '#243447',
-          accent: '#00b4d8',
-          'accent-dark': '#0090ac',
-          emerald: '#10b981',
-          'text-primary': '#f0f4f8',
-          'text-secondary': '#94a3b8',
-          'text-muted': '#64748b',
-          border: '#243447',
-        },
-        fontFamily: {
-          sans: ['Inter', 'system-ui', 'sans-serif'],
-          display: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-        }
-      }
-    }
-  }
-</script>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { background: #0d1b2a; color: #f0f4f8; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
-
-  /* Reveal animations */
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-
-  /* Card hover */
-  .card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
-  .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
-
-  /* Button */
-  .btn-primary {
-    display: inline-block;
-    background: #00b4d8;
-    color: #0d1b2a;
-    font-weight: 600;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    padding: 14px 28px;
-    border-radius: 6px;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-  .btn-primary::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
-    transform: translateX(-100%);
-    transition: transform 0.5s ease;
-  }
-  .btn-primary:hover { background: #0090ac; transform: translateY(-1px); }
-  .btn-primary:hover::after { transform: translateX(100%); }
-
-  /* Progress bar */
-  .progress-bar-track { background: #243447; border-radius: 99px; height: 10px; overflow: hidden; }
-  .progress-bar-fill { height: 100%; border-radius: 99px; width: 0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
-
-  /* Step number */
-  .step-num {
-    width: 36px; height: 36px;
-    background: #00b4d8;
-    color: #0d1b2a;
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 14px; flex-shrink: 0;
-  }
-
-  /* Bento grid */
-  .bento-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 768px) { .bento-grid { grid-template-columns: repeat(3, 1fr); } }
-  .bento-item { background: #1b2838; border: 1px solid #243447; border-radius: 12px; padding: 24px; }
-  .bento-item.wide { grid-column: span 2; }
-  .bento-item.tall { grid-row: span 2; }
-
-  /* Stat boxes */
-  .stat-box { background: #1b2838; border: 1px solid #243447; border-radius: 10px; padding: 28px; text-align: center; }
-
-  /* Form input */
-  .form-input {
-    width: 100%; background: #1b2838; border: 1px solid #243447; border-radius: 6px;
-    color: #f0f4f8; padding: 12px 14px; font-size: 15px; font-family: 'Inter', sans-serif;
-    transition: border-color 0.2s;
-  }
-  .form-input:focus { outline: none; border-color: #00b4d8; }
-  .form-input::placeholder { color: #64748b; }
-
-  /* Section divider */
-  .section-divider { border: none; border-top: 1px solid #243447; }
-
-  /* Hero glow */
-  .hero-glow {
-    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 700px; height: 400px;
-    background: radial-gradient(ellipse, rgba(0,180,216,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  /* Nav */
-  nav { position: sticky; top: 0; z-index: 50; background: rgba(13,27,42,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #243447; }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vincent Viitala – Tekoäly & Data-analytiikka suomalaisille yrityksille</title>
+  <meta name="description" content="Autan suomalaisia yrityksiä automatisoimaan toistuvat työt ja säästämään kustannuksia tekoälyn avulla. Ei tuntilaskutusta – maksat tuloksista." />
+  <meta name="theme-color" content="#050807" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="fi" href="/fi/" />
+  <link rel="alternate" hreflang="en" href="/en/" />
+  <link rel="alternate" hreflang="es" href="/es/" />
+  <link rel="alternate" hreflang="x-default" href="/en/" />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Vincent Viitala – Tekoäly suomalaisille yrityksille">
+  <meta property="og:description" content="Automatisoi toistuvat työt. Säästä kustannuksia. Maksat vain tuloksista.">
+  <meta property="og:url" content="/fi/">
+  <meta property="og:image" content="../assets/img/og-default.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/i18n.css">
+  <script defer src="../assets/js/config.js"></script>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <span class="font-display font-700 text-lg text-text-primary tracking-tight">[YRITYKSESI NIMI]</span>
-    <a href="#cta" class="btn-primary text-sm py-2 px-5">Pyydä konsultaatio</a>
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="/fi/"><span class="glyph">◇</span> Vincent Viitala</a>
+    <nav aria-label="Päävalikko" class="nav">
+      <a class="nav-link active" href="/fi/" aria-current="page">Etusivu</a>
+      <a class="nav-link" href="/fi/palvelut/">Palvelut</a>
+      <a class="nav-link" href="/fi/tulokset/">Tulokset</a>
+      <a class="nav-link" href="/fi/ota-yhteytta/">Ota yhteyttä</a>
+    </nav>
+    <div class="lang-switcher">
+      <a href="/fi/" class="lang-btn active" title="Suomi">FI</a>
+      <a href="/en/" class="lang-btn" title="English">EN</a>
+      <a href="/es/" class="lang-btn" title="Español">ES</a>
+    </div>
   </div>
-</nav>
+</header>
 
-<!-- HERO -->
-<section class="relative overflow-hidden py-28 px-6">
-  <div class="hero-glow"></div>
-  <div class="max-w-4xl mx-auto text-center relative">
-    <span class="reveal inline-block text-accent text-sm font-medium uppercase tracking-widest mb-5">Toiminnan tehokkuus</span>
-    <h1 class="reveal reveal-delay-1 font-display font-800 text-5xl md:text-6xl leading-tight text-text-primary mb-6" style="letter-spacing:-0.5px">
-      Vähennä operatiivisia<br>kustannuksia älykkäällä<br>automaatiolla
-    </h1>
-    <p class="reveal reveal-delay-2 text-text-secondary text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-      Räätälöidyt tekoälyjärjestelmät, jotka tehostavat dokumenttien käsittelyä, ennakoivat laitehuoltotarpeita ja optimoivat varastonhallintaa — valmistus- ja logistiikkayrityksille.
+<main class="container" role="main">
+
+  <!-- HERO -->
+  <section class="hero-lean reveal">
+    <p class="small-label">Suomalaisille yrityksille · Tekoäly & Data</p>
+    <h1>Tehokkuutta ilman lisärekrytointeja.</h1>
+    <p class="lead">
+      Automatisoin toistuvat, kalliit työprosessit – laskujen käsittelystä ennustavaan analytiikkaan. 
+      Maksat kuukausittain sen mukaan, mitä säästät. Et tunneista.
     </p>
-    <a href="#cta" class="reveal reveal-delay-3 btn-primary text-base">Pyydä ilmainen konsultaatio →</a>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- PROBLEM -->
-<section class="py-20 px-6">
-  <div class="max-w-6xl mx-auto">
-    <div class="reveal mb-4">
-      <span class="text-accent text-sm font-medium uppercase tracking-widest">Haaste</span>
-    </div>
-    <h2 class="reveal reveal-delay-1 font-display font-700 text-3xl md:text-4xl text-text-primary mb-4">Manuaalisen käsittelyn kustannukset</h2>
-    <p class="reveal reveal-delay-2 text-text-secondary text-lg mb-12 max-w-2xl">
-      Organisaatiot, jotka käsittelevät suuria dokumenttimääriä manuaalisesti, kohtaavat ennustettavia haasteita ruuhkahuippuina, inhimillisten virheiden korjaamisessa ja henkilöstön ajankäytössä.
-    </p>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="reveal stat-box card-hover">
-        <div class="text-4xl font-display font-700 text-red-400 mb-2 count-up" data-target="6" data-suffix="+ h">0</div>
-        <div class="text-text-muted text-sm uppercase tracking-wide">Viikoittainen käsittelyaika</div>
-      </div>
-      <div class="reveal reveal-delay-1 stat-box card-hover">
-        <div class="text-4xl font-display font-700 text-red-400 mb-2"><span class="count-up" data-target="5" data-prefix="2–" data-suffix="%">0</span></div>
-        <div class="text-text-muted text-sm uppercase tracking-wide">Virheprosentti (manuaalinen)</div>
-      </div>
-      <div class="reveal reveal-delay-2 stat-box card-hover">
-        <div class="text-4xl font-display font-700 text-red-400 mb-2 count-up" data-target="45000" data-suffix=" €">0</div>
-        <div class="text-text-muted text-sm uppercase tracking-wide">Vuotuiset työkustannukset</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- SOLUTIONS -->
-<section class="py-20 px-6">
-  <div class="max-w-6xl mx-auto">
-    <div class="reveal mb-4">
-      <span class="text-accent text-sm font-medium uppercase tracking-widest">Ratkaisut</span>
-    </div>
-    <h2 class="reveal reveal-delay-1 font-display font-700 text-3xl md:text-4xl text-text-primary mb-16">Kolme ydinaluetta</h2>
-
-    <!-- Solution 1 -->
-    <div class="mb-20">
-      <h3 class="reveal font-display font-700 text-2xl text-text-primary mb-3">1. Dokumenttien käsittelyn automaatio</h3>
-      <p class="reveal reveal-delay-1 text-text-secondary text-base mb-8 max-w-2xl">Älykäs dokumenttien käsittelyjärjestelmä poimii tiedot yli 99 %:n tarkkuudella ja integroi suoraan olemassa olevaan ERP- tai kirjanpitojärjestelmään.</p>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-        <div class="reveal bento-item card-hover flex gap-4">
-          <div class="step-num">1</div>
-          <div><h4 class="text-text-primary font-600 text-sm mb-1">Dokumenttien vastaanotto</h4><p class="text-text-secondary text-sm">Sähköpostilla, latauksella tai API:lla — automaattinen jonottaminen käsittelyyn</p></div>
-        </div>
-        <div class="reveal reveal-delay-1 bento-item card-hover flex gap-4">
-          <div class="step-num">2</div>
-          <div><h4 class="text-text-primary font-600 text-sm mb-1">Tietojen poiminta</h4><p class="text-text-secondary text-sm">AI-mallit poimivat relevantit kentät yli 99 %:n tarkkuudella eri formaateista</p></div>
-        </div>
-        <div class="reveal bento-item card-hover flex gap-4">
-          <div class="step-num">3</div>
-          <div><h4 class="text-text-primary font-600 text-sm mb-1">Validointi & integraatio</h4><p class="text-text-secondary text-sm">Liiketoimintasäännöt tarkastetaan ja data syötetään järjestelmiin automaattisesti</p></div>
-        </div>
-        <div class="reveal reveal-delay-1 bento-item card-hover flex gap-4">
-          <div class="step-num">4</div>
-          <div><h4 class="text-text-primary font-600 text-sm mb-1">Poikkeusten käsittely</h4><p class="text-text-secondary text-sm">Matalan luottamuksen poiminnat merkitään ihmistarkistusta varten</p></div>
-        </div>
-      </div>
-      <!-- Progress bars -->
-      <div class="reveal bento-item">
-        <h4 class="text-text-muted text-xs uppercase tracking-widest mb-6">Tarkkuusvertailu</h4>
-        <div class="space-y-5">
-          <div>
-            <div class="flex justify-between text-sm mb-2">
-              <span class="text-text-secondary">Perinteinen OCR</span>
-              <span class="text-red-400 font-600">60–75 %</span>
-            </div>
-            <div class="progress-bar-track">
-              <div class="progress-bar-fill bg-red-500 progress-animate" data-width="70"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between text-sm mb-2">
-              <span class="text-text-secondary">Meidän putkemme</span>
-              <span class="text-emerald font-600">99 %+</span>
-            </div>
-            <div class="progress-bar-track">
-              <div class="progress-bar-fill progress-animate" style="background:#10b981" data-width="99"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="cta-row">
+      <a class="btn" href="/fi/ota-yhteytta/">Pyydä ilmainen kartoitus</a>
+      <a class="btn btn-ghost" href="/fi/tulokset/">Katso tulokset</a>
     </div>
 
-    <!-- Solution 2 -->
-    <div class="mb-20">
-      <h3 class="reveal font-display font-700 text-2xl text-text-primary mb-3">2. Ennakoiva kunnossapito</h3>
-      <p class="reveal reveal-delay-1 text-text-secondary text-base mb-8 max-w-2xl">Laitteiden anturidata tunnistaa mahdolliset viat viikkoja ennen ilmenemistä — ilman kalliita hätäseisokkeja.</p>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-        <div class="reveal bento-item card-hover flex gap-4">
-          <div class="step-num">1</div>
-          <div><h4 class="text-text-primary font-600 text-sm mb-1">Anturien asennus</h4><p class="text-text-secondary text-sm">Värähtely-, lämpötila- ja akustiset anturit kriittiseen kalustoon</p></div>
-        </div>
-        <div class="reveal reveal-delay-1 bento-item card-hover flex gap-4">
-          <div class="step-num">2</div>
-          <div><h4 class="text-text-primary font-600 text-sm mb-1">Pohjaviivan oppiminen</h4><p class="text-text-secondary text-sm">Mallit oppivat normaalit toimintakaavat kullekin laitteelle</p></div>
-        </div>
-        <div class="reveal bento-item card-hover flex gap-4">
-          <div class="step-num">3</div>
-          <div><h4 class="text-text-primary font-600 text-sm mb-1">Poikkeamien havaitseminen</h4><p class="text-text-secondary text-sm">Poikkeamat laukaisevat hälytykset vakavuusluokituksella</p></div>
-        </div>
-        <div class="reveal reveal-delay-1 bento-item card-hover flex gap-4">
-          <div class="step-num">4</div>
-          <div><h4 class="text-text-primary font-600 text-sm mb-1">Huoltojen suunnittelu</h4><p class="text-text-secondary text-sm">Suositukset integroituvat huoltoaikataulujärjestelmääsi</p></div>
-        </div>
+    <div class="trust-bar">
+      <div class="trust-item">
+        <span class="trust-icon">🎓</span>
+        <span>BSc Data Science & AI – Maastrichtin yliopisto</span>
       </div>
-      <div class="reveal grid grid-cols-2 gap-4">
-        <div class="stat-box card-hover">
-          <div class="text-3xl font-display font-700 text-red-400 mb-2 count-up" data-target="40" data-prefix="~" data-suffix="%">0</div>
-          <div class="text-text-muted text-xs uppercase tracking-wide">Aikataulutettu huolto</div>
-          <div class="text-text-secondary text-sm mt-1">vioista havaitaan</div>
-        </div>
-        <div class="stat-box card-hover">
-          <div class="text-3xl font-display font-700 text-emerald mb-2 count-up" data-target="90" data-prefix="85–" data-suffix="%">0</div>
-          <div class="text-text-muted text-xs uppercase tracking-wide">Ennakoivilla malleilla</div>
-          <div class="text-text-secondary text-sm mt-1">vioista havaitaan</div>
-        </div>
+      <div class="trust-item">
+        <span class="trust-icon">🏢</span>
+        <span>Perustanut ja myynyt 7 hengen fintech-yrityksen</span>
       </div>
-      <p class="reveal text-text-muted text-xs mt-3">Perustuu NASA CMAPSS ja vastaaviin teollisuusaineistoihin</p>
-    </div>
-
-    <!-- Solution 3 -->
-    <div>
-      <h3 class="reveal font-display font-700 text-2xl text-text-primary mb-3">3. Kysynnän ennustaminen & varaston optimointi</h3>
-      <p class="reveal reveal-delay-1 text-text-secondary text-base mb-8 max-w-2xl">ML-pohjaiset ennustemallit vähentävät sekä ylimääräistä varastoa että loppuunmyynnistä johtuvia myyntihäviöitä.</p>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-        <div class="reveal bento-item card-hover flex gap-4">
-          <div class="step-num">1</div>
-          <div><h4 class="text-text-primary font-600 text-sm mb-1">Dataintegraatio</h4><p class="text-text-secondary text-sm">Historiallinen myynti, kausivaihtelut, kampanjat ja ulkoiset signaalit yhdistetään</p></div>
-        </div>
-        <div class="reveal reveal-delay-1 bento-item card-hover flex gap-4">
-          <div class="step-num">2</div>
-          <div><h4 class="text-text-primary font-600 text-sm mb-1">Mallin koulutus</h4><p class="text-text-secondary text-sm">Aikasarjamallit koulutetaan yrityksesi tuotekategorioille</p></div>
-        </div>
-        <div class="reveal bento-item card-hover flex gap-4">
-          <div class="step-num">3</div>
-          <div><h4 class="text-text-primary font-600 text-sm mb-1">Varaston optimointi</h4><p class="text-text-secondary text-sm">Tilauspisteet ja määrät minimoimaan kokonaiskustannukset</p></div>
-        </div>
-        <div class="reveal reveal-delay-1 bento-item card-hover flex gap-4">
-          <div class="step-num">4</div>
-          <div><h4 class="text-text-primary font-600 text-sm mb-1">Jatkuva parantaminen</h4><p class="text-text-secondary text-sm">Mallit uudelleenkoulutetaan uuden datan saatavilla</p></div>
-        </div>
-      </div>
-      <div class="reveal bento-item mb-6">
-        <h4 class="text-text-muted text-xs uppercase tracking-widest mb-6">Ennustevirheen vertailu</h4>
-        <div class="space-y-5">
-          <div>
-            <div class="flex justify-between text-sm mb-2">
-              <span class="text-text-secondary">Perinteiset menetelmät</span>
-              <span class="text-red-400 font-600">25–35 %</span>
-            </div>
-            <div class="progress-bar-track">
-              <div class="progress-bar-fill bg-red-500 progress-animate" data-width="35"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between text-sm mb-2">
-              <span class="text-text-secondary">ML-pohjainen ennustaminen</span>
-              <span class="text-emerald font-600">10–15 %</span>
-            </div>
-            <div class="progress-bar-track">
-              <div class="progress-bar-fill progress-animate" style="background:#10b981" data-width="15"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal text-center py-10">
-        <div class="text-5xl font-display font-700 text-emerald mb-2 count-up" data-target="25" data-prefix="" data-suffix="–25 %">0</div>
-        <div class="text-text-secondary text-base">Tyypillinen varastokustannusten vähennys</div>
-        <div class="text-text-muted text-sm mt-1">suhteessa lähtötasoon</div>
+      <div class="trust-item">
+        <span class="trust-icon">🇫🇮</span>
+        <span>Suomalainen – ymmärrän suomalaisen yrityskulttuurin</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<hr class="section-divider">
-
-<!-- TECH BENTO -->
-<section class="py-20 px-6 bg-steel" style="background:#111d2b">
-  <div class="max-w-6xl mx-auto">
-    <div class="reveal mb-4">
-      <span class="text-accent text-sm font-medium uppercase tracking-widest">Teknologia</span>
-    </div>
-    <h2 class="reveal reveal-delay-1 font-display font-700 text-3xl text-text-primary mb-10">Tekniset tiedot</h2>
-    <div class="bento-grid">
-      <div class="reveal bento-item wide card-hover">
-        <div class="text-accent text-xs uppercase tracking-widest mb-3">Teknologiapino</div>
-        <div class="flex flex-wrap gap-2">
-          <span class="bg-steel-light text-text-secondary text-xs px-3 py-1.5 rounded-md border border-border">Python</span>
-          <span class="bg-steel-light text-text-secondary text-xs px-3 py-1.5 rounded-md border border-border">TensorFlow / PyTorch</span>
-          <span class="bg-steel-light text-text-secondary text-xs px-3 py-1.5 rounded-md border border-border">LangChain</span>
-          <span class="bg-steel-light text-text-secondary text-xs px-3 py-1.5 rounded-md border border-border">PaddleOCR</span>
-          <span class="bg-steel-light text-text-secondary text-xs px-3 py-1.5 rounded-md border border-border">Prophet / ARIMA</span>
-          <span class="bg-steel-light text-text-secondary text-xs px-3 py-1.5 rounded-md border border-border">n8n / Make</span>
-        </div>
-      </div>
-      <div class="reveal bento-item card-hover">
-        <div class="text-accent text-xs uppercase tracking-widest mb-2">Salaus</div>
-        <div class="text-text-primary font-600 text-base">Päästä päähän</div>
-        <div class="text-text-muted text-sm mt-1">TLS 1.3 + AES-256 at rest</div>
-      </div>
-      <div class="reveal reveal-delay-1 bento-item card-hover">
-        <div class="text-accent text-xs uppercase tracking-widest mb-2">Vaatimustenmukaisuus</div>
-        <div class="flex gap-2 flex-wrap mt-2">
-          <span class="text-emerald font-600 text-sm">GDPR</span>
-          <span class="text-text-muted text-sm">·</span>
-          <span class="text-emerald font-600 text-sm">SOC 2 Type II</span>
-        </div>
-      </div>
-      <div class="reveal bento-item card-hover">
-        <div class="text-accent text-xs uppercase tracking-widest mb-2">Käytettävyys</div>
-        <div class="text-3xl font-display font-700 text-emerald">99.9 %</div>
-        <div class="text-text-muted text-sm">SLA-takuu</div>
-      </div>
-      <div class="reveal reveal-delay-1 bento-item card-hover">
-        <div class="text-accent text-xs uppercase tracking-widest mb-2">Infrastruktuuri</div>
-        <div class="text-text-primary text-sm font-500">AWS / GCP</div>
-        <div class="text-text-muted text-sm mt-1">Automaattiset varmuuskopiot</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- CTA + FORM -->
-<section id="cta" class="py-20 px-6">
-  <div class="max-w-6xl mx-auto">
-    <div class="reveal mb-4">
-      <span class="text-accent text-sm font-medium uppercase tracking-widest">Ota yhteyttä</span>
-    </div>
-    <h2 class="reveal reveal-delay-1 font-display font-700 text-3xl md:text-4xl text-text-primary mb-12">Aloitetaan yhteistyö</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <!-- Guarantee -->
-      <div class="reveal">
-        <h3 class="font-display font-700 text-xl text-text-primary mb-6">Sitoumuksemme</h3>
-        <p class="text-text-secondary text-base mb-8 leading-relaxed">Seisomme työmme takana. Jos järjestelmämme ei tuota mitattavia kustannussäästöjä sovitussa aikataulussa, tarjoamme:</p>
-        <ul class="space-y-5">
-          <li class="flex items-start gap-4">
-            <span class="text-emerald text-lg mt-0.5">→</span>
-            <div>
-              <div class="text-text-primary font-600 text-sm">Täysi hyvitys toteutuspalkkioista</div>
-              <div class="text-text-muted text-sm mt-0.5">Ilman ehtoja tai lisäkysymyksiä</div>
-            </div>
-          </li>
-          <li class="flex items-start gap-4">
-            <span class="text-emerald text-lg mt-0.5">→</span>
-            <div>
-              <div class="text-text-primary font-600 text-sm">Riskitön peruutus</div>
-              <div class="text-text-muted text-sm mt-0.5">Voit peruuttaa milloin tahansa ilman sitoumuksia</div>
-            </div>
-          </li>
-          <li class="flex items-start gap-4">
-            <span class="text-emerald text-lg mt-0.5">→</span>
-            <div>
-              <div class="text-text-primary font-600 text-sm">Pidät kaiken valmiin työn</div>
-              <div class="text-text-muted text-sm mt-0.5">Kaikki tuotokset jäävät sinulle</div>
-            </div>
-          </li>
+  <!-- PROBLEM → SOLUTION -->
+  <section class="reveal card-flat">
+    <h2>Tunnistatko nämä ongelmat?</h2>
+    <div class="grid cols-2">
+      <div class="problem-card">
+        <div class="problem-label">Ongelma</div>
+        <ul>
+          <li>Laskujen ja tilausten manuaalinen näpyttely vie 20–40 h/vk</li>
+          <li>Koneet seisovat, koska vikaantuminen yllättää</li>
+          <li>Raporttien kokoaminen kestää päiviä</li>
+          <li>Varastossa liikaa tavaraa – tai liian vähän</li>
         </ul>
       </div>
-      <!-- Form -->
-      <div class="reveal reveal-delay-1">
-        <div class="bento-item">
-          <form id="contact-form" onsubmit="handleSubmit(event)">
-            <div class="space-y-5">
-              <div>
-                <label class="block text-text-secondary text-sm mb-2" for="name">Nimi</label>
-                <input type="text" id="name" name="name" class="form-input" placeholder="Nimesi" required>
-              </div>
-              <div>
-                <label class="block text-text-secondary text-sm mb-2" for="email">Työsähköposti</label>
-                <input type="email" id="email" name="email" class="form-input" placeholder="sinä@yritys.fi" required>
-              </div>
-              <div>
-                <label class="block text-text-secondary text-sm mb-2" for="company">Yritys</label>
-                <input type="text" id="company" name="company" class="form-input" placeholder="Yrityksesi nimi">
-              </div>
-              <button type="submit" class="btn-primary w-full text-center text-sm justify-center" style="display:block; width:100%">
-                Aikatauluta konsultaatio →
-              </button>
-              <p class="text-text-muted text-xs text-center">Otamme yhteyttä 24 tunnin kuluessa</p>
-            </div>
-          </form>
-          <div id="form-success" class="hidden text-center py-8">
-            <div class="text-4xl mb-3">✓</div>
-            <div class="text-text-primary font-600 text-base mb-1">Kiitos!</div>
-            <div class="text-text-secondary text-sm">Otamme yhteyttä pian.</div>
-          </div>
-        </div>
+      <div class="solution-card">
+        <div class="solution-label">Mitä saat</div>
+        <ul>
+          <li>Automaattinen asiakirjojen käsittely – 0 manuaalista työtä</li>
+          <li>Ennakoiva kunnossapito – saat hälytyksen ennen vikaa</li>
+          <li>Automaattiset raportit joka aamu sähköpostiin</li>
+          <li>Kysyntäennuste, joka optimoi varastotason</li>
+        </ul>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer class="border-t border-border py-8 px-6 text-center">
-  <p class="text-text-muted text-sm">[YRITYKSESI NIMI] · 2026</p>
+  <!-- SERVICES (3 only) -->
+  <section class="reveal">
+    <h2>Palvelut</h2>
+    <p class="lead muted">Kolme palvelua, joilla on suurin välitön vaikutus suomalaisessa teollisuudessa.</p>
+    <div class="grid cols-3">
+
+      <div class="card svc-card">
+        <div class="small-label">Hallinto</div>
+        <h3>Asiakirjojen automaatio</h3>
+        <p class="muted">Laskut, tilaukset, toimituskirjat – kaikki käsitellään automaattisesti ja integroidaan kirjanpitoon tai ERP:iin.</p>
+        <div class="svc-roi">Säästö: 80–120 h/kk · Arvo: 30 000–80 000 €/v</div>
+        <a class="tag" href="/fi/palvelut/#asiakirjat">Lue lisää →</a>
+      </div>
+
+      <div class="card svc-card">
+        <div class="small-label">Tuotanto</div>
+        <h3>Ennakoiva kunnossapito</h3>
+        <p class="muted">Tekoäly analysoi laitetietoja ja ilmoittaa mahdollisesta viasta ennen seisakkia. Yksi estetty seisokki maksaa palvelun moninkertaisesti.</p>
+        <div class="svc-roi">Säästö: 1–3 seisokkia/v · Arvo: 50 000–500 000 €</div>
+        <a class="tag" href="/fi/palvelut/#kunnossapito">Lue lisää →</a>
+      </div>
+
+      <div class="card svc-card">
+        <div class="small-label">Raportointi</div>
+        <h3>Automaattiset johdon raportit</h3>
+        <p class="muted">Talousluvut, myyntiraportti ja poikkeamahälytykset – automaattisesti joka aamu. Ei enää manuaalista taulukkolaskentaa.</p>
+        <div class="svc-roi">Säästö: 15–25 h/kk · Arvo: 20 000–40 000 €/v</div>
+        <a class="tag" href="/fi/palvelut/#raportointi">Lue lisää →</a>
+      </div>
+
+    </div>
+    <div class="cta-row" style="margin-top:16px;">
+      <a class="btn" href="/fi/palvelut/">Kaikki palvelut</a>
+    </div>
+  </section>
+
+  <!-- CASE STUDY -->
+  <section class="reveal callout console">
+    <div class="title">Case-esimerkki · Metalliteollisuus</div>
+    <div class="case-grid">
+      <div>
+        <div class="small-label">Ongelma</div>
+        <p>3 henkilöä käsitteli laskuja ja tilauskirjoja 30 tuntia viikossa. Virheitä sattui, tieto oli hajallaan.</p>
+      </div>
+      <div>
+        <div class="small-label">Ratkaisu</div>
+        <p>Automaattinen dokumenttien käsittely + integraatio kirjanpito-ohjelmistoon. Käyttöönotto 3 viikossa.</p>
+      </div>
+      <div>
+        <div class="small-label">Tulos</div>
+        <p class="result-highlight">Säästö 120 000 €/vuosi. Henkilöstö siirretty tuottavampaan työhön.</p>
+      </div>
+    </div>
+    <a class="btn" style="margin-top:16px;" href="/fi/tulokset/">Lue lisää tuloksia</a>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section class="reveal card-flat guarantee-section">
+    <h2>Takuu</h2>
+    <p class="lead">Jos emme pysty osoittamaan mitattavia tuloksia kahden ensimmäisen viikon pilotissa – peruuta ilman lisävelvoitteita.</p>
+    <p class="muted">Hinnoittelu perustuu arvoon: maksat kuukausittain säästöihin suhteutetun summan, ei tunteja.</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="reveal cta-section">
+    <h2>Aloitetaan kartoituksella</h2>
+    <p class="lead muted">20 minuutin maksuton puhelu. Käyn läpi yhden prosessinne ja lasken konkreettisen säästöpotentiaalin.</p>
+    <form class="lead-form card" id="fi-lead-form">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Nimesi" required>
+        <input type="text" name="company" placeholder="Yritys" required>
+      </div>
+      <input type="email" name="email" placeholder="Sähköpostiosoite" required>
+      <input type="tel" name="phone" placeholder="Puhelinnumero (valinnainen)">
+      <textarea name="message" rows="3" placeholder="Mikä prosessi kiinnostaa? (valinnainen)"></textarea>
+      <button class="btn" type="submit">Pyydän yhteydenottoa</button>
+      <p id="fi-form-msg" class="muted form-msg"></p>
+    </form>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="left">
+      <p class="muted">© 2026 Vincent Viitala</p>
+      <p class="muted">Tekoäly- ja data-palvelut suomalaisille yrityksille.</p>
+    </div>
+    <div class="right">
+      <a href="/en/" class="tag">English</a>
+      <a href="/es/" class="tag">Español</a>
+      <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="tag">GitHub</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <a href="/fi/ota-yhteytta/" class="tag">Ota yhteyttä</a>
+    </div>
+  </div>
 </footer>
 
 <script>
-// ── Scroll Reveal ──────────────────────────────────────────────
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-// ── Count-up ───────────────────────────────────────────────────
-function animateCount(el) {
-  const target = parseFloat(el.dataset.target);
-  const prefix = el.dataset.prefix || '';
-  const suffix = el.dataset.suffix || '';
-  const duration = 1400;
-  const step = 16;
-  const steps = duration / step;
-  let current = 0;
-  const increment = target / steps;
-  const timer = setInterval(() => {
-    current = Math.min(current + increment, target);
-    const display = target >= 1000
-      ? Math.round(current).toLocaleString('fi-FI')
-      : (Number.isInteger(target) ? Math.round(current) : current.toFixed(1));
-    el.textContent = prefix + display + suffix;
-    if (current >= target) clearInterval(timer);
-  }, step);
-}
-
-const countObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      animateCount(e.target);
-      countObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
-
-// ── Progress Bars ──────────────────────────────────────────────
-const barObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('.progress-animate').forEach(bar => {
-        bar.style.width = bar.dataset.width + '%';
-      });
-      barObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.3 });
-document.querySelectorAll('.bento-item').forEach(el => {
-  if (el.querySelector('.progress-animate')) barObserver.observe(el);
-});
-
-// ── Form submit ────────────────────────────────────────────────
-function handleSubmit(e) {
+document.getElementById('fi-lead-form')?.addEventListener('submit', async function(e){
   e.preventDefault();
-  document.getElementById('contact-form').classList.add('hidden');
-  document.getElementById('form-success').classList.remove('hidden');
-}
+  const msg = document.getElementById('fi-form-msg');
+  const data = Object.fromEntries(new FormData(this).entries());
+  data.lang = 'fi'; data.ts = Date.now(); data.path = location.pathname;
+  try {
+    if (window.LEADS_WEBHOOK_URL) {
+      await fetch(window.LEADS_WEBHOOK_URL, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data) });
+    }
+    msg.textContent = 'Kiitos! Otan yhteyttä 24 tunnin sisällä.';
+    this.reset();
+  } catch { msg.textContent = 'Jokin meni pieleen. Lähetä sähköpostia suoraan.'; }
+});
 </script>
 </body>
 </html>

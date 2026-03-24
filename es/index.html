@@ -1,313 +1,238 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es" data-theme="matrix">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soluciones de Automatización IA — Eficiencia Operativa</title>
-    <link rel="stylesheet" href="../assets/css/styles-dark.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vincent Viitala – Consultoría de IA y Ciencia de Datos</title>
+  <meta name="description" content="Automatizo procesos manuales y transformo datos en resultados reales. Sin cobro por horas — pagas en función del valor que genero para tu empresa." />
+  <meta name="theme-color" content="#050807" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="fi" href="/fi/" />
+  <link rel="alternate" hreflang="en" href="/en/" />
+  <link rel="alternate" hreflang="es" href="/es/" />
+  <link rel="alternate" hreflang="x-default" href="/en/" />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Vincent Viitala – IA y Ciencia de Datos para tu empresa">
+  <meta property="og:description" content="Automatizo procesos, genero ROI medible y cobro en función del valor que genero.">
+  <meta property="og:url" content="/es/">
+  <meta property="og:image" content="../assets/img/og-default.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/i18n.css">
+  <script defer src="../assets/js/config.js"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="#" class="logo">AI Automation Labs</a>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <span class="hook">Eficiencia Operativa</span>
-            <h1>Reduzca Costos Operativos Mediante Automatización Inteligente</h1>
-            <p>Sistemas de IA personalizados que optimizan el procesamiento de documentos, predicen necesidades de mantenimiento de equipos y optimizan la gestión de inventario. Construidos para empresas de manufactura y logística.</p>
-            <a href="#audit" class="cta-button">Solicite una Consulta Gratuita</a>
-        </div>
-    </section>
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="/es/"><span class="glyph">◇</span> Vincent Viitala</a>
+    <nav aria-label="Navegación principal" class="nav">
+      <a class="nav-link active" href="/es/" aria-current="page">Inicio</a>
+      <a class="nav-link" href="/es/servicios/">Servicios</a>
+      <a class="nav-link" href="/es/resultados/">Resultados</a>
+      <a class="nav-link" href="/es/contacto/">Contacto</a>
+    </nav>
+    <div class="lang-switcher">
+      <a href="/fi/" class="lang-btn" title="Suomi">FI</a>
+      <a href="/en/" class="lang-btn" title="English">EN</a>
+      <a href="/es/" class="lang-btn active" title="Español">ES</a>
+    </div>
+  </div>
+</header>
 
-    <section class="section">
-        <div class="container">
-            <h2>Automatización de Procesamiento de Documentos</h2>
-            <p class="section-intro">La entrada manual de datos desde facturas, órdenes de compra y documentos de envío consume tiempo significativo del personal e introduce errores costosos. Nuestra canalización de procesamiento de documentos automatiza la extracción y validación.</p>
-            
-            <h3>El Costo del Procesamiento Manual</h3>
-            <p>Las organizaciones que procesan altos volúmenes de documentos manualmente enfrentan desafíos predecibles: retrasos de procesamiento durante períodos pico, errores de entrada de datos que requieren retrabajo, y personal calificado gastando tiempo en tareas repetitivas.</p>
-            
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="metric">6+ hrs</div>
-                    <div class="label">Tiempo semanal de procesamiento</div>
-                </div>
-                <div class="problem-card">
-                    <div class="metric">2-5%</div>
-                    <div class="label">Tasa de error (manual)</div>
-                </div>
-                <div class="problem-card">
-                    <div class="metric">€45k</div>
-                    <div class="label">Costo laboral anual</div>
-                </div>
-            </div>
-            
-            <h3>Nuestro Enfoque</h3>
-            <p>Implementamos sistemas de procesamiento de documentos inteligentes que extraen datos con alta precisión e integran directamente con su ERP o software contable existente.</p>
-            
-            <div class="solution-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Ingesta de Documentos</h4>
-                        <p>Los documentos se reciben por correo, carga o API y se ponen en cola automáticamente para procesamiento</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Extracción de Datos</h4>
-                        <p>Los modelos de IA extraen campos relevantes con 99%+ de precisión, manejando varios formatos</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Validación e Integración</h4>
-                        <p>Los datos se validan contra reglas de negocio y se envían a sus sistemas automáticamente</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Manejo de Excepciones</h4>
-                        <p>Las extracciones de baja confianza se marcan para revisión humana, con retroalimentación de aprendizaje</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="highlight-box">
-                <h4>Comparación de Precisión</h4>
-                <div class="comparison">
-                    <div class="comparison-item before">
-                        <div class="label">OCR Tradicional</div>
-                        <div class="value">60-75%</div>
-                        <div class="desc">Requiere corrección manual significativa</div>
-                    </div>
-                    <div class="comparison-item after">
-                        <div class="label">Nuestra Canalización</div>
-                        <div class="value">99%+</div>
-                        <div class="desc">Precisión probada en producción</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<main class="container" role="main">
 
-    <section class="section section-alt">
-        <div class="container">
-            <h2>Mantenimiento Predictivo</h2>
-            <p class="section-intro">El tiempo de inactividad no planificado de equipos interrumpe los cronogramas de producción y crea órdenes urgentes costosas. El mantenimiento predictivo utiliza datos de sensores de equipos para identificar posibles fallas antes de que ocurran.</p>
-            
-            <h3>Limitaciones del Mantenimiento Programado</h3>
-            <p>Los cronogramas de mantenimiento fijos detectan algunos problemas pero pasan por alto muchos modos de falla que se desarrollan entre intervalos de servicio. La condición del equipo varía según patrones de uso, factores ambientales y calidad de componentes.</p>
-            
-            <div class="highlight-box">
-                <h4>Tasas de Detección de Fallas</h4>
-                <div class="stats-row">
-                    <div class="stat-box negative">
-                        <div class="number">~40%</div>
-                        <div class="label">Mantenimiento programado</div>
-                    </div>
-                    <div class="stat-box positive">
-                        <div class="number">85-90%</div>
-                        <div class="label">Con modelos predictivos</div>
-                    </div>
-                </div>
-                <p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">Basado en benchmarks publicados usando NASA CMAPSS y datasets industriales similares</p>
-            </div>
-            
-            <h3>Implementación</h3>
-            <p>Desplegamos sensores no invasivos en equipos críticos y construimos modelos de aprendizaje automático entrenados en los patrones específicos de su maquinaria.</p>
-            
-            <div class="solution-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Despliegue de Sensores</h4>
-                        <p>Sensores de vibración, temperatura y acústicos instalados en equipos críticos</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Aprendizaje de Línea Base</h4>
-                        <p>Los modelos aprenden patrones de operación normales para cada pieza de equipo</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Detección de Anomalías</h4>
-                        <p>Las desviaciones de la línea base activan alertas con clasificación de severidad</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Planificación de Mantenimiento</h4>
-                        <p>Las recomendaciones se integran con su sistema de programación de mantenimiento</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- HERO -->
+  <section class="hero-lean reveal">
+    <p class="small-label">IA & Ciencia de Datos · España y Latinoamérica</p>
+    <h1>Transformación Digital<br>Que Genera Resultados.</h1>
+    <p class="lead">
+      Implemento sistemas de inteligencia artificial que automatizan procesos manuales, 
+      reducen costos operativos y aceleran el crecimiento de tu empresa. 
+      Sin cobro por horas — pagas en función del valor que genero.
+    </p>
+    <div class="cta-row">
+      <a class="btn" href="/es/contacto/">Agenda una Consulta Gratuita</a>
+      <a class="btn btn-ghost" href="/es/resultados/">Ver Casos de Éxito</a>
+    </div>
 
-    <section class="section">
-        <div class="container">
-            <h2>Pronóstico de Demanda y Optimización de Inventario</h2>
-            <p class="section-intro">Los costos de mantenimiento de inventario y las pérdidas por agotamiento impactan directamente los márgenes. El pronóstico de demanda mejorado reduce tanto el exceso de inventario como las ventas perdidas por agotamiento.</p>
-            
-            <h3>Desafíos de Pronóstico</h3>
-            <p>Los métodos tradicionales de pronóstico a menudo dependen fuertemente de promedios históricos y ajustes manuales. Luchan con estacionalidad, efectos promocionales y factores externos del mercado.</p>
-            
-            <div class="highlight-box">
-                <h4>Reducción de Error de Pronóstico</h4>
-                <div class="comparison">
-                    <div class="comparison-item before">
-                        <div class="label">Métodos Tradicionales</div>
-                        <div class="value">25-35%</div>
-                        <div class="desc">Error porcentual absoluto medio</div>
-                    </div>
-                    <div class="comparison-item after">
-                        <div class="label">Pronóstico Basado en ML</div>
-                        <div class="value">10-15%</div>
-                        <div class="desc">Con integración de factores externos</div>
-                    </div>
-                </div>
-            </div>
-            
-            <h3>Nuestra Solución</h3>
-            <p>Construimos modelos de pronóstico que incorporan múltiples fuentes de datos y aprenden patrones complejos de demanda específicos de su negocio.</p>
-            
-            <div class="solution-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Integración de Datos</h4>
-                        <p>Ventas históricas, estacionalidad, promociones y señales externas combinadas</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Entrenamiento de Modelo</h4>
-                        <p>Modelos de series temporales entrenados en sus categorías de productos específicas</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Optimización de Inventario</h4>
-                        <p>Puntos de reorden y cantidades calculados para minimizar costo total</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Mejora Continua</h4>
-                        <p>Los modelos se reentrenan a medida que llegan nuevos datos, adaptándose a patrones cambiantes</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="big-number">
-                <div class="value">15-25%</div>
-                <div class="label">Reducción típica de costos de inventario</div>
-            </div>
-        </div>
-    </section>
+    <div class="trust-bar">
+      <div class="trust-item">
+        <span class="trust-icon">🎓</span>
+        <span>BSc en Ciencia de Datos e IA — Universidad de Maastricht</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">🚀</span>
+        <span>Ex-fundador: empresa fintech de 7 personas con exit exitoso</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">🤝</span>
+        <span>Relación de largo plazo — no proyectos únicos</span>
+      </div>
+    </div>
+  </section>
 
-    <section class="guarantee">
-        <div class="container">
-            <h2>Nuestro Compromiso</h2>
-            <p>Respaldamos nuestro trabajo. Si nuestro sistema no entrega ahorros de costos medibles dentro del plazo acordado, ofrecemos:</p>
-            <ul class="guarantee-list">
-                <li><span class="check">→</span> Reembolso completo de tarifas de implementación</li>
-                <li><span class="check">→</span> Cancelación sin preguntas</li>
-                <li><span class="check">→</span> Retención de todo el trabajo completado</li>
-            </ul>
-        </div>
-    </section>
+  <!-- SERVICES -->
+  <section class="reveal">
+    <h2>¿Qué Construyo?</h2>
+    <p class="lead muted">Soluciones de alto impacto para empresas que quieren modernizar sus operaciones con IA accesible y de alto ROI.</p>
+    <div class="grid cols-3">
 
-    <section class="tech-section">
-        <div class="container">
-            <details>
-                <summary>Especificaciones Técnicas</summary>
-                <div class="tech-content">
-                    <h4>Pila de Tecnología</h4>
-                    <ul>
-                        <li>Python / TensorFlow / PyTorch</li>
-                        <li>LangChain para integración LLM</li>
-                        <li>PaddleOCR para procesamiento de documentos</li>
-                        <li>Prophet / ARIMA para pronóstico</li>
-                        <li>n8n / Make para automatización de flujos</li>
-                    </ul>
-                </div>
-                <div class="tech-content" style="margin-top: 16px;">
-                    <h4>Seguridad y Cumplimiento</h4>
-                    <ul>
-                        <li>Encriptación de extremo a extremo</li>
-                        <li>Cumplimiento GDPR</li>
-                        <li>Infraestructura certificada SOC 2 Tipo II</li>
-                        <li>SLA de disponibilidad 99.9%</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
-    </section>
+      <div class="card svc-card">
+        <div class="small-label">Operaciones</div>
+        <h3>Automatización de Documentos</h3>
+        <p class="muted">Facturas, órdenes de compra, albaranes — todo procesado automáticamente e integrado con tu ERP o sistema contable.</p>
+        <div class="svc-roi">Elimina 2–3 puestos manuales · Ahorro: €80K–€120K/año</div>
+        <a class="tag" href="/es/servicios/#documentos">Más información →</a>
+      </div>
 
-    <section class="lead-form" id="audit">
-        <div class="container">
-            <h2>Solicite una Consulta</h2>
-            <p>Analizaremos sus operaciones actuales e identificaremos oportunidades de automatización específicas para su negocio.</p>
-            
-            <div class="form-container">
-                <form onsubmit="submitLead(event)">
-                    <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" id="name" name="name" placeholder="Su nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Correo de Empresa</label>
-                        <input type="email" id="email" name="email" placeholder="usted@empresa.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Empresa</label>
-                        <input type="text" id="company" name="company" placeholder="Su empresa">
-                    </div>
-                    <button type="submit" class="submit-btn">Programar Consulta</button>
-                </form>
-            </div>
-        </div>
-    </section>
+      <div class="card svc-card">
+        <div class="small-label">Manufactura</div>
+        <h3>Mantenimiento Predictivo con IA</h3>
+        <p class="muted">Detecta fallos de equipos antes de que ocurran. Modelos de ML entrenados con tus datos de sensores, alertas automáticas y dashboard en lenguaje sencillo.</p>
+        <div class="svc-roi">1 parada evitada = 2 años del servicio pagado</div>
+        <a class="tag" href="/es/servicios/#predictivo">Más información →</a>
+      </div>
 
-    <footer>
-        <div class="container">
-            <p>© 2024 AI Automation Labs. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+      <div class="card svc-card">
+        <div class="small-label">Análisis</div>
+        <h3>Reportes Automáticos y Detección de Anomalías</h3>
+        <p class="muted">Dashboards ejecutivos, resúmenes financieros y alertas en tiempo real — generados automáticamente antes de las 8 AM.</p>
+        <div class="svc-roi">Ahorra 15–25 h/mes · ROI desde el mes 1</div>
+        <a class="tag" href="/es/servicios/#reportes">Más información →</a>
+      </div>
 
-    <script>
-        function submitLead(event) {
-            event.preventDefault();
-            const form = event.target;
-            const name = form.name.value;
-            
-            form.innerHTML = `
-                <div style="text-align: center; padding: 40px 20px;">
-                    <div style="font-size: 48px; margin-bottom: 16px;">✓</div>
-                    <h3 style="font-size: 20px; margin-bottom: 12px; color: var(--text-primary);">Gracias, ${name}</h3>
-                    <p style="font-size: 15px; color: var(--text-secondary);">Nos pondremos en contacto dentro de 24 horas para programar su consulta.</p>
-                </div>
-            `;
-        }
-    </script>
+      <div class="card svc-card">
+        <div class="small-label">Inventario</div>
+        <h3>Pronóstico de Demanda</h3>
+        <p class="muted">Modelos de series temporales para proyectar la demanda, automatizar reórdenes y optimizar el nivel de inventario. Libera capital inmovilizado.</p>
+        <div class="svc-roi">Reduce inventario 15% → libera €150K de capital</div>
+        <a class="tag" href="/es/servicios/#pronostico">Más información →</a>
+      </div>
+
+      <div class="card svc-card">
+        <div class="small-label">Ventas</div>
+        <h3>Calificación de Leads con IA</h3>
+        <p class="muted">Chatbot multilingüe entrenado con tu catálogo. Califica prospectos 24/7, los enruta al vendedor correcto y redacta respuestas iniciales automáticamente.</p>
+        <div class="svc-roi">10–30 leads calificados/mes del tráfico existente</div>
+        <a class="tag" href="/es/servicios/#leads">Más información →</a>
+      </div>
+
+    </div>
+    <div class="cta-row" style="margin-top:16px;">
+      <a class="btn" href="/es/servicios/">Ver todos los servicios</a>
+    </div>
+  </section>
+
+  <!-- CASE STUDY -->
+  <section class="reveal callout console">
+    <div class="title">Caso de Éxito · Empresa Manufacturera</div>
+    <div class="case-grid">
+      <div>
+        <div class="small-label">Problema</div>
+        <p>90 horas semanales dedicadas a procesar manualmente facturas y órdenes de compra. Errores frecuentes, reportes con 3 días de retraso.</p>
+      </div>
+      <div>
+        <div class="small-label">Solución</div>
+        <p>Automatización completa del procesamiento documental con extracción de datos impulsada por IA. Integración directa con ERP existente. Implementado en 3 semanas.</p>
+      </div>
+      <div>
+        <div class="small-label">Resultado</div>
+        <p class="result-highlight">Ahorro anual de €120,000. Personal reasignado a tareas de mayor valor. Cero procesamiento manual.</p>
+      </div>
+    </div>
+    <a class="btn" style="margin-top:16px;" href="/es/resultados/">Ver más casos de éxito</a>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="reveal card-flat">
+    <h2>¿Cómo Funciona?</h2>
+    <div class="grid cols-3">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Diagnóstico Gratuito</h3>
+        <p class="muted">30 minutos de llamada. Identifico tu mayor oportunidad de automatización y calculo el potencial de ahorro real.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Piloto en 2 Semanas</h3>
+        <p class="muted">Construimos un prototipo funcional con tus datos reales. Ves resultados antes de comprometerte con nada.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Retainer Mensual</h3>
+        <p class="muted">Tarifa basada en valor, proporcional al ahorro generado. Incluye monitoreo, mejora continua y soporte.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section class="reveal card-flat guarantee-section">
+    <h2>Nuestra Garantía</h2>
+    <p class="lead">Si al final de la segunda semana del piloto no puedo demostrar avances medibles en el KPI acordado — cancela sin ninguna obligación adicional ni factura.</p>
+    <p class="muted">Tengo la confianza suficiente en los resultados como para asumir el riesgo. Tú no deberías tenerlo.</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="reveal cta-section">
+    <h2>Comencemos con un Diagnóstico Gratuito</h2>
+    <p class="lead muted">Cuéntame sobre un proceso. Te diré exactamente cuánto podrías ahorrar y si vale la pena automatizarlo.</p>
+    <form class="lead-form card" id="es-lead-form">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Tu nombre" required>
+        <input type="text" name="company" placeholder="Empresa" required>
+      </div>
+      <input type="email" name="email" placeholder="Correo corporativo" required>
+      <select name="service">
+        <option value="">¿Qué servicio te interesa?</option>
+        <option>Automatización de Documentos</option>
+        <option>Mantenimiento Predictivo con IA</option>
+        <option>Reportes Automáticos</option>
+        <option>Pronóstico de Demanda</option>
+        <option>Calificación de Leads con IA</option>
+        <option>No estoy seguro/a — me gustaría orientación</option>
+      </select>
+      <textarea name="message" rows="3" placeholder="Describe brevemente el proceso que quieres automatizar (opcional)"></textarea>
+      <button class="btn" type="submit">Agendar Consulta Gratuita</button>
+      <p id="es-form-msg" class="muted form-msg"></p>
+    </form>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="left">
+      <p class="muted">© 2026 Vincent Viitala</p>
+      <p class="muted">Consultoría de IA y Ciencia de Datos. España y Latinoamérica.</p>
+    </div>
+    <div class="right">
+      <a href="/fi/" class="tag">Suomeksi</a>
+      <a href="/en/" class="tag">English</a>
+      <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="tag">GitHub</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <a href="/es/contacto/" class="tag">Contacto</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('es-lead-form')?.addEventListener('submit', async function(e){
+  e.preventDefault();
+  const msg = document.getElementById('es-form-msg');
+  const data = Object.fromEntries(new FormData(this).entries());
+  data.lang = 'es'; data.ts = Date.now(); data.path = location.pathname;
+  try {
+    if (window.LEADS_WEBHOOK_URL) {
+      await fetch(window.LEADS_WEBHOOK_URL, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data) });
+    }
+    msg.textContent = '¡Gracias! Me pondré en contacto en menos de 24 horas.';
+    this.reset();
+  } catch { msg.textContent = 'Algo salió mal. Por favor, envíame un correo directamente.'; }
+});
+</script>
 </body>
 </html>
