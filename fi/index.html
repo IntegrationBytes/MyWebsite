@@ -107,35 +107,140 @@
             line-height: 1.8;
         }
         
-        /* Story box */
-        .story-box {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 24px;
+        /* Visual Story Cards - Animation Ready */
+        .story-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 16px;
+            padding: 32px;
             margin: 32px 0;
-            border-radius: 0 8px 8px 0;
+            position: relative;
+            overflow: hidden;
         }
-        .story-box h4 {
+        .story-card::before {
+            content: "👤";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 48px;
+            opacity: 0.3;
+        }
+        .story-card.sarah::before { content: "👩‍💼"; }
+        .story-card.klaus::before { content: "👨‍🏭"; }
+        .story-card.david::before { content: "📦"; }
+        .story-card h4 {
             color: #92400e;
-            font-size: 14px;
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .story-card h4::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: #f59e0b;
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .story-card .character {
+            font-size: 20px;
+            font-weight: 700;
+            color: #78350f;
             margin-bottom: 12px;
         }
+        .story-card p {
+            font-size: 16px;
+            color: #78350f;
+            margin: 0;
+            line-height: 1.7;
+        }
         
-        /* Proof box */
-        .proof-box {
-            background: #ecfdf5;
-            border: 2px solid #10b981;
-            padding: 28px;
+        /* Problem Visualization */
+        .problem-viz {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
             margin: 32px 0;
-            border-radius: 8px;
+        }
+        .problem-item {
+            background: #fee2e2;
+            border: 2px solid #fecaca;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+        .problem-item .icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        .problem-item .number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #dc2626;
+            display: block;
+        }
+        .problem-item .label {
+            font-size: 14px;
+            color: #991b1b;
+        }
+        
+        /* Solution Steps - Animation Ready */
+        .solution-steps {
+            margin: 32px 0;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: #f0fdf4;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border-left: 4px solid #22c55e;
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #16a34a;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-content h4 {
+            font-size: 16px;
+            color: #166534;
+            margin-bottom: 4px;
+        }
+        .step-content p {
+            font-size: 15px;
+            color: #15803d;
+            margin: 0;
+        }
+        
+        /* Proof Box */
+        .proof-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 2px solid #10b981;
+            padding: 32px;
+            margin: 32px 0;
+            border-radius: 16px;
         }
         .proof-box h4 {
             color: #065f46;
             font-size: 16px;
             font-weight: 700;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -144,53 +249,179 @@
             content: "✓";
             background: #10b981;
             color: #fff;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 16px;
+        }
+        
+        /* Comparison Cards */
+        .comparison-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 24px 0;
+        }
+        .comparison-card {
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .comparison-card.old {
+            background: #fee2e2;
+            border: 2px solid #fecaca;
+        }
+        .comparison-card.new {
+            background: #d1fae5;
+            border: 2px solid #86efac;
+        }
+        .comparison-card .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .comparison-card.old .label { color: #991b1b; }
+        .comparison-card.new .label { color: #065f46; }
+        .comparison-card .value {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .comparison-card.old .value { color: #dc2626; }
+        .comparison-card.new .value { color: #16a34a; }
+        .comparison-card .desc {
             font-size: 14px;
         }
+        .comparison-card.old .desc { color: #7f1d1d; }
+        .comparison-card.new .desc { color: #065f46; }
         
-        /* Comparison table */
-        .comparison {
-            width: 100%;
-            margin: 24px 0;
-            border-collapse: collapse;
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin: 32px 0;
         }
-        .comparison th, .comparison td {
-            padding: 16px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        .stat-card {
+            text-align: center;
+            padding: 32px;
+            border-radius: 16px;
         }
-        .comparison th {
-            background: #f3f4f6;
-            font-weight: 600;
-            color: #374151;
-        }
-        .comparison .winner {
-            background: #d1fae5;
-            font-weight: 600;
-            color: #065f46;
-        }
-        .comparison .loser {
+        .stat-card.negative {
             background: #fee2e2;
-            color: #991b1b;
         }
-        
-        /* Stats highlight */
-        .stat-highlight {
+        .stat-card.positive {
+            background: #d1fae5;
+        }
+        .stat-card .icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+        .stat-card .number {
             font-size: 48px;
             font-weight: 800;
-            color: #16a34a;
             display: block;
-            margin: 8px 0;
+            margin-bottom: 8px;
+        }
+        .stat-card.negative .number { color: #dc2626; }
+        .stat-card.positive .number { color: #16a34a; }
+        .stat-card .label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .stat-card.negative .label { color: #991b1b; }
+        .stat-card.positive .label { color: #065f46; }
+        .stat-card .sublabel {
+            font-size: 13px;
+            margin-top: 4px;
+        }
+        .stat-card.negative .sublabel { color: #7f1d1d; }
+        .stat-card.positive .sublabel { color: #065f46; }
+        
+        /* Money Counter Animation Ready */
+        .money-counter {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 32px 0;
+        }
+        .money-counter .label {
+            color: #94a3b8;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        .money-counter .amount {
+            font-size: 56px;
+            font-weight: 800;
+            color: #fbbf24;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+        }
+        .money-counter .sublabel {
+            color: #64748b;
+            font-size: 16px;
+            margin-top: 12px;
+        }
+        
+        /* Savings Bar */
+        .savings-bar {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .savings-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .savings-row:last-child {
+            border-bottom: none;
+        }
+        .savings-row .label {
+            font-size: 16px;
+            color: #6b7280;
+        }
+        .savings-row .value {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .savings-row.bad .value { color: #dc2626; }
+        .savings-row.good .value { color: #16a34a; }
+        
+        /* Big Result */
+        .big-result {
+            text-align: center;
+            padding: 32px;
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 16px;
+            margin: 24px 0;
+        }
+        .big-result .text {
+            font-size: 18px;
+            color: #374151;
+            margin-bottom: 16px;
+        }
+        .big-result .number {
+            font-size: 64px;
+            font-weight: 800;
+            color: #16a34a;
+            text-shadow: 0 0 40px rgba(22, 163, 74, 0.2);
         }
         
         /* Guarantee section */
         .guarantee {
-            background: #1e293b;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: #fff;
             padding: 80px 0;
             text-align: center;
@@ -202,19 +433,44 @@
         }
         .guarantee-badge {
             display: inline-block;
-            background: #fbbf24;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
             color: #1e293b;
             padding: 16px 32px;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             border-radius: 8px;
             margin-bottom: 32px;
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3);
         }
         .guarantee p {
             font-size: 20px;
             max-width: 700px;
             margin: 0 auto 20px;
             color: #cbd5e1;
+        }
+        .guarantee-list {
+            list-style: none;
+            font-size: 20px;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .guarantee-list li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .guarantee-list .check {
+            width: 28px;
+            height: 28px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
         }
         
         /* Nerd appendix */
@@ -225,8 +481,8 @@
         details {
             background: #fff;
             border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 24px;
         }
         summary {
             font-size: 18px;
@@ -234,24 +490,29 @@
             color: #475569;
             cursor: pointer;
             list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         summary::-webkit-details-marker { display: none; }
         summary::after {
             content: "+";
-            float: right;
+            margin-left: auto;
             font-size: 24px;
             color: #64748b;
         }
         details[open] summary::after { content: "−"; }
         .tech-stack {
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 24px;
+            padding-top: 24px;
             border-top: 1px solid #e2e8f0;
         }
         .tech-stack h4 {
-            font-size: 16px;
-            margin-bottom: 12px;
-            color: #334155;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: #64748b;
         }
         .tech-stack ul {
             list-style: none;
@@ -261,10 +522,11 @@
         }
         .tech-stack li {
             background: #f1f5f9;
-            padding: 8px 16px;
+            padding: 10px 18px;
             border-radius: 20px;
             font-size: 14px;
             color: #475569;
+            font-weight: 500;
         }
         
         /* Lead form */
@@ -289,20 +551,20 @@
             margin: 0 auto;
             background: #fff;
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
         }
         .form-group {
             margin-bottom: 24px;
         }
         .form-group label {
             display: block;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
             color: #374151;
             margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
         .form-group input {
             width: 100%;
@@ -318,7 +580,7 @@
         }
         .submit-btn {
             width: 100%;
-            background: #16a34a;
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
             color: #fff;
             padding: 20px;
             font-size: 18px;
@@ -327,10 +589,11 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4);
         }
         .submit-btn:hover {
-            background: #15803d;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(22, 163, 74, 0.5);
         }
         
         /* Footer */
@@ -351,6 +614,24 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 640px) {
+            .problem-viz,
+            .comparison-cards,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .money-counter .amount {
+                font-size: 36px;
+            }
+            .big-result .number {
+                font-size: 42px;
+            }
         }
     </style>
 </head>
@@ -374,12 +655,33 @@
         <div class="container">
             <h2>Syvä Sukellus 1: Käsidokumenttien Käsittelyn Piilokustannukset</h2>
             
-            <div class="story-box">
+            <!-- Character Story Card -->
+            <div class="story-card sarah fade-in">
                 <h4>Tosi Tarina</h4>
-                <p style="font-size: 16px; margin: 0;"><strong>Tutustu Saraan.</strong> Hän on toimistopäällikkö keskisuuressa valmistusyrityksessä. Joka maanantai hän istuu 200+ toimittajalaskun pinon ääreen. Seuraavat 6 tuntia hän syöttää jokaisen rivin käsin ERP-järjestelmään. Kello 15 hänen silmänsä kirvelevät. Hän lukee väärin "5 000 €" "8 000 €:ksi" eikä huomaa virhettä. Tämä yksi kirjoitusvirhe maksaa yritykselle 3 000 € ylimaksuna. Ja tämä tapahtuu joka ikinen viikko.</p>
+                <div class="character">Tapaa Sara</div>
+                <p>Hän on toimistopäällikkö keskisuuressa valmistusyrityksessä. Joka maanantai hän istuu 200+ toimittajalaskun pinon ääreen. Seuraavat 6 tuntia hän syöttää jokaisen rivin käsin ERP-järjestelmään. Kello 15 hänen silmänsä kirvelevät. Hän lukee väärin "5 000 €" "8 000 €:ksi" eikä huomaa virhettä. Tämä yksi kirjoitusvirhe maksaa yritykselle 3 000 € ylimaksuna. Ja tämä tapahtuu joka ikinen viikko.</p>
             </div>
             
             <p>Sara ei ole laiska. Hän ei ole huolimaton. Hän on <em>ihminen</em>. Ja ihmiset tekevät virheitä, kun he tekevät toistuvaa, sielua raastavaa työtä tuntikausia.</p>
+            
+            <!-- Problem Visualization -->
+            <div class="problem-viz fade-in">
+                <div class="problem-item">
+                    <div class="icon">⏱️</div>
+                    <span class="number">6 h</span>
+                    <span class="label">Joka maanantai</span>
+                </div>
+                <div class="problem-item">
+                    <div class="icon">💶</div>
+                    <span class="number">45 000 €</span>
+                    <span class="label">Vuosipalkka</span>
+                </div>
+                <div class="problem-item">
+                    <div class="icon">❌</div>
+                    <span class="number">3 000 €</span>
+                    <span class="label">Per virhe</span>
+                </div>
+            </div>
             
             <p>Pahinta? Saran yritys maksaa hänelle 45 000 € vuodessa olla ihmisnäppäimistö. Se on 22 € tunnilta kopioida ja liittää dataa, jonka kone voisi käsitellä sekunneissa.</p>
             
@@ -387,33 +689,56 @@
             
             <p>Tässä tapahtuu, kun otamme käyttöön räätälöidyn dataputken:</p>
             
-            <ul style="margin: 20px 0; padding-left: 24px; font-size: 18px; color: #444; line-height: 2;">
-                <li>Laskut skannataan ja käsitellään automaattisesti — ei ihmisen kirjoittamista</li>
-                <li>Data poimitaan 99,9 % tarkkuudella ja syötetään suoraan ERP:hen</li>
-                <li>Sara vapautuu tekemään oikeaa johtamistyötä: neuvottelee toimittajien kanssa, optimoi prosesseja, kouluttaa henkilöstöä</li>
-                <li>Virheet laskevat lähes nollaan. Käsittelyaika laskee 6 tunnista 6 minuuttiin.</li>
-            </ul>
+            <!-- Solution Steps -->
+            <div class="solution-steps fade-in">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>📄 Automaattinen Skannaus</h4>
+                        <p>Laskut skannataan ja käsitellään automaattisesti — ei ihmisen kirjoittamista</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>🎯 99,9 % Tarkkuus</h4>
+                        <p>Data poimitaan 99,9 % tarkkuudella ja syötetään suoraan ERP:hen</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>🚀 Sara Ylennetään</h4>
+                        <p>Sara vapautuu tekemään oikeaa johtamistyötä: neuvottelee toimittajien kanssa, optimoi prosesseja, kouluttaa henkilöstöä</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>⚡ 6 Tuntia → 6 Minuuttia</h4>
+                        <p>Virheet laskevat lähes nollaan. Käsittelyaika laskee 6 tunnista 6 minuuttiin.</p>
+                    </div>
+                </div>
+            </div>
             
-            <div class="proof-box">
+            <div class="proof-box fade-in">
                 <h4>Kova Todiste</h4>
-                <table class="comparison">
-                    <tr>
-                        <th>Teknologia</th>
-                        <th>Tarkkuus</th>
-                        <th>Todellinen Kustannus</th>
-                    </tr>
-                    <tr class="loser">
-                        <td>Perinteinen OCR (EasyOCR)</td>
-                        <td>62,5 %</td>
-                        <td>Lukee '$' numeroksi '8', maksaa sinulle jokaisesta virheestä</td>
-                    </tr>
-                    <tr class="winner">
-                        <td><strong>Meidän PaddleOCR + LLM -putki</strong></td>
-                        <td><strong>99,9 %</strong></td>
-                        <td><strong>Lähes nolla virheitä, välitön käsittely</strong></td>
-                    </tr>
-                </table>
-                <p style="margin: 16px 0 0; font-size: 16px; color: #065f46;"><strong>Tulos:</strong> Kahden miljoonan euron vuotuisella laskumäärällä järjestelmämme eliminoi noin 12 000 € virhekustannukset — laskematta 300+ säästettyä henkilöstötuntia.</p>
+                
+                <!-- Comparison Cards -->
+                <div class="comparison-cards">
+                    <div class="comparison-card old">
+                        <div class="label">Perinteinen OCR (EasyOCR)</div>
+                        <div class="value">62,5 %</div>
+                        <div class="desc">Lukee '$' numeroksi '8', maksaa sinulle jokaisesta virheestä</div>
+                    </div>
+                    <div class="comparison-card new">
+                        <div class="label">Meidän PaddleOCR + LLM</div>
+                        <div class="value">99,9 %</div>
+                        <div class="desc">Lähes nolla virheitä, välitön käsittely</div>
+                    </div>
+                </div>
+                
+                <p style="margin: 20px 0 0; font-size: 16px; color: #065f46;"><strong>Tulos:</strong> Kahden miljoonan euron vuotuisella laskumäärällä järjestelmämme eliminoi noin 12 000 € virhekustannukset — laskematta 300+ säästettyä henkilöstötuntia.</p>
             </div>
         </div>
     </section>
@@ -422,12 +747,21 @@
         <div class="container">
             <h2>Syvä Sukellus 2: 202 000 € Konevika, Joka Olisi Voitu Estää</h2>
             
-            <div class="story-box">
+            <!-- Character Story Card -->
+            <div class="story-card klaus fade-in">
                 <h4>Tosi Tarina</h4>
-                <p style="font-size: 16px; margin: 0;"><strong>Tutustu Klausin.</strong> Hän omistaa tarkkuusvalmistuslaitoksen Saksassa. Hän on ylpeä "ennaltaehkäisevästä huolto-ohjelmastaan." Jokainen kone huolletaan tiukan aikataulun mukaan. Mutta viime maaliskuussa kriittisen hydrauliprässin hihna katkesi tuotannon keskellä — huolimatta siitä, että se oli "huollettu" vain 3 viikkoa aiemmin. Seisokki maksoi 47 000 €. Kiiretilaukset, joita he eivät voineet täyttää, maksoivat 155 000 € menetettyinä sopimuksina. Kokonaisvaurio: 202 000 €.</p>
+                <div class="character">Tapaa Klaus</div>
+                <p>Hän omistaa tarkkuusvalmistuslaitoksen Saksassa. Hän on ylpeä "ennaltaehkäisevästä huolto-ohjelmastaan." Jokainen kone huolletaan tiukan aikataulun mukaan. Mutta viime maaliskuussa kriittisen hydrauliprässin hihna katkesi tuotannon keskellä — huolimatta siitä, että se oli "huollettu" vain 3 viikkoa aiemmin. Seisokki maksoi 47 000 €. Kiiretilaukset, joita he eivät voineet täyttää, maksoivat 155 000 € menetettyinä sopimuksina. Kokonaisvaurio: 202 000 €.</p>
             </div>
             
             <p>Klaus teki kaiken "oikein" vanhan pelikirjan mukaan. Aikataulutettu huolto. Tarkistuslistat. Vaatimustenmukaisuus. Mutta tämä hän ei tiennyt:</p>
+            
+            <!-- Money Counter -->
+            <div class="money-counter fade-in">
+                <div class="label">Kokonaisvaurio</div>
+                <div class="amount">202 000 €</div>
+                <div class="sublabel">Yksi estettävissä oleva vika</div>
+            </div>
             
             <p><strong>Aikataulutettu huolto ottaa kiinni vain 40 % katastrofaalisista vioista.</strong></p>
             
@@ -437,31 +771,59 @@
             
             <p>Asennamme IoT-anturit kriittiseen kalustoon. Nämä anturit syöttävät reaaliaikaista dataa koneoppimismalleihin, jotka on koulutettu miljoonilla vikakaavoilla. Tulos?</p>
             
-            <ul style="margin: 20px 0; padding-left: 24px; font-size: 18px; color: #444; line-height: 2;">
-                <li>AI havaitsee poikkeamat viikkoja ennen vian ilmenemistä</li>
-                <li>Saat hälytyksiä tarkoilla suosituksilla: "Vaihda laakeri #3 14 päivän kuluessa"</li>
-                <li>Huolto tapahtuu, kun sitä todella tarvitaan — ei kun kalenteri sanoo niin</li>
-                <li>Aikataulutat korjaukset suunnitelluille seisokeille, ei hätäseisokeille</li>
-            </ul>
-            
-            <div class="proof-box">
-                <h4>Kova Todiste — NASA CMAPSS -Aineistobenchmark</h4>
-                <p style="font-size: 18px; margin-bottom: 20px;">Testasimme mallejamme kultastandardia NASA CMAPSS -aineistoa vastaan — sama benchmark, jota Boeing, Airbus ja suuret teollisuusvalmistajat käyttävät.</p>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0;">
-                    <div style="text-align: center; padding: 24px; background: #fee2e2; border-radius: 8px;">
-                        <span style="font-size: 14px; color: #991b1b; text-transform: uppercase; font-weight: 600;">Aikataulutettu Huolto</span>
-                        <span class="stat-highlight" style="color: #dc2626;">40 %</span>
-                        <p style="font-size: 14px; color: #7f1d1d; margin: 0;">katastrofaalisista vioista kiinni</p>
+            <!-- Solution Steps -->
+            <div class="solution-steps fade-in">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>📡 IoT-Anturit</h4>
+                        <p>Värähtelyn, lämpötilan ja akustisten signaalien reaaliaikainen valvonta</p>
                     </div>
-                    <div style="text-align: center; padding: 24px; background: #d1fae5; border-radius: 8px;">
-                        <span style="font-size: 14px; color: #065f46; text-transform: uppercase; font-weight: 600;">Meidän AI-Mallit</span>
-                        <span class="stat-highlight">89 %</span>
-                        <p style="font-size: 14px; color: #065f46; margin: 0;">katastrofaalisista vioista ennustettu</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>🔮 AI-Havainnointi</h4>
+                        <p>AI havaitsee poikkeamat viikkoja ennen vian ilmenemistä</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>📋 Älykkäät Hälytykset</h4>
+                        <p>Saat hälytyksiä tarkoilla suosituksilla: "Vaihda laakeri #3 14 päivän kuluessa"</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>📅 Suunnitellut Korjaukset</h4>
+                        <p>Aikataulutat korjaukset suunnitelluille seisokeille, ei hätäseisokeille</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="proof-box fade-in">
+                <h4>Kova Todiste — NASA CMAPSS -Aineistobenchmark</h4>
+                <p style="font-size: 17px; margin-bottom: 24px;">Testasimme mallejamme kultastandardia NASA CMAPSS -aineistoa vastaan — sama benchmark, jota Boeing, Airbus ja suuret teollisuusvalmistajat käyttävät.</p>
+                
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card negative">
+                        <div class="icon">📅</div>
+                        <span class="number">40 %</span>
+                        <span class="label">Aikataulutettu Huolto</span>
+                        <span class="sublabel">katastrofaalisista vioista kiinni</span>
+                    </div>
+                    <div class="stat-card positive">
+                        <div class="icon">🤖</div>
+                        <span class="number">89 %</span>
+                        <span class="label">Meidän AI-Mallit</span>
+                        <span class="sublabel">katastrofaalisista vioista ennustettu</span>
                     </div>
                 </div>
                 
-                <p style="margin: 16px 0 0; font-size: 16px; color: #065f46;"><strong>Tulos:</strong> Laitoksella, jossa on 5 miljoonan euron kalusto, yhden suuren vian estäminen maksaa koko AI-järjestelmän 3 vuodeksi.</p>
+                <p style="margin: 20px 0 0; font-size: 16px; color: #065f46;"><strong>Tulos:</strong> Laitoksella, jossa on 5 miljoonan euron kalusto, yhden suuren vian estäminen maksaa koko AI-järjestelmän 3 vuodeksi.</p>
             </div>
         </div>
     </section>
@@ -470,9 +832,11 @@
         <div class="container">
             <h2>Syvä Sukellus 3: 500 000 € Varastoloukku</h2>
             
-            <div class="story-box">
+            <!-- Character Story Card -->
+            <div class="story-card david fade-in">
                 <h4>Tosi Tarina</h4>
-                <p style="font-size: 16px; margin: 0;"><strong>Tutustu Davidiin.</strong> Hän on logistiikkajohtaja eurooppalaisessa elektroniikkajakelijassa. Juuri nyt hänen varastossaan on 500 000 € arvosta tuotteita, jotka eivät ole liikkuneet 6 kuukauteen. Kuollut varasto. Sidottu pääoma. Samaan aikaan hänen myydyin tuotteensa — se 40 % katteella oleva — on ollut loppu 3 viikkoa. Hän menettää 8 000 € päivässä menetettyinä myyntinä. Ja jokainen ennuste, jonka hän ajaa, vaikuttaa olevan väärä.</p>
+                <div class="character">Tapaa David</div>
+                <p>Hän on logistiikkajohtaja eurooppalaisessa elektroniikkajakelijassa. Juuri nyt hänen varastossaan on 500 000 € arvosta tuotteita, jotka eivät ole liikkuneet 6 kuukauteen. Kuollut varasto. Sidottu pääoma. Samaan aikaan hänen myydyin tuotteensa — se 40 % katteella oleva — on ollut loppu 3 viikkoa. Hän menettää 8 000 € päivässä menetettyinä myyntinä. Ja jokainen ennuste, jonka hän ajaa, vaikuttaa olevan väärä.</p>
             </div>
             
             <p>David ei ole tyhmä. Hän käyttää samoja ennustemenetelmiä kuin kaikki muutkin: katsoo viime vuoden myyntiä, lisää "vaistomuutoksen" ja toivoo parasta.</p>
@@ -483,36 +847,62 @@
             
             <p>Aikasarjaennustusalgoritmimme analysoivat:</p>
             
-            <ul style="margin: 20px 0; padding-left: 24px; font-size: 18px; color: #444; line-height: 2;">
-                <li>Historiallisia myyntikaavoja (ei vain viime vuosi — joka vuosi)</li>
-                <li>Kausiluonteisia trendejä ja syklisiä kysyntäpiikkejä</li>
-                <li>Ulkoisia tekijöitä: sää, juhlapyhät, talousindikaattorit</li>
-                <li>Toimittajien toimitusaikoja ja luotettavuuspisteitä</li>
-                <li>Reaaliaikaisia varastotasoja kaikilla SKU:illa</li>
-            </ul>
-            
-            <div class="proof-box">
-                <h4>Kova Todiste</h4>
-                <p style="font-size: 18px; margin-bottom: 20px;">Tässä tapahtuu, kun korvaat ihmisennusteet AI:lla:</p>
-                
-                <div style="background: #fff; padding: 24px; border-radius: 8px; margin: 20px 0;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 2px solid #e5e7eb;">
-                        <span style="font-size: 16px; color: #6b7280;">Ihmisennusteen Virhe</span>
-                        <span style="font-size: 24px; font-weight: 700; color: #dc2626;">30 %</span>
+            <!-- Solution Steps -->
+            <div class="solution-steps fade-in">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>📊 Historialliset Kaavat</h4>
+                        <p>Ei vain viime vuosi — joka vuosi myyntidataa</p>
                     </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 16px; color: #6b7280;">AI-Ennusteen Virhe</span>
-                        <span style="font-size: 24px; font-weight: 700; color: #16a34a;">11 %</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>🗓️ Kausiluonteiset Trendit</h4>
+                        <p>Sykliset kysyntäkaavat ja kausivaihtelut</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>🌤️ Ulkoiset Tekijät</h4>
+                        <p>Sää, juhlapyhät, talousindikaattorit</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>🏭 Toimittajadata</h4>
+                        <p>Toimitusajat ja luotettavuuspisteet kaikilla SKU:illa</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="proof-box fade-in">
+                <h4>Kova Todiste</h4>
+                <p style="font-size: 17px; margin-bottom: 20px;">Tässä tapahtuu, kun korvaat ihmisennusteet AI:lla:</p>
+                
+                <!-- Savings Bar -->
+                <div class="savings-bar">
+                    <div class="savings-row bad">
+                        <span class="label">Ihmisennusteen Virhe</span>
+                        <span class="value">30 %</span>
+                    </div>
+                    <div class="savings-row good">
+                        <span class="label">AI-Ennusteen Virhe</span>
+                        <span class="value">11 %</span>
                     </div>
                 </div>
                 
-                <p style="font-size: 20px; text-align: center; margin: 24px 0; color: #111; font-weight: 600;">
-                    Kahden miljoonan euron varastomenolla tämä virheen vähennys vapauttaa<br>
-                    <span class="stat-highlight">380 000 €</span>
-                    käyttöpääomaa.
-                </p>
+                <!-- Big Result -->
+                <div class="big-result">
+                    <div class="text">Kahden miljoonan euron varastomenolla tämä virheen vähennys vapauttaa</div>
+                    <div class="number">380 000 €</div>
+                    <div class="text">käyttöpääomaa</div>
+                </div>
                 
-                <p style="margin: 16px 0 0; font-size: 16px; color: #065f46;"><strong>Tulos:</strong> Saat oikeat tuotteet, oikeissa määrissä, oikeaan aikaan. Ei enää kuollutta varastoa. Ei enää stockouteja. Vain optimoitu kassavirta.</p>
+                <p style="margin: 20px 0 0; font-size: 16px; color: #065f46;"><strong>Tulos:</strong> Saat oikeat tuotteet, oikeissa määrissä, oikeaan aikaan. Ei enää kuollutta varastoa. Ei enää stockouteja. Vain optimoitu kassavirta.</p>
             </div>
         </div>
     </section>
@@ -523,10 +913,19 @@
             <h2>Tässä On Hullu Lupaukseni Sinulle</h2>
             <p>Olen niin varma, että tämä järjestelmä muuttaa liiketoimintasi, että panen rahani peliin.</p>
             <p style="font-size: 24px; color: #fff; font-weight: 600; margin: 32px 0;">Jos AI-järjestelmä ei säästä vähintään 2x palkkioni verran ensimmäisten 6 kuukauden aikana, minä:</p>
-            <ul style="list-style: none; font-size: 20px; text-align: left; max-width: 600px; margin: 0 auto;">
-                <li style="margin-bottom: 16px;">✓ <strong>Palautan 100 % sijoituksestasi</strong> — joka sentin</li>
-                <li style="margin-bottom: 16px;">✓ <strong>Maksan sinulle 1 000 €</strong> hukkaan heitetystä ajastasi</li>
-                <li>✓ <strong>Annan sinun pitää kaiken tehdyn työn</strong> — ei kovia tunteita</li>
+            <ul class="guarantee-list">
+                <li>
+                    <span class="check">✓</span>
+                    <span><strong>Palautan 100 % sijoituksestasi</strong> — joka sentin</span>
+                </li>
+                <li>
+                    <span class="check">✓</span>
+                    <span><strong>Maksan sinulle 1 000 €</strong> hukkaan heitetystä ajastasi</span>
+                </li>
+                <li>
+                    <span class="check">✓</span>
+                    <span><strong>Annan sinun pitää kaiken tehdyn työn</strong> — ei kovia tunteita</span>
+                </li>
             </ul>
             <p style="margin-top: 40px; font-size: 18px; color: #94a3b8;">Näin varma olen, että tämä toimii. Ainoa riski on olla tekemättä mitään ja antaa kilpailijoidesi automatisoida ensin.</p>
         </div>
@@ -606,7 +1005,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.story-box, .proof-box, h2, h3').forEach(el => {
+        document.querySelectorAll('.story-card, .proof-box, .problem-viz, .solution-steps, .comparison-cards, .stats-grid, .money-counter, .big-result').forEach(el => {
             el.classList.add('fade-in');
             observer.observe(el);
         });

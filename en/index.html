@@ -107,35 +107,140 @@
             line-height: 1.8;
         }
         
-        /* Story box */
-        .story-box {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 24px;
+        /* Visual Story Cards - Animation Ready */
+        .story-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 16px;
+            padding: 32px;
             margin: 32px 0;
-            border-radius: 0 8px 8px 0;
+            position: relative;
+            overflow: hidden;
         }
-        .story-box h4 {
+        .story-card::before {
+            content: "👤";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 48px;
+            opacity: 0.3;
+        }
+        .story-card.sarah::before { content: "👩‍💼"; }
+        .story-card.klaus::before { content: "👨‍🏭"; }
+        .story-card.david::before { content: "📦"; }
+        .story-card h4 {
             color: #92400e;
-            font-size: 14px;
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .story-card h4::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: #f59e0b;
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .story-card .character {
+            font-size: 20px;
+            font-weight: 700;
+            color: #78350f;
             margin-bottom: 12px;
         }
+        .story-card p {
+            font-size: 16px;
+            color: #78350f;
+            margin: 0;
+            line-height: 1.7;
+        }
         
-        /* Proof box */
-        .proof-box {
-            background: #ecfdf5;
-            border: 2px solid #10b981;
-            padding: 28px;
+        /* Problem Visualization */
+        .problem-viz {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
             margin: 32px 0;
-            border-radius: 8px;
+        }
+        .problem-item {
+            background: #fee2e2;
+            border: 2px solid #fecaca;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+        .problem-item .icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        .problem-item .number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #dc2626;
+            display: block;
+        }
+        .problem-item .label {
+            font-size: 14px;
+            color: #991b1b;
+        }
+        
+        /* Solution Steps - Animation Ready */
+        .solution-steps {
+            margin: 32px 0;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: #f0fdf4;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border-left: 4px solid #22c55e;
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #16a34a;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-content h4 {
+            font-size: 16px;
+            color: #166534;
+            margin-bottom: 4px;
+        }
+        .step-content p {
+            font-size: 15px;
+            color: #15803d;
+            margin: 0;
+        }
+        
+        /* Proof Box */
+        .proof-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 2px solid #10b981;
+            padding: 32px;
+            margin: 32px 0;
+            border-radius: 16px;
         }
         .proof-box h4 {
             color: #065f46;
             font-size: 16px;
             font-weight: 700;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -144,53 +249,179 @@
             content: "✓";
             background: #10b981;
             color: #fff;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 16px;
+        }
+        
+        /* Comparison Cards */
+        .comparison-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 24px 0;
+        }
+        .comparison-card {
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .comparison-card.old {
+            background: #fee2e2;
+            border: 2px solid #fecaca;
+        }
+        .comparison-card.new {
+            background: #d1fae5;
+            border: 2px solid #86efac;
+        }
+        .comparison-card .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .comparison-card.old .label { color: #991b1b; }
+        .comparison-card.new .label { color: #065f46; }
+        .comparison-card .value {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .comparison-card.old .value { color: #dc2626; }
+        .comparison-card.new .value { color: #16a34a; }
+        .comparison-card .desc {
             font-size: 14px;
         }
+        .comparison-card.old .desc { color: #7f1d1d; }
+        .comparison-card.new .desc { color: #065f46; }
         
-        /* Comparison table */
-        .comparison {
-            width: 100%;
-            margin: 24px 0;
-            border-collapse: collapse;
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin: 32px 0;
         }
-        .comparison th, .comparison td {
-            padding: 16px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        .stat-card {
+            text-align: center;
+            padding: 32px;
+            border-radius: 16px;
         }
-        .comparison th {
-            background: #f3f4f6;
-            font-weight: 600;
-            color: #374151;
-        }
-        .comparison .winner {
-            background: #d1fae5;
-            font-weight: 600;
-            color: #065f46;
-        }
-        .comparison .loser {
+        .stat-card.negative {
             background: #fee2e2;
-            color: #991b1b;
         }
-        
-        /* Stats highlight */
-        .stat-highlight {
+        .stat-card.positive {
+            background: #d1fae5;
+        }
+        .stat-card .icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+        .stat-card .number {
             font-size: 48px;
             font-weight: 800;
-            color: #16a34a;
             display: block;
-            margin: 8px 0;
+            margin-bottom: 8px;
+        }
+        .stat-card.negative .number { color: #dc2626; }
+        .stat-card.positive .number { color: #16a34a; }
+        .stat-card .label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .stat-card.negative .label { color: #991b1b; }
+        .stat-card.positive .label { color: #065f46; }
+        .stat-card .sublabel {
+            font-size: 13px;
+            margin-top: 4px;
+        }
+        .stat-card.negative .sublabel { color: #7f1d1d; }
+        .stat-card.positive .sublabel { color: #065f46; }
+        
+        /* Money Counter Animation Ready */
+        .money-counter {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 32px 0;
+        }
+        .money-counter .label {
+            color: #94a3b8;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        .money-counter .amount {
+            font-size: 56px;
+            font-weight: 800;
+            color: #fbbf24;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+        }
+        .money-counter .sublabel {
+            color: #64748b;
+            font-size: 16px;
+            margin-top: 12px;
+        }
+        
+        /* Savings Bar */
+        .savings-bar {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .savings-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .savings-row:last-child {
+            border-bottom: none;
+        }
+        .savings-row .label {
+            font-size: 16px;
+            color: #6b7280;
+        }
+        .savings-row .value {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .savings-row.bad .value { color: #dc2626; }
+        .savings-row.good .value { color: #16a34a; }
+        
+        /* Big Result */
+        .big-result {
+            text-align: center;
+            padding: 32px;
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 16px;
+            margin: 24px 0;
+        }
+        .big-result .text {
+            font-size: 18px;
+            color: #374151;
+            margin-bottom: 16px;
+        }
+        .big-result .number {
+            font-size: 64px;
+            font-weight: 800;
+            color: #16a34a;
+            text-shadow: 0 0 40px rgba(22, 163, 74, 0.2);
         }
         
         /* Guarantee section */
         .guarantee {
-            background: #1e293b;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: #fff;
             padding: 80px 0;
             text-align: center;
@@ -202,19 +433,44 @@
         }
         .guarantee-badge {
             display: inline-block;
-            background: #fbbf24;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
             color: #1e293b;
             padding: 16px 32px;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             border-radius: 8px;
             margin-bottom: 32px;
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3);
         }
         .guarantee p {
             font-size: 20px;
             max-width: 700px;
             margin: 0 auto 20px;
             color: #cbd5e1;
+        }
+        .guarantee-list {
+            list-style: none;
+            font-size: 20px;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .guarantee-list li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .guarantee-list .check {
+            width: 28px;
+            height: 28px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
         }
         
         /* Nerd appendix */
@@ -225,8 +481,8 @@
         details {
             background: #fff;
             border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 24px;
         }
         summary {
             font-size: 18px;
@@ -234,24 +490,29 @@
             color: #475569;
             cursor: pointer;
             list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         summary::-webkit-details-marker { display: none; }
         summary::after {
             content: "+";
-            float: right;
+            margin-left: auto;
             font-size: 24px;
             color: #64748b;
         }
         details[open] summary::after { content: "−"; }
         .tech-stack {
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 24px;
+            padding-top: 24px;
             border-top: 1px solid #e2e8f0;
         }
         .tech-stack h4 {
-            font-size: 16px;
-            margin-bottom: 12px;
-            color: #334155;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: #64748b;
         }
         .tech-stack ul {
             list-style: none;
@@ -261,10 +522,11 @@
         }
         .tech-stack li {
             background: #f1f5f9;
-            padding: 8px 16px;
+            padding: 10px 18px;
             border-radius: 20px;
             font-size: 14px;
             color: #475569;
+            font-weight: 500;
         }
         
         /* Lead form */
@@ -289,20 +551,20 @@
             margin: 0 auto;
             background: #fff;
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
         }
         .form-group {
             margin-bottom: 24px;
         }
         .form-group label {
             display: block;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
             color: #374151;
             margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
         .form-group input {
             width: 100%;
@@ -318,7 +580,7 @@
         }
         .submit-btn {
             width: 100%;
-            background: #16a34a;
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
             color: #fff;
             padding: 20px;
             font-size: 18px;
@@ -327,10 +589,11 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4);
         }
         .submit-btn:hover {
-            background: #15803d;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(22, 163, 74, 0.5);
         }
         
         /* Footer */
@@ -351,6 +614,24 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 640px) {
+            .problem-viz,
+            .comparison-cards,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .money-counter .amount {
+                font-size: 36px;
+            }
+            .big-result .number {
+                font-size: 42px;
+            }
         }
     </style>
 </head>
@@ -374,12 +655,33 @@
         <div class="container">
             <h2>Deep Dive 1: The Hidden Cost of Manual Document Processing</h2>
             
-            <div class="story-box">
+            <!-- Character Story Card -->
+            <div class="story-card sarah fade-in">
                 <h4>The Real Story</h4>
-                <p style="font-size: 16px; margin: 0;"><strong>Meet Sarah.</strong> She's an office manager at a mid-sized manufacturing company. Every Monday, she sits down with a stack of 200+ supplier invoices. For the next 6 hours, she manually types each line item into their ERP system. By 3 PM, her eyes are burning. She misreads a "$5,000" as "$8,000" and doesn't catch it. That one typo costs the company $3,000 in overpayment. And this happens every single week.</p>
+                <div class="character">Meet Sarah</div>
+                <p>She's an office manager at a mid-sized manufacturing company. Every Monday, she sits down with a stack of 200+ supplier invoices. For the next 6 hours, she manually types each line item into their ERP system. By 3 PM, her eyes are burning. She misreads a "$5,000" as "$8,000" and doesn't catch it. That one typo costs the company $3,000 in overpayment. And this happens every single week.</p>
             </div>
             
             <p>Sarah's not lazy. She's not careless. She's <em>human</em>. And humans make mistakes when they do repetitive, soul-crushing work for hours on end.</p>
+            
+            <!-- Problem Visualization -->
+            <div class="problem-viz fade-in">
+                <div class="problem-item">
+                    <div class="icon">⏱️</div>
+                    <span class="number">6 hrs</span>
+                    <span class="label">Every Monday</span>
+                </div>
+                <div class="problem-item">
+                    <div class="icon">💶</div>
+                    <span class="number">€45k</span>
+                    <span class="label">Yearly Salary</span>
+                </div>
+                <div class="problem-item">
+                    <div class="icon">❌</div>
+                    <span class="number">€3k</span>
+                    <span class="label">Per Error</span>
+                </div>
+            </div>
             
             <p>The worst part? Sarah's company is paying her €45,000 per year to be a human keyboard. That's €22 per hour to copy and paste data that a machine could process in seconds.</p>
             
@@ -387,33 +689,56 @@
             
             <p>Here's what happens when we deploy our custom data pipeline:</p>
             
-            <ul style="margin: 20px 0; padding-left: 24px; font-size: 18px; color: #444; line-height: 2;">
-                <li>Invoices are scanned and processed automatically — no human typing required</li>
-                <li>Data is extracted with 99.9% accuracy and fed directly into your ERP</li>
-                <li>Sarah is freed up to do actual management work: negotiating with suppliers, optimizing workflows, training staff</li>
-                <li>Errors drop to near zero. Processing time drops from 6 hours to 6 minutes.</li>
-            </ul>
+            <!-- Solution Steps -->
+            <div class="solution-steps fade-in">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>📄 Automatic Scanning</h4>
+                        <p>Invoices are scanned and processed automatically — no human typing required</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>🎯 99.9% Accuracy</h4>
+                        <p>Data is extracted with 99.9% accuracy and fed directly into your ERP</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>🚀 Sarah Gets Promoted</h4>
+                        <p>Sarah is freed up to do actual management work: negotiating with suppliers, optimizing workflows, training staff</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>⚡ 6 Hours → 6 Minutes</h4>
+                        <p>Errors drop to near zero. Processing time drops from 6 hours to 6 minutes.</p>
+                    </div>
+                </div>
+            </div>
             
-            <div class="proof-box">
+            <div class="proof-box fade-in">
                 <h4>The Hard Proof</h4>
-                <table class="comparison">
-                    <tr>
-                        <th>Technology</th>
-                        <th>Accuracy Rate</th>
-                        <th>Real-World Cost</th>
-                    </tr>
-                    <tr class="loser">
-                        <td>Legacy OCR (EasyOCR)</td>
-                        <td>62.5%</td>
-                        <td>Reads '$' as '8', costs you money on every error</td>
-                    </tr>
-                    <tr class="winner">
-                        <td><strong>Our PaddleOCR + LLM Pipeline</strong></td>
-                        <td><strong>99.9%</strong></td>
-                        <td><strong>Near-zero errors, instant processing</strong></td>
-                    </tr>
-                </table>
-                <p style="margin: 16px 0 0; font-size: 16px; color: #065f46;"><strong>Bottom line:</strong> On a €2M annual invoice volume, our system eliminates approximately €12,000 in error costs alone — not counting the 300+ hours of staff time saved.</p>
+                
+                <!-- Comparison Cards -->
+                <div class="comparison-cards">
+                    <div class="comparison-card old">
+                        <div class="label">Legacy OCR (EasyOCR)</div>
+                        <div class="value">62.5%</div>
+                        <div class="desc">Reads '$' as '8', costs you money on every error</div>
+                    </div>
+                    <div class="comparison-card new">
+                        <div class="label">Our PaddleOCR + LLM</div>
+                        <div class="value">99.9%</div>
+                        <div class="desc">Near-zero errors, instant processing</div>
+                    </div>
+                </div>
+                
+                <p style="margin: 20px 0 0; font-size: 16px; color: #065f46;"><strong>Bottom line:</strong> On a €2M annual invoice volume, our system eliminates approximately €12,000 in error costs alone — not counting the 300+ hours of staff time saved.</p>
             </div>
         </div>
     </section>
@@ -422,12 +747,21 @@
         <div class="container">
             <h2>Deep Dive 2: The €202,000 Machine Failure That Could've Been Prevented</h2>
             
-            <div class="story-box">
+            <!-- Character Story Card -->
+            <div class="story-card klaus fade-in">
                 <h4>The Real Story</h4>
-                <p style="font-size: 16px; margin: 0;"><strong>Meet Klaus.</strong> He owns a precision manufacturing facility in Germany. He takes pride in his "preventive maintenance program." Every machine gets serviced on a strict schedule. But last March, a critical hydraulic press belt snapped mid-production — despite being "maintained" just 3 weeks prior. The downtime cost €47,000. The rush orders they couldn't fulfill cost €155,000 in lost contracts. Total damage: €202,000.</p>
+                <div class="character">Meet Klaus</div>
+                <p>He owns a precision manufacturing facility in Germany. He takes pride in his "preventive maintenance program." Every machine gets serviced on a strict schedule. But last March, a critical hydraulic press belt snapped mid-production — despite being "maintained" just 3 weeks prior. The downtime cost €47,000. The rush orders they couldn't fulfill cost €155,000 in lost contracts. Total damage: €202,000.</p>
             </div>
             
             <p>Klaus did everything "right" according to the old playbook. Scheduled maintenance. Checklists. Compliance. But here's what he didn't know:</p>
+            
+            <!-- Money Counter -->
+            <div class="money-counter fade-in">
+                <div class="label">Total Damage</div>
+                <div class="amount">€202,000</div>
+                <div class="sublabel">One preventable failure</div>
+            </div>
             
             <p><strong>Scheduled maintenance only catches 40% of catastrophic failures.</strong></p>
             
@@ -437,31 +771,59 @@
             
             <p>We install IoT sensors on your critical equipment. These sensors feed real-time data into machine learning models trained on millions of failure patterns. The result?</p>
             
-            <ul style="margin: 20px 0; padding-left: 24px; font-size: 18px; color: #444; line-height: 2;">
-                <li>The AI detects anomalies weeks before failure occurs</li>
-                <li>You get alerts with specific recommendations: "Replace bearing #3 within 14 days"</li>
-                <li>Maintenance happens when it's actually needed — not when the calendar says so</li>
-                <li>You schedule repairs during planned downtime, not emergency shutdowns</li>
-            </ul>
-            
-            <div class="proof-box">
-                <h4>The Hard Proof — NASA CMAPSS Dataset Benchmark</h4>
-                <p style="font-size: 18px; margin-bottom: 20px;">We tested our models against the gold standard NASA CMAPSS dataset — the same benchmark used by Boeing, Airbus, and major industrial manufacturers.</p>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0;">
-                    <div style="text-align: center; padding: 24px; background: #fee2e2; border-radius: 8px;">
-                        <span style="font-size: 14px; color: #991b1b; text-transform: uppercase; font-weight: 600;">Scheduled Maintenance</span>
-                        <span class="stat-highlight" style="color: #dc2626;">40%</span>
-                        <p style="font-size: 14px; color: #7f1d1d; margin: 0;">of catastrophic failures caught</p>
+            <!-- Solution Steps -->
+            <div class="solution-steps fade-in">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>📡 IoT Sensors</h4>
+                        <p>Real-time monitoring of vibration, temperature, and acoustic signals</p>
                     </div>
-                    <div style="text-align: center; padding: 24px; background: #d1fae5; border-radius: 8px;">
-                        <span style="font-size: 14px; color: #065f46; text-transform: uppercase; font-weight: 600;">Our AI Models</span>
-                        <span class="stat-highlight">89%</span>
-                        <p style="font-size: 14px; color: #065f46; margin: 0;">of catastrophic failures predicted</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>🔮 AI Detection</h4>
+                        <p>The AI detects anomalies weeks before failure occurs</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>📋 Smart Alerts</h4>
+                        <p>You get alerts with specific recommendations: "Replace bearing #3 within 14 days"</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>📅 Planned Repairs</h4>
+                        <p>Schedule repairs during planned downtime, not emergency shutdowns</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="proof-box fade-in">
+                <h4>The Hard Proof — NASA CMAPSS Dataset Benchmark</h4>
+                <p style="font-size: 17px; margin-bottom: 24px;">We tested our models against the gold standard NASA CMAPSS dataset — the same benchmark used by Boeing, Airbus, and major industrial manufacturers.</p>
+                
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card negative">
+                        <div class="icon">📅</div>
+                        <span class="number">40%</span>
+                        <span class="label">Scheduled Maintenance</span>
+                        <span class="sublabel">of catastrophic failures caught</span>
+                    </div>
+                    <div class="stat-card positive">
+                        <div class="icon">🤖</div>
+                        <span class="number">89%</span>
+                        <span class="label">Our AI Models</span>
+                        <span class="sublabel">of catastrophic failures predicted</span>
                     </div>
                 </div>
                 
-                <p style="margin: 16px 0 0; font-size: 16px; color: #065f46;"><strong>Bottom line:</strong> For a facility with €5M in equipment, preventing just ONE major failure pays for the entire AI system for 3 years.</p>
+                <p style="margin: 20px 0 0; font-size: 16px; color: #065f46;"><strong>Bottom line:</strong> For a facility with €5M in equipment, preventing just ONE major failure pays for the entire AI system for 3 years.</p>
             </div>
         </div>
     </section>
@@ -470,9 +832,11 @@
         <div class="container">
             <h2>Deep Dive 3: The €500,000 Inventory Trap</h2>
             
-            <div class="story-box">
+            <!-- Character Story Card -->
+            <div class="story-card david fade-in">
                 <h4>The Real Story</h4>
-                <p style="font-size: 16px; margin: 0;"><strong>Meet David.</strong> He's the logistics director for a European electronics distributor. Right now, his warehouse has €500,000 worth of products that haven't moved in 6 months. Dead stock. Tied-up capital. Meanwhile, his best-selling item — the one with 40% margins — has been out of stock for 3 weeks. He's losing €8,000 per day in lost sales. And every forecast he runs seems to be wrong.</p>
+                <div class="character">Meet David</div>
+                <p>He's the logistics director for a European electronics distributor. Right now, his warehouse has €500,000 worth of products that haven't moved in 6 months. Dead stock. Tied-up capital. Meanwhile, his best-selling item — the one with 40% margins — has been out of stock for 3 weeks. He's losing €8,000 per day in lost sales. And every forecast he runs seems to be wrong.</p>
             </div>
             
             <p>David's not stupid. He's using the same forecasting methods everyone else uses: looking at last year's sales, adding a "gut feel" adjustment, and hoping for the best.</p>
@@ -483,36 +847,62 @@
             
             <p>Our time-series forecasting algorithms analyze:</p>
             
-            <ul style="margin: 20px 0; padding-left: 24px; font-size: 18px; color: #444; line-height: 2;">
-                <li>Historical sales patterns (not just last year — every year)</li>
-                <li>Seasonal trends and cyclical demand</li>
-                <li>External factors: weather, holidays, economic indicators</li>
-                <li>Supplier lead times and reliability scores</li>
-                <li>Real-time inventory levels across all SKUs</li>
-            </ul>
-            
-            <div class="proof-box">
-                <h4>The Hard Proof</h4>
-                <p style="font-size: 18px; margin-bottom: 20px;">Here's what happens when you replace human forecasting with AI:</p>
-                
-                <div style="background: #fff; padding: 24px; border-radius: 8px; margin: 20px 0;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 2px solid #e5e7eb;">
-                        <span style="font-size: 16px; color: #6b7280;">Human Forecasting Error</span>
-                        <span style="font-size: 24px; font-weight: 700; color: #dc2626;">30%</span>
+            <!-- Solution Steps -->
+            <div class="solution-steps fade-in">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>📊 Historical Patterns</h4>
+                        <p>Not just last year — every year of sales data</p>
                     </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 16px; color: #6b7280;">AI Forecasting Error</span>
-                        <span style="font-size: 24px; font-weight: 700; color: #16a34a;">11%</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>🗓️ Seasonal Trends</h4>
+                        <p>Cyclical demand patterns and seasonal fluctuations</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>🌤️ External Factors</h4>
+                        <p>Weather, holidays, economic indicators</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>🏭 Supplier Data</h4>
+                        <p>Lead times and reliability scores across all SKUs</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="proof-box fade-in">
+                <h4>The Hard Proof</h4>
+                <p style="font-size: 17px; margin-bottom: 20px;">Here's what happens when you replace human forecasting with AI:</p>
+                
+                <!-- Savings Bar -->
+                <div class="savings-bar">
+                    <div class="savings-row bad">
+                        <span class="label">Human Forecasting Error</span>
+                        <span class="value">30%</span>
+                    </div>
+                    <div class="savings-row good">
+                        <span class="label">AI Forecasting Error</span>
+                        <span class="value">11%</span>
                     </div>
                 </div>
                 
-                <p style="font-size: 20px; text-align: center; margin: 24px 0; color: #111; font-weight: 600;">
-                    On a €2M inventory spend, that error reduction frees up<br>
-                    <span class="stat-highlight">€380,000</span>
-                    in working capital.
-                </p>
+                <!-- Big Result -->
+                <div class="big-result">
+                    <div class="text">On a €2M inventory spend, that error reduction frees up</div>
+                    <div class="number">€380,000</div>
+                    <div class="text">in working capital</div>
+                </div>
                 
-                <p style="margin: 16px 0 0; font-size: 16px; color: #065f46;"><strong>Bottom line:</strong> You get the right products, in the right quantities, at the right time. No more dead stock. No more stockouts. Just optimized cash flow.</p>
+                <p style="margin: 20px 0 0; font-size: 16px; color: #065f46;"><strong>Bottom line:</strong> You get the right products, in the right quantities, at the right time. No more dead stock. No more stockouts. Just optimized cash flow.</p>
             </div>
         </div>
     </section>
@@ -523,10 +913,19 @@
             <h2>Here's My Insane Promise to You</h2>
             <p>I'm so confident this system will transform your business that I'm putting my money where my mouth is.</p>
             <p style="font-size: 24px; color: #fff; font-weight: 600; margin: 32px 0;">If the AI system doesn't save you at least 2X my fee in the first 6 months, I will:</p>
-            <ul style="list-style: none; font-size: 20px; text-align: left; max-width: 600px; margin: 0 auto;">
-                <li style="margin-bottom: 16px;">✓ <strong>Refund 100% of your investment</strong> — every penny</li>
-                <li style="margin-bottom: 16px;">✓ <strong>Pay you €1,000</strong> for your wasted time</li>
-                <li>✓ <strong>Let you keep any work completed</strong> — no hard feelings</li>
+            <ul class="guarantee-list">
+                <li>
+                    <span class="check">✓</span>
+                    <span><strong>Refund 100% of your investment</strong> — every penny</span>
+                </li>
+                <li>
+                    <span class="check">✓</span>
+                    <span><strong>Pay you €1,000</strong> for your wasted time</span>
+                </li>
+                <li>
+                    <span class="check">✓</span>
+                    <span><strong>Let you keep any work completed</strong> — no hard feelings</span>
+                </li>
             </ul>
             <p style="margin-top: 40px; font-size: 18px; color: #94a3b8;">That's how certain I am that this works. The only risk is doing nothing and letting your competitors automate first.</p>
         </div>
@@ -606,7 +1005,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.story-box, .proof-box, h2, h3').forEach(el => {
+        document.querySelectorAll('.story-card, .proof-box, .problem-viz, .solution-steps, .comparison-cards, .stats-grid, .money-counter, .big-result').forEach(el => {
             el.classList.add('fade-in');
             observer.observe(el);
         });
