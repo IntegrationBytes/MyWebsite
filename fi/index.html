@@ -1,313 +1,512 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Automaatioratkaisut — Toiminnan Tehostaminen</title>
-    <link rel="stylesheet" href="../assets/css/styles-dark.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[YRITYKSESI NIMI] — Tekoälyautomaatio B2B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: '#0d1b2a',
+          steel: '#1b2838',
+          'steel-light': '#243447',
+          accent: '#00b4d8',
+          'accent-dark': '#0090ac',
+          emerald: '#10b981',
+          'text-primary': '#f0f4f8',
+          'text-secondary': '#94a3b8',
+          'text-muted': '#64748b',
+          border: '#243447',
+        },
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          display: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: #0d1b2a; color: #f0f4f8; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+
+  /* Reveal animations */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* Card hover */
+  .card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+
+  /* Button */
+  .btn-primary {
+    display: inline-block;
+    background: #00b4d8;
+    color: #0d1b2a;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 14px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+  .btn-primary:hover { background: #0090ac; transform: translateY(-1px); }
+  .btn-primary:hover::after { transform: translateX(100%); }
+
+  /* Progress bar */
+  .progress-bar-track { background: #243447; border-radius: 99px; height: 10px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; border-radius: 99px; width: 0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+
+  /* Step number */
+  .step-num {
+    width: 36px; height: 36px;
+    background: #00b4d8;
+    color: #0d1b2a;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; flex-shrink: 0;
+  }
+
+  /* Bento grid */
+  .bento-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 768px) { .bento-grid { grid-template-columns: repeat(3, 1fr); } }
+  .bento-item { background: #1b2838; border: 1px solid #243447; border-radius: 12px; padding: 24px; }
+  .bento-item.wide { grid-column: span 2; }
+  .bento-item.tall { grid-row: span 2; }
+
+  /* Stat boxes */
+  .stat-box { background: #1b2838; border: 1px solid #243447; border-radius: 10px; padding: 28px; text-align: center; }
+
+  /* Form input */
+  .form-input {
+    width: 100%; background: #1b2838; border: 1px solid #243447; border-radius: 6px;
+    color: #f0f4f8; padding: 12px 14px; font-size: 15px; font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { outline: none; border-color: #00b4d8; }
+  .form-input::placeholder { color: #64748b; }
+
+  /* Section divider */
+  .section-divider { border: none; border-top: 1px solid #243447; }
+
+  /* Hero glow */
+  .hero-glow {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse, rgba(0,180,216,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Nav */
+  nav { position: sticky; top: 0; z-index: 50; background: rgba(13,27,42,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #243447; }
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="#" class="logo">AI Automation Labs</a>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <span class="hook">Toiminnan Tehokkuus</span>
-            <h1>Tehosta Toimintaa Älykkään Automaation Avulla</h1>
-            <p>Räätälöidyt AI-järjestelmät, jotka virtaviivaistavat dokumenttien käsittelyä, ennustavat laitteiden huoltotarpeita ja optimoivat varastonhallintaa. Rakennettu valmistus- ja logistiikkayrityksille.</p>
-            <a href="#audit" class="cta-button">Pyydä Ilmainen Konsultaatio</a>
-        </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <span class="font-display font-700 text-lg text-text-primary tracking-tight">[YRITYKSESI NIMI]</span>
+    <a href="#cta" class="btn-primary text-sm py-2 px-5">Pyydä konsultaatio</a>
+  </div>
+</nav>
 
-    <section class="section">
-        <div class="container">
-            <h2>Dokumenttien Käsittelyn Automaatio</h2>
-            <p class="section-intro">Manuaalinen tietojen syöttö laskuista, ostotilauksista ja lähetystiedoista vie merkittävästi henkilöstön aikaa ja aiheuttaa kalliita virheitä. Dokumenttien käsittelyputkemme automatisoi poiminnan ja validoinnin.</p>
-            
-            <h3>Manuaalisen Käsittelyn Kustannukset</h3>
-            <p>Organisaatiot, jotka käsittelevät suuria dokumenttimääriä manuaalisesti, kohtaavat ennustettavia haasteita: käsittelyviiveet ruuhkahuippujen aikana, tietojen syöttövirheet vaativat uudelleentyöstöä, ja ammattitaitoinen henkilöstö käyttää aikaa toistuviin tehtäviin.</p>
-            
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="metric">6+ h</div>
-                    <div class="label">Viikoittainen käsittelyaika</div>
-                </div>
-                <div class="problem-card">
-                    <div class="metric">2-5%</div>
-                    <div class="label">Virheprosentti (manuaalinen)</div>
-                </div>
-                <div class="problem-card">
-                    <div class="metric">45 000 €</div>
-                    <div class="label">Vuotuiset työkustannukset</div>
-                </div>
-            </div>
-            
-            <h3>Ratkaisumme</h3>
-            <p>Toteutamme älykkäitä dokumenttien käsittelyjärjestelmiä, jotka poimivat tiedot korkealla tarkkuudella ja integroivat suoraan olemassa olevaan ERP- tai kirjanpitojärjestelmään.</p>
-            
-            <div class="solution-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Dokumenttien Vastaanotto</h4>
-                        <p>Dokumentit vastaanotetaan sähköpostilla, latauksella tai API:lla ja jonotetaan automaattisesti käsittelyyn</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Tietojen Poiminta</h4>
-                        <p>AI-mallit poimivat relevantit kentät yli 99 % tarkkuudella, käsitellessään eri dokumenttiformaatteja</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Validointi & Integraatio</h4>
-                        <p>Tiedot validoidaan liiketoimintasääntöjä vastaan ja työnnetään järjestelmiin automaattisesti</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Poikkeusten Käsittely</h4>
-                        <p>Matalan luottamuksen poiminnat merkitään ihmistarkistusta varten, oppimispalautteen kera</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="highlight-box">
-                <h4>Tarkkuusvertailu</h4>
-                <div class="comparison">
-                    <div class="comparison-item before">
-                        <div class="label">Perinteinen OCR</div>
-                        <div class="value">60-75 %</div>
-                        <div class="desc">Vaatii merkittävää manuaalista korjausta</div>
-                    </div>
-                    <div class="comparison-item after">
-                        <div class="label">Meidän Putkemme</div>
-                        <div class="value">99 %+</div>
-                        <div class="desc">Tuotantotestattu tarkkuus</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- HERO -->
+<section class="relative overflow-hidden py-28 px-6">
+  <div class="hero-glow"></div>
+  <div class="max-w-4xl mx-auto text-center relative">
+    <span class="reveal inline-block text-accent text-sm font-medium uppercase tracking-widest mb-5">Toiminnan tehokkuus</span>
+    <h1 class="reveal reveal-delay-1 font-display font-800 text-5xl md:text-6xl leading-tight text-text-primary mb-6" style="letter-spacing:-0.5px">
+      Vähennä operatiivisia<br>kustannuksia älykkäällä<br>automaatiolla
+    </h1>
+    <p class="reveal reveal-delay-2 text-text-secondary text-xl leading-relaxed max-w-2xl mx-auto mb-10">
+      Räätälöidyt tekoälyjärjestelmät, jotka tehostavat dokumenttien käsittelyä, ennakoivat laitehuoltotarpeita ja optimoivat varastonhallintaa — valmistus- ja logistiikkayrityksille.
+    </p>
+    <a href="#cta" class="reveal reveal-delay-3 btn-primary text-base">Pyydä ilmainen konsultaatio →</a>
+  </div>
+</section>
 
-    <section class="section section-alt">
-        <div class="container">
-            <h2>Ennakoiva Kunnossapito</h2>
-            <p class="section-intro">Suunnittelematon laitteiden seisonta häiritsee tuotantoaikatauluja ja luo kalliita kiiretilauksia. Ennakoiva kunnossapito käyttää laitteiden anturidataa tunnistaakseen mahdolliset viat ennen kuin ne tapahtuvat.</p>
-            
-            <h3>Aikataulutetun Huollon Rajoitukset</h3>
-            <p>Kiinteät huoltoaikataulut havaitsevat joitain ongelmia, mutta jättävät monet vikamoodit väliin huoltovälien aikana. Laitteiden kunto vaihtelee käyttömäärien, ympäristötekijöiden ja komponenttien laadun mukaan.</p>
-            
-            <div class="highlight-box">
-                <h4>Vikojen Havaitsemisprosentit</h4>
-                <div class="stats-row">
-                    <div class="stat-box negative">
-                        <div class="number">~40 %</div>
-                        <div class="label">Aikataulutettu huolto</div>
-                    </div>
-                    <div class="stat-box positive">
-                        <div class="number">85-90 %</div>
-                        <div class="label">Ennakoivilla malleilla</div>
-                    </div>
-                </div>
-                <p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">Perustuu julkaistuihin vertailuarvoihin NASA CMAPSS ja vastaavista teollisuusaineistoista</p>
-            </div>
-            
-            <h3>Toteutus</h3>
-            <p>Asennamme ei-invasiiviset anturit kriittiseen kalustoon ja rakennamme koneoppimismallit, jotka on koulutettu tunnistamaan kalustosi erityispiirteet.</p>
-            
-            <div class="solution-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Anturien Asennus</h4>
-                        <p>Värähtely-, lämpötila- ja akustiset anturit asennetaan kriittiseen kalustoon</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Pohjaviivan Oppiminen</h4>
-                        <p>Mallit oppivat normaalit toimintakaavat kullekin laitteelle</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Poikkeamien Havaitseminen</h4>
-                        <p>Poikkeamat pohjaviivasta laukaisevat hälytykset vakavuusluokituksella</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Huoltojen Suunnittelu</h4>
-                        <p>Suositukset integroidaan huoltoaikataulujärjestelmään</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<hr class="section-divider">
 
-    <section class="section">
-        <div class="container">
-            <h2>Kysynnän Ennustaminen & Varaston Optimointi</h2>
-            <p class="section-intro">Varaston kantokustannukset ja loppuunmyyntihäviöt vaikuttavat suoraan katteisiin. Parannettu kysynnän ennustaminen vähentää sekä ylimääräistä varastoa että loppuunmyynnistä johtuvia myyntihäviöitä.</p>
-            
-            <h3>Ennustamishaasteet</h3>
-            <p>Perinteiset ennustemenetelmät luottavat usein voimakkaasti historiallisiin keskiarvoihin ja manuaalisiin säätöihin. Ne kamppailevat kausivaihteluiden, kampanjavaikutusten ja ulkoisten markkinatekijöiden kanssa.</p>
-            
-            <div class="highlight-box">
-                <h4>Ennustevirheen Vähennys</h4>
-                <div class="comparison">
-                    <div class="comparison-item before">
-                        <div class="label">Perinteiset Menetelmät</div>
-                        <div class="value">25-35 %</div>
-                        <div class="desc">Keskimääräinen absoluuttinen prosenttivirhe</div>
-                    </div>
-                    <div class="comparison-item after">
-                        <div class="label">ML-Pohjainen Ennustaminen</div>
-                        <div class="value">10-15 %</div>
-                        <div class="desc">Ulkoisten tekijöiden integroinnilla</div>
-                    </div>
-                </div>
+<!-- PROBLEM -->
+<section class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-4">
+      <span class="text-accent text-sm font-medium uppercase tracking-widest">Haaste</span>
+    </div>
+    <h2 class="reveal reveal-delay-1 font-display font-700 text-3xl md:text-4xl text-text-primary mb-4">Manuaalisen käsittelyn kustannukset</h2>
+    <p class="reveal reveal-delay-2 text-text-secondary text-lg mb-12 max-w-2xl">
+      Organisaatiot, jotka käsittelevät suuria dokumenttimääriä manuaalisesti, kohtaavat ennustettavia haasteita ruuhkahuippuina, inhimillisten virheiden korjaamisessa ja henkilöstön ajankäytössä.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="reveal stat-box card-hover">
+        <div class="text-4xl font-display font-700 text-red-400 mb-2 count-up" data-target="6" data-suffix="+ h">0</div>
+        <div class="text-text-muted text-sm uppercase tracking-wide">Viikoittainen käsittelyaika</div>
+      </div>
+      <div class="reveal reveal-delay-1 stat-box card-hover">
+        <div class="text-4xl font-display font-700 text-red-400 mb-2"><span class="count-up" data-target="5" data-prefix="2–" data-suffix="%">0</span></div>
+        <div class="text-text-muted text-sm uppercase tracking-wide">Virheprosentti (manuaalinen)</div>
+      </div>
+      <div class="reveal reveal-delay-2 stat-box card-hover">
+        <div class="text-4xl font-display font-700 text-red-400 mb-2 count-up" data-target="45000" data-suffix=" €">0</div>
+        <div class="text-text-muted text-sm uppercase tracking-wide">Vuotuiset työkustannukset</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- SOLUTIONS -->
+<section class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-4">
+      <span class="text-accent text-sm font-medium uppercase tracking-widest">Ratkaisut</span>
+    </div>
+    <h2 class="reveal reveal-delay-1 font-display font-700 text-3xl md:text-4xl text-text-primary mb-16">Kolme ydinaluetta</h2>
+
+    <!-- Solution 1 -->
+    <div class="mb-20">
+      <h3 class="reveal font-display font-700 text-2xl text-text-primary mb-3">1. Dokumenttien käsittelyn automaatio</h3>
+      <p class="reveal reveal-delay-1 text-text-secondary text-base mb-8 max-w-2xl">Älykäs dokumenttien käsittelyjärjestelmä poimii tiedot yli 99 %:n tarkkuudella ja integroi suoraan olemassa olevaan ERP- tai kirjanpitojärjestelmään.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+        <div class="reveal bento-item card-hover flex gap-4">
+          <div class="step-num">1</div>
+          <div><h4 class="text-text-primary font-600 text-sm mb-1">Dokumenttien vastaanotto</h4><p class="text-text-secondary text-sm">Sähköpostilla, latauksella tai API:lla — automaattinen jonottaminen käsittelyyn</p></div>
+        </div>
+        <div class="reveal reveal-delay-1 bento-item card-hover flex gap-4">
+          <div class="step-num">2</div>
+          <div><h4 class="text-text-primary font-600 text-sm mb-1">Tietojen poiminta</h4><p class="text-text-secondary text-sm">AI-mallit poimivat relevantit kentät yli 99 %:n tarkkuudella eri formaateista</p></div>
+        </div>
+        <div class="reveal bento-item card-hover flex gap-4">
+          <div class="step-num">3</div>
+          <div><h4 class="text-text-primary font-600 text-sm mb-1">Validointi & integraatio</h4><p class="text-text-secondary text-sm">Liiketoimintasäännöt tarkastetaan ja data syötetään järjestelmiin automaattisesti</p></div>
+        </div>
+        <div class="reveal reveal-delay-1 bento-item card-hover flex gap-4">
+          <div class="step-num">4</div>
+          <div><h4 class="text-text-primary font-600 text-sm mb-1">Poikkeusten käsittely</h4><p class="text-text-secondary text-sm">Matalan luottamuksen poiminnat merkitään ihmistarkistusta varten</p></div>
+        </div>
+      </div>
+      <!-- Progress bars -->
+      <div class="reveal bento-item">
+        <h4 class="text-text-muted text-xs uppercase tracking-widest mb-6">Tarkkuusvertailu</h4>
+        <div class="space-y-5">
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-text-secondary">Perinteinen OCR</span>
+              <span class="text-red-400 font-600">60–75 %</span>
             </div>
-            
-            <h3>Ratkaisumme</h3>
-            <p>Rakennamme ennustemalleja, jotka sisältävät useita datalähteitä ja oppivat monimutkaisia kysyntäkaavoja, jotka ovat ominaisia liiketoiminnallesi.</p>
-            
-            <div class="solution-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Dataintegraatio</h4>
-                        <p>Historiallinen myynti, kausivaihtelut, kampanjat ja ulkoiset signaalit yhdistetään</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Mallin Koulutus</h4>
-                        <p>Aikasarjamallit koulutetaan yrityksesi tuotekategorioille</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Varaston Optimointi</h4>
-                        <p>Tilauspisteet ja määrät lasketaan kokonaiskustannusten minimointiin</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Jatkuva Parantaminen</h4>
-                        <p>Mallit uudelleenkoulutetaan uuden datan saatavilla, mukautuen muuttuviin kaavoihin</p>
-                    </div>
-                </div>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill bg-red-500 progress-animate" data-width="70"></div>
             </div>
-            
-            <div class="big-number">
-                <div class="value">15-25 %</div>
-                <div class="label">Tyypillinen varastokustannusten vähennys</div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-text-secondary">Meidän putkemme</span>
+              <span class="text-emerald font-600">99 %+</span>
             </div>
-        </div>
-    </section>
-
-    <section class="guarantee">
-        <div class="container">
-            <h2>Sitoumuksemme</h2>
-            <p>Seisomme työmme takana. Jos järjestelmämme ei tuota mitattavia kustannussäästöjä sovitussa aikataulussa, tarjoamme:</p>
-            <ul class="guarantee-list">
-                <li><span class="check">→</span> Täyden hyvityksen toteutuspalkkioista</li>
-                <li><span class="check">→</span> Peruutuksen ilman kysymyksiä</li>
-                <li><span class="check">→</span> Kaiken valmiin työn säilyttämisen</li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="tech-section">
-        <div class="container">
-            <details>
-                <summary>Tekniset Määritykset</summary>
-                <div class="tech-content">
-                    <h4>Teknologiapino</h4>
-                    <ul>
-                        <li>Python / TensorFlow / PyTorch</li>
-                        <li>LangChain LLM-integraatioon</li>
-                        <li>PaddleOCR dokumenttien käsittelyyn</li>
-                        <li>Prophet / ARIMA ennustamiseen</li>
-                        <li>n8n / Make työnkulkujen automaatioon</li>
-                    </ul>
-                </div>
-                <div class="tech-content" style="margin-top: 16px;">
-                    <h4>Turvallisuus & Vaatimustenmukaisuus</h4>
-                    <ul>
-                        <li>Päästä päähän -salaus</li>
-                        <li>GDPR-vaatimustenmukainen</li>
-                        <li>SOC 2 Type II -sertifioitu infrastruktuuri</li>
-                        <li>99,9 % käytettävyys SLA</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
-    </section>
-
-    <section class="lead-form" id="audit">
-        <div class="container">
-            <h2>Pyydä Konsultaatio</h2>
-            <p>Analysoimme nykyiset toimintasi ja tunnistamme automaatiomahdollisuudet, jotka ovat ominaisia liiketoiminnallesi.</p>
-            
-            <div class="form-container">
-                <form onsubmit="submitLead(event)">
-                    <div class="form-group">
-                        <label for="name">Nimi</label>
-                        <input type="text" id="name" name="name" placeholder="Nimesi" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Työsähköposti</label>
-                        <input type="email" id="email" name="email" placeholder="sinä@yritys.fi" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Yritys</label>
-                        <input type="text" id="company" name="company" placeholder="Yrityksesi">
-                    </div>
-                    <button type="submit" class="submit-btn">Aikatauluta Konsultaatio</button>
-                </form>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill progress-animate" style="background:#10b981" data-width="99"></div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <footer>
-        <div class="container">
-            <p>© 2024 AI Automation Labs. Kaikki oikeudet pidätetään.</p>
+    <!-- Solution 2 -->
+    <div class="mb-20">
+      <h3 class="reveal font-display font-700 text-2xl text-text-primary mb-3">2. Ennakoiva kunnossapito</h3>
+      <p class="reveal reveal-delay-1 text-text-secondary text-base mb-8 max-w-2xl">Laitteiden anturidata tunnistaa mahdolliset viat viikkoja ennen ilmenemistä — ilman kalliita hätäseisokkeja.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+        <div class="reveal bento-item card-hover flex gap-4">
+          <div class="step-num">1</div>
+          <div><h4 class="text-text-primary font-600 text-sm mb-1">Anturien asennus</h4><p class="text-text-secondary text-sm">Värähtely-, lämpötila- ja akustiset anturit kriittiseen kalustoon</p></div>
         </div>
-    </footer>
+        <div class="reveal reveal-delay-1 bento-item card-hover flex gap-4">
+          <div class="step-num">2</div>
+          <div><h4 class="text-text-primary font-600 text-sm mb-1">Pohjaviivan oppiminen</h4><p class="text-text-secondary text-sm">Mallit oppivat normaalit toimintakaavat kullekin laitteelle</p></div>
+        </div>
+        <div class="reveal bento-item card-hover flex gap-4">
+          <div class="step-num">3</div>
+          <div><h4 class="text-text-primary font-600 text-sm mb-1">Poikkeamien havaitseminen</h4><p class="text-text-secondary text-sm">Poikkeamat laukaisevat hälytykset vakavuusluokituksella</p></div>
+        </div>
+        <div class="reveal reveal-delay-1 bento-item card-hover flex gap-4">
+          <div class="step-num">4</div>
+          <div><h4 class="text-text-primary font-600 text-sm mb-1">Huoltojen suunnittelu</h4><p class="text-text-secondary text-sm">Suositukset integroituvat huoltoaikataulujärjestelmääsi</p></div>
+        </div>
+      </div>
+      <div class="reveal grid grid-cols-2 gap-4">
+        <div class="stat-box card-hover">
+          <div class="text-3xl font-display font-700 text-red-400 mb-2 count-up" data-target="40" data-prefix="~" data-suffix="%">0</div>
+          <div class="text-text-muted text-xs uppercase tracking-wide">Aikataulutettu huolto</div>
+          <div class="text-text-secondary text-sm mt-1">vioista havaitaan</div>
+        </div>
+        <div class="stat-box card-hover">
+          <div class="text-3xl font-display font-700 text-emerald mb-2 count-up" data-target="90" data-prefix="85–" data-suffix="%">0</div>
+          <div class="text-text-muted text-xs uppercase tracking-wide">Ennakoivilla malleilla</div>
+          <div class="text-text-secondary text-sm mt-1">vioista havaitaan</div>
+        </div>
+      </div>
+      <p class="reveal text-text-muted text-xs mt-3">Perustuu NASA CMAPSS ja vastaaviin teollisuusaineistoihin</p>
+    </div>
 
-    <script>
-        function submitLead(event) {
-            event.preventDefault();
-            const form = event.target;
-            const name = form.name.value;
-            
-            form.innerHTML = `
-                <div style="text-align: center; padding: 40px 20px;">
-                    <div style="font-size: 48px; margin-bottom: 16px;">✓</div>
-                    <h3 style="font-size: 20px; margin-bottom: 12px; color: var(--text-primary);">Kiitos, ${name}</h3>
-                    <p style="font-size: 15px; color: var(--text-secondary);">Otamme yhteyttä 24 tunnin kuluessa konsultaation aikatauluttamiseksi.</p>
-                </div>
-            `;
-        }
-    </script>
+    <!-- Solution 3 -->
+    <div>
+      <h3 class="reveal font-display font-700 text-2xl text-text-primary mb-3">3. Kysynnän ennustaminen & varaston optimointi</h3>
+      <p class="reveal reveal-delay-1 text-text-secondary text-base mb-8 max-w-2xl">ML-pohjaiset ennustemallit vähentävät sekä ylimääräistä varastoa että loppuunmyynnistä johtuvia myyntihäviöitä.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+        <div class="reveal bento-item card-hover flex gap-4">
+          <div class="step-num">1</div>
+          <div><h4 class="text-text-primary font-600 text-sm mb-1">Dataintegraatio</h4><p class="text-text-secondary text-sm">Historiallinen myynti, kausivaihtelut, kampanjat ja ulkoiset signaalit yhdistetään</p></div>
+        </div>
+        <div class="reveal reveal-delay-1 bento-item card-hover flex gap-4">
+          <div class="step-num">2</div>
+          <div><h4 class="text-text-primary font-600 text-sm mb-1">Mallin koulutus</h4><p class="text-text-secondary text-sm">Aikasarjamallit koulutetaan yrityksesi tuotekategorioille</p></div>
+        </div>
+        <div class="reveal bento-item card-hover flex gap-4">
+          <div class="step-num">3</div>
+          <div><h4 class="text-text-primary font-600 text-sm mb-1">Varaston optimointi</h4><p class="text-text-secondary text-sm">Tilauspisteet ja määrät minimoimaan kokonaiskustannukset</p></div>
+        </div>
+        <div class="reveal reveal-delay-1 bento-item card-hover flex gap-4">
+          <div class="step-num">4</div>
+          <div><h4 class="text-text-primary font-600 text-sm mb-1">Jatkuva parantaminen</h4><p class="text-text-secondary text-sm">Mallit uudelleenkoulutetaan uuden datan saatavilla</p></div>
+        </div>
+      </div>
+      <div class="reveal bento-item mb-6">
+        <h4 class="text-text-muted text-xs uppercase tracking-widest mb-6">Ennustevirheen vertailu</h4>
+        <div class="space-y-5">
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-text-secondary">Perinteiset menetelmät</span>
+              <span class="text-red-400 font-600">25–35 %</span>
+            </div>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill bg-red-500 progress-animate" data-width="35"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-text-secondary">ML-pohjainen ennustaminen</span>
+              <span class="text-emerald font-600">10–15 %</span>
+            </div>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill progress-animate" style="background:#10b981" data-width="15"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal text-center py-10">
+        <div class="text-5xl font-display font-700 text-emerald mb-2 count-up" data-target="25" data-prefix="" data-suffix="–25 %">0</div>
+        <div class="text-text-secondary text-base">Tyypillinen varastokustannusten vähennys</div>
+        <div class="text-text-muted text-sm mt-1">suhteessa lähtötasoon</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- TECH BENTO -->
+<section class="py-20 px-6 bg-steel" style="background:#111d2b">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-4">
+      <span class="text-accent text-sm font-medium uppercase tracking-widest">Teknologia</span>
+    </div>
+    <h2 class="reveal reveal-delay-1 font-display font-700 text-3xl text-text-primary mb-10">Tekniset tiedot</h2>
+    <div class="bento-grid">
+      <div class="reveal bento-item wide card-hover">
+        <div class="text-accent text-xs uppercase tracking-widest mb-3">Teknologiapino</div>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-steel-light text-text-secondary text-xs px-3 py-1.5 rounded-md border border-border">Python</span>
+          <span class="bg-steel-light text-text-secondary text-xs px-3 py-1.5 rounded-md border border-border">TensorFlow / PyTorch</span>
+          <span class="bg-steel-light text-text-secondary text-xs px-3 py-1.5 rounded-md border border-border">LangChain</span>
+          <span class="bg-steel-light text-text-secondary text-xs px-3 py-1.5 rounded-md border border-border">PaddleOCR</span>
+          <span class="bg-steel-light text-text-secondary text-xs px-3 py-1.5 rounded-md border border-border">Prophet / ARIMA</span>
+          <span class="bg-steel-light text-text-secondary text-xs px-3 py-1.5 rounded-md border border-border">n8n / Make</span>
+        </div>
+      </div>
+      <div class="reveal bento-item card-hover">
+        <div class="text-accent text-xs uppercase tracking-widest mb-2">Salaus</div>
+        <div class="text-text-primary font-600 text-base">Päästä päähän</div>
+        <div class="text-text-muted text-sm mt-1">TLS 1.3 + AES-256 at rest</div>
+      </div>
+      <div class="reveal reveal-delay-1 bento-item card-hover">
+        <div class="text-accent text-xs uppercase tracking-widest mb-2">Vaatimustenmukaisuus</div>
+        <div class="flex gap-2 flex-wrap mt-2">
+          <span class="text-emerald font-600 text-sm">GDPR</span>
+          <span class="text-text-muted text-sm">·</span>
+          <span class="text-emerald font-600 text-sm">SOC 2 Type II</span>
+        </div>
+      </div>
+      <div class="reveal bento-item card-hover">
+        <div class="text-accent text-xs uppercase tracking-widest mb-2">Käytettävyys</div>
+        <div class="text-3xl font-display font-700 text-emerald">99.9 %</div>
+        <div class="text-text-muted text-sm">SLA-takuu</div>
+      </div>
+      <div class="reveal reveal-delay-1 bento-item card-hover">
+        <div class="text-accent text-xs uppercase tracking-widest mb-2">Infrastruktuuri</div>
+        <div class="text-text-primary text-sm font-500">AWS / GCP</div>
+        <div class="text-text-muted text-sm mt-1">Automaattiset varmuuskopiot</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- CTA + FORM -->
+<section id="cta" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-4">
+      <span class="text-accent text-sm font-medium uppercase tracking-widest">Ota yhteyttä</span>
+    </div>
+    <h2 class="reveal reveal-delay-1 font-display font-700 text-3xl md:text-4xl text-text-primary mb-12">Aloitetaan yhteistyö</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- Guarantee -->
+      <div class="reveal">
+        <h3 class="font-display font-700 text-xl text-text-primary mb-6">Sitoumuksemme</h3>
+        <p class="text-text-secondary text-base mb-8 leading-relaxed">Seisomme työmme takana. Jos järjestelmämme ei tuota mitattavia kustannussäästöjä sovitussa aikataulussa, tarjoamme:</p>
+        <ul class="space-y-5">
+          <li class="flex items-start gap-4">
+            <span class="text-emerald text-lg mt-0.5">→</span>
+            <div>
+              <div class="text-text-primary font-600 text-sm">Täysi hyvitys toteutuspalkkioista</div>
+              <div class="text-text-muted text-sm mt-0.5">Ilman ehtoja tai lisäkysymyksiä</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="text-emerald text-lg mt-0.5">→</span>
+            <div>
+              <div class="text-text-primary font-600 text-sm">Riskitön peruutus</div>
+              <div class="text-text-muted text-sm mt-0.5">Voit peruuttaa milloin tahansa ilman sitoumuksia</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="text-emerald text-lg mt-0.5">→</span>
+            <div>
+              <div class="text-text-primary font-600 text-sm">Pidät kaiken valmiin työn</div>
+              <div class="text-text-muted text-sm mt-0.5">Kaikki tuotokset jäävät sinulle</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Form -->
+      <div class="reveal reveal-delay-1">
+        <div class="bento-item">
+          <form id="contact-form" onsubmit="handleSubmit(event)">
+            <div class="space-y-5">
+              <div>
+                <label class="block text-text-secondary text-sm mb-2" for="name">Nimi</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Nimesi" required>
+              </div>
+              <div>
+                <label class="block text-text-secondary text-sm mb-2" for="email">Työsähköposti</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="sinä@yritys.fi" required>
+              </div>
+              <div>
+                <label class="block text-text-secondary text-sm mb-2" for="company">Yritys</label>
+                <input type="text" id="company" name="company" class="form-input" placeholder="Yrityksesi nimi">
+              </div>
+              <button type="submit" class="btn-primary w-full text-center text-sm justify-center" style="display:block; width:100%">
+                Aikatauluta konsultaatio →
+              </button>
+              <p class="text-text-muted text-xs text-center">Otamme yhteyttä 24 tunnin kuluessa</p>
+            </div>
+          </form>
+          <div id="form-success" class="hidden text-center py-8">
+            <div class="text-4xl mb-3">✓</div>
+            <div class="text-text-primary font-600 text-base mb-1">Kiitos!</div>
+            <div class="text-text-secondary text-sm">Otamme yhteyttä pian.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-border py-8 px-6 text-center">
+  <p class="text-text-muted text-sm">[YRITYKSESI NIMI] · 2026</p>
+</footer>
+
+<script>
+// ── Scroll Reveal ──────────────────────────────────────────────
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── Count-up ───────────────────────────────────────────────────
+function animateCount(el) {
+  const target = parseFloat(el.dataset.target);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const duration = 1400;
+  const step = 16;
+  const steps = duration / step;
+  let current = 0;
+  const increment = target / steps;
+  const timer = setInterval(() => {
+    current = Math.min(current + increment, target);
+    const display = target >= 1000
+      ? Math.round(current).toLocaleString('fi-FI')
+      : (Number.isInteger(target) ? Math.round(current) : current.toFixed(1));
+    el.textContent = prefix + display + suffix;
+    if (current >= target) clearInterval(timer);
+  }, step);
+}
+
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateCount(e.target);
+      countObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
+
+// ── Progress Bars ──────────────────────────────────────────────
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.progress-animate').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+      barObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.bento-item').forEach(el => {
+  if (el.querySelector('.progress-animate')) barObserver.observe(el);
+});
+
+// ── Form submit ────────────────────────────────────────────────
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('contact-form').classList.add('hidden');
+  document.getElementById('form-success').classList.remove('hidden');
+}
+</script>
 </body>
 </html>
