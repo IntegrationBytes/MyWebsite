@@ -51,12 +51,20 @@
 </div>
 
 <script>
-// Auto-redirect based on browser language preference
+// Redirect by visitor IP location (Cloudflare). Finland -> Finnish, everyone else -> English.
+// Cache-safe: the country is read fresh per visitor from /cdn-cgi/trace, so an edge-cached
+// shell can't pin every visitor to one language. The picker above is the no-JS fallback.
 (function(){
-  const lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-  if (lang.startsWith('fi')) { window.location.replace('/fi/'); }
-  else if (lang.startsWith('es')) { window.location.replace('/es/'); }
-  else { window.location.replace('/en/'); }
+  var done = false;
+  function go(lang){ if (done) return; done = true; window.location.replace(lang === 'fi' ? '/fi/' : '/en/'); }
+  try {
+    fetch('/cdn-cgi/trace', { cache: 'no-store' })
+      .then(function(r){ return r.text(); })
+      .then(function(t){ var m = t.match(/^loc=([A-Z]{2})/m); go(m && m[1] === 'FI' ? 'fi' : 'en'); })
+      .catch(function(){ go('en'); });
+  } catch (e) { go('en'); }
+  // Safety net if the trace request hangs or is blocked: default to English.
+  setTimeout(function(){ go('en'); }, 2500);
 })();
 </script>
 
