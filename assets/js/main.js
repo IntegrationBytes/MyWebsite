@@ -601,13 +601,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // On Business pages, show an embedded scheduler overlay with 3 qualifying questions
     try {
       if ((location.pathname || '').toLowerCase().includes('/business')) {
-        const ensureCalendlyScript = () => new Promise((resolve) => {
-          if (document.querySelector('script[data-calendly]')) return resolve();
-          const s = document.createElement('script');
-          s.src = 'https://assets.calendly.com/assets/external/widget.js';
-          s.async = true; s.setAttribute('data-calendly','true');
-          s.onload = () => resolve();
-          document.head.appendChild(s);
+        const ensureCalScript = () => new Promise((resolve) => {
+          if (window.Cal) return resolve();
+          // Official Cal.com embed loader (defines window.Cal, loads embed.js async)
+          (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal, ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement('script')).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var ns = ar[1]; api.q = api.q || []; if (typeof ns === 'string') { cal.ns[ns] = cal.ns[ns] || api; p(cal.ns[ns], ar); p(cal, ['initNamespace', ns]); } else { p(cal, ar); } return; } p(cal, ar); }; })(window, (window.CAL_ORIGIN || 'https://app.cal.com') + '/embed/embed.js', 'init');
+          try { window.Cal('init', { origin: window.CAL_ORIGIN || 'https://app.cal.com' }); } catch {}
+          resolve();
         });
 
         const createOverlay = () => {
@@ -704,9 +703,9 @@ document.addEventListener('DOMContentLoaded', () => {
           form.addEventListener('submit', async (e) => {
             e.preventDefault();
             try { window.umami?.track?.('scheduler_submit'); } catch {}
-            const url = window.CALENDLY_URL || '';
-            if (!url) { document.getElementById('sched-status').textContent = 'Scheduler unavailable. Please use Contact.'; return; }
-            await ensureCalendlyScript();
+            const calLink = window.CAL_LINK || '';
+            if (!calLink) { document.getElementById('sched-status').textContent = 'Scheduler unavailable. Please use Contact.'; return; }
+            await ensureCalScript();
             // Move to step 2
             progress.textContent = 'Step 2 of 2';
             const existing = document.getElementById('sched-next'); if (existing) existing.remove();
@@ -714,12 +713,12 @@ document.addEventListener('DOMContentLoaded', () => {
             next.id = 'sched-next';
             next.innerHTML = '<div class="callout console"><div class="title">What to expect</div><ul class="muted"><li>We\'ll clarify your goal and constraints</li><li>We\'ll map a 4‑week pilot with a clear KPI</li><li>If it\'s a fit, we\'ll agree on next steps. Otherwise, I\'ll send a brief summary you can use internally.</li></ul></div>';
             panel.insertBefore(next, calendlyWrap);
-            // Show Calendly inline scheduler
+            // Show inline scheduler (Cal.com)
             calendlyWrap.innerHTML = '';
             calendlyWrap.style.minHeight = '620px';
             try { panel.scrollTo({ top: 0, behavior: 'smooth' }); } catch {}
-            // Initialize inline Calendly widget
-            try { window.Calendly?.initInlineWidget?.({ url, parentElement: calendlyWrap, prefill: {} }); } catch {}
+            // Initialize inline Cal.com widget
+            try { window.Cal && window.Cal('inline', { elementOrSelector: '#calendly-inline', calLink: calLink, layout: 'month_view' }); window.Cal && window.Cal('ui', { theme: window.CAL_THEME || 'dark', layout: 'month_view' }); } catch {}
           });
 
           // Reset function so every open starts fresh

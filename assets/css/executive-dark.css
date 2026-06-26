@@ -17,17 +17,20 @@
   --void-border: #2a2a3a;
   --void-border-subtle: rgba(255, 255, 255, 0.06);
   
-  /* Accent Colors */
-  --accent: #00d4ff;
-  --accent-dim: rgba(0, 212, 255, 0.1);
-  --accent-glow: rgba(0, 212, 255, 0.15);
-  --accent-purple: #7c3aed;
-  
+  /* Accent Colors — Trust & Authority palette (steel blue + warm gold) */
+  --accent: #5b8def;                       /* steel blue — cool primary, brand */
+  --accent-dim: rgba(91, 141, 239, 0.1);
+  --accent-glow: rgba(91, 141, 239, 0.18);
+  --accent-purple: #4f7be3;                /* deeper steel — gradient pair (kills purple, keeps mono-cool) */
+  --accent-warm: #d4a352;                  /* warm gold — reserved for primary CTAs */
+  --accent-warm-dim: rgba(212, 163, 82, 0.12);
+  --accent-warm-glow: rgba(212, 163, 82, 0.22);
+
   /* Text Colors */
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  
+
   /* Gradients */
   --gradient-hero: linear-gradient(135deg, var(--accent) 0%, var(--accent-purple) 100%);
   --gradient-card: linear-gradient(180deg, var(--void-lighter) 0%, var(--void-light) 100%);
@@ -92,6 +95,7 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
   --shadow-glow: 0 0 40px var(--accent-glow);
   --shadow-glow-sm: 0 0 20px var(--accent-glow);
+  --shadow-glow-warm: 0 0 24px var(--accent-warm-glow);
   
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -310,13 +314,14 @@ ul, ol {
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: var(--accent-warm);
   color: var(--void);
+  letter-spacing: 0.01em;
 }
 
 .btn-primary:hover {
-  background: rgba(0, 212, 255, 0.9);
-  box-shadow: var(--shadow-glow-sm);
+  background: rgba(228, 178, 96, 1);
+  box-shadow: var(--shadow-glow-warm);
   transform: translateY(-1px);
 }
 
@@ -327,8 +332,122 @@ ul, ol {
 }
 
 .btn-secondary:hover {
-  border-color: rgba(0, 212, 255, 0.3);
+  border-color: rgba(91, 141, 239, 0.35);
   background: var(--accent-dim);
+}
+
+/* Ghost link — for subordinate hero CTAs (kills two-equal-button problem) */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: var(--space-3) var(--space-4);
+  border: none;
+  font-weight: var(--font-medium);
+  text-decoration: underline;
+  text-decoration-color: rgba(148, 163, 184, 0.3);
+  text-underline-offset: 4px;
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+  text-decoration-color: var(--accent);
+}
+
+/* Hero proof row */
+.hero-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+  justify-content: center;
+  margin-top: var(--space-6);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+.hero-proof-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.hero-proof-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-warm);
+  box-shadow: 0 0 8px var(--accent-warm-glow);
+}
+
+/* Pricing badge — surfaces price above the fold */
+.hero-pricing {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--void-border);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.02);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.hero-pricing strong {
+  color: var(--text-primary);
+  font-weight: var(--font-semibold);
+}
+
+/* FAQ */
+.faq-list {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 52rem;
+  margin: 0 auto;
+}
+.faq-item {
+  border: 1px solid var(--void-border);
+  border-radius: var(--radius-lg);
+  background: var(--void-light);
+  overflow: hidden;
+  transition: border-color var(--transition-base);
+}
+.faq-item[open] {
+  border-color: rgba(91, 141, 239, 0.35);
+}
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: var(--space-5) var(--space-6);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  color: var(--accent);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-light);
+  transition: transform var(--transition-base);
+  line-height: 1;
+}
+.faq-item[open] summary::after {
+  content: "−";
+  transform: none;
+}
+.faq-item .faq-body {
+  padding: 0 var(--space-6) var(--space-5);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .btn-lg {
@@ -350,7 +469,7 @@ ul, ol {
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: rgba(0, 212, 255, 0.2);
+  border-color: rgba(91, 141, 239, 0.25);
   box-shadow: var(--shadow-xl);
 }
 
@@ -909,7 +1028,7 @@ ul, ol {
 
 @keyframes pulse-dot {
   0%, 100% { box-shadow: 0 0 12px var(--accent-glow); }
-  50% { box-shadow: 0 0 24px rgba(0, 212, 255, 0.4); }
+  50% { box-shadow: 0 0 24px rgba(91, 141, 239, 0.45); }
 }
 
 .timeline-label {
@@ -1088,8 +1207,12 @@ ul, ol {
 }
 
 /* ============================================
-   CALENDLY OVERRIDE (Dark mode compatibility)
+   CAL.COM EMBED (Dark mode compatibility)
    ============================================ */
-.calendly-inline-widget iframe {
+#cal-inline {
+  background: var(--void);
+  min-height: 620px;
+}
+#cal-inline iframe {
   background: var(--void) !important;
 }

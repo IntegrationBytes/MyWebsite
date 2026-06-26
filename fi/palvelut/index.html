@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Palvelut – Vincent Viitala</title>
-  <meta name="description" content="Tekoäly- ja data-automaatiopalvelut suomalaisille yrityksille. Asiakirjojen automaatio, ennakoiva kunnossapito, kysyntäennuste ja johdon raportit." />
+  <title>AI-Native -muutos pk-yrityksille – Vincent Viitala</title>
+  <meta name="description" content="Yksi lippulaivapalvelu: rakennan agentti-infrastruktuurin, joka muuttaa tavallisen pk-yrityksen AI-natiiviksi yritykseksi. 60–90 päivän rakennus, sen jälkeen kuukausittainen AgentOps-jatkosopimus. Arvoperusteinen hinnoittelu." />
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../../assets/css/styles.css">
   <link rel="stylesheet" href="../../assets/css/i18n.css">
@@ -29,88 +29,93 @@
 </header>
 <main class="container" role="main">
   <section class="reveal">
-    <p class="small-label">Palvelut</p>
-    <h1>Mitä automatisoin</h1>
-    <p class="lead">Neljä palvelua, jotka tuottavat suurimman välittömän säästön suomalaisissa teollisuus- ja palveluyrityksissä.</p>
+    <p class="small-label">Tarjous</p>
+    <h1>AI-Native -muutos</h1>
+    <p class="lead">Rakennan agentti-infrastruktuurin, joka muuttaa tavallisen pk-yrityksen AI-natiiviksi yritykseksi — 60–90 päivässä. Yksi toimeksianto, yksi tekijä, yksi vastuuketju.</p>
   </section>
 
-  <section class="reveal" id="asiakirjat">
+  <section class="reveal">
     <div class="card svc-card">
-      <div class="small-label">Hallinto · Suosituin palvelu</div>
-      <h2>Asiakirjojen automaattinen käsittely</h2>
-      <p>Laskut, ostotilaukset, toimituskirjat ja sopimukset – kaikki tunnistetaan, poimitaan ja kirjataan automaattisesti järjestelmään. Ei enää manuaalista näpyttelyä.</p>
-      <h3>Mitä saat:</h3>
-      <ul>
-        <li>OCR + tekoäly-pohjainen tietojen poiminta (Tesseract / AWS Textract)</li>
-        <li>Automaattinen integraatio ERP- tai kirjanpito-ohjelmistoon (Netvisor, Procountor, SAP, jne.)</li>
-        <li>Laaduntarkistus ja poikkeamahälytykset</li>
-        <li>GDPR-yhteensopiva, data pysyy Suomessa tai EU:ssa</li>
-      </ul>
-      <div class="svc-roi">Käyttöönotto: 2–4 viikkoa · Kuukausimaksu: 1 500–4 000 €/kk · Säästö: 30 000–120 000 €/v</div>
-      <a class="btn" href="/fi/ota-yhteytta/">Pyydä tarjous</a>
+      <div class="small-label">Miksi tämä on olemassa</div>
+      <h2>Useimmat pk-yritykset liimaavat tekoälyä päälle vanhan organisaation</h2>
+      <p>Chatbot-demot näyttävät hyviltä. Pilotit jumiutuvat. Puoli vuotta myöhemmin olette polttaneet kuusinumeroisen summan konsultteihin – ja teillä on yhä samat manuaaliset prosessit, samat Excelit ja sama data hajallaan kahdessatoista työkalussa. Vika ei ole mallissa – vika on siinä, että yrityksellänne ei ole paikkaa, johon agentti voisi kytkeytyä.</p>
+      <p>AI-natiivi yritys ei ole sellainen, joka käyttää ChatGPT:tä. Se on yritys, jonka data, työkalut, käyttöoikeudet ja työnkulut on suunniteltu niin, että ohjelmistoagentit voivat tehdä oikeaa työtä turvallisesti, valvotusti ja mittakaavassa. Tämä on infrastruktuuriongelma, ei chatbot-ongelma. Minä ratkaisen infrastruktuuriongelman.</p>
     </div>
   </section>
 
-  <section class="reveal" id="kunnossapito">
+  <section class="reveal" id="rakennus">
     <div class="card svc-card">
-      <div class="small-label">Tuotanto & logistiikka</div>
-      <h2>Ennakoiva kunnossapito</h2>
-      <p>Koneoppimismallit analysoivat laitetietoja reaaliajassa ja ennustavat vikaantumisen ennen kuin se tapahtuu. Saat hälytyksen hyvissä ajoin – ei yllätyksiä.</p>
-      <h3>Mitä saat:</h3>
+      <div class="small-label">Vaihe 1 · Rakennus · 60–90 päivää</div>
+      <h2>AI-Native Build</h2>
+      <p>Kiinteähintainen, kiinteäsisältöinen toimeksianto, joka asentaa täyden agenttipinon yrityksenne sisälle. Lopussa omistatte tuotantokelpoisen alustan, jolle tiimi – ja minä – voimme deployata uusia agentteja päivissä, ei kvartaaleissa.</p>
+      <h3>Mitä asennetaan:</h3>
       <ul>
-        <li>Datasopimus sensori-, SCADA- tai PLC-lähteistä</li>
-        <li>Koneoppimismalli (scikit-learn / LSTM)</li>
-        <li>Reaaliaikaiset SMS/sähköposti-hälytykset</li>
-        <li>Yksinkertainen kojetaulu riskipisteytyksineen</li>
+        <li><strong>Agenttiajo &amp; orkestrointi</strong> – Claude Agent SDK / LangGraph / n8n, isännöitynä omassa pilvessänne tai minun, versioiduin työnkuluin ja peruutusmahdollisuuksin.</li>
+        <li><strong>Sisäinen työkaluhubi (MCP)</strong> – turvalliset, hallitut liitännät CRM:ään, ERP:iin, kirjanpitoon, Driveen, sähköpostiin, kalenteriin ja tietokantoihin. Agentit kutsuvat työkaluja, eivät naputtele ruutuja.</li>
+        <li><strong>Yksityinen tietokerros</strong> – RAG-indeksi dokumenteistanne, sopimuksistanne, ohjeistanne ja tikettinne, mukana evaluaatiosarja jolla voitte luottaa siihen mitä haetaan.</li>
+        <li><strong>Identiteetti, oikeudet &amp; kustannuskontrolli</strong> – jokainen agentti toimii oikealla identiteetillä, oikeuksilla, rate-limiteillä ja tehtäväkohtaisilla budjeteilla. Ei yllätyslaskuja, ei karkaavia toimintoja.</li>
+        <li><strong>Valvonta &amp; auditointijälki</strong> – jokainen agenttipäätös lokitetaan, toistetaan ja auditoidaan. Hallittavaa AI:ta, ei fiilispohjaista.</li>
+        <li><strong>2–3 valmista agenttia tuotantoon</strong> – valitkaa back officesta: SDR / inbound-triage, taloushallinnon raportointi, ops-back-office, asiakastuki. Tuotannossa ensimmäisestä päivästä.</li>
+        <li><strong>Tiimin valmennus</strong> – henkilöstönne oppii briiffaamaan, valvomaan ja parantamaan agentteja. Infra elää toimeksiannon yli.</li>
       </ul>
-      <div class="svc-roi">Käyttöönotto: 4–8 viikkoa · Kuukausimaksu: 2 500–7 000 €/kk · 1 estetty seisokki = 2 v maksettu</div>
-      <a class="btn" href="/fi/ota-yhteytta/">Pyydä tarjous</a>
+      <div class="svc-roi">Aikataulu: 60–90 päivää · Kiinteä hinta: 25 000–60 000 € · Tulos: omistamanne alusta + 2–3 agenttia, jotka maksavat itsensä takaisin</div>
+      <a class="btn" href="/fi/ota-yhteytta/">Suunnitellaan rakennus</a>
     </div>
   </section>
 
-  <section class="reveal" id="raportointi">
+  <section class="reveal" id="agentops">
     <div class="card svc-card">
-      <div class="small-label">Johdon tuki</div>
-      <h2>Automaattiset johdon raportit</h2>
-      <p>Talousluvut, myyntiraportti, tuotantotehokkuus ja poikkeamat – kaikki yhdistettynä ja kirjoitettuna selkokielellä. Automaattisesti joka aamu ennen kokouksia.</p>
-      <h3>Mitä saat:</h3>
+      <div class="small-label">Vaihe 2 · AgentOps · Kuukausimaksu</div>
+      <h2>AgentOps-jatkosopimus</h2>
+      <p>Agentit eivät ole kerran toimitettavaa ohjelmistoa – ne ovat järjestelmiä jotka tarvitsevat operaattorin. Jatkosopimus pitää alustan terävänä ja varmistaa että uusia agentteja syntyy jatkuvasti.</p>
+      <h3>Mitä kuukaudessa kuuluu:</h3>
       <ul>
-        <li>Datan haku suoraan kirjanpidosta, ERP:stä tai tietokannasta</li>
-        <li>LLM-pohjainen tekstiyhteenveto suomeksi</li>
-        <li>Poikkeamien automaattinen tunnistus</li>
-        <li>PDF/sähköpostiraportti + hallituspaketti tarvittaessa</li>
+        <li><strong>Uusia agentteja tilauksesta</strong> – tuokaa työnkulku, saatte toimivan agentin päivissä. Ei uutta sopimusta jokaista käyttötapausta varten.</li>
+        <li><strong>Eval- &amp; guardrail-säätö</strong> – kun mallit ajautuvat, promptit vanhenevat tai liiketoiminta muuttuu, evaluaatiosarja huomaa sen ja korjaamme.</li>
+        <li><strong>Kustannus- &amp; suorituskykyseuranta</strong> – tokenit, latenssi, onnistumisprosentti ja ROI agenttikohtaisesti. Näette mikä toimii.</li>
+        <li><strong>Uusia työkaluliittimiä</strong> – jokainen uusi käyttöön otettu järjestelmä kytketään MCP-hubiin, niin kaikki olemassa olevat agentit voivat käyttää sitä.</li>
+        <li><strong>On-call -päivystys</strong> – kun agentti hajoaa, eskaloituu tai tarvitsee ihmisen, minä olen se ihminen. SLA:n alla.</li>
+        <li><strong>Kvartaalikatsaus</strong> – mitä toimitettiin, mitä seuraavaksi, mitä eläköitetään. ROI pöydällä.</li>
       </ul>
-      <div class="svc-roi">Käyttöönotto: 2–3 viikkoa · Kuukausimaksu: 1 200–3 000 €/kk · Säästö: 15–25 h/kk</div>
-      <a class="btn" href="/fi/ota-yhteytta/">Pyydä tarjous</a>
+      <div class="svc-roi">Kuukausimaksu: 2 000–6 000 € · Irtisanottavissa milloin tahansa · Tyypillinen asiakas: 5–15 agenttia tuotannossa 12 kuukauden sisällä</div>
+      <a class="btn" href="/fi/ota-yhteytta/">Keskustellaan AgentOpsista</a>
     </div>
   </section>
 
-  <section class="reveal" id="ennuste">
+  <section class="reveal" id="stack">
     <div class="card svc-card">
-      <div class="small-label">Hankinta & varasto</div>
-      <h2>Kysyntäennuste & varastooptimointi</h2>
-      <p>Aikasuhteiset ennustemallit laskevat optimaalisen tilausmäärän ja -ajankohdan. Ei enää ylivarastoa – eikä myöhässä olevia toimituksia.</p>
-      <h3>Mitä saat:</h3>
+      <div class="small-label">Konepellin alla</div>
+      <h2>Teknologiapino</h2>
+      <p>Olen vendor-agnostinen – alusta rakennetaan tuotantokelpoisista avoimista ja kaupallisista palasista, jotka valitaan datasijaintinne, mittakaavanne ja olemassa olevien työkalujenne mukaan. Tyypilliset oletukset:</p>
       <ul>
-        <li>Kysyntäennuste tuote- tai kategoriatason tarkkuudella (Prophet / ARIMA)</li>
-        <li>Automaattiset tilaussuositukset</li>
-        <li>Kausivaihteluanalyysi</li>
-        <li>Integraatio varastonhallintajärjestelmään</li>
+        <li><strong>Mallit:</strong> Claude (Anthropic) ensisijaisena, GPT / Gemini / avoimet (Llama, Qwen) siellä missä ne voittavat hinnassa tai latenssissa.</li>
+        <li><strong>Agenttikehykset:</strong> Claude Agent SDK, LangGraph, n8n low-code-työnkuluille.</li>
+        <li><strong>Työkaluprotokolla:</strong> MCP (Model Context Protocol) – avoin standardi agentti ↔ työkalu -integraatioon.</li>
+        <li><strong>Vektori- / tietokerros:</strong> pgvector, Qdrant tai olemassa oleva tietovarasto.</li>
+        <li><strong>Hosting:</strong> AWS, GCP, Azure, Hetzner tai on-prem. EU-datasijainti oletuksena.</li>
+        <li><strong>Valvonta:</strong> Langfuse / OpenTelemetry, mukana räätälöidyt dashboardit liiketoimintajohdolle – ei pelkästään insinöörille.</li>
       </ul>
-      <div class="svc-roi">Käyttöönotto: 3–5 viikkoa · Kuukausimaksu: 1 800–4 500 €/kk · Varastoredukti 10–20 %</div>
-      <a class="btn" href="/fi/ota-yhteytta/">Pyydä tarjous</a>
     </div>
   </section>
 
   <section class="reveal callout console">
-    <div class="title">Hinnoittelu – Arvopohjaisesti</div>
-    <p>En laskuta tunneista. Kuukausimaksu on sidottu siihen, paljonko säästät. Pilotti ensin – vasta sitten päätät jatkosta.</p>
+    <div class="title">Hinnoittelu &amp; takuu</div>
+    <p>Build on kiinteähintainen ja kiinteäsisältöinen – tiedätte luvun ennen allekirjoitusta. AgentOps-jatkosopimus on arvoperusteinen: näytän jokaisen tuotannossa olevan agentin ROI:n kvartaaleittain, ja jatkosopimus on noin 20–30 % siitä arvosta jonka agentit tuottavat. Jos ensimmäinen Buildissa toimitettu agentti ei maksa itseään takaisin 12 kuukauden sisällä, palautan jatkosopimusmaksut kunnes se maksaa.</p>
     <a class="btn" href="/fi/ota-yhteytta/" style="margin-top:12px;">Aloita ilmaisella kartoituksella</a>
+  </section>
+
+  <section class="reveal">
+    <div class="card svc-card">
+      <div class="small-label">Et ole vielä varma?</div>
+      <h2>Kartoitus (ilmainen, 1 viikko)</h2>
+      <p>Ennen kuin sitoudut Buildiin, teemme viikon kartoituksen. Käyn läpi 10 tärkeintä manuaalista työnkulkua, pisteytän jokaisen agentti-valmiuden ja ROI:n suhteen ja toimitan priorisoidun tiekartan konkreettisin luvuin. Jos emme ole sopiva pari, tiekartta jää teille. Ei laskutettavia tunteja, ei velvoitteita.</p>
+      <a class="btn" href="/fi/ota-yhteytta/">Varaa kartoitus</a>
+    </div>
   </section>
 </main>
 <footer class="site-footer" role="contentinfo">
   <div class="container footer-inner">
-    <div class="left"><p class="muted">© 2025 Vincent Viitala</p></div>
+    <div class="left"><p class="muted">© 2026 Vincent Viitala</p></div>
     <div class="right">
       <a href="/en/services/" class="tag">English</a>
       <a href="/es/servicios/" class="tag">Español</a>

@@ -3,3 +3,7 @@
 /assets/img/og
 /assets/pdf
 /webmentions.json
+
+# OS + local tooling
+.DS_Store
+.claude/
