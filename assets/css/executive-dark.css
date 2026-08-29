@@ -1461,3 +1461,21 @@ ul, ol {
   .cv-metric { color: #111 !important; background: none !important; border-color: #999; }
   a { color: #111 !important; text-decoration: none; }
 }
+
+/* Print / save-as-PDF button in the CV contact row */
+.cv-print {
+  font-family: inherit;
+  font-size: var(--text-sm);
+  color: var(--accent-warm);
+  background: var(--accent-warm-dim);
+  border: 1px solid rgba(212, 163, 82, 0.28);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-3);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.cv-print:hover {
+  background: rgba(212, 163, 82, 0.2);
+  color: var(--text-primary);
+}
+@media print { .cv-print { display: none !important; } }
