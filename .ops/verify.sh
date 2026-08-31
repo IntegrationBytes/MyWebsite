@@ -115,8 +115,37 @@ fi
 sec "I. LEADS — every source_url was actually reachable"
 if [ -f .ops/url_check.txt ]; then
   DEAD=$(grep -c 'DEAD' .ops/url_check.txt || true)
+  # UNKNOWN must fail too. If the network blocks the checker, every line comes
+  # back UNKNOWN and a DEAD-only test would pass vacuously - a check that does
+  # not check. Every URL must be positively confirmed, not merely not-refuted.
+  UNK=$(grep -c 'UNKNOWN' .ops/url_check.txt || true)
   TOT=$(wc -l < .ops/url_check.txt | tr -d ' ')
-  [ "$DEAD" -eq 0 ] && ok "$TOT source URLs verified live" || no "$DEAD dead source URLs"
+  if [ "$DEAD" -eq 0 ] && [ "$UNK" -eq 0 ]; then
+    ok "$TOT source URLs positively confirmed live"
+  else
+    [ "$DEAD" -gt 0 ] && no "$DEAD dead source URLs"
+    [ "$UNK" -gt 0 ] && no "$UNK source URLs never actually confirmed (network blocked the check)"
+  fi
+  # Cross-check: every URL cited in leads.csv must appear in url_check.txt.
+  python3 - <<'PYX'
+import csv,sys,os
+if os.path.exists(".ops/leads.csv"):
+    cited=set()
+    for r in csv.DictReader(open(".ops/leads.csv",newline="",encoding="utf-8")):
+        for c in ("source_url","trigger_source_url"):
+            u=(r.get(c) or "").strip()
+            if u.startswith("http"): cited.add(u)
+    checked=set()
+    for line in open(".ops/url_check.txt",encoding="utf-8"):
+        parts=line.split("\t")
+        if len(parts)>1: checked.add(parts[1].strip())
+    missing=cited-checked
+    if missing:
+        for m in list(missing)[:5]: print(f"  FAIL  cited but never checked: {m}")
+        sys.exit(1)
+    print("  PASS  every URL cited in leads.csv appears in url_check.txt")
+PYX
+  [ $? -ne 0 ] && FAIL=1
 else
   no ".ops/url_check.txt missing (URLs never verified)"
 fi
