@@ -1479,3 +1479,30 @@ ul, ol {
   color: var(--text-primary);
 }
 @media print { .cv-print { display: none !important; } }
+
+/* --- Hero rework: facts strip + bounded guarantee ---
+   The old hero spent the whole first screen on a negative framing and buried
+   price, timeframe and ownership inside a 76-word paragraph nobody reads.
+   Decision facts now come before credentials; min-height:auto on mobile is
+   what pulls the CTA above the fold on a phone. */
+.hero-facts{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  width:max-content;max-width:100%;
+  gap:8px 16px;margin:0 auto 24px;padding:8px 20px;
+  border:1px solid var(--void-border);border-radius:999px;
+  background:rgba(255,255,255,.02);
+  font-size:var(--text-sm);color:var(--text-secondary);
+  font-variant-numeric:tabular-nums;
+}
+.hero-facts strong{color:var(--text-primary);font-weight:600;}
+.hero-guarantee{
+  max-width:34rem;margin:0 auto 32px;
+  font-size:var(--text-sm);line-height:1.65;color:var(--text-muted);
+}
+.hero-guarantee a{color:var(--text-secondary);text-decoration:underline;text-underline-offset:3px;}
+.hero .hero-description{margin-bottom:24px;}
+.hero .hero-proof{margin-top:40px;}
+@media (max-width:640px){
+  .hero{min-height:auto;padding-top:calc(var(--nav-height, 64px) + 32px);padding-bottom:48px;}
+  .hero-facts{border:0;padding:0;background:none;}
+}
