@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent ROI Calculator – Vincent Viitala</title>
+  <meta name="description" content="Work out what one manual workflow actually costs you per year, and whether AI agents would pay for themselves. Conservative numbers, every assumption shown. It will tell you when not to buy." />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Agent ROI Calculator – Vincent Viitala">
+  <meta property="og:description" content="What does one manual workflow cost you per year, and would agents pay for themselves? Conservative numbers, every assumption shown.">
+  <meta property="og:url" content="https://vincentviitala.com/en/roi/">
+  <meta property="og:image" content="https://vincentviitala.com/assets/img/og-default.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Agent ROI Calculator – Vincent Viitala">
+  <meta name="twitter:description" content="What does one manual workflow cost you per year, and would agents pay for themselves?">
+  <link rel="canonical" href="https://vincentviitala.com/en/roi/" />
+  <link rel="alternate" hreflang="en" href="https://vincentviitala.com/en/roi/" />
+  <link rel="alternate" hreflang="fi" href="https://vincentviitala.com/fi/laskuri/" />
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0a0f" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/executive-dark.css">
+  <link rel="stylesheet" href="/assets/css/roi.css">
+  <script defer src="/assets/js/config.js"></script>
+  <script defer src="/assets/js/roi.js"></script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/en/" class="nav-brand">Vincent Viitala</a>
+    <div class="nav-links">
+      <a data-umami-event="nav-cv" href="/en/cv/" class="nav-link">CV</a>
+      <a href="/fi/laskuri/" class="nav-link">FI</a>
+      <a href="/en/roi/" class="nav-link active">EN</a>
+      <a data-umami-event="cta-book" href="/en/#contact" class="btn btn-primary hidden sm:flex">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+<main class="roi-page">
+  <div class="container container-narrow">
+
+    <header class="roi-head">
+      <p class="hero-eyebrow">Before you talk to anyone about AI</p>
+      <h1 class="roi-title">What does one manual workflow actually cost you?</h1>
+      <p class="roi-lead">
+        Pick the workflow that annoys you most. Put in four numbers. You will get the
+        annual cost of doing it by hand, a conservative estimate of what agents would
+        save, and how long a build would take to pay for itself.
+      </p>
+      <p class="roi-lead roi-lead-strong">
+        It is built to tell you when the answer is no. If your numbers do not justify
+        a build, it says so, and so will I.
+      </p>
+    </header>
+
+    <form id="roi-form" class="roi-form" novalidate>
+      <div class="roi-field">
+        <label for="roi-type">Which workflow?</label>
+        <select id="roi-type" name="type">
+          <option value="document">Document / invoice / form processing</option>
+          <option value="inbox">Email triage, quoting and order intake</option>
+          <option value="support">Customer support and ticket handling</option>
+          <option value="dataentry">Data entry and system-to-system copying</option>
+          <option value="research">Research, screening and summarising</option>
+          <option value="scheduling">Scheduling, dispatch and coordination</option>
+        </select>
+      </div>
+
+      <div class="roi-grid">
+        <div class="roi-field">
+          <label for="roi-people">People doing it</label>
+          <input id="roi-people" name="people" type="number" min="0" step="0.5" value="3" inputmode="decimal">
+          <span class="roi-hint">Headcount, including partial. Two people at half time is 1.</span>
+        </div>
+        <div class="roi-field">
+          <label for="roi-hours">Hours each, per week</label>
+          <input id="roi-hours" name="hours" type="number" min="0" step="1" value="12" inputmode="decimal">
+          <span class="roi-hint">Only the hours on this one workflow.</span>
+        </div>
+        <div class="roi-field">
+          <label for="roi-hourly">Their hourly wage (€)</label>
+          <input id="roi-hourly" name="hourly" type="number" min="0" step="1" value="28" inputmode="decimal">
+          <span class="roi-hint">Gross wage. Employer costs are added for you.</span>
+        </div>
+        <div class="roi-field">
+          <label for="roi-build">Build size (€)</label>
+          <input id="roi-build" name="build" type="number" min="0" step="1000" value="35000" inputmode="decimal">
+          <span class="roi-hint">Fixed fee. Typical range €25k–€60k.</span>
+        </div>
+      </div>
+
+      <div class="roi-field roi-field-inline">
+        <label for="roi-retainer">Monthly AgentOps retainer (€)</label>
+        <input id="roi-retainer" name="retainer" type="number" min="0" step="500" value="3000" inputmode="decimal">
+      </div>
+    </form>
+
+    <div id="roi-out" class="roi-out" aria-live="polite"></div>
+
+    <div id="roi-cta" class="roi-cta" hidden>
+      <p class="roi-cta-text">
+        If that looks roughly right, the next step is a free one-week Audit: I map your
+        top ten manual workflows, score each on agent-readiness and ROI, and hand you a
+        ranked roadmap. You keep the roadmap whether or not we work together.
+      </p>
+      <a data-roi-book data-umami-event="cta-book" class="btn btn-primary btn-lg"
+         href="https://cal.com/vincent-viitala-xkqj0c/30min" target="_blank" rel="noopener">
+        Book the free Audit →
+      </a>
+      <p class="roi-cta-sub">Your numbers come with you into the call.</p>
+    </div>
+
+    <section class="roi-honesty">
+      <h2 class="heading-section">Why this calculator is deliberately pessimistic</h2>
+      <p>
+        Most vendor ROI calculators exist to produce a big number. This one subtracts
+        the things they leave out, because you will hit them anyway and I would rather
+        you hit them before you pay me than after.
+      </p>
+      <ul>
+        <li><strong>45 working weeks, not 52.</strong> Holidays, sick leave and public holidays are real.</li>
+        <li><strong>Wages are multiplied by 1.4.</strong> Employer contributions, tooling, management overhead and a desk. A person costs more than their salary.</li>
+        <li><strong>Coverage is a range, and the low end drives the verdict.</strong> No agent absorbs 100% of a workflow. The residual is the awkward 20% that needs a human, and it never disappears.</li>
+        <li><strong>18% is subtracted for running cost.</strong> Inference, hosting, and the human review time any honest deployment still needs. Savings are net, not gross.</li>
+        <li><strong>Payback is measured against the first-year total</strong> — build fee plus twelve months of retainer, not the build fee alone.</li>
+      </ul>
+      <p class="roi-honesty-note">
+        If you want to argue with any of these assumptions, good. Bring them to the
+        call and we will use your numbers instead of mine.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <p class="footer-copyright">© 2026 Vincent Viitala</p>
+    <div class="footer-links">
+      <a href="/en/" class="footer-link">Home</a>
+      <a data-umami-event="nav-services" href="/en/services/" class="footer-link">Services</a>
+      <a data-umami-event="cta-contact" href="/en/contact/" class="footer-link">Contact</a>
+      <a data-umami-event="nav-cv" href="/en/cv/" class="footer-link">CV</a>
+      <a href="/fi/laskuri/" class="footer-link">Suomeksi</a>
+    </div>
+  </div>
+</footer>
+
+<script defer src="https://cloud.umami.is/script.js" data-website-id="7085dcec-ca13-4cab-9cdf-4edf79ca1e05"></script>
+</body>
+</html>

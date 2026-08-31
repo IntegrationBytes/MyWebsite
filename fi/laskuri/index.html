@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agenttien ROI-laskuri – Vincent Viitala</title>
+  <meta name="description" content="Laske mitä yksi manuaalinen työnkulku oikeasti maksaa vuodessa ja maksaisivatko agentit itsensä takaisin. Varovaiset luvut, kaikki oletukset näkyvissä. Kertoo myös milloin kannattaa jättää ostamatta." />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Agenttien ROI-laskuri – Vincent Viitala">
+  <meta property="og:description" content="Mitä yksi manuaalinen työnkulku maksaa vuodessa ja maksaisivatko agentit itsensä takaisin? Varovaiset luvut, kaikki oletukset näkyvissä.">
+  <meta property="og:url" content="https://vincentviitala.com/fi/laskuri/">
+  <meta property="og:image" content="https://vincentviitala.com/assets/img/og-default.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Agenttien ROI-laskuri – Vincent Viitala">
+  <meta name="twitter:description" content="Mitä yksi manuaalinen työnkulku maksaa vuodessa ja maksaisivatko agentit itsensä takaisin?">
+  <link rel="canonical" href="https://vincentviitala.com/fi/laskuri/" />
+  <link rel="alternate" hreflang="en" href="https://vincentviitala.com/fi/laskuri/" />
+  <link rel="alternate" hreflang="fi" href="https://vincentviitala.com/fi/laskuri/" />
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0a0f" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/executive-dark.css">
+  <link rel="stylesheet" href="/assets/css/roi.css">
+  <script defer src="/assets/js/config.js"></script>
+  <script defer src="/assets/js/roi.js"></script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/fi/" class="nav-brand">Vincent Viitala</a>
+    <div class="nav-links">
+      <a data-umami-event="nav-cv" href="/fi/cv/" class="nav-link">CV</a>
+      <a href="/fi/laskuri/" class="nav-link active">FI</a>
+      <a href="/en/roi/" class="nav-link">EN</a>
+      <a data-umami-event="cta-book" href="/fi/#contact" class="btn btn-primary hidden sm:flex">Varaa puhelu</a>
+    </div>
+  </div>
+</nav>
+
+<main class="roi-page">
+  <div class="container container-narrow">
+
+    <header class="roi-head">
+      <p class="hero-eyebrow">Ennen kuin puhut kenenkään kanssa tekoälystä</p>
+      <h1 class="roi-title">Mitä yksi manuaalinen työnkulku oikeasti maksaa?</h1>
+      <p class="roi-lead">
+        Valitse se työnkulku, joka ärsyttää eniten. Syötä neljä lukua. Saat vuosikustannuksen
+        käsityönä tehtynä, varovaisen arvion siitä mitä agentit säästäisivät, ja kuinka
+        kauan rakennuksella menisi maksaa itsensä takaisin.
+      </p>
+      <p class="roi-lead roi-lead-strong">
+        Laskuri on tehty kertomaan myös silloin kun vastaus on ei. Jos luvut eivät
+        perustele rakennusta, se sanoo sen suoraan. Niin sanon minäkin.
+      </p>
+    </header>
+
+    <form id="roi-form" class="roi-form" novalidate>
+      <div class="roi-field">
+        <label for="roi-type">Mikä työnkulku?</label>
+        <select id="roi-type" name="type">
+          <option value="document">Dokumenttien, laskujen ja lomakkeiden käsittely</option>
+          <option value="inbox">Sähköpostin käsittely, tarjoukset ja tilaukset</option>
+          <option value="support">Asiakaspalvelu ja tikettien käsittely</option>
+          <option value="dataentry">Tiedon syöttö ja siirto järjestelmien välillä</option>
+          <option value="research">Selvitystyö, seulonta ja tiivistäminen</option>
+          <option value="scheduling">Aikataulutus, ohjaus ja koordinointi</option>
+        </select>
+      </div>
+
+      <div class="roi-grid">
+        <div class="roi-field">
+          <label for="roi-people">Montako tekee tätä</label>
+          <input id="roi-people" name="people" type="number" min="0" step="0.5" value="3" inputmode="decimal">
+          <span class="roi-hint">Henkilömäärä, myös osittainen. Kaksi puolikkaalla ajalla = 1.</span>
+        </div>
+        <div class="roi-field">
+          <label for="roi-hours">Tunteja per henkilö viikossa</label>
+          <input id="roi-hours" name="hours" type="number" min="0" step="1" value="12" inputmode="decimal">
+          <span class="roi-hint">Vain tähän yhteen työnkulkuun menevät tunnit.</span>
+        </div>
+        <div class="roi-field">
+          <label for="roi-hourly">Tuntipalkka (€)</label>
+          <input id="roi-hourly" name="hourly" type="number" min="0" step="1" value="28" inputmode="decimal">
+          <span class="roi-hint">Bruttopalkka. Työnantajakulut lisätään puolestasi.</span>
+        </div>
+        <div class="roi-field">
+          <label for="roi-build">Rakennuksen koko (€)</label>
+          <input id="roi-build" name="build" type="number" min="0" step="1000" value="35000" inputmode="decimal">
+          <span class="roi-hint">Kiinteä hinta. Tyypillisesti 25 000–60 000 €.</span>
+        </div>
+      </div>
+
+      <div class="roi-field roi-field-inline">
+        <label for="roi-retainer">Kuukausittainen AgentOps-jatkosopimus (€)</label>
+        <input id="roi-retainer" name="retainer" type="number" min="0" step="500" value="3000" inputmode="decimal">
+      </div>
+    </form>
+
+    <div id="roi-out" class="roi-out" aria-live="polite"></div>
+
+    <div id="roi-cta" class="roi-cta" hidden>
+      <p class="roi-cta-text">
+        Jos tuo näyttää suunnilleen oikealta, seuraava askel on maksuton viikon kartoitus:
+        käyn läpi kymmenen manuaalisinta työnkulkuanne, pisteytän jokaisen agenttivalmiuden
+        ja ROI:n mukaan, ja annan priorisoidun tiekartan. Tiekartta jää teille riippumatta
+        siitä teemmekö yhteistyötä.
+      </p>
+      <a data-roi-book data-umami-event="cta-book" class="btn btn-primary btn-lg"
+         href="https://cal.com/vincent-viitala-xkqj0c/30min" target="_blank" rel="noopener">
+        Varaa maksuton kartoitus →
+      </a>
+      <p class="roi-cta-sub">Lukusi tulevat mukaan puheluun.</p>
+    </div>
+
+    <section class="roi-honesty">
+      <h2 class="heading-section">Miksi tämä laskuri on tarkoituksella pessimistinen</h2>
+      <p>
+        Useimmat toimittajien ROI-laskurit ovat olemassa tuottaakseen ison luvun. Tämä
+        vähentää ne asiat jotka muut jättävät pois, koska törmäätte niihin joka tapauksessa
+        ja mieluummin ennen kuin maksatte minulle kuin sen jälkeen.
+      </p>
+      <ul>
+        <li><strong>45 työviikkoa, ei 52.</strong> Lomat, sairauspoissaolot ja pyhät ovat todellisia.</li>
+        <li><strong>Palkat kerrotaan 1,4:llä.</strong> Työnantajamaksut, työkalut, esihenkilötyö ja työpiste. Ihminen maksaa enemmän kuin palkkansa.</li>
+        <li><strong>Kattavuus on haarukka, ja alaraja ratkaisee.</strong> Yksikään agentti ei hoida 100 % työnkulusta. Jäljelle jää se hankala 20 %, joka vaatii ihmisen, eikä se katoa mihinkään.</li>
+        <li><strong>18 % vähennetään ajokustannuksiin.</strong> Inferenssi, hosting ja se ihmisen tarkistusaika jonka rehellinen toteutus yhä vaatii. Säästöt ovat nettoa, eivät bruttoa.</li>
+        <li><strong>Takaisinmaksu lasketaan ensimmäisen vuoden kokonaishinnasta</strong> — rakennus plus kaksitoista kuukautta jatkosopimusta, ei pelkkä rakennus.</li>
+      </ul>
+      <p class="roi-honesty-note">
+        Jos haluat kiistellä näistä oletuksista, hyvä. Ota ne mukaan puheluun, niin
+        käytetään sinun lukujasi minun sijastani.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <p class="footer-copyright">© 2026 Vincent Viitala</p>
+    <div class="footer-links">
+      <a href="/fi/" class="footer-link">Etusivu</a>
+      <a data-umami-event="nav-services" href="/fi/palvelut/" class="footer-link">Palvelut</a>
+      <a data-umami-event="cta-contact" href="/fi/ota-yhteytta/" class="footer-link">Ota yhteyttä</a>
+      <a data-umami-event="nav-cv" href="/fi/cv/" class="footer-link">CV</a>
+      <a href="/en/roi/" class="footer-link">In English</a>
+    </div>
+  </div>
+</footer>
+
+<script defer src="https://cloud.umami.is/script.js" data-website-id="7085dcec-ca13-4cab-9cdf-4edf79ca1e05"></script>
+</body>
+</html>

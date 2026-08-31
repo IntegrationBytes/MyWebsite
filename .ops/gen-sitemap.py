@@ -25,6 +25,7 @@ GROUPS = [
     ("results",  {"en": "en/results/index.html",   "fi": "fi/tulokset/index.html",   "es": "es/resultados/index.html"}),
     ("contact",  {"en": "en/contact/index.html",   "fi": "fi/ota-yhteytta/index.html","es": "es/contacto/index.html"}),
     ("cv",       {"en": "en/cv/index.html",        "fi": "fi/cv/index.html"}),
+    ("roi",      {"en": "en/roi/index.html",       "fi": "fi/laskuri/index.html"}),
 ]
 in_group = {p for _, g in GROUPS for p in g.values()}
 today = datetime.date.today().isoformat()

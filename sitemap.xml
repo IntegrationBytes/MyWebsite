@@ -130,4 +130,20 @@
     <xhtml:link rel="alternate" hreflang="fi" href="https://vincentviitala.com/fi/cv/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vincentviitala.com/en/cv/"/>
   </url>
+  <url>
+    <loc>https://vincentviitala.com/en/roi/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vincentviitala.com/en/roi/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://vincentviitala.com/fi/laskuri/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vincentviitala.com/en/roi/"/>
+  </url>
+  <url>
+    <loc>https://vincentviitala.com/fi/laskuri/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vincentviitala.com/en/roi/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://vincentviitala.com/fi/laskuri/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vincentviitala.com/en/roi/"/>
+  </url>
 </urlset>
