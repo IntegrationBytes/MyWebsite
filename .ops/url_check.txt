@@ -1,0 +1,36 @@
+LIVE	https://apuvoima.com/yhteystiedot/	fetched via Exa, returned real page content matching the company	Apuvoima (Apuvoima Pir:source_url
+LIVE	https://atagears.fi/contact/	fetched via Exa, returned real page content matching the company	ATA Gears Oy:source_url
+LIVE	https://atagears.fi/yleinen/expansion-of-the-ata-gears-factory/	fetched via Exa, returned real page content matching the company	ATA Gears Oy:trigger_source_url
+LIVE	https://b2b.profinder.fi/haku/eilakaisla-oy/01059266	fetched via Exa, returned real page content matching the company	Eilakaisla Oy:trigger_source_url
+LIVE	https://balanco.fi/blogi/balanco-ostaa-tamperelaisen-accotilit-oyn-teknologiamurros-vauhditti-yrityskauppaa/	fetched via Exa, returned real page content matching the company	Balanco Oy (Balanco Su:trigger_source_url
+LIVE	https://balanco.fi/yhteystiedot/	fetched via Exa, returned real page content matching the company	Balanco Oy (Balanco Su:source_url
+LIVE	https://balderfinland.fi/seinajoen-logistiikkakeskus-siirtyi-balderin-omistukseen/	fetched via Exa, returned real page content matching the company	Huhtala Logistics Oy:trigger_source_url
+LIVE	https://feon.fi/ferrum-steel-on-nyt-feon/	fetched via Exa, returned real page content matching the company	Feon Oy:source_url,Feon Oy:trigger_source_url
+LIVE	https://festumaccounting.fi/ura/	fetched via Exa, returned real page content matching the company	Festum Accounting Oy:source_url,Festum Accounting Oy:trigger_source_url
+LIVE	https://figure.fi/taloushallinnon-ketteraksi-kumppaniksi/	fetched via Exa, returned real page content matching the company	Figure Taloushallinto :trigger_source_url
+LIVE	https://figure.fi/yhteystiedot/	fetched via Exa, returned real page content matching the company	Figure Taloushallinto :source_url
+LIVE	https://fivaldi.fi/asiakaskokemuksia/kmv-tilitaito/	fetched via Exa, returned real page content matching the company	KMV-Tilitaito Oy:trigger_source_url
+LIVE	https://hunajaworks.fi/yritys/	fetched via Exa, returned real page content matching the company	Apuvoima (Apuvoima Pir:trigger_source_url
+LIVE	https://hydroline.fi/contact/	fetched via Exa, returned real page content matching the company	Hydroline Oy:source_url
+LIVE	https://hydroline.fi/news/	fetched via Exa, returned real page content matching the company	Hydroline Oy:trigger_source_url
+LIVE	https://kuljetusliiketaipale.fi/yhteys/hallinto/	fetched via Exa, returned real page content matching the company	Kuljetusliike Taipale :source_url
+LIVE	https://ltplogistics.fi/yhteystiedot/	fetched via Exa, returned real page content matching the company	LTP Logistics Oy (LTP :source_url
+LIVE	https://septimus.fi/ota-yhteytta/	fetched via Exa, returned real page content matching the company	Septimus Oy:source_url,Septimus Oy:trigger_source_url
+LIVE	https://stremet.fi/stremet-investoi-tuotannon-automaatioon/	fetched via Exa, returned real page content matching the company	Stremet Oy:trigger_source_url
+LIVE	https://stremet.fi/toimialat/	fetched via Exa, returned real page content matching the company	Stremet Oy:source_url
+LIVE	https://tanoma.fi/ajankohtaista/tanoma-konserni-kasvaa-etela-suomeen-syntyy-yksi-alan-suurimmista-varastopalvelutoimijoista/	fetched via Exa, returned real page content matching the company	3PLogistiikka Group Oy:trigger_source_url
+LIVE	https://tocca.fi/yhteystiedot/	fetched via Exa, returned real page content matching the company	Tocca Group Oy:source_url
+LIVE	https://varova.fi/yhteystiedot/	fetched via Exa, returned real page content matching the company	Varova Oy:source_url
+LIVE	https://www.3pl.fi/ota-yhteytta	fetched via Exa, returned real page content matching the company	3PLogistiikka Group Oy:source_url
+LIVE	https://www.amiko.fi/amiko-group/johto/	fetched via Exa, returned real page content matching the company	Amiko Group Oy:source_url,Amiko Group Oy:trigger_source_url
+LIVE	https://www.asiakastieto.fi/yritykset/fi/ltp-logistics-oy/23585064/taloustiedot	loads, but financials are behind a paywall - the size figure is NOT substantiated by this page	LTP Logistics Oy (LTP :trigger_source_url
+LIVE	https://www.asiakastieto.fi/yritykset/fi/varova-oy/01157333/taloustiedot	loads, but financials are behind a paywall - the size figure is NOT substantiated by this page	Varova Oy:trigger_source_url
+LIVE	https://www.eilakaisla.fi/yhteystiedot/	fetched via Exa, returned real page content matching the company	Eilakaisla Oy:source_url
+LIVE	https://www.finnglass.com/contact-us	fetched via Exa, returned real page content matching the company	Finnglass Oy:source_url
+LIVE	https://www.huhtalalogistics.com/yhteystiedot/	fetched via Exa, returned real page content matching the company	Huhtala Logistics Oy:source_url
+LIVE	https://www.kaukokiito.fi/tiedotteet/kuljetusliike-taipale-oy-investoi-vahvasti-keski-suomen-varastointipalveluihin/	fetched via Exa, returned real page content matching the company	Kuljetusliike Taipale :trigger_source_url
+LIVE	https://www.kmv-tilitaito.fi/yhteystiedot/	fetched via Exa, returned real page content matching the company	KMV-Tilitaito Oy:source_url
+LIVE	https://www.ksml.fi/paikalliset/kooste/9668829/juttu/9674591	fetched via Exa, returned real page content matching the company	Tilitoimisto Tietomyll:trigger_source_url
+LIVE	https://www.proff.fi/yrityksen/tocca-hr-uusimaa-oy/helsinki/ty%C3%B6voimapalvelut/3360232-3I10LU	fetched via Exa, returned real page content matching the company	Tocca Group Oy:trigger_source_url
+LIVE	https://www.tietomylly.fi/henkilosto/	fetched via Exa, returned real page content matching the company	Tilitoimisto Tietomyll:source_url
+LIVE	https://yle.fi/a/74-20243046	fetched via Exa, returned real page content matching the company	Finnglass Oy:trigger_source_url

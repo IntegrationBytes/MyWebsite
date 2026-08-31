@@ -84,8 +84,10 @@ grep -q 'noindex' en/v2/index.html || { no "orphan /en/v2/ is indexable and comp
 sec "H. LEADS — file exists and is well-formed"
 L=.ops/leads.csv
 if [ ! -f "$L" ]; then no "leads.csv missing"; else
-  ROWS=$(($(wc -l < "$L") - 1))
-  [ "$ROWS" -ge 30 ] && ok "$ROWS leads present (need >=30)" || no "only $ROWS leads (need >=30)"
+  # Count PARSED CSV rows, not lines: quoted fields contain newlines, so wc -l
+  # over-counts wildly and would pass this check with a fraction of the leads.
+  ROWS=$(python3 -c "import csv,sys;print(sum(1 for _ in csv.DictReader(open('$L',newline='',encoding='utf-8'))))")
+  [ "$ROWS" -ge 30 ] && ok "$ROWS leads present (need >=30)" || no "only $ROWS verified leads (need >=30)"
   HDR=$(head -1 "$L")
   for col in company country person role contact_route source_url trigger icp_fit; do
     echo "$HDR" | grep -q "$col" || no "leads.csv missing column: $col"
