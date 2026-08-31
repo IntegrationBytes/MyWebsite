@@ -220,6 +220,31 @@ DRAFTS=$(find .ops/outreach -name "*.md" 2>/dev/null | grep -v README | wc -l | 
 [ -z "$DRAFTS" ] && DRAFTS=0
 [ "$DRAFTS" -ge 10 ] && ok "$DRAFTS outreach drafts ready" || no "only $DRAFTS outreach drafts (need >=10)"
 
+sec "J2. SHOWCASE — safe to hand to a stranger"
+python3 - <<'PYW'
+import csv,re,sys,os
+sc=".ops/leads_showcase.csv"
+if not os.path.exists(sc): print("  FAIL  leads_showcase.csv missing"); sys.exit(1)
+blob=open(sc,encoding="utf-8").read()
+rows=list(csv.DictReader(open(".ops/leads.csv",newline="",encoding="utf-8")))
+bad=0
+for c in ("contact_route","pain_hypothesis","est_deal_size"):
+    if c in blob.splitlines()[0]:
+        print(f"  FAIL  showcase exposes column {c}"); bad=1
+leak=[r["contact_route"] for r in rows
+      if r["contact_route"] and not r["contact_route"].startswith("http") and r["contact_route"] in blob]
+if leak: print(f"  FAIL  {len(leak)} contact routes leaked into showcase, e.g. {leak[0]}"); bad=1
+if re.search(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", blob):
+    print("  FAIL  an email address survives in the showcase"); bad=1
+if re.search(r"DO NOT PITCH|do NOT quote it back", blob, re.I):
+    print("  FAIL  a private aside survives in the showcase"); bad=1
+n=sum(1 for _ in csv.DictReader(open(sc,newline="",encoding="utf-8")))
+if n != len(rows): print(f"  FAIL  showcase has {n} rows, leads.csv has {len(rows)}"); bad=1
+if not bad: print(f"  PASS  showcase carries all {n} rows with every contact route withheld")
+sys.exit(bad)
+PYW
+[ $? -ne 0 ] && FAIL=1
+
 sec "K. STATE — loop files current"
 for f in .ops/GOAL.md .ops/PROGRESS.md .ops/ATTEMPTS.md .ops/NEXT.md; do
   [ -s "$f" ] && ok "$f" || no "$f missing/empty"
