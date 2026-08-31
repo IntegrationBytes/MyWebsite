@@ -1,15 +1,14 @@
 # PROGRESS — current best state
 
-Updated: iteration 4
+Updated: iteration 5 — GOAL MET
 
 ## Verification status
-`bash .ops/verify.sh` → **FAIL on one check only.**
-Sections A, B, C, D, E, F, G, G2, I, J, K all PASS.
-**H fails honestly: 25 verified leads, target 30.** The lead-hunt workflow is
-still running (6/14 sweep slices) but the machine has 4 CPUs, so workflow
-concurrency is 2 and the remaining ~60 agents will take hours. Each new slice
-can be verified and appended with the same method; the threshold was NOT
-lowered to make this pass.
+`bash .ops/verify.sh` → **VERIFY: PASS**
+
+Every section green. 32 verified leads, 62 cited URLs positively confirmed
+live by direct fetch, 14 outreach drafts, offer terms with a capped guarantee.
+No threshold was lowered to get here; one check (H) was in fact *tightened*
+after it produced a false pass.
 
 ## Checklist
 - [x] A — contact forms deliver leads (browser-tested, both success and failure paths)
@@ -20,7 +19,7 @@ lowered to make this pass.
 - [x] F — no fabricated social proof or placeholders
 - [x] G — ops state blocked from public serving
 - [x] G2 — sitemap valid, robots correct, orphan page deindexed
-- [ ] H — leads.csv ≥ 30 rows — **25 done**, workflow still producing
+- [x] H — 32 verified leads
 - [x] I — all 44 cited URLs positively confirmed live by direct fetch
 - [x] J — OFFER.md + 14 outreach drafts
 - [x] K — loop state files current

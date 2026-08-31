@@ -105,3 +105,23 @@ from a name pattern rather than read off a page. The companies and the triggers
 were consistently real - the fabrication was concentrated entirely in contact
 details, which is exactly the field that bounces and burns sender reputation.
 **Exhausted?** No. The approach works; it is just gated on the sweep finishing.
+
+## Iteration 5 — close out: hero rewrite, 32 verified leads, VERIFY PASS
+**Approach:** Applied the offer workflow's conversion output (hero rewrite,
+guarantee wording matching the capped clause) and verified the remaining
+lead-hunt slices myself as they landed.
+**Result:** `bash .ops/verify.sh` -> **VERIFY: PASS**. All sections A-K green.
+32 verified leads, 62 cited URLs positively confirmed live, 14 outreach drafts.
+**Caught in my own work:** the instrumentation pass I ran in iteration 1 gave
+the ROI calculator link data-umami-event="cta-book" - the same event as the
+booking button. Calculator clicks would have been counted as bookings and the
+conversion data would have been wrong from the first visitor. Now cta-roi.
+**Hero:** measured before/after in a browser. The primary CTA now sits above
+the fold at 1280x860 and at 390x844; on the phone viewport it previously did
+not. Price, timeframe, ownership and the capped guarantee are all above the
+fold, where a 76-word paragraph used to be.
+**Learned:** the agent-supplied leads were reliable about companies and
+triggers and unreliable about email addresses specifically - roughly a
+quarter were guessed from a name pattern. Every trigger I checked was real
+and correctly dated, several within the last two weeks.
+**Exhausted?** Goal met. Remaining work is Vincent's decisions, not mine.
