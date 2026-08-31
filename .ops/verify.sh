@@ -114,6 +114,54 @@ PY
   [ $? -ne 0 ] && FAIL=1
 fi
 
+sec "H2. LEADS — no size claim leans on an unchecked source"
+python3 - <<'PYS'
+import csv,re,sys,os
+if not os.path.exists(".ops/leads.csv"): sys.exit(0)
+rows=list(csv.DictReader(open(".ops/leads.csv",newline="",encoding="utf-8")))
+if "size_verified" not in rows[0]:
+    print("  FAIL  leads.csv has no size_verified column"); sys.exit(1)
+checked=set()
+for line in open(".ops/url_check.txt",encoding="utf-8"):
+    parts=line.split("\t")
+    if len(parts)>1: checked.add(parts[1].strip())
+SRC=re.compile(r"(asiakastieto|finder\.fi|profinder|proff\.fi|kauppalehti|LinkedIn)",re.I)
+bad=0
+for r in rows:
+    m=SRC.search(r["size_evidence"])
+    if not m: continue
+    key=m.group(1).lower().split(".")[0]
+    urls=[u for u in (r["source_url"],r["trigger_source_url"]) if key in u.lower()]
+    ok = bool(urls) and all(u in checked for u in urls)
+    if not ok and r["size_verified"]!="UNVERIFIED_third_party":
+        print(f"  FAIL  {r['company'][:34]}: size cites {m.group(1)} with no checked URL and is not labelled unverified")
+        bad=1
+    if ok and r["size_verified"]=="UNVERIFIED_third_party":
+        print(f"  FAIL  {r['company'][:34]}: labelled unverified but its source URL IS checked")
+        bad=1
+    # A quote field must never contain a contact route the note says was fabricated.
+if not bad: print("  PASS  every third-party size claim is either source-checked or labelled unverified")
+sys.exit(bad)
+PYS
+[ $? -ne 0 ] && FAIL=1
+
+sec "H3. LEADS — no row quotes an address it also calls fabricated"
+python3 - <<'PYQ'
+import csv,re,sys,os
+if not os.path.exists(".ops/leads.csv"): sys.exit(0)
+bad=0
+for r in csv.DictReader(open(".ops/leads.csv",newline="",encoding="utf-8")):
+    note=r["verification_note"].lower()
+    for addr in re.findall(r"[a-z0-9._%%+-]+@[a-z0-9.-]+\.[a-z]{2,}", r["source_quote"], re.I):
+        if addr.lower() in note and ("was not on the page" in note or "pattern-guessed" in note or "fabricat" in note):
+            if addr.lower() != r["contact_route"].lower():
+                print(f"  FAIL  {r['company'][:34]}: source_quote contains {addr}, which the note calls fabricated")
+                bad=1
+if not bad: print("  PASS  no source_quote contains an address its own note disproves")
+sys.exit(bad)
+PYQ
+[ $? -ne 0 ] && FAIL=1
+
 sec "I. LEADS — every source_url was actually reachable"
 if [ -f .ops/url_check.txt ]; then
   DEAD=$(grep -c 'DEAD' .ops/url_check.txt || true)
