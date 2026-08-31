@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What the system found overnight – Vincent Viitala</title>
+  <meta name="description" content="I pointed my own lead pipeline at my own business and left it running overnight. Here is exactly what came back, including what it got wrong and how the verification stage caught it." />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="What the system found overnight – Vincent Viitala">
+  <meta property="og:description" content="I pointed my own lead pipeline at my own business and left it running overnight. Here is what came back, including what it got wrong.">
+  <meta property="og:url" content="https://vincentviitala.com/en/pipeline/">
+  <meta property="og:image" content="https://vincentviitala.com/assets/img/og-default.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What the system found overnight – Vincent Viitala">
+  <meta name="twitter:description" content="I pointed my own lead pipeline at my own business and left it running overnight.">
+  <link rel="canonical" href="https://vincentviitala.com/en/pipeline/" />
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0a0f" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/executive-dark.css">
+  <link rel="stylesheet" href="/assets/css/roi.css">
+  <link rel="stylesheet" href="/assets/css/pipeline.css">
+  <script defer src="/assets/js/config.js"></script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/en/" class="nav-brand">Vincent Viitala</a>
+    <div class="nav-links">
+      <a data-umami-event="nav-cv" href="/en/cv/" class="nav-link">CV</a>
+      <a href="/fi/" class="nav-link">FI</a>
+      <a href="/en/" class="nav-link active">EN</a>
+      <a data-umami-event="cta-book" href="/en/#contact" class="btn btn-primary hidden sm:flex">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+<main class="roi-page">
+  <div class="container container-narrow">
+
+    <header class="roi-head">
+      <p class="hero-eyebrow">A worked example, not a claim</p>
+      <h1 class="roi-title">I pointed the system at my own business and left it running overnight.</h1>
+      <p class="roi-lead">
+        Every consultant selling AI says it works. Almost none of them show you the output.
+        So here is mine: what the pipeline actually produced, how it was checked, and — the part
+        nobody publishes — what it got wrong.
+      </p>
+    </header>
+
+    <section class="pl-figs">
+      <div class="pl-fig"><span class="v">32</span><span class="k">companies matching a defined profile</span></div>
+      <div class="pl-fig"><span class="v">62</span><span class="k">source URLs confirmed live by fetching them</span></div>
+      <div class="pl-fig"><span class="v">~25%</span><span class="k">of machine-suggested email addresses caught as fabricated</span></div>
+      <div class="pl-fig"><span class="v">1 night</span><span class="k">unattended</span></div>
+    </section>
+
+    <section class="pl-block">
+      <h2 class="heading-section">The part that matters is the third stage</h2>
+      <p>
+        Anyone can have a language model produce a list of companies. It will look excellent and
+        roughly a quarter of the contact details will be invented — plausible addresses assembled
+        from a name pattern rather than read off a page. Send to those and you get bounces, and
+        enough bounces will damage your sending domain for every message after them.
+      </p>
+      <p>
+        So the pipeline has a verification stage that treats its own output as hostile. Every
+        contact route is confirmed by fetching the page it supposedly appears on and checking the
+        string is really there. Anything that fails is corrected or thrown away.
+      </p>
+      <ol class="pl-steps">
+        <li>
+          <h3>Define who is actually worth contacting</h3>
+          <p>Not "SMEs". A specific, testable threshold — for my own offer, whether a company has
+          two to three full-time-equivalent people on one repetitive workflow. Below that line the
+          numbers do not work, and the system is told to reject rather than stretch.</p>
+        </li>
+        <li>
+          <h3>Sweep for it from several angles at once</h3>
+          <p>Fourteen parallel searches across sectors, regions and trigger types — because any
+          single search angle finds only the companies that angle is good at finding.</p>
+        </li>
+        <li>
+          <h3>Try to disprove every result</h3>
+          <p>Each candidate goes to a separate check whose job is to refute it: does the company
+          exist, is the contact route genuinely published, is the trigger real and dated, could
+          they plausibly afford this. Failures are dropped, not softened.</p>
+        </li>
+        <li>
+          <h3>Write the opener from the verified trigger</h3>
+          <p>Not a template with a name merged in. The first line references the specific thing
+          that happened at that company, with the source. If a first line would work for a
+          different company unchanged, it is a bad first line.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="pl-block">
+      <h2 class="heading-section">What a verified trigger actually looks like</h2>
+      <p>
+        Four real results, described without naming the companies — the names are the part my
+        clients pay for, and those businesses did not volunteer to appear in my marketing.
+        Every one of these came with a dated source that was fetched and confirmed.
+      </p>
+      <div class="pl-cards">
+        <article class="pl-card">
+          <p class="pl-when">17 Aug 2026</p>
+          <p class="pl-what">A 190-person Nordic accounting group announced an acquisition and, in
+          their own headline, attributed the deal to a technology shift in their industry — while
+          absorbing a second payroll platform alongside the one they already ran.</p>
+          <p class="pl-why">Why it is a trigger: they have publicly said the problem out loud, and
+          just doubled the integration work that causes it.</p>
+        </article>
+        <article class="pl-card">
+          <p class="pl-when">27 Aug 2026</p>
+          <p class="pl-what">National broadcast media reported a specialist glass manufacturer
+          launching a €12M investment programme, led by armoured-vehicle products for the defence
+          sector.</p>
+          <p class="pl-why">Why it is a trigger: defence supply chains carry a documentation and
+          traceability load that scales with the investment but is rarely budgeted as part of it.</p>
+        </article>
+        <article class="pl-card">
+          <p class="pl-when">21 May 2026</p>
+          <p class="pl-what">An electrical contracting group took private-equity money and acquired
+          a competitor in the same announcement. Their contact page names two separate people whose
+          entire job title is quoting.</p>
+          <p class="pl-why">Why it is a trigger: new capital, a mandate to scale, and two named
+          humans doing the thing that automates best.</p>
+        </article>
+        <article class="pl-card">
+          <p class="pl-when">current</p>
+          <p class="pl-what">A property-management group of 280+ staff, assembled from five acquired
+          brands, advertising for a bookkeeper to do loan-share calculations, VAT returns and
+          purchase ledger by hand.</p>
+          <p class="pl-why">Why it is a trigger: they are hiring a person to do the exact work the
+          system does. That job advert is the qualification.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="pl-block pl-honest">
+      <h2 class="heading-section">What it got wrong</h2>
+      <p>
+        Roughly a quarter of the email addresses the research stage proposed were not on the pages
+        they were attributed to. They were guesses built from a first-name-dot-last-name pattern.
+        One phone number was off by two digits. Four leads could not be confirmed at all and were
+        deleted rather than shipped.
+      </p>
+      <p>
+        The verification stage also corrected me in the other direction: I flagged one company's
+        number as fabricated, and it turned out to be genuinely published — just on a different page
+        than the one cited. A check that only ever finds faults is a different kind of broken.
+      </p>
+      <p class="pl-punch">
+        That is the honest state of this technology in 2026. It is very good at finding candidates
+        and confidently wrong about details. The value is not in the generating. It is in the
+        machinery that refuses to ship what it cannot prove.
+      </p>
+    </section>
+
+    <section class="pl-cta">
+      <h2 class="heading-section">Want to see it run on your market?</h2>
+      <p>
+        Tell me who your customers are and I will show you what comes back — the same output,
+        pointed at your buyers instead of mine. If the numbers do not justify going further,
+        I will say so on the call rather than sell you something.
+      </p>
+      <div class="pl-actions">
+        <a data-umami-event="cta-book" class="btn btn-primary btn-lg"
+           href="https://cal.com/vincent-viitala-xkqj0c/30min" target="_blank" rel="noopener">
+          Book 20 minutes &rarr;
+        </a>
+        <a data-umami-event="cta-roi" class="btn btn-ghost" href="/en/roi/">Or run the numbers yourself</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <p class="footer-copyright">© 2026 Vincent Viitala</p>
+    <div class="footer-links">
+      <a href="/en/" class="footer-link">Home</a>
+      <a data-umami-event="nav-services" href="/en/services/" class="footer-link">Services</a>
+      <a data-umami-event="cta-contact" href="/en/contact/" class="footer-link">Contact</a>
+      <a data-umami-event="nav-cv" href="/en/cv/" class="footer-link">CV</a>
+    </div>
+  </div>
+</footer>
+
+<script defer src="https://cloud.umami.is/script.js" data-website-id="7085dcec-ca13-4cab-9cdf-4edf79ca1e05"></script>
+</body>
+</html>
