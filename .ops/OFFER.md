@@ -1,577 +1,471 @@
-<!-- Produced by the offer-and-convert workflow: four independent offer designs
-     (de-risking, value ladder, pricing architecture, objection map), each scored
-     by three adversarial personas, then synthesised. Numerically cross-checked
-     against .ops/ECONOMICS.md before being accepted — see the appendix. -->
+<!-- Produced by the revenue-offer workflow: four independent designs
+     (productised pipeline, own-vs-rent, family-channel, fastest-cash), each
+     scored by three adversarial personas - a burned Finnish SME owner, a
+     veteran solo consultant, and a competitor asked to undercut it - then
+     synthesised. Scores: productised-pipeline 28.3, own-vs-rent 26.7,
+     fastest-cash 24.7, family-channel 20.7.
 
-# OFFER — commercial terms
+     SUPERSEDES the cost-side offer, which survives as Rung 5 and is archived
+     in .ops/OFFER-build-rung5.md. Market rationale: .ops/MARKET.md. -->
 
-> **Status:** ready to put in front of a client, with two caveats at the bottom
-> that need Vincent's decision, not mine.
+# OFFER — Signal Run
 
-**What changed from the terms currently published on the site:**
+> **This document replaced the previous offer after Vincent said he can also do
+> AI sales and marketing.** The old offer sold cost-side agent builds: a EUR4,500
+> diagnostic into a EUR29-79k build, with payback measured over twelve months.
+> That is the hardest possible sale for someone with no case studies, and
+> `.ops/ECONOMICS.md` showed it only qualifies companies with 2-3 FTE on one
+> repetitive workflow.
+>
+> **What changed the answer:** the obvious alternative - an AI marketing or GEO
+> service - is a trap. `.ops/MARKET.md` documents why: Finnish GEO starts at
+> EUR149/month with established agencies already holding the position, and
+> Wannado Marketing already sells it. So this offer sells neither builds nor
+> monthly marketing labour. It sells **a checkable file**, and the proof is the
+> run already sitting in this repo.
 
-| | Currently on site | Recommended |
+## The one-line version
+
+> **"Ostat tarkistettavan tiedoston, et kuukausilaskua."**
+> *(You buy a checkable file, not a monthly invoice.)*
+
+The moat is not the technology. It is the disclosure: he publishes the
+fabrication rate of his own machine - 8 of 32 contact routes, exactly 25% -
+and a competitor copying that move has to open their own error rate first.
+
+## The ladder at a glance
+
+| Rung | Name | Price | Duration |
+|---|---|---|---|
+| 0 | Artifact Walkthrough | EUR 0 | 30 min |
+| 1 | Proof Ten | EUR 1,200 | 3 business days |
+| 2 | Signal Run 30 | EUR 3,500 | 7 business days |
+| 2.5 | Trigger Density Check | EUR 600 | 2 business days |
+| 3 | Standing Run | EUR 2,400/month | rolling, 3-month min |
+| 4 | Install Sprint | EUR 4,500 | 10 business days |
+| 5 | The Build | EUR 29k / 49k / 79k | 45 / 75 / 110 days |
+
+Rung 2.5 is the one to notice. Its job is to measure whether the client's niche
+actually produces enough signals to sustain a monthly cadence, and it is
+explicitly allowed to conclude **"do not buy the retainer."** That is the same
+failure mode `ECONOMICS.md` caught in the old offer, caught a second time before
+it could be sold.
+
+---
+
+# SIGNAL RUN — final offer
+
+**Version:** final · drafted 31.08.2026 · all prices EUR, ex-VAT (FI domestic 25.5%; EU cross-border B2B reverse charge)
+**Evidence base:** every number below was recomputed from `/home/user/MyWebsite/.ops/leads.csv`, `/home/user/MyWebsite/.ops/url_check.txt`, `/home/user/MyWebsite/.ops/ECONOMICS.md`, `/home/user/MyWebsite/.ops/MARKET.md`, `/home/user/MyWebsite/.ops/WARM.md`. Where an earlier draft's number was wrong, the corrected number is used and the error is named.
+
+---
+
+## 0. The single rule this document obeys
+
+**No number appears in a sales conversation that has not been recomputed from the file that morning.** The previous draft claimed "62 cited URLs." The file cites **55**. That one inflated number was found by three separate reviewers inside four minutes, and in an offer whose entire differentiator is "audit me," an inflated headline is not a rounding error — it is the pitch detonating in the room. Every count below is the output of a script, and the script ships with the file.
+
+---
+
+## 1. The positioning line
+
+> **"Every agency in this market bills you monthly for work you cannot check. I sell a fixed-price file of named Finnish decision-makers where every single claim ships with a timestamped snapshot of the page it came from, is auditable in forty minutes, and is refundable at €117 a row — and I publish the addresses my own machine invented before I caught them."**
+
+Finnish, for the front page:
+
+> **"Ostat tarkistettavan tiedoston, et kuukausilaskua."**
+> *(You buy a checkable file, not a monthly invoice.)*
+
+**Why a €390/month competitor cannot say this back.** To publish a fabrication rate, they would first have to measure their own — and none of them do. Vincent's is measured: **8 of 32 contact routes (25.0%) proposed by the model were pattern guesses that appeared on no page the company publishes.** They are flagged in the `verified` column as `corrected`, the specific fabrication is named in `verification_note`, and the discards ship with the file. A competitor copying this move has to open their own error rate first. That is the moat: not the technology, the disclosure.
+
+**Who it is sold to:** Finnish B2B companies of roughly 20–250 staff whose buyers are other companies, who already do outbound in some form, and whose sector produces public, dated events (acquisitions, funding, factory investments, named-role hiring). Explicitly *not* sold to companies whose buyers are consumers or housing companies, and not to anyone whose real need is AI visibility — see §9.
+
+---
+
+## 2. The artifact, restated with correct numbers
+
+This is the whole pitch, and it costs €0 to deliver because it already exists.
+
+| Measured on the self-run | Verified count | How to verify it live |
 |---|---|---|
-| Entry | Free 1-week Audit | Free 45-min Readiness Call + **paid €4,500 Sprint** (10 days, working prototype, fixed Build quote) |
-| Build | "€25k–€60k" band | **€29k / €49k / €79k** named tiers with frozen scope |
-| Retainer | "€2k–€6k/mo" band | €2,000 / €3,500 / €6,000 tiers |
-| Guarantee | *"I keep refunding the retainer until it does"* — **uncapped** | Capped at the lesser of 25% of Build fee and **€12,000**, cash, one claim, sole remedy |
-| Case studies | none, and no plan to get one | **Contractual**: first 5 Sprints at €2,500 in exchange for a named, quantified case study |
+| Finnish companies delivered | **32** | `wc -l leads.csv` |
+| Contact route found verbatim on a page that was fetched | **24 (75.0%)** | `verified` column = `exact` |
+| Contact route machine-proposed, caught as fabricated, corrected or dropped | **8 (25.0%)** | `verified` column = `corrected`, fabrication named per row |
+| Reachable by published email / direct phone / named form | **19 / 10 / 3** | `contact_type` column |
+| Distinct source URLs cited across the 32 rows | **55** | dedupe of `source_url` + `trigger_source_url` |
+| Of those 55, individually fetch-checked and logged | **55 (100%)** | `url_check.txt` |
+| Further URLs checked for candidates that were **rejected and never shipped** | **9** | `url_check.txt` lines not cited by any row |
+| ICP fit graded strong / moderate / weak | **15 / 14 / 3** | `icp_fit` column |
+| Triggers carrying an explicit day-month-year date | **14** | 11 of them ≤120 days old; 3 are 125–189 days old |
+| Triggers dated to a month or year but not a day | **11** | |
+| Triggers that are a **standing condition, not a dated event** | **7** | e.g. continuous back-office hiring |
+| First-touch drafts written, each opening on that company's own signal | **15** (12 cold, 1 warm, 1 channel, 1 buy-box) | `.ops/outreach/` |
+| Elapsed time | **one overnight run** | |
 
-The single most important change is the last one. The case study becomes
-consideration in a signed contract rather than a favour asked afterwards —
-which is how a seller with no portfolio acquires one on a known timetable.
+**The four examples he reads aloud, all source-verified:** Balanco Oy's 17.08.2026 acquisition of Accotilit, where Balanco's own headline says the technology shift drove the deal; Yle's 27.08.2026 report of Finnglass launching a €12M defence-driven investment; Eltrea taking Vaaka Partners money on 21.05.2026 while simultaneously buying a competitor; Fluxio hiring a bookkeeper to do *lainaosuuslaskenta* and *ostoreskontra* by hand across 280+ staff.
 
----
-
-# COMMERCIAL TERMS — AI-NATIVE AGENT ENGAGEMENTS
-### Vincent Viitala · vincentviitala.com · v1.0 · valid from [DATE]
-
-**Contracting party:** [Aiferno Oy, business ID ______ — see §13.1: incorporate before Build #1] · VAT ID FI______
-**Professional indemnity & cyber liability:** insurer ______, policy ______, limit EUR ______ (§10.5)
-**All prices in EUR, excluding VAT.** Finnish VAT 25.5%. EU cross-border B2B: reverse charge, valid VAT number required at contracting.
-
-> **Do not send this document to a client until every bracketed placeholder above is filled.** The insurance line and the entity line are not decoration — they are the two things that make the liability sections below true.
+**The line that closes the call:**
+> *"That is not a case study about a client. It is the product, run on me, including the parts it got wrong. I will run the identical thing on your ICP and you will have it in seven working days — and you will be able to break it for money."*
 
 ---
 
-## PART A — CLIENT-FACING TERMS
+## 2b. PRE-FLIGHT — nine fixes, roughly six hours, before a single email is sent
 
-## 0. Disclosure (read this first)
+The artifact is the offer. If a prospect audits it and finds what three reviewers found in four minutes, the offer is dead on the first call. **None of these are optional and all are cheap.**
 
-I do not have a wall of logos and I am not going to imply one.
+| # | Fix | Why |
+|---|---|---|
+| 1 | **Row 1 (Festum) contradicts itself.** `verification_note` says `janne.euren@festum.fi` was pattern-guessed and not on the page; `source_quote` — the verbatim-from-page field — contains that exact address. Truncate the quote to what the fetched page actually publishes, or re-fetch and correct the note. | It is the first row of the file he reads aloud as proof his verification works. |
+| 2 | **Change 62 → 55 everywhere.** In `PROGRESS.md` (which says 44), in any deck, on the site. State it as: *"55 cited URLs, all 55 fetch-checked; 9 more checked for candidates I rejected."* | Three numbers for one metric, and it is the metric the credibility rests on. |
+| 3 | **Fix the ICP split: 15 strong / 14 moderate / 3 weak.** The earlier draft transposed it to 14/15. | Fourth wrong number in a pitch that says "count it yourself." |
+| 4 | **Strike the two `asiakastieto.fi/taloustiedot` size claims** (LTP Logistics, Varova). His own log says *"loads, but financials are behind a paywall — the size figure is NOT substantiated by this page."* Replace with a page that proves it, or downgrade the size evidence to what is provable. | "Confirmed live" must never mean "the URL returned something." |
+| 5 | **Rebuild `url_check.txt` as an evidence bundle**: per URL — fetch timestamp (UTC), HTTP status code, SHA-256 of the response body, and a stored PNG/PDF snapshot. Not one status code exists in the current log. | This is what makes the guarantee in §5 safe rather than fatal. See §5. |
+| 6 | **Re-label the trigger field honestly:** `trigger_type` ∈ {`dated_event`, `period_event`, `standing_condition`} and `trigger_date`. 14 / 11 / 7 on the self-run. Then the gate in §4 promises what the machine actually produces. | The old gate said "every trigger dated within 120 days." His own showcase fails it. Never write a contractual gate your best work fails. |
+| 7 | **Produce a redacted showcase copy** (`leads_showcase.csv`): drop `est_deal_size`, drop `pain_hypothesis`, drop private commentary such as the Balanco note *"DO NOT PITCH AI: they have an AI director."* Keep `verification_note` — that column is the product. | Handing a stranger the raw file publishes his own pricing model and his private opinions about twelve named Finnish companies, several of whom will hear about it. |
+| 8 | **Write the DPA and the processing note.** One page: controller/processor roles, categories (business-role contact data published by the company itself), retention, deletion on request, sub-processors named (search/fetch API, model provider, storage). "Available on request" means it does not exist. | He circulates named individuals' data with commercial profiling attached. This is also the exact provenance argument he uses against competitors. |
+| 9 | **Delete every mention of the old build guarantee** from drafts and site. `ECONOMICS.md` proves it fires on deals that go well: a €113,400/yr workflow at a €3k retainer takes 28 months to repay a €35k build. | It is the largest uncapped liability he owns. Replaced in §3, Rung 5. |
 
-- I have completed **one** prior paid AI consulting engagement.
-- I have **zero** named, published client case studies and **zero** testimonials as of the date on this document.
-- I am a solo operator. There is one of me. §11 tells you exactly what that means for you and what I have put in place so that it is not your problem.
-
-What I offer instead of a portfolio is structure: fixed prices with countable scope, payment released against numeric gates you can verify yourself, a walk-away right, a capped and precisely defined outcome guarantee, and everything running in your cloud under your ownership from day one. You can check every one of those before you pay the second invoice.
-
----
-
-## 1. The ladder
-
-| Rung | Price (ex-VAT) | Duration | What it is |
-|---|---|---|---|
-| **0 · Readiness Call** | €0 | 45 minutes | Live scoring session. Qualification, both directions. |
-| **1 · Agent Readiness Sprint** | **€4,500** | 10 business days | Paid diagnostic + working prototype on your data + fixed Build quote. |
-| **2 · The Build** — Foundation | **€29,000** | 45 calendar days | One department, SaaS-only stack. |
-| **2 · The Build** — Core | **€49,000** | 75 calendar days | Multi-department, legacy integration. |
-| **2 · The Build** — Sovereign | **€79,000** | 110 calendar days | Regulated / on-prem / EU-hosted models. |
-| **3 · AgentOps** | **€2,000 / €3,500 / €6,000 per month** | Rolling | Run, monitor, evaluate, improve. |
-
-The free week-long audit is withdrawn. It is replaced by a free 45-minute call above and a paid Sprint below. Reason, stated plainly: a free week costs 12–18 hours of the only production capacity I have, and a free deliverable sets the reference price for everything that follows it.
+The 12 cold drafts also still sell the abandoned €4,500 Sprint and carry cost-side `est_deal_size` values. **Rewrite the offer paragraph in all 12 to the Rung 1 / Rung 2 ladder before sending.** That is a find-and-replace on one paragraph, not a rewrite.
 
 ---
 
-## 2. Rung 0 — Readiness Call (€0, 45 minutes)
+## 3. The ladder
 
-A screen-shared working session, not a pitch. We fill in the top of your Workflow Register together and you watch the numbers appear. You leave with a 2-page Readiness Scorecard, sent within 24 hours, yours to keep whatever happens next.
+Six rungs. Each has a price, a duration, a deliverable list, and one written trigger that moves the buyer up. Nothing above Rung 2 is ever mentioned in a first email.
 
-**Two entry paths.**
+| Rung | Name | Price | Duration | Sold when |
+|---|---|---|---|---|
+| 0 | Artifact Walkthrough | **€0** | 30 min | Always. Zero delivery cost. |
+| 1 | **Proof Ten** | **€1,200** | 3 business days | They are interested and have never bought from him. 100% credited to Rung 2 within 21 days. |
+| 2 | **Signal Run 30** | **€3,500** | 7 business days | Default product. Signal Run 60: **€5,900 / 12 business days**. |
+| 2.5 | **Trigger Density Check** | **€600** | 2 business days | Before anyone is allowed to buy Rung 3. It can, and often should, end in "do not buy the retainer." |
+| 3 | **Standing Run** | **€2,400/month**, 3-month minimum | Rolling monthly | Only after a delivered Rung 2 **and** a Density Check ≥12 qualifying signals/month. |
+| 4 | **Install Sprint** | **€4,500** | 10 business days | They say "stop selling us rows, put this inside our stack." Credited in full against Rung 5 within 21 days. |
+| 5 | **The Build** — Foundation / Core / Sovereign | **€29,000 / €49,000 / €79,000** | 45 / 75 / 110 calendar days | Only after Rung 4, and never as a first purchase. |
 
-- **Referred or introduced:** book directly. The intake form is completed after the call.
-- **Cold / inbound:** intake form first (below). This is not a status filter; it is the only way a 45-minute call can produce anything useful.
+### Rung 0 — Artifact Walkthrough — €0, 30 minutes
+**Delivered:** screen-share of the real `leads_showcase.csv`, the evidence bundle, the reject log, and the correction log. The prospect names any three rows; Vincent opens the stored snapshot for each on the call.
+**In:** the file, the numbers in §2, the honest credentials statement in §7.
+**Out:** no advice on their business, no ICP work, no proposal, no pricing of anything above Rung 2.
+**Conversion mechanic:** *"Give me your ICP in two sentences and I will run ten of them for €1,200, delivered Thursday. If you would rather see thirty, that is €3,500 and the €1,200 comes off it."*
 
-**Intake form — six fields:**
-1. Company, headcount, revenue band (<€1M / €1–3M / €3–10M / €10M+).
-2. Name and title of the person who owns the process you want automated.
-3. Systems in use (multi-select: HubSpot / Salesforce / Pipedrive / Netvisor / Procountor / Odoo / SAP / Microsoft 365 / Google Workspace / other — free text).
-4. Approximate team hours per week on this task today (<5 / 5–20 / 20–80 / 80+).
-5. Budget position (nothing allocated / under €10k / €10–30k / €30–60k / €60k+).
-6. Who signs a €30,000 purchase order here?
+### Rung 1 — Proof Ten — €1,200, 3 business days
+**Why it exists:** €1,200 is a single signature in a Finnish SME. €3,500 sometimes requires the other shareholder. It is the door in the wall — and because it is 100% credited, it is a deposit dressed as a test.
+**Delivered:**
+1. **10 companies**, all six acceptance gates (§4) passed, zero duplicates, zero suppression-list hits.
+2. **10 named decision-makers** with role. **At least 6 of 10 reachable by an email address published on a page that was fetched**; the rest by direct phone line or a named contact form. (Self-run: 19/32 = 59.4%.)
+3. **≥20 cited source URLs**, one proving the contact route, one proving the signal, each with timestamp, HTTP status, body hash and stored snapshot.
+4. **10 signals**, each typed (`dated_event` / `period_event` / `standing_condition`) with a verbatim quote and the URL. **At least 6 of 10 must be `dated_event` ≤120 days.**
+5. **3 first-touch drafts**, Finnish or English, each opening on that company's own signal, each passing the swap test (§4).
+6. **The reject log** — every company examined and thrown out, with the reason.
+7. 15-minute recorded voice-note handover instead of a call.
+**Out:** no sending, no calling, no strategy, no CRM work, no ICP invention.
+**Price per row: €120.** **Conversion mechanic:** the invoice for Rung 2 arrives with €1,200 already deducted, valid 21 days, no negotiation.
 
-**I decline the call** if headcount is under 10 **and** answer 4 is "<5". Those workflows do not carry a €29,000 build and I will say so in writing rather than take the meeting. "Nothing allocated" is **not** a decline on its own — for a genuinely unproven seller, budget is created after the value is shown, not before.
+### Rung 2 — Signal Run 30 — €3,500, 7 business days
+**Delivered:** one CSV in their column schema or his, one evidence bundle, one reject log, one 60-minute handover call.
+1. **30 companies**, all six gates, zero duplicates, zero suppression-list hits.
+2. **30 named decision-makers** with role. **≥17 of 30 reachable by a published email address.**
+3. **≥55 cited source URLs** — at least one per claim, two per company wherever two distinct pages exist. *(The old draft promised "minimum two per company / ≥60 URLs." The self-run cites 55 across 32 companies — 1.72 each — and in 9 of 32 companies the contact page and the signal page are the same page. Promising a density he has never hit, on a stranger's ICP, under a clock, was the single most dangerous sentence in the previous version.)*
+4. **30 typed signals** with verbatim quote and source. **≥18 of 30 must be `dated_event` ≤120 days**; the remainder may be `period_event` or `standing_condition`, each labelled as such.
+5. **ICP fit graded per row**, reason stated: **≥14 of 30 graded strong, ≤3 graded weak.** (Self-run: 15 strong, 3 weak of 32.)
+6. **12 first-touch drafts**, each passing the swap test.
+7. **The reject log.** Expect 60–90 companies examined for 30 shipped.
+8. The compliance note: Act on Electronic Communications Services 917/2014 §202 — direct marketing to an *organisation* is lawful on an opt-out basis in Finland; §200 — to a natural person it is not. Every draft ships with a working opt-out line already in it.
+**Signal Run 60 — €5,900:** 60 companies, ≥100 cited URLs, 20 drafts, 12 business days, 90-minute handover. €98/row.
+**Price per row: €117.** **Conversion mechanic:** the handover call ends with one question — *"Do you want to know whether this niche produces enough signals to be worth a monthly cadence? That is a €600 Density Check and it may well tell you no."*
 
-**Close of the call, verbatim:**
-> "The workflow worth attacking is X. I will not quote a build on a 45-minute look. What I will do is a two-week Sprint that ends with a working prototype on your own data and a fixed price with no range in it. €4,500, credited in full against the Build if you go ahead within 21 days. I have one Sprint slot in [month] and one in [month+1]."
+### Rung 2.5 — Trigger Density Check — €600, 2 business days
+**The rung that stops the retainer from being a lie.** Acquisitions, funding rounds and factory investments happen once or twice a year per company. A Finnish niche of 150 firms does not produce 30 dated events every month forever — month 1 harvests a backlog and looks brilliant, month 3 collapses, and the volume promise then fires on a system that is working perfectly. That is exactly the failure mode `ECONOMICS.md` already caught once.
+**Delivered:** trailing-12-month signal count for their defined ICP, month by month, by signal type, with sources; the measured monthly floor; a written recommendation that is **allowed to be "do not buy the Standing Run."**
+**Conversion mechanic:** if measured density ≥12 qualifying signals/month → Standing Run offered at a volume band derived from that measurement. If <12 → he says so in writing and sells a repeat Signal Run quarterly instead. The €600 is credited against the first Standing Run month.
+
+### Rung 3 — Standing Run — €2,400/month, 3-month minimum, then rolling
+**This is the ARR rung, and it is deliberately not gated on the client owning a sequencer.** The previous design gated its only recurring revenue on the client's reply data — but a 20–60 person Finnish SME owns no warmed domain, no sequencer and no SDR, so the reply data would never exist and the ladder terminated at a one-off CSV.
+**Delivered monthly:**
+1. Rows written **directly into their HubSpot/Pipedrive as tasks** — not a Drive folder — assigned to a named owner, with the signal, the quote, the source link and the snapshot attached.
+2. Volume band set by the Density Check: **up to 25 rows/month, with a contractual floor at 60% of measured density.** If a month lands below the floor, the shortfall is credited at **€95/row** against the next invoice. He never guarantees a fixed volume of other companies' news.
+3. 10 drafts/month, swap-tested.
+4. Monthly 45-minute review: what got replies, what to change in the ICP, what to stop targeting.
+5. Suppression-list maintenance and de-duplication across all prior months.
+**Out:** sending, calling, meeting-booking — all three are available and all three are bought from Wannado (§6), not from Vincent.
+**Conversion mechanic:** month 3 review. *"You are spending €2,400 a month renting this from me and about €420 a month on Wannado hours to work it. If you want it inside your own stack, running on your own cloud at roughly €100–250 a month, that is Rung 4."*
+
+### Rung 4 — Install Sprint — €4,500, 10 business days
+**Delivered:** the workflow register scored, a working prototype running on a copy of **their** data, an authenticated connection proven against the ugly system (their ERP, their CRM), a signed baseline measurement, and a **fixed Build price with no range in it**. Credited in full against Rung 5 if signed within 21 days.
+**Maximum exposure: €4,500, one client at a time.**
+**Conversion mechanic:** the Sprint readout *is* the Build proposal. If the boring part is not tractable, he says so and the Sprint has still paid for itself for both sides.
+
+### Rung 5 — The Build — €29,000 / €49,000 / €79,000
+**How the existing agent-infrastructure Build survives:** it stops being the front door and becomes the exit. Nobody is quoted €29k in a first conversation — from a 22-year-old with one paid engagement and no references, the install is not a rung, it is a fantasy, and mentioning it early makes the €1,200 look like bait. It is now reachable only from a delivered Rung 2 or 3 plus a paid Rung 4, which means by the time the number is said aloud, the buyer has already bought from him twice and audited the output once.
+
+**Tier assignment is mechanical, not negotiated** (unchanged from `OFFER.md`, which got this right):
+- **Sovereign €79,000** — any *one* of: regulated sector; on-prem or "no US-owned cloud"; >250 employees; contractual pen-test/security questionnaire; GDPR Art. 9 data in scope. 110 days.
+- **Core €49,000** — any *two* of: ERP without a modern REST API; >100 employees; 3+ departments in scope; staging environment required; 3 agents at signature. 75 days.
+- **Foundation €29,000** — everything else: one department, SaaS-only stack, ≤4 connectors from the certified list. 45 days.
+
+**What is being sold at this rung, in one sentence:** *"Osta kone, älä kuukausilaskua"* — the client owns the engine, it runs in their cloud on their keys at roughly €100–250/month of metered running cost, and it keeps running if they never speak to Vincent again.
+
+**Honest crossover, published in the proposal, not hidden:**
+
+| Option | 36-month cash | Own anything at the end? |
+|---|---|---|
+| GEO/marketing retainer €400/mo | €14,400 | No |
+| Standing Run €2,400/mo | €86,400 | No |
+| SDR agency €2,500/mo | €90,000 | No |
+| Wannado marketing manager, 20 h/mo @ €85 | €61,200 | No — but you get a human |
+| **Foundation Build + €390/mo Care** | **€43,040** | **Yes** |
+| **Foundation Build, self-run** | **€29,000 + ~€150/mo = €34,400** | **Yes** |
+
+The crossover against the Standing Run is **month 17**. Say that out loud; a buyer who does the arithmetic and finds it already on the page stops looking for the trick.
+
+**Post-build, three options, one of them genuinely free:**
+- **Self-run — €0/month to Vincent.** Repo, runbook, admin training, their keys. The €0 option is what makes "you own it" true rather than a slogan.
+- **Care plan — €390/month.** Model/API updates, connector repairs when a source system changes, monthly 60-minute review, 2 hours of changes. Monthly cancellable, 30 days' notice. Framed as insurance on machinery you own.
+- **Operator hours — routed to Wannado**, €38–85/h.
+
+**The Build guarantee — capped, metered, ended.** Replacing the uncapped ROI promise that `ECONOMICS.md` proved would fire on successful deals:
+> Acceptance is defined at signature as a written set of golden cases per agent (60 for Core, 40 for Foundation) and a named accuracy threshold. If the agents do not pass acceptance within 30 days of the delivery date, Vincent works without further fee until they do **or refunds 25% of the Build fee, capped at €12,000, at the Client's election.** Measurement is the golden-case suite, run by the Client's named owner, on the Client's data. The obligation ends at acceptance or at day 90, whichever is first. **No promise is made about business outcomes, savings, or payback period** — the arithmetic for those is published at `/en/roi/` and it is deliberately unflattering.
 
 ---
 
-## 3. Rung 1 — Agent Readiness Sprint (€4,500, 10 business days)
+## 4. Scope boundaries and acceptance gates
 
-This is the load-bearing rung. It qualifies, it pays, it de-risks the fixed price for both sides, and it produces a measured baseline that everything later depends on.
+### The six gates — contractual, per row, enforced by script
+A row is not billable unless all six hold. This is the same gate set the self-run passes **after** the §2b fixes — and it has been rewritten so that it does.
 
-**Payment:** 100% on signature, net 7 days, payable before Day 1. Late payment: Finnish Interest Act reference rate + 8 percentage points, plus the €40 statutory recovery fee.
-
-### 3.1 Schedule A — deliverables (goes verbatim into the Sprint order)
-
-1. **Workflow Register.** Ten workflows, each scored 1–5 on five axes (volume, rule clarity, data availability, system/API access, cost of an error), with measured hours/year and cost/year at the fully-loaded hourly rate agreed at kickoff (default €45/h). Spreadsheet, yours.
-2. **Agent-Readiness Scorecard.** One page: ranked list, named blockers, and the three things that must be fixed before anything can be automated at all.
-3. **Working prototype.** One workflow, built in a sandbox on a copy of your real data, **read-only**, maximum three tool connections. Screen-recorded demo plus the repository, in your GitHub/GitLab org from the first commit.
-4. **Baseline Sheet (Schedule 3).** Fully specified in §8.2. Signed by both parties on Day 9. This is the anchor for the Build price, the acceptance test and the guarantee.
-5. **Integration & Risk Map.** Systems, auth model, data residency decision, GDPR/DPA position, sub-processor list, and an explicit list of what will block this project inside your own organisation.
-6. **Fixed-price Build quote.** One number, one SKU, scope frozen, delivery plan, AgentOps tier named. Valid 30 days.
-
-### 3.2 Explicitly NOT in the Sprint
-
-No production deployment. No writes to any live system. No changes to your systems. More than one workflow, more than three tool connections, or more than one revision round on the roadmap (requested within 5 business days of readout) — out of scope, quoted separately.
-
-### 3.3 Day plan
-
-| Day | Work |
+| # | Gate |
 |---|---|
-| 1 | 90-min kickoff, access provisioning, DPA signed |
-| 2–3 | Workflow census: 3–5 interviews, volume and time measurement |
-| 4 | Scoring, Register drafted |
-| 5 | Workflow selected, scope frozen in writing |
-| 6–8 | Sandbox prototype on a copy of real data |
-| 9 | Baseline Sheet signed; holdout set frozen and hashed (§6.3) |
-| 10 | 90-min readout, live demo, fixed Build quote handed over |
+| 1 | Company matches the ICP definition frozen in writing at the 45-minute kickoff. |
+| 2 | A named person with a stated role at that company. |
+| 3 | A contact route **published by the company on a page that was fetched**, delivered with the URL, the verbatim sentence it appears in, and the snapshot. **No pattern-guessed addresses ever ship.** If `firstname.lastname@` was inferred and not seen, the row ships with the published route (which may be a role address or a direct line) or does not ship — and the inference is recorded in the correction log either way. |
+| 4 | A signal, **typed and dated**: `dated_event` (day-month-year, ≤120 days), `period_event` (month or year stated), or `standing_condition` (an observable, ongoing state such as continuous hiring into a named back-office role). Verbatim quote plus source URL for all three types. **No login-walled sources** — LinkedIn posts that cannot be re-fetched were rejected in the self-run and will be rejected here. |
+| 5 | Independent size evidence with its source, **where the source page itself states the figure.** A page that loads but paywalls the number does not satisfy this gate. |
+| 6 | Every URL in the row returned **2xx at the delivery timestamp**, logged with status code, UTC timestamp, body hash and stored snapshot. |
 
-### 3.4 Scope guards
+**The swap test** (drafts only): if a draft's first paragraph still works with a different company's name pasted in, it is rewritten before delivery.
 
-One named client contact. If system access is not granted within 5 business days of kickoff, the clock runs regardless and the prototype is built on synthetic data. Sessions cancelled inside 48 hours forfeit the slot. The Sprint ends on Day 10 whether or not your IT department has woken up.
+### Explicitly OUT of scope, every rung below Rung 5
 
-### 3.5 Sprint Deliverables Guarantee
-
-> **Deliverables Guarantee.** If, within five (5) business days of the Readout, the Client notifies the Supplier in writing that a deliverable listed in Schedule A was not delivered, the Supplier shall either deliver it within five (5) business days or, at the Client's election, refund 100% of the Sprint Fee. Disagreement with the conclusions, rankings or recommendations of the roadmap is not grounds for refund; non-delivery of a listed artefact is. This is the Client's sole and exclusive remedy in respect of the Sprint.
-
-Maximum exposure: €4,500, one client at a time. A guarantee I can actually honour is worth more than an unlimited one I could not.
-
-### 3.6 Founding-client terms (sunset dated)
-
-> **Founding Client Terms.** For the first five (5) Sprints contracted, the Sprint Fee is €2,500 instead of €4,500. In consideration of the reduced fee the Client agrees to: (a) a named, published case study containing at least one quantified result, drafted by the Supplier, approved by the Client (approval not to be unreasonably withheld), released within 30 days of Build Acceptance or, where no Build follows, within 30 days of the Sprint Readout; and (b) one 20-minute reference call per quarter for four (4) quarters. Offer closes at five clients or 31 December 2026, whichever is first.
-
-The case study is contractual consideration, not a favour requested afterwards.
-
-### 3.7 Sprint credit
-
-> **Sprint Credit.** 100% of the Sprint Fee is credited against the Build Fee if the Build order is signed within 21 calendar days of the Readout; 50% if signed on days 22–45; nil thereafter. The fixed Build quote is valid for 30 days from the Readout, after which the scope is re-quoted at then-current rates.
+- **No sending.** He does not touch your domain, DNS, mailbox warming, sequencer or deliverability. Drafts arrive as text, one click from send. Sender reputation and consent are yours.
+- **No calling, no appointment setting, no booked-meeting guarantee.** He sells verified inputs. If you want the calls made, buy Wannado hours (§6) — he will make the introduction and take no margin on it.
+- **No reply rate, meeting or revenue guarantee, at any rung, ever.**
+- **No CRM cleanup or enrichment of your existing database.** Separate quote.
+- **No ICP strategy or positioning work.** The kickoff freezes an ICP; it does not invent your positioning. Positioning is a separate €1,400 half-day.
+- **No ads, no SEO, and no GEO / tekoälyoptimointi / AI-näkyvyys.** If what you need is to be found by AI assistants, he introduces you to **Wannado Marketing Oy**, who have sold exactly that, hourly, since 27.05.2026. **He does not quote against them and does not resell it.** That sentence is in the terms, in writing.
+- **No purchased lists, no scraped private profiles, no login-walled sources.** Business-role contact data published by the company itself, only. DPA attached to the contract, not "available on request."
+- **No monthly commitment below Rung 3**, and no Rung 3 without a Density Check.
 
 ---
 
-## 4. Rung 2 — The Build: three SKUs, no range
+## 5. The guarantee — entry rung, capped, snapshot-arbitrated, closed in 10 business days
 
-"€25,000–60,000" is not a price. Every buyer reads a range from the bottom, and there is nothing to point at when they push. Three named SKUs, assigned by objective triggers, not chosen by mood.
+The previous version handed the buyer a free-run exploit: strike 7 rows for link rot that is nobody's fault, elect refund, keep €3,500 of work. Every clause below exists to close a specific hole a reviewer drove a truck through.
 
-### 4.1 Tier triggers
+> ### The audit guarantee
+>
+> **1. Evidence is date-locked.** Delivery includes, for every cited URL: the UTC fetch timestamp, the HTTP status code, a SHA-256 hash of the response body, and a stored snapshot (PNG or PDF) of the page as it was at delivery. **The snapshot is the arbiter.** A page that changes, moves, blocks bots, or dies after the delivery timestamp is not a strike, because the snapshot proves what it said. This single clause removes link rot, corporate proxies, 403s and job changes from the buyer's strike list without removing anything the buyer actually paid for.
+>
+> **2. Window.** Within **10 business days** of the delivery timestamp, in **one consolidated claim**, you may strike any row where:
+> - (a) the contact route does not appear in the delivered snapshot of the cited page;
+> - (b) the quoted signal statement does not appear in the delivered snapshot of the cited page;
+> - (c) a cited URL did not return 2xx at the delivery timestamp per the log;
+> - (d) the company is a duplicate, or was on the suppression list you supplied at kickoff.
+>
+> **3. Strikes must be evidenced.** Each strike names the row, the ground (a–d), and quotes the element that fails. An unevidenced strike is not a strike.
+>
+> **4. Remedy — replacement first.** For the **first 3 struck rows**: replacement within 5 business days, **or** refund of €117 per row (€120 Proof Ten · €98 Signal Run 60), **your choice**. For **struck rows 4 and above**: replacement within 5 business days. A refund of €117 per row is payable only if a replacement is not delivered inside that window.
+>
+> **5. Threshold.** If **more than 6 of 30 rows** (2 of 10 · 12 of 60) are struck and upheld, **the entire fee is refunded**, the engagement ends, and the delivered file and all copies are deleted or returned. **You do not keep a file you were fully refunded for.**
+>
+> **6. Lateness.** €250 for each business day past the contracted delivery day, **capped at €750**. There is no lateness clause that refunds the whole fee, because one bout of flu should not convert a week of work into free work.
+>
+> **7. Cap and remedy.** Total liability is capped at the fee paid. One claim. Sole and exclusive remedy.
+>
+> **8. What is NOT guaranteed, stated plainly:** reply rates, meetings, pipeline, revenue. I guarantee the input, because the input is the part I control.
 
-**Sovereign (€79,000)** — any **one** of: regulated sector (finance, health, public); on-prem or "no US-owned cloud" requirement; >250 employees; a security questionnaire or penetration test is contractually required; GDPR Art. 9 special-category data in scope.
+**Say this out loud in the pitch:** *"Thirty rows, roughly 55 links and 55 snapshots. About forty minutes. A guarantee you can actually exercise is worth more than one you cannot — and this one closes in ten working days, not twelve months."*
 
-**Core (€49,000)** — any **two** of: an ERP or line-of-business system without a modern REST API; >100 employees; 3+ departments in scope; a staging environment required; 3 agents wanted at signature.
+**Payment.** Signal Run: 50% at kickoff, 50% within 7 days of delivery. Proof Ten: 100% up front (it is fully refundable under the row rule anyway). Standing Run: monthly in advance. Build: 30/40/30 against milestones.
 
-**Foundation (€29,000)** — everything else: one department, SaaS-only stack, ≤4 connectors from the certified list.
+---
 
-### 4.2 What is IN — countable units
+## 6. Delivery spec — what one person actually does, hour by hour
 
-| Unit | Foundation | Core | Sovereign |
+**Signal Run 30, 7 business days, one operator.** M = manual (Vincent), A = automated (pipeline).
+
+| Day | Work | M/A | His hours |
 |---|---|---|---|
-| Production agents | 2 | 3 | 4 |
-| Certified MCP connectors | 4 | 8 | 12 |
-| …of which custom/legacy (no public API, SOAP, on-prem SQL) | 0 | 2 | 4 |
-| Knowledge corpus (RAG layer) | 5,000 docs / 2 GB | 25,000 docs / 10 GB | 50,000 docs / 20 GB |
-| Environments | 1 (prod) | 2 (staging + prod) | 4 (dev/staging/prod/DR) |
-| Identity | 1 IdP, 2 roles | 1 IdP, 5 roles | 1 IdP, 10 roles + break-glass |
-| Golden eval cases per agent | 30 | 60 | 100 |
-| Observability, audit trail, cost dashboard, kill switch, spend caps | included | included | included |
-| Human-in-the-loop approval gate on every write-capable agent | included, mandatory (§7.4) | included, mandatory | included, mandatory |
-| Enablement workshops (3h, ≤12 people) | 1 | 3 | 5 |
-| On-site days included | 1 | 2 | 3 |
-| Security questionnaires answered | 0 | 1 | 3 |
-| Compliance pack | DPA + TOMs | + audit-trail export | + DPIA support pack, model cards, pen-test remediation ≤5 days |
-| EU-hosted open-weight model deployment | +€6,000 | +€6,000 | included |
-| Handover Pack + runbook + 20 recorded minutes per agent | included | included | included |
+| **0** | Kickoff call, 45 min. ICP frozen in writing: sector, size band, geography, buyer role, signal types that count, suppression list received. Signed by both. | M | **1.0** |
+| **1** | Candidate sweep: search + fetch across registry, industry press, job boards, company news pages → 150–250 candidates. Machine ICP scoring. | A | — |
+| **1** | Reject-rule tuning after eyeballing the first 40 scores; kill obviously wrong sectors before the expensive stage runs. | M | **1.5** |
+| **2** | Signal extraction and typing across surviving candidates; date parsing; 120-day filter; verbatim quote capture. | A | — |
+| **2** | Signal review: is this actually an event, or the machine's opinion about a careers page? Downgrade or type it honestly. | M | **2.0** |
+| **3** | Contact resolution: named person, role, published route. Every proposed address checked against the fetched page body. | A | — |
+| **3** | **The verification pass — the expensive, non-automatable hour.** Every `corrected` flag is set here. ~2–3 min per surviving candidate × ~60. | M | **2.5** |
+| **4** | Evidence bundle: re-fetch every cited URL, log status + UTC timestamp + SHA-256, store snapshot. | A | — |
+| **4** | 10% spot-check of the bundle by hand; reject log compiled and written up. | M | **1.5** |
+| **5** | Gate script over all rows; failures pulled; replacements pulled from the reserve pool. | A | — |
+| **5** | Rework the gate failures. This is the day the file becomes shippable. | M | **2.5** |
+| **6** | 12 drafts, first pass generated from each row's own signal. | A | — |
+| **6** | Rewrite every draft by hand; run the swap test on all 12; kill any that passes it. | M | **2.5** |
+| **7** | Package into their column schema, final gate run, deliver. 60-minute handover call. | M | **2.0** |
+| | **Total operator time** | | **15.5 h** |
 
-All tiers include: agent runtime and orchestration, MCP tool hub, RAG knowledge layer, identity and role model, observability, immutable audit trail, eval suite, and cost controls. Deployed in **your** cloud (Hetzner, AWS Frankfurt, Azure West Europe, or on-prem), on open standards, in **your** repository.
+**Unit economics, honestly:** €3,500 ÷ 15.5 h = **€226/h effective**, against direct running cost (search/fetch API + model tokens + storage) estimated at **€70–140 per run** — a figure to *measure on run #1 and publish*, not to assume. Gross margin ≈ **96%**. Proof Ten: 5.5–6.5 h, **€185–218/h**.
 
-### 4.3 What is OUT — all tiers, verbatim in the order
+**Why that rate is defensible when a Wannado assistant is €42/h:** it is not a labour rate. €3,500 buys 15.5 hours of work **plus a €117-per-row cash liability that the assistant hours do not carry.** State this before the buyer works it out — see the disqualifier in §9.
 
-1. Model, API, token, hosting and third-party licence costs. These run on the Client's own accounts and are billed directly to the Client. The Supplier does not resell or front them.
-2. Data cleanup, deduplication or migration beyond one (1) documented ETL job into the knowledge layer. Source data is taken in the state it exists.
-3. Any change to the Client's source systems: schema changes, ERP customisation, new fields, plugin development inside third-party SaaS.
-4. Net-new user interfaces beyond the agent runtime's own surfaces (chat, email, ticket, API). No web app, no mobile app, no design work.
-5. Connectors to systems with no API, no supported database access and no export — until access is established at the Client's cost.
-6. Content, policy or SOP authoring. I automate the process you have; I do not write the process you lack.
-7. Training beyond the included workshops; onboarding of staff hired after handover.
-8. Legal, regulatory or audit sign-off. I supply artefacts; your DPO or auditor signs them.
-9. 24/7 availability during the Build. Working hours are 09:00–17:00 EET, Mon–Fri, excluding Finnish public holidays.
-10. Anything not listed in §4.2.
+### Capacity limits — published, and treated as hard
 
-### 4.4 Client obligations that hold the fixed price
+One person cannot run open-ended concurrent audit windows. These constraints are in the terms so a buyer knows why the slot calendar exists:
 
-One named decision-maker with authority. Credentials and sandbox access within 5 business days of signature. 4 hours per week of subject-matter-expert time. Representative test data before the Platform Gate. A named IT/security contact.
-
-If these slip, the delivery window slips **day for day**. After 15 cumulative slip days, either a **€1,200/week standby fee** applies or the project is suspended and the current milestone invoiced in full.
-
-**And the reverse, so this is not a one-way instrument:** if a gate is missed for reasons attributable solely to the Supplier, the Client receives a credit of **0.5% of the Build Fee per commenced week of delay, capped at 5%**, set against the next invoice — in addition to the walk-away rights in §6.4.
+- **Maximum 2 deliveries per week** (Tuesday and Thursday slots).
+- **Maximum 3 open audit windows at any time.** A fourth Signal Run is booked into the next free delivery slot; slots are shown at sale.
+- **Replacement SLA is 5 business days, not 3.**
+- **Declared blackout weeks**, published at the start of each quarter (Finnish July, exam/travel weeks). No delivery date lands in a blackout week.
+- **Ceiling at full load: 8 Signal Runs/month = €28,000 gross.** He should not plan on it; plan on 2–4.
 
 ---
 
-## 5. Change orders — published price list
+## 7. The Wannado structure — distribution and delivery capacity, not a competitor
 
-Scope is never negotiated on price. Units move at listed prices.
+Wannado is 12 years old, ~60 assistants, 700+ SME clients, published rates €42/h assistant, €38/h outsourced customer service, €75/h digital marketing, €85/h outsourced marketing manager, €142/h strategy. Wannado Marketing Oy has sold *tekoälyoptimointi (GEO)* hourly since 27.05.2026.
 
-| Change | Price |
-|---|---|
-| Additional certified connector | €2,400 |
-| Additional custom/legacy connector | €6,500 |
-| Additional production agent (existing connectors) | €7,500 |
-| Additional agent requiring a new connector | €7,500 + connector price |
-| Additional environment | €3,500 |
-| Additional 10,000 docs / 5 GB corpus | €2,000 |
-| Additional eval set (30 golden cases) | €1,200 |
-| Additional workshop (3h, ≤12 people) | €1,500 |
-| Additional on-site day | €1,200 + travel at cost |
-| Security questionnaire / vendor review beyond included | €900 each |
-| EU-hosted open-weight model deployment (Foundation/Core) | €6,000 |
-| Calendar compression below the stated window | +25% of total fee |
-| Any change requested after the Production Gate | listed price +30% |
+Two threats and two assets sit in that paragraph, and one written agreement resolves all four.
 
-**Removals credit at 60% of the add price** (removing an agent credits €4,500, not €7,500) so descoping is never an arbitrage.
+**Threat 1 (already handled):** competing on GEO. Routed away — see the boundary rule below.
+**Threat 2 (missed in earlier drafts):** the direct substitute for Signal Run is not a GEO agency, it is **80 hours of a Wannado assistant at €42/h = €3,360**, which hand-builds a comparable file. This must be answered explicitly rather than hoped past — see §9.
 
-**Goodwill allowance:** up to three (3) change requests valued under €1,500 each are absorbed free of charge per Build. Caps the giveaway at €4,500 and kills the "he bills for every email" reputation.
+### The one-page agreement, signed, four clauses
 
-**Quote validity:** 21 days from proposal date, assuming the stated start date.
+**Clause 1 — The boundary.**
+Vincent does not quote, sell or resell GEO / AI-optimointi / AI visibility, to anyone, ever. Every such enquiry is introduced to Wannado Marketing, **free, no referral fee** — the fee is the non-compete. In return, Wannado does not sell verified-signal lead runs under its own brand except at the wholesale price in Clause 3.
 
----
+**Clause 2 — Wannado is client #1, at cost.**
+The first pilot, specifically: **one Signal Run 30 delivered free of charge for one of Wannado's *Kansainvälistyminen* clients** — a Finnish SME entering Germany, Sweden or the USA, which is precisely a company that needs named buyers in a market where it knows nobody, and which Wannado already sells sales and market-research support to.
+Consideration instead of cash: **(a)** a named, quotable result approved by the client, released within 30 days of delivery; **(b)** one 20-minute reference call per quarter for four quarters; **(c)** access to one anonymised billing query — *which Wannado clients buy the most assistant hours, on what task* — which answers `ECONOMICS.md`'s qualifying question ("2–3 FTE on one repetitive workflow?") for 700 SMEs from data Wannado already holds. That query is worth more than any cold list Vincent can build.
 
-## 6. Payment schedule and gates
+**Clause 3 — Wholesale, with a floor.**
+Wannado may resell Signal Run to its own clients at **€2,450 wholesale** (30% channel discount) on Signal Run 30 and **€4,130** on Signal Run 60, invoiced by Wannado to the client at whatever it likes. **Floor price €2,450 — no discount below it, ever**, because under that the verification pass and the reject log stop being profitable and the entire differentiator dies. 14 days net, Wannado to Vincent, on delivery. Domestic Finnish supply: 25.5% VAT applies both ways.
 
-Invoicing is against **verified events**, not calendar dates. Every pass condition is numeric and agreed before signature — they come out of the Sprint.
+**Clause 4 — The Send Desk (this is the recurring revenue, and it is not Vincent's).**
+Every Signal Run and Standing Run client is offered the human layer **from Wannado, invoiced by Wannado, at Wannado's published rates**: sending and reply handling at €38/h outsourced customer service, calling and follow-up at €42/h assistant, campaign oversight at €85/h. Typical load ~10 h/month ≈ **€420/month**. **Vincent takes 0% margin on those hours.** He is paid in distribution, not commission — which keeps the family relationship clean and removes the "he sells the ingredient and disclaims the meal" objection, because the meal is on the menu, cooked by people who cook for a living.
 
-### 6.1 Schedule
+**IP, stated once and unambiguously.**
+Vincent (Aiferno) owns the pipeline, the code, the prompts, the gate scripts and all derivative improvements, in every scenario. **The client owns the delivered data outright**, perpetually, with no licence-back and no restriction. Wannado receives a non-exclusive right to **resell the output**, not the system: no source access, no derivative works, no white-labelling of the software. If Wannado wants the machine itself, that is a Rung 5 Foundation Build at an internal family price of **€19,000**, stated once and never used as a public reference price, licensed for Wannado-internal use with no right to resell the software.
 
-| # | Gate | Pass condition | % | Foundation | Core | Sovereign |
-|---|---|---|---|---|---|---|
-| M0 | Mobilisation | Signature | 25% | €7,250 | €12,250 | €19,750 |
-| M1 | Platform Gate | Runtime, identity, observability, audit trail and first connector authenticated in Client's environment; Baseline Sheet countersigned | 15% | €4,350 | €7,350 | €11,850 |
-| M2 | Eval Gate | Agent #1 passes the frozen holdout set in staging at the thresholds in the SOW | 15% | €4,350 | €7,350 | €11,850 |
-| M3 | Production Gate | Agent #1 live on real traffic; 14-day Stabilisation Window completed at or above thresholds; kill switch and spend caps verified | 30% | €8,700 | €14,700 | €23,700 |
-| M4 | Acceptance & Handover | All contracted agents accepted; Handover Pack delivered | 15% | €4,350 | €7,350 | €11,850 |
-
-Net 14 days. The Sprint Credit is applied against M0.
-
-### 6.2 What the buyer is actually exposed to — stated exactly
-
-Read against §6.4. On a €49,000 Core Build:
-
-- If Agent #1 never passes the Eval Gate: you have paid €19,600, you are refunded €7,350, **net €12,250 = 25% of the fee**, and you keep the repository, the infrastructure-as-code, the MCP configurations, the eval suite and all documentation.
-- If Agent #1 passes evals but never survives production: you have paid €26,950, you are refunded €7,350, **net €19,600 = 40% of the fee**, and you keep everything built.
-
-That is the honest number. It is not "you risk nothing". Anyone who tells you a fixed-price build carries no buyer risk is selling you something else.
-
-### 6.3 Holdout integrity — how the Eval Gate cannot be gamed by either side
-
-- The holdout set is labelled by the Client's named subject-matter expert **during the Sprint, before any Build code is written**.
-- On Sprint Day 9 the file is frozen, a SHA-256 hash is recorded in the Baseline Sheet, and both parties hold a copy. The scored set must be the hashed set.
-- Items where the Client's own two reviewers disagree, or where the label is demonstrably wrong on the face of the source document, are **voided** and excluded from both numerator and denominator. Maximum 5% of items may be voided; beyond that the set is re-drawn at the Supplier's cost.
-- The Supplier may challenge up to 10 individual labels in writing within 5 business days of scoring; unresolved challenges go to §10.4 expert determination.
-- **Thresholds:** ≥90% on items marked must-pass, ≥80% overall, plus the latency and cost-per-run limits written into the SOW. Example wording: *"Agent #1 (Quotation Intake) passes when, over the 200-item frozen holdout: field-level extraction accuracy ≥92%; unescalated error rate ≤2%; p95 end-to-end latency ≤90 s; inference cost ≤€0.35 per run."*
-- **Stabilisation Window (M3):** 14 consecutive calendar days measured from the agent's own telemetry in the Client's environment. Days on which failure is attributable to Client systems, third-party outages, or inputs outside the frozen input spec are **excluded from the count, not restarted**. The window may be restarted at most **once**.
-- **Gate Certificates:** the Client countersigns within 10 business days. **Silence for 10 business days is a pass**, and the milestone becomes invoiceable. A dispute must be in writing and must name the specific figures contested.
-- Handover competence is a **deliverable**, not a payment trigger: the Handover Pack includes a scripted change exercise; if the Client nominates no developer within 10 business days of the Production Gate, that item is deemed delivered. M4 does not hang on a person I do not employ.
-
-### 6.4 Walk-Away Rights
-
-> **Eval Gate Walk-Away.** If Agent #1 has not passed the Eval Gate by Day 45 (Foundation) / Day 60 (Core) / Day 80 (Sovereign), as extended day-for-day by Client slip days under §4.4, the Client may terminate on 5 business days' written notice. The Supplier refunds the M1 payment in full within 14 days. The Client retains, under the ownership terms in §9, all code, infrastructure-as-code, configurations, eval suites and documentation delivered to that date. No further fees are payable.
-
-> **Production Gate Walk-Away.** If Agent #1 has not completed the Stabilisation Window by Day 90 (Foundation) / Day 120 (Core) / Day 160 (Sovereign), as extended day-for-day by Client slip days, the Client may terminate on 5 business days' written notice. The Supplier refunds the M2 payment in full within 14 days. The Client retains all delivered artefacts. No further fees are payable.
-
-Maximum aggregate refund exposure to the Supplier under both walk-aways combined: **the M1 payment or the M2 payment, whichever is invoked — never both.**
-
-> **Escrowed payments (offered unprompted to a first-time buyer).** At the Client's request, M1 and M2 are paid into the client-funds account (*asiakasvaratili*) of a Finnish law firm named by the Client and released against the countersigned Gate Certificate or the deemed pass in §6.3. The Client bears the account fee. The Supplier will not treat this request as a sign of bad faith and will not price it differently.
+**Governance:** signed, on paper, before the pilot starts. The purpose of writing it down is not distrust; it is that unwritten family arrangements become dinner-table disputes at exactly the moment they start producing money.
 
 ---
 
-## 7. Rung 3 — AgentOps retainer
+## 8. What replaces case studies on day one
 
-### 7.1 Tiers
+He has zero named clients, zero testimonials and one prior paid AI consulting engagement. **He says that sentence out loud, first, in every conversation**, because a 22-year-old who volunteers it is believed about everything else. These seven assets replace the case study, and they exist today:
 
-| | **Monitor €2,000/mo** | **Operate €3,500/mo** | **Partner €6,000/mo** |
-|---|---|---|---|
-| Included engineering hours/month | 6 | 14 | 30 |
-| Eval suite regression runs | monthly | weekly | daily |
-| Drift, accuracy and cost report | monthly | monthly | monthly + quarterly review |
-| Model/API version migration | quoted | included ≤4 h/mo | included |
-| P1 response (agent down, or writing wrong data) | ≤8 business hours | ≤4 business hours | ≤2 business hours |
-| P2 response (degraded, non-blocking) | ≤3 business days | ≤2 business days | ≤1 business day |
-| P3 (question, request) | ≤5 business days | ≤3 business days | ≤2 business days |
-| Agent changes | at change-order price | 1 change ≤8 h/month included | 1 change ≤8 h/month + 1 additional agent per 6 months included |
-| Guarantee measurement & Monthly Benefit Report (§8) | included | included | included |
+1. **The corrected showcase file** — `leads_showcase.csv`, 32 rows, redacted per §2b#7. The demo, the case study and the deliverable are the same object.
+2. **The evidence bundle** — 55 cited URLs, each with status, UTC timestamp, body hash and stored snapshot. The audit is invited, and it survives being taken up.
+3. **The reject log** — companies examined and thrown out, with reasons, plus the **9 URLs checked for candidates that never shipped.** *"Nobody fakes their own rejects"* — every reviewer independently named this as the strongest asset in the whole offer.
+4. **The correction log** — **8 of 32 (25.0%)** machine-proposed contact routes caught as fabrications, each named specifically. This is a competitor-proof credential: copying it requires publishing your own error rate, and nobody has measured theirs.
+5. **The disqualifying ROI calculator** — live at `/en/roi/` and `/fi/laskuri/`, implementing the corrected payback formula from `ECONOMICS.md`, which tells small prospects not to buy and hides the booking button from them. An agency that built a tool to turn business away is a different species from one that did not.
+6. **`ECONOMICS.md` itself** — the arithmetic that proved his *own previously published guarantee would fire on deals that went well*, found and published against his own interest. Hand it over. It is the most persuasive document he owns.
+7. **The credentials, stated exactly and never embellished:** BSc Data Science & Artificial Intelligence, Maastricht University — **graduated, diploma confirmed 24.08.2026** (thesis: SULO knowledge-graph extraction with a self-correcting pipeline — the same self-correction pattern that produces the correction log); **registered his own business, Aiferno, in 2019 at age 15**; founding shareholder and board member of TopicalBase Oy, a B2B marketplace, 2024–2025; grew up inside a 12-year, ~60-assistant, 700-client services business. **One paid AI consulting engagement. No client case studies. No testimonials.** Never "we." Never a team. Never an implied client.
 
-**Unused hours do not roll over. Overage: €160/h, pre-approved in writing.**
-
-### 7.2 Service window, and its honest limits
-
-Service window: **09:00–17:00 EET, Monday–Friday, excluding Finnish public holidays.** There is no 24/7 on-call and this document will never say there is. Out-of-hours work is best-effort at €250/h and is not covered by any response time.
-
-**Absence.** I may take up to **25 business days of pre-notified absence per calendar year**, notified at least 10 business days in advance. During pre-notified absence, P1 response times are suspended and the kill switch, runbook and rollback procedure in your Handover Pack are the operative controls — they are designed for exactly this. Absence beyond 25 business days, or unnotified absence exceeding 3 consecutive business days, triggers a credit of **1/20 of the monthly fee per affected business day**, applied automatically to the next invoice without the Client having to ask.
-
-**Concurrency cap.** I contract a maximum of **8 active AgentOps clients** and **1 Build at a time**. When those are full, you go on a waitlist and I say so. This cap is a contractual representation, not marketing: if I exceed it, the response times above become credit-bearing at double the rate in the preceding paragraph.
-
-### 7.3 Term, notice, and what happens on cancellation
-
-- Initial term **3 months**, then rolling monthly.
-- **Client notice: 30 days**, any time after the initial term, for any reason. **Supplier notice: 60 days.** The asymmetry is deliberate.
-- On termination, within 10 business days: all credentials transferred to your named administrator; the Handover Pack refreshed to current state; a 90-minute recorded handover session; all Supplier access revoked in your presence.
-- Nothing is held hostage. The platform is in your cloud, on open standards, in your repository, and it keeps running whether I am there or not. What stops is monitoring, evals, drift correction and change work.
-- Any Payback Guarantee measurement period terminates with the retainer (§8.6). Fees are not refunded pro-rata for a part-month; the final month is invoiced in full.
-- The retainer may be **paused** once per 12 months for up to 2 consecutive months at 25% of the tier fee (monitoring and alerting only, no engineering hours).
+**The live-audit invitation, which is the actual close:** *"Pick any three rows. I will open the stored snapshot for each one on this call. If any of the three fails, I will tell you which of my own gates it failed and why it shipped anyway."*
 
 ---
 
-## 8. The Payback Guarantee
+## 9. The 30-day plan
 
-This replaces the sentence currently on the website — *"If the first agent I ship during the Build hasn't paid for itself within 12 months of running, I keep refunding the AgentOps retainer until it does."* That promise has no ceiling, no definition, no measurement method and no end date, and it must be removed from every language version of the site on the day this document goes live.
+**Assumption stated honestly:** zero pipeline, zero references, one operator, ~35 working hours available per week.
 
-### 8.1 Public-facing copy (must match the contract word for word)
+### Week 1 (days 1–7) — fix the artifact, sign the family agreement, open the warm doors
+- **Days 1–2:** all nine §2b pre-flight fixes. Rewrite the offer paragraph in the 12 cold drafts. Publish the corrected numbers on the site. Confirm the Cal.com link resolves and that the Cloudflare Pages lead webhook is actually set (per `PROGRESS.md`, without it the form silently falls back to mailto).
+- **Day 3:** contacts 1–3 below.
+- **Days 4–5:** Wannado agreement signed; the *Kansainvälistyminen* pilot client named; the billing query run.
+- **Days 6–7:** first cold batch, **15–20 mails/day, spread through the day, from a personal address with no sending history.** Contacts 4–10.
+- **Target:** 3 walkthrough calls booked, 1 Proof Ten sold. **Cash: €1,200.**
 
-> **The Payback Guarantee.** Before the Build starts we agree in writing what Agent #1 must save you, how it is measured, from what baseline, and who reads the meter. Every month you get a benefit report generated from the agent's own audit log. If, twelve months after go-live, the verified net benefit has not covered what you paid for the Build, I pay you the shortfall in cash — up to 25% of the Build fee, capped at €12,000. One measurement window, one payment, one claim. The full clause, including everything that voids it, is in the contract before you sign, not after.
+### Week 2 (days 8–14) — deliver, and let them audit
+- Deliver Proof Ten #1 (3 days). Send the evidence bundle and invite the audit explicitly.
+- Deliver the free Wannado pilot Signal Run 30. Collect the quotable result in writing on delivery day, not later.
+- 15–20 cold mails/day continues; second-touch on week-1 non-repliers (one follow-up, never three).
+- **Target:** 2 more Proof Tens, first Signal Run 30 sold. **Cash: €2,400 + €1,750 (50% kickoff) = €4,150.**
 
-Naming the cap in public is not weakness. It is the difference between a promise a procurement lawyer strikes out and one they approve.
+### Week 3 (days 15–21) — first paid Signal Run, first Density Check
+- Deliver Signal Run 30 #1 across the week per §6.
+- Convert one Proof Ten to a Signal Run using the €1,200 credit.
+- Sell the first Trigger Density Check off a delivered run.
+- **Target: Cash: €1,750 balance + €2,300 net upgrade + €600 = €4,650.**
 
-### 8.2 Schedule 3 — the Baseline Sheet, fully specified
+### Week 4 (days 22–30) — convert to cadence, and refill
+- Handover calls; Standing Run offered **only** where the Density Check cleared 12/month.
+- Ask every delivered client for one introduction — not a testimonial, an introduction. Introductions convert; testimonials from a first client are worth little and cost goodwill to obtain.
+- Wannado pilot result written up as the first quotable line; wholesale channel opened to Wannado's account managers with a one-page internal sheet.
+- Refill the top of the funnel: 60 first-touches sent in the month, 40 remaining leads staged from `leads-staged.md`.
 
-Signed on Sprint Day 9 or, where no Sprint preceded, before the M1 invoice. It contains exactly these eleven items and no others:
+**Realistic 30-day cash, three scenarios (ex-VAT):**
 
-1. **Primary Benefit Metric** — one metric, one unit (e.g. "minutes of human handling per quotation").
-2. **Measurement method** — the exact query, export or report that produces it, written out.
-3. **Data source** — the named system and table/report the figure comes from.
-4. **Baseline value** — measured over a stated window of not fewer than 20 business days, ending not more than 60 days before signature.
-5. **Baseline Transaction Volume** — the count over the same window, and the monthly figure derived from it.
-6. **Conversion Rate** — the euro value of one unit (e.g. fully loaded labour €45/h → €0.75/min), fixed for the whole Measurement Period.
-7. **Run Costs definition** — which model, hosting and third-party API costs are attributable to Agent #1.
-8. **Volume Floor** — the minimum monthly Transaction Volume below which the month is excluded (default: 60% of Baseline Transaction Volume).
-9. **Input Spec** — the document types, formats, languages and channels the agent is built for.
-10. **Metric Owners** — one named individual per party, with a named deputy for the Client.
-11. **Holdout hash** — the SHA-256 of the frozen eval set (§6.3).
+| | Sold | Cash in 30 days |
+|---|---|---|
+| **Floor** | 2 Proof Tens | **€2,400** |
+| **Base** | 3 Proof Tens + 1 Signal Run 30 + 1 Density Check | **€7,700** |
+| **Upside** | 4 Proof Tens + 2 Signal Runs + 1 Density Check + 1 Standing Run month | **€16,900** |
 
-No Baseline Sheet, no guarantee. I will not sign an undefined benefit target to unlock an invoice, and you should not accept one.
+Base case exit rate into month 2: 1 Standing Run (€2,400/mo) + a slot calendar with 2–3 Signal Runs booked. **No €58,500 first-month projection appears anywhere in this document, because there is no honest way to produce one.**
 
-### 8.3 Contract clause — paste-ready
+### The first ten people, in order
 
-> **Clause 8 — Payback Guarantee**
->
-> **8.1 Definitions.**
-> **"Agent #1"** means the agent designated as Primary Agent in the SOW.
-> **"Go-Live"** means the first calendar day after the Production Gate Certificate is countersigned or deemed passed under §6.3.
-> **"Measurement Period"** means the twelve (12) consecutive calendar months beginning on Go-Live.
-> **"Baseline Sheet"** means Schedule 3, containing the eleven items listed therein, signed by both Parties.
-> **"Qualifying Month"** means a calendar month within the Measurement Period in which (a) Transaction Volume is at or above the Volume Floor, (b) Agent #1 was enabled for at least 20 business days, and (c) no condition in Clause 8.6 applied.
-> **"Verified Net Benefit"** means, for a Qualifying Month: *(Baseline unit cost per Transaction − Actual unit cost per Transaction) × Transactions processed by Agent #1 in that month, valued at the Conversion Rate, less Run Costs attributable to Agent #1 in that month.* Only Transactions recorded in Agent #1's audit log are counted.
-> **"Cumulative Verified Net Benefit"** means the sum of Verified Net Benefit across all Qualifying Months in the Measurement Period.
-> **"Build Fee Paid"** means the aggregate Build Fee actually received by the Supplier, excluding VAT, change orders and AgentOps fees.
-> **"Shortfall"** means Build Fee Paid minus Cumulative Verified Net Benefit, where positive; otherwise zero.
-> **"Remedy Cap"** means the lesser of (i) twenty-five per cent (25%) of Build Fee Paid and (ii) EUR 12,000.
->
-> **8.2 The guarantee.** If the Cumulative Verified Net Benefit is less than the Build Fee Paid at the end of the Measurement Period, the Supplier shall pay the Client, in cash, within thirty (30) days of a valid claim, an amount equal to the lesser of the Shortfall and the Remedy Cap. Payment is not conditional on, limited to, or set off against AgentOps fees paid.
->
-> **8.3 Measurement.** Benefit is measured by instrumentation delivered as part of the Build, running in the Client's own environment, with read access for both Parties. The Supplier shall deliver a Monthly Benefit Report by the fifth (5th) business day of each month showing Transaction counts, Verified Net Benefit, Run Costs and the cumulative total. The Client's Metric Owner shall confirm or dispute each report within ten (10) business days. **A report not disputed in writing within ten (10) business days is deemed accepted and final and may not be reopened.** A dispute must identify the specific figures contested.
->
-> **8.4 Claim procedure.** A claim must be made in writing, signed by the Client's Metric Owner, within forty-five (45) days after the last day of the Measurement Period, and must attach the twelve Monthly Benefit Reports. No claim may be brought after that date. There is one claim and one payment; the guarantee does not renew, roll forward or extend.
->
-> **8.5 Sole and exclusive remedy.** The remedy in Clause 8.2 is the Client's sole and exclusive remedy, and the Supplier's entire liability, for any failure of the Solution to deliver anticipated economic benefit, return on investment, savings, efficiency or revenue, howsoever arising.
->
-> **8.6 Conditions and voiding events.** The guarantee does not apply, and no Shortfall accrues, where:
-> (a) an AgentOps subscription at Monitor tier or above has not been continuously in force from Go-Live, or any Supplier invoice has been overdue by more than 30 days;
-> (b) the Client has modified Agent #1, its prompts, its tools, its models or its configuration without the Supplier's written approval;
-> (c) the mandatory human-in-the-loop approval step (Clause 7.4) has been disabled, bypassed or routed around;
-> (d) Agent #1 was disabled, throttled or denied access to a required system for more than fifteen (15) business days in aggregate;
-> (e) inputs materially outside the Input Spec were routed to Agent #1;
-> (f) a source system, process, pricing structure or organisational change on the Client side materially altered the Baseline after signature, save where the Parties agreed a written Baseline amendment;
-> (g) the Client failed to provide the Monthly Benefit data export or the Metric Owner's confirmation for three (3) or more months;
-> (h) Force Majeure, or a change in law, model availability or third-party API terms that the Supplier could not reasonably work around within 30 days;
-> (i) the Client terminated the AgentOps subscription before the end of the Measurement Period.
->
-> **8.7 Expert determination.** A dispute over a Monthly Benefit Report unresolved within twenty (20) business days is referred to an independent Finnish authorised public accountant (HT or KHT) agreed by the Parties or, failing agreement within ten (10) business days, appointed by the Helsinki Region Chamber of Commerce. The reviewer acts as expert and not as arbitrator and the determination is final and binding. Costs are shared equally, save that where the determination differs from the referring Party's position by more than 20%, that Party bears the full cost.
+Odds first, cold last. Contacts 4–10 are drawn from `leads.csv` and are all `icp_fit = strong`; contact routes are as verified in the file.
 
-### 8.4 What this costs me in the worst case, stated plainly
+| # | Who | Route | Why first | Instrument |
+|---|---|---|---|---|
+| 1 | **KP Liimatainen** | address in the July 2025 Gmail thread | The single genuinely warm contact in 14 months of mail. Five messages, real back-and-forth, progressed to scheduling Teams calls, then went quiet ~13 months ago. He wrote that no *täsmä tarjoaja* exists for the Nordic market. He already wanted to build with Vincent. | `.ops/outreach/00-warm-liimatainen.md`. Personal, never templatised. Angle: *"I graduated, I packaged it, here is a finished thing I could not have shown you last year."* |
+| 2 | **Wannado — managing director (family)** | in person | Clauses 1–4 of §6, the pilot, and the billing query. Worth more in expected value than the entire cold list. Costs one meeting. | `.ops/outreach/01-channel-wannado.md`. Frame as throughput, never replacement: *one SuperAssari carries two or three clients at the same billed rate.* |
+| 3 | **Wannado Marketing — managing director** | in person / phone | The GEO non-compete and the two-way referral. Removes the commodity trap and the family conflict in one conversation. | One page, Clause 1. |
+| 4 | **Antti Voittonen**, Kasvu- ja kehitysjohtaja, Balanco Oy | `antti.voittonen@balanco.fi` — `exact` | Owns 16% of the group, runs the acquisitions, and Balanco's own 17.08.2026 headline says a technology shift drove the Accotilit deal. Highest-value single message in the folder. | `.ops/outreach/02-balanco-buybox.md`. **Do not pitch generic AI — they have an AI director.** Pitch the acquisition target buy-box. |
+| 5 | **Roope Oksanen**, Apuvoima Pirkanmaa Oy | `roope.oksanen@apuvoima.com` — `exact` | Strong fit; launched a second staffing brand (Hunaja Works) — a founder in expansion mode, needing buyers in a new market. | `.ops/outreach/21-apuvoima.md`, offer paragraph updated to Proof Ten. |
+| 6 | **Pasi Pesonen**, Isännöintipalvelu Isarvo Oy | `pasi.pesonen@isarvo.fi` — `exact` | Continuous, published back-office recruiting — the `standing_condition` signal that `ECONOMICS.md` says is the real qualifier. | New draft off the Isarvo row. |
+| 7 | **Matti Tuominen**, LTP Logistics Oy | `matti.tuominen@ltplogistics.fi` — `exact` | Cut 21 of 116 people in a year: a capacity squeeze with no new headcount coming. | **Fix the paywalled size claim first (§2b#4)** — do not cite a page that does not prove the number. |
+| 8 | **Kalle Grönqvist**, Fluxio Group | contact form, `fluxiogroup.fi` | 280+ staff, hiring a bookkeeper to do *lainaosuuslaskenta* and *ostoreskontra* by hand. The cleanest agent-shaped pain in the file. | Form message, short, one question. Lower reply odds than email — send it, expect less. |
+| 9 | **Ilkka Saarimaa**, ATA Gears Oy | `+358 44 333 3919` — `exact` | A €17M machinery and automation investment underway right now. | **Phone, not email.** A phone-only row is a call, not a mail-merge. |
+| 10 | **Jarmo Manninen**, Tocca Group Oy | `+358 40 593 7474` — `exact` | Growth eating margin across four duplicated back offices. | **Phone.** |
 
-Per Build: €7,250 (Foundation), €12,000 (Core), €12,000 (Sovereign). Payable once, in cash, in a defined 30-day window, against a metric I helped define and have watched monthly for a year. If four Builds a year all fail simultaneously, the exposure is €43,250 — bad, survivable, and knowable in advance. The version currently on the website is none of those things.
+*Reserve, in order:* Mikko Vihanto (Varova, phone — fix the paywalled size claim first), Vesa Keskilä (V-S Isännöintitalo, switchboard — call), Janne Eurén (Festum — **only after row 1 is fixed**; and note the published route is `info@festum.fi`, a front desk, so treat it as a call).
+
+**Handling rule for front-desk rows:** 4 of the 32 rows resolve to `info@` / `toimisto@` and 10 to switchboard numbers. Those are **calls, not emails**, and they are labelled as such in the delivered file. Never present a switchboard number as a "verified route to the decision-maker" — that claim is checkable in ninety seconds by anyone with a receptionist, and being caught on it costs more than the row is worth.
 
 ---
 
-## 9. IP, ownership and data
+## 10. What he must NOT do
 
-**9.1 Repository.** All code, infrastructure-as-code, prompts, tool configurations, eval suites and documentation are committed from the first commit to a repository owned and hosted by the Client (your GitHub/GitLab org, your cloud). There is no hostage and there is no escrow to arrange, because you already have it.
-
-**9.2 Licence and assignment.** On payment of each milestone, the Client receives a perpetual, irrevocable, worldwide licence to use, modify and operate everything delivered up to that milestone. On payment of M4, the Supplier assigns to the Client all assignable intellectual property rights in the Deliverables, excluding Supplier Background IP. Where a payment is more than 45 days overdue, the licence to use *undelivered and unpaid-for* increments is suspended until payment; already-paid increments are never suspended, revoked or disabled.
-
-**9.3 Supplier Background IP.** Generic scaffolding, project templates, internal libraries, checklists and methods that predate or are developed independently of the engagement remain the Supplier's. The Client receives a perpetual, irrevocable, royalty-free, non-exclusive licence to use them as embedded in the Deliverables, including the right to modify them and to have third parties do so.
-
-**9.4 No lock-in warranty.** The Solution uses open standards (MCP, OpenTelemetry, OpenAPI, standard container/IaC tooling). The Supplier warrants that no Deliverable requires a Supplier-operated service, licence key, account or hosted component to continue functioning after termination.
-
-**9.5 Client data.** The Client owns all Client data and all outputs. The Supplier will not use Client data, prompts, documents or logs to train, fine-tune or evaluate any model or product for any other party. Models are configured with training/retention opt-out where the provider offers it; where a provider does not, that provider is not used without written Client consent.
-
-**9.6 Data protection.** A GDPR Article 28 Data Processing Agreement, with written technical and organisational measures and a named sub-processor list, is signed before any access is granted — during the Sprint, not at the Build. Sub-processor changes require 30 days' notice and the Client may object. Default residency: EU only (Hetzner Helsinki/Nuremberg, AWS eu-central-1, Azure West Europe, or on-prem). EU-hosted open-weight models (Mistral, Llama) are available where required.
-
-**9.7 Third-party and open-source.** Deliverables incorporate open-source components under permissive licences, listed in the Handover Pack with their licences. Third-party model and API terms flow through to the Client, who contracts with those providers directly (§4.3.1).
-
-**9.8 IPR indemnity.** The Supplier indemnifies the Client against third-party claims that the Deliverables, as delivered and unmodified, infringe intellectual property rights, subject to the cap in §10.1. The indemnity does not cover: Client data or Client-supplied materials; outputs generated by third-party models; modifications made by anyone other than the Supplier; or use outside the SOW.
-
-**9.9 Confidentiality** runs both ways, survives 3 years, and excludes information that is public, independently developed, or required to be disclosed by law.
-
-**9.10 Publicity.** No use of the Client's name or logo without written consent, except under Founding Client Terms (§3.6) where consent is part of the bargain.
+1. **Do not launch a GEO / AI-optimointi / AI-näkyvyys retainer.** Verified live pricing: Silta AI **€149/mo** (claiming *"yli 300 yritystä luottaa meihin"*), Markkinointi Ukkonen from **€150/mo**, Frank **€390–600** starter to **€1,500–2,500+** full, plus Netello (25 years of SEO), Grapevine, Brandteam. A solo entrant at €150–500/mo needs 50+ retained clients to earn a living, in a volume business, as the least-credentialled participant. Route every enquiry to Wannado Marketing, in writing, and take no fee for it.
+2. **Do not build the free AI-visibility report as a lead magnet.** Frank already leads with exactly that. The position is taken; the artifact walkthrough is the better magnet and nobody else can offer it.
+3. **Do not mention €29k / €49k / €79k in a first email or a first call.** From a seller with one paid engagement, it makes the €1,200 look like bait. The Build exists at the top of the ladder specifically so it is never the first number said.
+4. **Do not quote a number he has not recomputed that morning.** The "62" cost him three reviewers' confidence in four minutes. One wrong count kills an offer whose entire premise is "count it yourself."
+5. **Do not write a gate his own showcase fails.** Every contractual gate in §4 was rewritten to what the file actually produces (14 dated / 11 period / 7 standing), not to what sounds impressive.
+6. **Never let a buyer keep a fully refunded file**, and never give unconditional buyer's-choice refunds past the third row. Both were free-run exploits; §5 closes them.
+7. **Never guarantee a fixed monthly volume of other companies' news.** Sell the Density Check first and let it say no. Month 3 collapse on a working system is how a good product acquires a bad reputation.
+8. **Do not exceed 3 open audit windows or 2 deliveries per week**, and declare blackout weeks in advance. A solo operator with four overlapping SLAs and one bout of flu refunds everyone simultaneously.
+9. **Do not send the raw `leads.csv` to anyone.** It contains his own deal-size estimates, his private hypotheses about named Finnish companies, and lines like *"DO NOT PITCH AI: they have an AI director."* Ship the redacted showcase copy only, with the DPA attached.
+10. **Do not compete with a Wannado assistant on price.** 80 hours at €42/h is €3,360 and produces a comparable file. When a prospect works this out — and one will — the answer is a disqualifier, not a defence: *"If what you want is a list, buy 80 assistant hours from Wannado, it is €3,360 and they are good at it. What I sell is the same list with a €117-per-row refund attached and my own fabrication rate published. If that liability is not worth €140 to you, buy the hours and I will introduce you."*
+11. **Never claim experience he does not have.** No "clients," no "we," no implied team, no invented case study, no "trusted by." One paid engagement, zero named clients, zero testimonials — said first, in his own words, every time.
+12. **Never write another uncapped or unmetered guarantee.** `ECONOMICS.md` already proved the last one would have fired on deals that went well. Every guarantee gets a cap, a metric, a named measurer and an end date.
+13. **Do not discount below €2,450** (Signal Run 30 wholesale floor). Under it, the verification pass and the reject log — the only two things a €390/mo competitor cannot copy — stop paying for themselves.
+14. **Do not take a Build from a client who has not first bought and audited a Signal Run.** A fixed-price €29k build for a stranger, delivered solo, against an undocumented ERP, is the one mistake in this document that cannot be recovered from.
 
 ---
 
-## 10. Liability, insurance and law
+## 11. One-page summary for the wall
 
-**10.1 Aggregate cap.** *The Supplier's aggregate liability under or in connection with this Agreement, whether in contract, tort (including negligence), breach of statutory duty or otherwise, shall not exceed the total fees actually paid by the Client under the relevant SOW in the twelve (12) months preceding the event giving rise to the claim.*
+| Rung | Price | Days | Gross margin | First-30-day realistic count |
+|---|---|---|---|---|
+| Artifact Walkthrough | €0 | 0.5 | — | 6–10 |
+| **Proof Ten** | **€1,200** | 3 | ~96% | **3** |
+| **Signal Run 30** | **€3,500** | 7 | ~96% | **1** |
+| Signal Run 60 | €5,900 | 12 | ~95% | 0 |
+| Trigger Density Check | €600 | 2 | ~93% | 1 |
+| Standing Run | €2,400/mo | rolling | ~94% | 0–1 (month 2) |
+| Install Sprint | €4,500 | 10 | ~90% | 0 |
+| Build — Foundation / Core / Sovereign | €29k / €49k / €79k | 45 / 75 / 110 | 80–88% | 0 |
 
-**10.2 Excluded loss.** *Neither Party is liable for indirect or consequential loss, loss of profit, loss of revenue, loss of anticipated savings, loss of business or goodwill, loss or corruption of data (save for the cost of restoring from the Client's own backups), or regulatory fines, in each case however arising.*
-
-**10.3 Carve-outs.** The caps in 10.1 do not apply to death or personal injury caused by negligence, fraud or fraudulent misrepresentation, wilful misconduct, or a Party's payment obligations. **Data protection claims** are capped at the higher of (i) fees paid under the SOW and (ii) amounts actually recovered under the Supplier's cyber liability policy.
-
-**10.4 Dispute path.** Finnish law, excluding conflict-of-law rules. Good-faith negotiation between the Parties' signatories within 15 business days; then, for benefit-measurement disputes, expert determination under §8.7; otherwise the **District Court of Helsinki**.
-
-**10.5 Insurance.** The Supplier shall maintain professional indemnity and cyber liability insurance of not less than **EUR [250,000]** per claim throughout the engagement and for twelve (12) months after Final Acceptance, and shall provide a certificate on request. *(Vincent: this is a sales asset as much as a legal one. A 22-year-old with a policy number beats a 40-year-old without one in a procurement review.)*
-
-**10.6 Backup and restore.** The Client is responsible for backups of its own source systems. The Supplier will not be the sole holder of any Client production data.
-
----
-
-## 11. Continuity, key person, and the bus factor
-
-This section exists because the single largest risk in this engagement is not the technology. It is that there is one of me.
-
-**11.1 Named reality.** The Supplier is a single individual. There is no bench, no second engineer, no 24/7 rota. I am based between Finland and Spain and I am completing a BSc in Data Science and Artificial Intelligence at Maastricht University; my remaining academic obligations are already reflected in the capacity numbers in §7.2 and in my slot availability. Anyone who tells you their solo consultancy has redundancy is describing a subcontractor they have not yet met.
-
-**11.2 What replaces redundancy.**
-- Everything runs in **your** cloud, in **your** repository, on open standards, with no dependency on any system I operate (§9.4).
-- Every agent ships with a documented **kill switch**, spend caps, rate limits and a rollback procedure that a competent generalist in your own IT can execute from the runbook.
-- The **Handover Pack** — architecture decision records, runbook, recorded walkthroughs, eval suite, credential inventory — is delivered at M4 and refreshed at every AgentOps quarter, not written after an emergency.
-- A **Continuity Partner** is named in the SOW before M1: an independent Finnish or EU contractor who has read the runbook and has agreed in writing to take over on 10 business days' notice at their own day rate. If no partner is named by M1, the Client may withhold M1 until one is. *(Vincent: if this line is blank when you send the proposal, you have not fixed the problem the clause exists to fix.)*
-
-**11.3 Incapacity clause — paste-ready.**
-> **Continuity and Key Person.** If the Supplier becomes unable to perform for more than fifteen (15) consecutive business days for any reason, the Supplier shall (a) notify the Client within three (3) business days of becoming aware, (b) transfer all credentials, documentation and access to the Client's named administrator, and (c) offer the Continuity Partner named in the SOW. The Client may thereupon terminate the SOW on written notice, whereupon the Supplier shall refund the unearned portion of any milestone invoiced but not delivered, calculated as the proportion of that milestone's stated deliverables not yet delivered, within thirty (30) days. AgentOps fees are refunded pro rata per business day from the first day of incapacity. This clause is in addition to, and does not limit, the walk-away rights in §6.4.
-
-**11.4 Capacity representation.** Maximum **one** Build in delivery at a time, maximum **two** Sprints per calendar month, maximum **eight** active AgentOps clients. Breach of this cap converts the response-time credits in §7.2 to double rate.
-
----
-
-## 12. Human-in-the-loop — a condition, not a feature
-
-> **Clause 7.4 — Autonomy and Approval.** Every agent with the ability to write to a production system, send communications to third parties, commit funds, or create, alter or delete personal data shall be delivered with a mandatory human approval step, an enforced rate limit, an enforced spend cap and a kill switch. The Client may only remove the approval step by signing an **Autonomy Waiver** that names the accountable approver, states the rate limit, spend cap and allow-list that remain in force, and records the Client's acceptance of the residual risk. Absent a signed Autonomy Waiver, the Supplier shall not enable autonomous write operations, and any loss arising from the Client disabling an approval step, rate limit or spend cap is excluded from the Supplier's liability and voids the Payback Guarantee under Clause 8.6(c).
-
-This is the single most important clause in the document for both parties. It is not upsold, it is not a SKU line, and it cannot be bought out.
-
----
-
-# PART B — INTERNAL. NOT FOR THE CLIENT.
-
-## 13. Pre-flight: seven things to do before Sprint #1
-
-1. **Incorporate.** A *toiminimi* means unlimited personal liability under Finnish law. You are putting agents with tool access into other companies' CRM, ERP, email and finance systems and building prototypes on copies of production data. Form an Oy. Roughly €280 in registration and a few hours; it is the cheapest risk reduction available to you and it is a prerequisite for every liability clause in §10 meaning anything.
-2. **Buy insurance.** Professional indemnity + cyber, minimum €250k. Put the policy number in the proposal template. It answers the age objection better than any argument in §14.
-3. **Fix the website today.** Delete the uncapped guarantee sentence from `/en/services/`, `/fi/services/`, `/es/services/` and any equivalents. Replace with §8.1 verbatim. An uncapped promise sitting live while you send a capped contract is the worst of both worlds — it can be argued as a pre-contractual representation.
-4. **Name the Continuity Partner.** One conversation, one page of paper, one agreed day rate. Until that name exists, §11.2 is a bluff and a good buyer will find it.
-5. **Draft the DPA + TOMs once**, properly, with a sub-processor list. Reuse forever. Without it you cannot lawfully take a copy of a client's production data in the Sprint.
-6. **Build the Baseline Sheet as a template** (the eleven fields in §8.2) and the Monthly Benefit Report as a script that reads the agent's audit log. If the report is manual, you will stop producing it by month four, and §8.6(g) will not save you because the obligation to produce it is yours.
-7. **Run the first Sprint inside Wannado.** Twelve years old, ~60 assistants, 700+ SME clients, same building, warm access, real workflows, real data. Do it at zero fee under Founding Client Terms and publish the quantified result with permission. It is the only warm distribution asset in your life and it converts your single biggest weakness — no case studies — in about six weeks. Then ask the family business for warm introductions into its SME client base; a referred call from a 12-year-old company beats 200 cold emails to Finnish owner-managers who will not disclose revenue to a stranger.
-
-## 14. Objection-handling script — the eight hardest
-
-**1. "You're 22 and you've done one of these."**
-> "Correct on both counts, and I put it in writing on page one rather than making you find out. So I don't ask you to trust me — I ask you to check me. You pay 25% up front. The next payment releases only when the platform is authenticated in *your* cloud. The one after that only when my agent passes a test set *your* expert labelled and we hashed before I wrote a line of code. If it doesn't pass, you walk with a refund and you keep everything built. My inexperience is priced into that structure. What would experience buy you here that the gates don't?"
-
-**2. "Why not just use Copilot / ChatGPT Enterprise?"**
-> "Use them — they're good and they're cheaper than me. They make your people faster at their own screens. They don't read your ERP, write a quotation back into it, log why, and hand you an audit trail. That's a different job: tool access, identity, permissions, evaluation, cost control. If what you actually need is a better assistant for humans, I'll say so at the Readiness Call and not sell you a Build."
-
-**3. "€49,000 is a lot. Can you do it for €25,000?"**
-> "Not at this scope, and I'll show you why rather than argue. Core is 8 connectors, 3 agents, staging plus production, 60 golden cases per agent. Foundation is €29,000 for one department, 4 connectors, 2 agents. If Foundation covers the workflow, take Foundation — I'd rather you buy the smaller thing and come back. What I won't do is charge Foundation money for Core scope, because a solo operator who under-prices a fixed-price build is a solo operator who abandons it in month two. You'd be buying the risk you're trying to avoid."
-
-**4. "What if you're hit by a bus, or you get busy, or you go back to studying?"**
-> "That's the right question and it's the reason §11 exists. Everything runs in your cloud, in your repository, on open standards — nothing I host, nothing that needs my key. There is a runbook, a kill switch and a rollback that your own IT can execute. There's a named continuity partner in the contract who has read the runbook and agreed to take over on ten days' notice at their day rate. And if I'm out more than fifteen business days you can terminate, get the unearned money back and take retainer fees back pro rata. I can't give you a bench. I can make sure you're never holding an asset only I can operate."
-
-**5. "You used to do a free audit. Why am I paying €4,500?"**
-> "Because the free version was worth what it cost. The Sprint gives you a scored register of ten workflows, a working prototype on a copy of your own data, a signed baseline and a fixed price with no range in it — and it's credited in full against the Build if you go ahead within three weeks. The 45-minute call is still free and you still leave with a scorecard. If after that call you don't want to spend €4,500 to find out, that's a completely reasonable answer and we should stop there."
-
-**6. "Our data can't leave the EU / security won't allow an agent into our ERP."**
-> "Good, and neither would I. Default residency is EU-only — Hetzner, AWS Frankfurt, Azure West Europe or your own hardware — with EU-hosted open-weight models where required. Every write-capable agent ships with a mandatory human approval step, a rate limit, a spend cap and a kill switch, and that's a contractual condition you can't buy out. Read-only first, human-approved second, autonomous only if you sign a waiver naming who accepted the risk. Send me your security questionnaire; Core includes answering one."
-
-**7. "This field moves so fast — shouldn't we wait a year?"**
-> "The models will be better and cheaper in a year; I agree. The part that takes time isn't the model. It's discovering that your quotation data has four formats, that two people disagree about the rule, and that the ERP has no API. That work has to happen whenever you start and it doesn't get cheaper. Which is why the Sprint exists: €4,500 to find out whether the boring part is tractable in your company. That answer keeps for a year. A model doesn't."
-
-**8. "Can we just do a small €5,000 pilot first?" / "Our IT could build this in-house."**
-> "The Sprint *is* the €4,500 pilot — a working prototype on your data, credited in full if we go ahead. What I won't do is a €5,000 production deployment, because a production agent without observability, evals, identity and audit trail is a liability I'd be handing you with my name on it. On in-house: your IT can absolutely build this, and if they have the calendar you should let them. A mid-level AI engineer in Finland is €5,500–6,800 a month gross, roughly €100k fully loaded, plus three to five months to recruit. Core plus twelve months of AgentOps is €90,400 in year one, live in seventy-five days, and you own the platform at the end either way. Compare it to the vacancy, not to zero."
-
-## 15. What could go wrong for Vincent — blunt version
-
-**Existential, fix before Sprint #1**
-1. **Unlimited personal liability.** Sole trader + autonomous agents with write access to other companies' finance and customer systems = your house. §13.1. Nothing else on this list matters until this is done.
-2. **No insurance.** One mis-priced batch of 400 quotes, one email blast to the wrong 4,000 contacts, one leaked personal-data set, and the liability cap in §10.1 is a piece of paper with no money behind it.
-3. **The live website promise.** Every day the uncapped sentence stays up is a day someone can argue they contracted on it.
-
-**Serious**
-4. **Capacity arithmetic.** One Build + two Sprints/month + eight retainers is already more than one person's year. The cap in §11.4 is now contractual — if you break it, you owe credits. Track it weekly or the first overload month costs you both the retainer income and the guarantee measurement obligation that sits underneath it.
-5. **Cash timing on the guarantee.** The €12,000 payout lands twelve months after go-live, in cash, exactly when that client has also stopped being a happy reference. Provision it: put 25% of every M4 payment in a separate account and do not touch it for thirteen months.
-6. **Fixed price against legacy ERP.** The €49,000 Core price assumes two custom connectors. A SOAP interface with undocumented behaviour can eat twenty days on its own. Use the Sprint to actually authenticate against the ugly system before you quote — if you cannot get credentials during the Sprint, quote Sovereign or refuse.
-7. **Concentration.** Two clients paying €3,500/month is not an annuity, it is two phone calls away from zero. Do not resign yourself to a lifestyle where losing one client is a crisis; Rung 1 volume is the defence.
-8. **Prototype on real production data during a Sprint.** No DPA, no copy. And never on your laptop — sandbox in the client's tenant or an EU VPS you can wipe, deleted within 10 business days of readout, evidenced in writing.
-
-**Commercial**
-9. **The €2,500 founding price becomes the real price.** Sunset it hard at five clients or 31.12.2026 and put the sunset in the document, which §3.6 does. Do not extend it "just for this one".
-10. **Case studies that never ship.** Anonymised results are worth a fraction of named ones, and clients go quiet after go-live. That is exactly why §3.6 makes the case study contractual consideration for the discount rather than a favour asked in month nine.
-11. **Cold outbound to strangers with no logos converts near zero.** The gates in §2 assume some warmth. Spend the first six months on Wannado's 700+ SME clients and referrals out of it; treat cold email as a supplement, not the pipeline.
-12. **Tax and residence.** Living between Finland and Spain with an operating company invoicing EU B2B: get the residence, permanent-establishment and VAT position confirmed by an accountant in writing before the first €49,000 invoice, not after.
-13. **Scope creep dressed as goodwill.** The three free change requests under €1,500 in §5 are the entire budget for being nice. When it is spent, quote. Every hour given away on a fixed-price build comes straight out of the €1,441/effort-day that makes the price work.
-
----
-
-# Appendix — numeric verification of the Payback Guarantee
-
-Added after the terms were drafted, to check the guarantee cannot fire on a
-deal that went well. `.ops/ECONOMICS.md` establishes that the naive payback
-formula understates real payback badly once a recurring retainer is included.
-
-**The clause survives that test, because of two definitions it gets right:**
-
-- `"Build Fee Paid"` — *"excluding VAT, change orders **and AgentOps fees**"*
-- `"Verified Net Benefit"` — gross saving *"less **Run Costs** attributable to
-  Agent #1"*, where Run Costs are defined in the Baseline Sheet as model,
-  hosting and third-party API costs — **not** the AgentOps retainer.
-
-So the test is *12-month net benefit vs the Build fee alone*. The retainer sits
-outside it, which is the correct construction: the retainer buys ongoing work,
-not the original result.
-
-**Worked check.** A €113,400/year document workflow yields €51,143 of 12-month
-verified net benefit. Against a €29,000 Foundation Build that is a €22,143
-surplus — no shortfall, no claim. Under the *old* site wording (retainer-based
-and uncapped) the same successful deal would have triggered a refund obligation.
-
-## Minimum measured workflow value at which the guarantee is safe
-
-Use this when choosing which tier to quote against a Sprint's Baseline Sheet.
-Below these figures, quote a smaller tier — do not discount a larger one.
-
-| Tier | Build fee | Document | Data entry | Email/quoting | Support |
-|---|---|---|---|---|---|
-| Foundation | €29,000 | €64k/yr | €59k/yr | €88k/yr | €101k/yr |
-| Core | €49,000 | €109k/yr | €100k/yr | €149k/yr | €171k/yr |
-| Sovereign | €79,000 | €175k/yr | €161k/yr | €241k/yr | €275k/yr |
-
-*(Assumes agent coverage at the conservative end — 55% document, 60% data
-entry, 40% email, 35% support — and 18% deducted for run costs.)*
-
-This is why the paid Sprint matters commercially as well as for cash flow:
-it produces the signed Baseline Sheet **before** the Build is priced, so the
-tier is chosen against a measured number rather than a hopeful one. Selling a
-Build without that measurement is what makes the guarantee dangerous.
-
----
-
-# Two things needing Vincent's decision
-
-1. **Incorporation.** §13.1 of the terms assumes a limited company
-   (`Aiferno Oy`). He currently trades as a sole trader (*toiminimi*), which
-   means **unlimited personal liability** — the §10 liability caps are
-   unenforceable against a natural person's exposure in the way the document
-   implies. Signing a €79k Sovereign Build as a sole trader puts personal
-   assets behind it. Incorporate before Build #1, not after.
-
-2. **Insurance.** The document's own risk section is blunt about it: *"One
-   mis-priced batch of 400 quotes, one email blast to the wrong 4,000
-   contacts, one leaked personal-data set, and the liability cap in §10.1 is a
-   piece of paper with no money behind it."* Professional indemnity and cyber
-   liability cover need to be in place before the first Build goes to
-   production. This is a real cost to price into the model.
-
-Neither is a reason to delay the Sprint offer — a €4,500 diagnostic with a
-€4,500 maximum exposure is safe to sell today. Both are prerequisites for
-signing a Build.
-
----
-
+**Sell the strike list and the refund, not the row count. Sell the €1,200 door, not the €29,000 room. Route GEO to Wannado, in writing, on day three. And never say a number you have not recounted that morning.**

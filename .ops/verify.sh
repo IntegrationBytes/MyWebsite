@@ -162,6 +162,18 @@ sys.exit(bad)
 PYQ
 [ $? -ne 0 ] && FAIL=1
 
+sec "H4. LEADS — no row still prices the retired cost-side offer"
+python3 - <<'PYD'
+import csv,sys,os
+if not os.path.exists(".ops/leads.csv"): sys.exit(0)
+bad=[r["company"] for r in csv.DictReader(open(".ops/leads.csv",newline="",encoding="utf-8"))
+     if "AgentOps" in r["est_deal_size"] or "build +" in r["est_deal_size"].lower()]
+for c in bad[:5]: print(f"  FAIL  {c[:40]}: est_deal_size still quotes the abandoned build+retainer pricing")
+if not bad: print("  PASS  every row prices against the current Signal Run ladder")
+sys.exit(1 if bad else 0)
+PYD
+[ $? -ne 0 ] && FAIL=1
+
 sec "I. LEADS — every source_url was actually reachable"
 if [ -f .ops/url_check.txt ]; then
   DEAD=$(grep -c 'DEAD' .ops/url_check.txt || true)

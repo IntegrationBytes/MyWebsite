@@ -125,3 +125,43 @@ triggers and unreliable about email addresses specifically - roughly a
 quarter were guessed from a name pattern. Every trigger I checked was real
 and correctly dated, several within the last two weeks.
 **Exhausted?** Goal met. Remaining work is Vincent's decisions, not mine.
+
+## Iteration 6 — the offer changes; four errors found in my own work
+**Approach:** Vincent said he can also do AI sales and marketing and that the
+offer may change. Checked the obvious move before designing for it, then ran
+four independent offer designs judged by three adversarial personas.
+**What the market check found:** the obvious move is a trap. Finnish GEO is
+commoditised at EUR149-390/month with incumbents already holding the "free AI
+visibility report" lead-magnet position, AND Wannado Marketing already sells
+GEO hourly. A Vincent-branded GEO service would compete with his own family
+business in a market where his one real advantage - that he builds systems -
+counts for nothing. Written up in .ops/MARKET.md.
+**Result:** .ops/OFFER.md replaced. Signal Run: sell a checkable file, not
+monthly labour. Rungs EUR0 / 1,200 / 3,500 / 600 / 2,400-mo / 4,500 / 29-79k.
+The old cost-side build survives as Rung 5 (.ops/OFFER-build-rung5.md).
+Judges scored productised-pipeline 28.3, own-vs-rent 26.7, fastest-cash 24.7,
+family-channel 20.7.
+**The best idea was not mine:** eight leads are active acquirers with public
+numeric growth mandates. For them the product is acquisition-target
+origination, not customer leads - competing against M&A advisors at 3-5% of
+deal value, which makes a fixed fee a rounding error. Balanco verified end to
+end: EUR35M-by-2027 against ~EUR18M, ~10 acquisitions needed, and the buyer is
+Antti Voittonen who negotiates them and owns 16%, not the country manager I
+had on file.
+**FOUR ERRORS THE REVIEW FOUND IN MY OWN WORK - the important part:**
+1. I published "62 source URLs confirmed live" on both proof pages. The rows
+   cite 55; url_check.txt has 64 lines because 9 are rejected candidates. 62
+   was neither number, on a page whose entire argument is "audit me."
+2. The Festum row's source_quote - the verbatim-from-page field - contained
+   the very address its own note calls fabricated.
+3. Varova and LTP carried size figures sourced to asiakastieto pages my own
+   log records as paywalled and NOT substantiating them.
+4. Sweeping for that pattern: 12 of 16 size claims cite a third-party data
+   source with no corresponding URL in the log.
+Plus a fifth the re-rank caught: 31 of 32 est_deal_size values still priced
+the abandoned cost-side offer, inside the file meant to be shown to prospects.
+**Learned:** an offer built on "check my work" raises the cost of my own
+sloppiness enormously. Three reviewers found the 62 in four minutes. Added
+harness checks H2, H3 and H4 so each class of error fails the build rather
+than reaching a prospect.
+**Exhausted?** No. Pre-flight items remain, listed in NEXT.md.
