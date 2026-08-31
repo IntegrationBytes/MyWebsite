@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>body{margin:0;font:14px system-ui}img{max-width:100%}</style>
+<title>Overnight Desk</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --ground:#f4f6f8; --surface:#ffffff; --surface-2:#eef1f4;
+    --ink:#151a20; --ink-2:#3d4854; --muted:#66727f; --line:#dde3e9;
+    --accent:#0e6b62; --accent-soft:#e2efed;
+    --good:#1f6b45; --good-soft:#e3f0e8;
+    --warn:#8a5a12; --warn-soft:#f6eddc;
+    --alert:#9c3327; --alert-soft:#f7e5e2;
+    --shadow:0 1px 2px rgba(21,26,32,.05), 0 8px 24px -12px rgba(21,26,32,.12);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0e1216; --surface:#161b21; --surface-2:#1d242b;
+      --ink:#e9eef2; --ink-2:#c0cad3; --muted:#8b98a5; --line:#262f38;
+      --accent:#45b8aa; --accent-soft:#12312e;
+      --good:#5cbb85; --good-soft:#13301f;
+      --warn:#d0a04e; --warn-soft:#332715;
+      --alert:#e0796a; --alert-soft:#341915;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0e1216; --surface:#161b21; --surface-2:#1d242b;
+    --ink:#e9eef2; --ink-2:#c0cad3; --muted:#8b98a5; --line:#262f38;
+    --accent:#45b8aa; --accent-soft:#12312e;
+    --good:#5cbb85; --good-soft:#13301f;
+    --warn:#d0a04e; --warn-soft:#332715;
+    --alert:#e0796a; --alert-soft:#341915;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    font-size:15.5px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 24px 96px}
+  @media(max-width:640px){.wrap{padding:28px 16px 64px}}
+
+  h1,h2,h3{font-family:"IBM Plex Serif",Georgia,serif;text-wrap:balance;margin:0}
+  h1{font-size:clamp(1.9rem,4.2vw,2.6rem);font-weight:600;letter-spacing:-.015em;line-height:1.15}
+  h2{font-size:1.35rem;font-weight:600;letter-spacing:-.01em}
+  h3{font-size:1.02rem;font-weight:600}
+  p{margin:0}
+  a{color:var(--accent)}
+  .lede{color:var(--ink-2);max-width:66ch;font-size:1.06rem}
+  .label{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);font-weight:500;
+  }
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+  header{display:flex;flex-direction:column;gap:14px;margin-bottom:34px}
+  .stamp{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .pill{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:500;
+    padding:4px 10px;border-radius:3px;border:1px solid var(--line);
+    background:var(--surface);color:var(--ink-2);
+  }
+  .pill.pass{background:var(--good-soft);color:var(--good);border-color:transparent;font-weight:600}
+  .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+
+  section{margin-top:44px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+  .sec-head .label{flex:none}
+  .rule{flex:1;height:1px;background:var(--line);min-width:20px}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow)}
+
+  /* ---- decisions ---- */
+  .decisions{display:grid;gap:12px}
+  .dec{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:16px 18px;align-items:start}
+  .dec .n{
+    font-family:"IBM Plex Mono",monospace;font-size:.74rem;font-weight:600;
+    color:var(--alert);background:var(--alert-soft);
+    width:22px;height:22px;border-radius:3px;display:grid;place-items:center;margin-top:2px;
+  }
+  .dec h3{margin-bottom:3px}
+  .dec p{color:var(--ink-2);font-size:.94rem}
+  .dec code{
+    font-family:"IBM Plex Mono",monospace;font-size:.85em;
+    background:var(--surface-2);padding:1px 5px;border-radius:3px;
+    overflow-wrap:anywhere;
+  }
+
+  /* ---- ordered send sequence ---- */
+  .seq{display:grid;gap:0}
+  .step{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:18px;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:0}
+  .step .n{
+    font-family:"IBM Plex Mono",monospace;font-size:.8rem;font-weight:600;color:var(--accent);
+    padding-top:1px;
+  }
+  .step h3{margin-bottom:4px;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+  .odds{font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:500;color:var(--muted);letter-spacing:.04em}
+  .step p{color:var(--ink-2);font-size:.94rem;max-width:70ch}
+  .step p + p{margin-top:7px}
+
+  /* ---- lead table ---- */
+  .filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+  .fbtn{
+    font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:500;
+    padding:5px 11px;border-radius:3px;border:1px solid var(--line);
+    background:var(--surface);color:var(--ink-2);cursor:pointer;
+  }
+  .fbtn[aria-pressed="true"]{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+  .fbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  :root[data-theme="dark"] .fbtn[aria-pressed="true"],
+  :root:not([data-theme="light"]) .fbtn[aria-pressed="true"]{color:#0e1216}
+  @media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .fbtn[aria-pressed="true"]{color:#fff}}
+
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface);box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;min-width:820px}
+  th{
+    font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);font-weight:500;text-align:left;
+    padding:11px 14px;border-bottom:1px solid var(--line);background:var(--surface-2);
+    position:sticky;top:0;
+  }
+  td{padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:.9rem}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr.hide{display:none}
+  .co{font-weight:600;color:var(--ink);display:block;line-height:1.35}
+  .who{color:var(--muted);font-size:.83rem;margin-top:3px;display:block}
+  .trig{color:var(--ink-2);font-size:.85rem;line-height:1.5;max-width:46ch}
+  .ct{font-family:"IBM Plex Mono",monospace;font-size:.78rem;overflow-wrap:anywhere;color:var(--ink-2)}
+  .tag{
+    display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.64rem;font-weight:600;
+    padding:2px 7px;border-radius:3px;letter-spacing:.05em;white-space:nowrap;
+  }
+  .t-strong{background:var(--good-soft);color:var(--good)}
+  .t-moderate{background:var(--surface-2);color:var(--ink-2)}
+  .t-weak{background:var(--warn-soft);color:var(--warn)}
+  .v-exact{color:var(--good)}
+  .v-corrected{color:var(--warn)}
+  .vmark{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.05em;display:block;margin-top:5px}
+
+  /* ---- generic lists ---- */
+  .stack{display:grid;gap:11px}
+  .row{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;font-size:.94rem;color:var(--ink-2)}
+  .row .k{color:var(--good);font-family:"IBM Plex Mono",monospace;font-size:.8rem;padding-top:2px}
+  .row strong{color:var(--ink);font-weight:600}
+
+  .note{
+    border-left:3px solid var(--accent);background:var(--accent-soft);
+    padding:15px 18px;border-radius:0 5px 5px 0;color:var(--ink-2);font-size:.94rem;
+  }
+  .note strong{color:var(--ink)}
+  .note + .note{margin-top:11px}
+
+  .figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  .fig{background:var(--surface);padding:16px 18px}
+  .fig .v{font-family:"IBM Plex Mono",monospace;font-size:1.5rem;font-weight:600;letter-spacing:-.02em;display:block;line-height:1.2}
+  .fig .k{font-size:.74rem;color:var(--muted);margin-top:4px;display:block}
+
+  .formula{display:inline-block;max-width:100%;overflow-x:auto;vertical-align:bottom}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+  @media (prefers-reduced-motion:no-preference){
+    .card,.tablewrap,.figs{animation:rise .4s ease-out both}
+    @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+
+<header>
+  <p class="label">Overnight · 31 Aug 2026 · vincentviitala.com</p>
+  <h1>32 verified leads, a working funnel,<br>and three decisions only you can make.</h1>
+  <p class="lede">
+    The site was throwing away every lead it received. That is fixed and browser-tested.
+    The lead list below is real: every company, contact route and trigger was re-checked
+    by fetching the page it came from. Nothing has been sent.
+  </p>
+  <div class="stamp">
+    <span class="pill pass"><span class="dot"></span>VERIFY: PASS</span>
+    <span class="pill">32 leads</span>
+    <span class="pill">62 URLs confirmed live</span>
+    <span class="pill">14 drafts ready</span>
+    <span class="pill">0 sent</span>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><span class="label">Before anything else</span><span class="rule"></span></div>
+  <div class="decisions">
+    <div class="card dec">
+      <span class="n">1</span>
+      <div>
+        <h3>Check your Cal.com link actually works</h3>
+        <p><code>cal.com/vincent-viitala-xkqj0c/30min</code> — I could not verify it from the build
+        environment (Cal.com blocks crawlers). Every CTA on the site points at it. Five seconds
+        for you, and everything downstream depends on it.</p>
+      </div>
+    </div>
+    <div class="card dec">
+      <span class="n">2</span>
+      <div>
+        <h3>Set one environment variable in Cloudflare</h3>
+        <p>Pages → Settings → Environment variables → <code>LEADS_WEBHOOK</code> (a Slack or Make
+        webhook URL) or <code>RESEND_API_KEY</code>. Until one exists the form falls back to opening
+        the visitor's mail client — which works, but is a worse experience for someone you just emailed.</p>
+      </div>
+    </div>
+    <div class="card dec">
+      <span class="n">3</span>
+      <div>
+        <h3>Approve outreach before I send anything</h3>
+        <p>Everything is drafted to one-click-send state. Sending cold mail from your address is
+        outward-facing and hard to undo, so it waits for you. Approve in small batches — 15–20 a day
+        from a personal address, not 100.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="label">Send order — best odds first</span><span class="rule"></span></div>
+  <div class="card seq">
+    <div class="step">
+      <span class="n">01</span>
+      <div>
+        <h3>Reply to the dormant thread <span class="odds">highest reply probability in the set</span></h3>
+        <p>July 2025, subject <em>"AI stailaus prokkis"</em>. He came to <em>you</em> with a market
+        gap he had already spotted — <em>"Eurooppalaiselle markkinalle ja varsinkin scandinaaviselle
+        ei ole täsmä tarjoajaa tällä hetkellä"</em> — and you had already built the Granite Filter
+        prototype. It died on scheduling, not on merit. Nothing went wrong, which is what makes it
+        easy to restart.</p>
+        <p>Reply in the existing thread, not a new email. Draft: <code>.ops/outreach/00-warm-liimatainen.md</code></p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="n">02</span>
+      <div>
+        <h3>Talk to Wannado — it is a live AI channel, not a cold ask <span class="odds">worth more than the whole cold list</span></h3>
+        <p>Verified from their own pages: Wannado bills <strong>€42/h for assistant work</strong> and
+        <strong>€38/h for outsourced customer service</strong>, described in their words as
+        <em>"kaikki rutiinityöt, mitkä hoituu ilman kummempaa koulutusta ja wifin välityksellä"</em>.
+        Their product <em>is</em> the thing agents automate. They already run an AI funding-analysis
+        bot and list "tekoäly" as a service.</p>
+        <p>Two consequences. Their invoicing system already answers the qualifying question —
+        <strong>which of 700 clients buys the most routine hours, on what task</strong> — better than
+        any cold research can. And the pitch must be throughput, not replacement: an agent lets one
+        SuperAssari carry two or three clients at the same billed rate. Say the cannibalisation risk
+        out loud yourself, before they do.</p>
+        <p>Ask for one workflow and agree IP terms in writing first. Draft: <code>.ops/outreach/01-channel-wannado.md</code></p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="n">03</span>
+      <div>
+        <h3>Then the cold list <span class="odds">12 drafts written, 14 strong-fit leads</span></h3>
+        <p>Each draft opens on that company's specific verified trigger. If a first line would work
+        for a different company unchanged, it has been diluted — rewrite it before sending.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="label">The list</span><span class="rule"></span>
+    <span class="odds mono">every row re-verified by fetching its source</span></div>
+  <div class="filters" role="group" aria-label="Filter leads by fit">
+    <button class="fbtn" data-f="all" aria-pressed="true">All 32</button>
+    <button class="fbtn" data-f="strong" aria-pressed="false">Strong fit</button>
+    <button class="fbtn" data-f="moderate" aria-pressed="false">Moderate</button>
+    <button class="fbtn" data-f="weak" aria-pressed="false">Weak</button>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr>
+        <th style="width:24%">Company</th>
+        <th style="width:35%">Why them, why now</th>
+        <th style="width:23%">Contact</th>
+        <th style="width:9%">Fit</th>
+        <th style="width:9%">Build</th>
+      </tr></thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </div>
+  <p class="odds mono" style="margin-top:10px">
+    exact = the contact string was found verbatim on the cited page ·
+    corrected = the researcher's version was wrong and I replaced it with the published one
+  </p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="label">What was broken on the site</span><span class="rule"></span></div>
+  <div class="note">
+    <strong>Every contact form was silently discarding submissions.</strong> All three languages
+    wrapped delivery in <code>if (window.LEADS_WEBHOOK_URL)</code>. That variable was referenced six
+    times and defined zero times, so the <code>fetch</code> never fired — but the message
+    "Got it, I'll be in touch within 24 hours" was shown anyway. Every form fill the site has ever
+    received was thrown away. Fixed, and tested in a real browser on both the success and the
+    failure path: it now confirms receipt only after a real 2xx, and otherwise falls back to a
+    pre-filled mailto so the lead still reaches you.
+  </div>
+  <div class="stack" style="margin-top:16px">
+    <div class="row"><span class="k">✓</span><span>The contact page promised same-day email replies while <strong>showing no email address</strong>, and its LinkedIn link pointed at linkedin.com's generic homepage.</span></div>
+    <div class="row"><span class="k">✓</span><span><strong>robots.txt advertised a sitemap that did not exist.</strong> The README's build step never runs — Cloudflare publishes <code>./</code> directly. Sitemap now generated with hreflang across all three language trees.</span></div>
+    <div class="row"><span class="k">✓</span><span><strong>/en/v2/ is an orphan duplicate homepage</strong> — unlinked but crawlable, competing with /en/ in search. Disallowed and noindexed, not deleted, in case it is a redesign in progress.</span></div>
+    <div class="row"><span class="k">✓</span><span>Three pages had no analytics at all; fifteen had no OG tags, so every link shared in WhatsApp or LinkedIn rendered as a bare grey URL. Zero conversion events existed; there are now 145.</span></div>
+    <div class="row"><span class="k">✓</span><span><strong>You have graduated.</strong> Maastricht confirmed the diploma arrived on 24 Aug. The site still framed the BSc as in progress — free credibility on a page asking for €29k.</span></div>
+    <div class="row"><span class="k">✓</span><span>New: an <strong>ROI calculator</strong> at <code>/en/roi/</code> and <code>/fi/laskuri/</code> that tells small prospects <em>not</em> to buy and hides the booking button from them. For a seller with no case studies, visibly turning away business buys more trust than any claim on the page.</span></div>
+    <div class="row"><span class="k">✓</span><span>The hero now leads with outcome, timeframe, price, ownership and the capped guarantee — all above the fold, including on a phone, where the CTA previously was not.</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="label">The finding that matters most</span><span class="rule"></span></div>
+  <h2 style="margin-bottom:12px">Your payback maths was wrong, in the direction that flattered the offer.</h2>
+  <p class="lede" style="margin-bottom:18px">
+    Building the calculator forced the numbers to compute, and the retainer turned out to break them.
+    The obvious formula divides first-year cost by monthly saving. But the retainer recurs for as long
+    as the agents run, so it has to come off the monthly saving <em>before</em> the build starts repaying:
+    <span class="mono formula">build ÷ (monthly saving − retainer)</span>.
+  </p>
+  <div class="figs">
+    <div class="fig"><span class="v">€113,400</span><span class="k">a 4-person, 15h/week invoice workflow, per year</span></div>
+    <div class="fig"><span class="v">17 mo</span><span class="k">payback the naive formula reports</span></div>
+    <div class="fig"><span class="v" style="color:var(--warn)">28 mo</span><span class="k">actual payback at a €3k retainer</span></div>
+    <div class="fig"><span class="v" style="color:var(--alert)">never</span><span class="k">at a €6k retainer, the retainer eats the entire saving</span></div>
+  </div>
+  <div class="note" style="margin-top:16px">
+    <strong>The old guarantee would have fired on deals that went well.</strong> The site promised
+    "I keep refunding the retainer until it does" — uncapped, with no defined metric, no named
+    measurer and no end date. The new terms cap it at the lesser of 25% of the build fee and
+    <strong>€12,000</strong>, in cash, one claim, sole remedy, against a baseline signed before the
+    build is priced. I checked the new clause numerically: it cannot fire on a good deal, because
+    "Build Fee Paid" excludes AgentOps fees.
+  </div>
+  <div class="note">
+    <strong>The real qualifying question is not company size.</strong> It is whether they have
+    <strong>2–3 full-time-equivalent people on one repetitive workflow</strong>. That is what the
+    lead list was filtered on, and it is why Eilakaisla is marked weak — €1.8M revenue and 14 staff
+    cannot carry a build. Full working: <code>.ops/ECONOMICS.md</code>.
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="label">What I did not do</span><span class="rule"></span></div>
+  <div class="stack">
+    <div class="row"><span class="k" style="color:var(--muted)">—</span><span><strong>I sent nothing.</strong> No email, no message, no form submission. Every draft waits for you.</span></div>
+    <div class="row"><span class="k" style="color:var(--muted)">—</span><span><strong>I could not confirm anyone will pay.</strong> No overnight run produces confirmed buyers; only replies do that. These are well-qualified, verifiably real companies with recent, specific reasons to talk. That is the honest ceiling.</span></div>
+    <div class="row"><span class="k" style="color:var(--muted)">—</span><span><strong>Roughly a quarter of the researcher's email addresses were invented</strong> — guessed from a name pattern rather than read off a page. I caught and corrected or dropped every one I could check. Companies and triggers were consistently real; contact details were where the fabrication concentrated.</span></div>
+    <div class="row"><span class="k" style="color:var(--muted)">—</span><span><strong>Two prerequisites before you sign any Build:</strong> you trade as a sole trader, so the liability caps in the terms do not protect your personal assets — incorporate first. And there is no professional indemnity or cyber cover behind those caps yet.</span></div>
+  </div>
+</section>
+
+<footer>
+  <p>Branch <span class="mono">claude/durable-state-loop-78gh5c</span> · run <span class="mono">bash .ops/verify.sh</span> to re-check ·
+  state in <span class="mono">.ops/</span> (GOAL, PROGRESS, ATTEMPTS, NEXT, OFFER, ECONOMICS, WARM, leads.csv)</p>
+</footer>
+
+</div>
+
+<script>
+const LEADS = [{"c": "Festum Accounting Oy", "p": "Janne Eurén", "r": "Toimitusjohtaja (CEO)", "ct": "info@festum.fi", "ty": "published_email", "f": "strong", "v": "corrected", "t": "Continuously hiring finance and payroll staff while publicly stating they already automate routine work: 'Hyodynnamme automaatiota ja tekoalya rutiinitehtavissa' (their own careers page). Growing headcount to do work they say they", "w": "https://festumaccounting.fi", "s": "Tilitoimisto (accounting & payroll bureau), authorised by Ta", "sz": "62 employees and EUR 5.9M revenue in 2025 per Suomen Asiakastieto company profile (asiakastieto.fi/yritykset/fi/festum-accounting-oy/05328769/yleiskuv", "d": "EUR 35-50k build + EUR 3-4k/month AgentOps", "pn": "Client onboarding and document intake performed by hand, per office, per acquired platform. Every acquisition means re-keying client master data, chart-of-accounts mappin", "su": "https://festumaccounting.fi/ura/", "tu": "https://festumaccounting.fi/ura/"}, {"c": "Balanco Oy (Balanco Suomi, part of Balanco Group)", "p": "Teemu Pihlajaniemi", "r": "Maajohtaja | Suomi (Country Manager, Finland)", "ct": "teemu.pihlajaniemi@balanco.fi", "ty": "published_email", "f": "moderate", "v": "exact", "t": "On 17 Aug 2026 Balanco announced the acquisition of Tampere-based Accotilit Oy (17 staff, ~EUR 1.6M pro forma revenue) and framed the entire deal, in its own headline, as driven by the technology transformation of the accounting s", "w": "https://balanco.fi", "s": "Tilitoimisto / financial administration services; Finnish of", "sz": "Group employs ~190 finance professionals, about half of them in Finland, per Balanco's own Kauppalehti press release (Aug 2025): 'Yhtiö työllistää noi", "d": "EUR 50-60k build + EUR 4-6k/month AgentOps", "pn": "A roll-up absorbing a new firm every few months, now carrying Mepco and Microsoft Business Central alongside its existing stack. The repeatable manual workload is post-ac", "su": "https://balanco.fi/yhteystiedot/", "tu": "https://balanco.fi/blogi/balanco-ostaa-tamperelaisen-accotilit-oyn-teknologiamurros-vauhditti-yrityskauppaa/"}, {"c": "Septimus Oy", "p": "Aatu Pulkkinen", "r": "Hallituksen puheenjohtaja / partner, handles kirjanpito- ja veroasiat (board chair; per the trade register each board member signs for the company alone)", "ct": "pulkkinen@septimus.fi", "ty": "published_email", "f": "moderate", "v": "exact", "t": "Headcount grew ~123% year on year (21 staff in 2026). Their contact form asks prospects for 'Palkkalaskelmien maara / kk' and 'Tositteiden maara / kk' - they price by document volume, so document volume is their cost driver.", "w": "https://septimus.fi", "s": "Tilitoimisto (authorised), Helsinki — bookkeeping, payroll, ", "sz": "21 employees as of 2026, up 123% year on year (+16 people) per the company's LinkedIn profile. Financial statements show the growth curve: EUR 976k re", "d": "EUR 25-35k build + EUR 2k/month AgentOps", "pn": "Growth is outrunning their ability to onboard clients and process documents. Every new client means manual chart-of-accounts setup, Verohallinto authorisation transfer, h", "su": "https://septimus.fi/ota-yhteytta/", "tu": "https://septimus.fi/ota-yhteytta/"}, {"c": "Figure Taloushallinto Oy", "p": "Antti Vähäjärvi", "r": "Toimitusjohtaja (CEO)", "ct": "antti.vahajarvi@figure.fi", "ty": "published_email", "f": "moderate", "v": "exact", "t": "Their largest client is replacing the system Figure's bookkeeping feeds off. Figure's own published customer story on Oma Säästöpankki: 'Yksi Oma Säästöpankin suuri hanke on liittynyt peruspankkijärjestelmän uudistamiseen. Hankkee", "w": "https://figure.fi", "s": "Financial-sector accounting shared service centre (taloushal", "sz": "~50-55 professionals and EUR 7M revenue, stated by the company on both its own about page ('noin 50 asiantuntijaa Espoossa ja Kauhajoella') and its re", "d": "EUR 35-50k build + EUR 3-4k/month AgentOps", "pn": "Textbook Archetype A: 55 people performing bookkeeping, purchase-ledger, invoicing and regulatory reporting on behalf of 50+ separate banks and insurers, so transaction v", "su": "https://figure.fi/yhteystiedot/", "tu": "https://figure.fi/taloushallinnon-ketteraksi-kumppaniksi/"}, {"c": "Tilitoimisto Tietomylly Oy", "p": "Elmeri Linnera", "r": "Toimitusjohtaja ja omistaja, KLT (CEO and owner); also sits on the board of Taloushallintoliitto, the Finnish accounting industry association", "ct": "elmeri.linnera@tietomylly.fi", "ty": "published_email", "f": "moderate", "v": "exact", "t": "Bought a 60% majority of Jyväskylä-based Tilivilliina Oy, reported 5 Aug 2026 by Keskisuomalainen: 'Kangasniemeläinen tilitoimisto Tietomylly Oy on ostanut 60 prosentin osake-enemmistön jyväskyläläisestä Tilivilliina Oy:stä ja laa", "w": "https://www.tietomylly.fi", "s": "Tilitoimisto (Taloushallintoliitto-authorised) — bookkeeping", "sz": "'Tiimissämme työskentelee neljätoista ammattilaista' (14 professionals) stated on their own front page, across three offices, plus the newly acquired ", "d": "EUR 25-30k build + EUR 2k/month AgentOps", "pn": "Four locations, two accounting platforms (Fivaldi and Procountor) and a freshly acquired subsidiary whose clients now need migrating. Document intake, client onboarding a", "su": "https://www.tietomylly.fi/henkilosto/", "tu": "https://www.ksml.fi/paikalliset/kooste/9668829/juttu/9674591"}, {"c": "KMV-Tilitaito Oy", "p": "Päivi Kallio", "r": "Toimitusjohtaja, HT-tilintarkastaja, KRT, KLT (CEO; also listed in the trade register as CEO and board member)", "ct": "(06) 4874 107", "ty": "phone", "f": "moderate", "v": "exact", "t": "Doing more work with fewer people — a capacity squeeze visible in their own financials. Finder.fi's company record shows headcount going 18 → 22 → 25 → 23 → 22 across FY2021-FY2025 while revenue per head climbed from EUR 58,000 to", "w": "https://www.kmv-tilitaito.fi", "s": "Tilitoimisto (Taloushallintoliitto-authorised, operating sin", "sz": "24 named staff across four offices listed on the contact page I fetched (11 in Kauhava, 4 payroll specialists, 5 in Seinäjoki, 4 in Ylihärmä). Corrobo", "d": "EUR 25-35k build + EUR 2k/month AgentOps", "pn": "Four small offices, one shared client book, all document routing and client onboarding done by named individuals. 24 bookkeepers and payroll specialists is roughly EUR 1.", "su": "https://www.kmv-tilitaito.fi/yhteystiedot/", "tu": "https://fivaldi.fi/asiakaskokemuksia/kmv-tilitaito/"}, {"c": "Varova Oy", "p": "Mikko Vihanto", "r": "Toimitusjohtaja (CEO)", "ct": "09 773 96 408", "ty": "phone", "f": "strong", "v": "exact", "t": "Varova's FY ending 02/2026 swung to its first operating loss in the five years on record: revenue fell 7.7% to EUR 33.3M and operating result went from +EUR 600k to -EUR 185k, while headcount stayed flat at 92. A 78-year-old famil", "w": "https://varova.fi/", "s": "Freight forwarding and customs clearance (huolinta ja tullau", "sz": "92 employees, EUR 33.3M revenue, and an operating LOSS of EUR -185,000 in the fiscal year ending 02/2026. From the asiakastieto.fi financials page I f", "d": "EUR 35-50k build + EUR 3-4k/month AgentOps", "pn": "This is the purest Archetype A in the slice: customs declarations, tariff classification, EUR/ATR origin documents and import/export document checking performed on behalf", "su": "https://varova.fi/yhteystiedot/", "tu": "https://www.asiakastieto.fi/yritykset/fi/varova-oy/01157333/taloustiedot"}, {"c": "Huhtala Logistics Oy", "p": "Tero Mattila", "r": "Toimitusjohtaja (CEO)", "ct": "ajojarjestely@huhtalalogistics.com", "ty": "published_email", "f": "strong", "v": "corrected", "t": "Huhtala sold its logistics properties to the listed Swedish investor Balder and stayed on as tenant, and the CEO used the announcement to say publicly that the company is now free to spend on the business rather than the buildings", "w": "https://www.huhtalalogistics.com/", "s": "Road transport, terminal, in-house logistics and warehousing", "sz": "129 employees and EUR 28.0M revenue in FY ending 02/2025. From the asiakastieto.fi financials page I fetched: 'Yrityksen Huhtala Logistics Oy (2841877", "d": "EUR 35-50k build + EUR 3-4k/month AgentOps", "pn": "Their own contact directory is the pitch deck. It names EIGHT ajojarjestelijat (dispatchers) split across three phone-manned duty desks (jakelu/terminaali 010 480 5511, r", "su": "https://www.huhtalalogistics.com/yhteystiedot/", "tu": "https://balderfinland.fi/seinajoen-logistiikkakeskus-siirtyi-balderin-omistukseen/"}, {"c": "LTP Logistics Oy (LTP Group)", "p": "Matti Tuominen", "r": "Toimitusjohtaja (CEO), LTP Group Oy", "ct": "matti.tuominen@ltplogistics.fi", "ty": "published_email", "f": "strong", "v": "exact", "t": "LTP cut 21 people out of a 116-person operation in a single year (116 -> 95, -18%) while revenue was flat at EUR 43.9M, pushing revenue per head from EUR 376k to EUR 462k. The volume did not go away; the people did. That is a comp", "w": "https://ltplogistics.fi/", "s": "Food and floristry logistics - warehousing, order picking, d", "sz": "95 employees and EUR 43.9M revenue in FY ending 12/2025. From the asiakastieto.fi financials page I fetched: 'Yrityksen LTP Logistics Oy (2358506-4) l", "d": "EUR 35-50k build + EUR 3-4k/month AgentOps", "pn": "Their contact page enumerates the manual workflows by name and gives each its own shared inbox: 'Tilauspalvelu - Tilausten tallennukset ja muokkaukset, tuotteiden prosent", "su": "https://ltplogistics.fi/yhteystiedot/", "tu": "https://www.asiakastieto.fi/yritykset/fi/ltp-logistics-oy/23585064/taloustiedot"}, {"c": "Kuljetusliike Taipale Oy (Taipale Group)", "p": "Timo Louhivaara", "r": "Toimitusjohtaja (CEO)", "ct": "040 762 2759", "ty": "phone", "f": "moderate", "v": "exact", "t": "Two simultaneous property projects that more than double their warehousing footprint in a new region: a >6,000 m2 pallet warehouse next to the Leppavesi terminal plus a 9,500 m2 industrial property bought from Dinex Finland Oy, to", "w": "https://kuljetusliiketaipale.fi/", "s": "Road freight (general cargo, food, special transports), term", "sz": "EUR 38.2M revenue in FY ending 03/2026. Employee count differs by source and I report both: finder.fi's key-figures table (fetched) shows headcount 23", "d": "EUR 35-50k build + EUR 3-4k/month AgentOps", "pn": "A subsidiary, Taipale Varastointi Oy, runs the warehousing with just 15 full-time staff plus seasonal workers, serving 'verkkokauppa-asiakkaiden kokonaisvaltaisen ulkoist", "su": "https://kuljetusliiketaipale.fi/yhteys/hallinto/", "tu": "https://www.kaukokiito.fi/tiedotteet/kuljetusliike-taipale-oy-investoi-vahvasti-keski-suomen-varastointipalveluihin/"}, {"c": "3PLogistiikka Group Oy", "p": "Jussi Orn", "r": "Toimitusjohtaja (CEO) and board member, 3PLogistiikka Group Oy", "ct": "+358 40 664 6546", "ty": "phone", "f": "moderate", "v": "exact", "t": "3PLogistiikka was acquired by the TANOMA group on 07.07.2026 - eight weeks ago. The release states the combined entity reaches 'noin 200 000 neliometriin' of warehousing, 'yli 550 henkiloa' and 'noin 73 miljoonaa euroa' pro forma ", "w": "https://www.3pl.fi/", "s": "Contract warehousing / 3PL - e-commerce logistics, industria", "sz": "Their own contact page (fetched) states: '3PL Group on noin 150:n ammattilaisen logistiikkayhtio.' The TANOMA press release of 07.07.2026 (fetched) gi", "d": "EUR 25-40k build + EUR 2-3k/month AgentOps", "pn": "Textbook Archetype A: warehousing performed on behalf of many client companies, so the manual touch count scales with client count, not with 3PL's own revenue. Their serv", "su": "https://www.3pl.fi/ota-yhteytta", "tu": "https://tanoma.fi/ajankohtaista/tanoma-konserni-kasvaa-etela-suomeen-syntyy-yksi-alan-suurimmista-varastopalvelutoimijoista/"}, {"c": "Stremet Oy", "p": "Matias Soini", "r": "Toimitusjohtaja (CEO)", "ct": "janne.mannisto@stremet.fi", "ty": "published_email", "f": "strong", "v": "corrected", "t": "March 2026: invested with Vossi Group in an LVD QX-L punch/laser combi machine plus an RBS4 robot bending cell, tower store and pick-and-stack automation — and explicitly bought LVD's CADMAN-SDI software to process part files fast", "w": "https://stremet.fi", "s": "Sheet metal contract manufacturing / subcontract fabrication", "sz": "62-70 employees, EUR 11M revenue. First-party: https://stremet.fi/toimialat/ states 'työllistää nykyään 70 alan ammattilaista' in prose and its own st", "d": "EUR 25-35k build + EUR 2k/month AgentOps. Do not quote highe", "pn": "HYPOTHESIS, NOT OBSERVED. At 20+ orders a day with a 7.1-working-day average order-to-delivery time, inbound work arrives as customer DXF/STEP/PDF drawings and emails tha", "su": "https://stremet.fi/toimialat/", "tu": "https://stremet.fi/stremet-investoi-tuotannon-automaatioon/"}, {"c": "ATA Gears Oy", "p": "Ilkka Saarimaa", "r": "Sales Director", "ct": "+358 44 333 3919", "ty": "phone", "f": "strong", "v": "exact", "t": "A EUR 17M machinery and automation investment is underway right now. Construction on the Hautalankatu factory expansion in Linnainmaa, Tampere started and completes end of 2026; the site becomes the new HQ and the company consolid", "w": "https://atagears.fi", "s": "Manufacturing — engineered-to-order bevel and cylindrical ge", "sz": "144 employees, EUR 40.5M revenue 2025. First-party revenue confirmation on https://atagears.fi/yleinen/expansion-of-the-ata-gears-factory/: 'In 2025, ", "d": "EUR 35-50k build + EUR 3-4k/month AgentOps. Justifiable here", "pn": "HYPOTHESIS, NOT OBSERVED. This is the strongest structural signal on the list: ATA's own contact page carries a standing 'Technical Customer Service' department — Chief G", "su": "https://atagears.fi/contact/", "tu": "https://atagears.fi/yleinen/expansion-of-the-ata-gears-factory/"}, {"c": "Hydroline Oy", "p": "Mikko Laakkonen", "r": "VP Sales and Business Development & Strategy", "ct": "mikko.laakkonen@hydroline.fi", "ty": "published_email", "f": "moderate", "v": "exact", "t": "Labour supply is the live problem. On 23.02.2026 Hydroline launched a CNC Operator recruitment training programme — a 60-day course run with Savon ammattiopisto explicitly framed as preparing for upcoming retirements, with six par", "w": "https://hydroline.fi", "s": "Manufacturing — custom (engineer-to-order) hydraulic cylinde", "sz": "193 employees, EUR 42.1M revenue 2025. Registry data returned as page content from proff.fi: 'Yrityksen Hydroline Oy (2417546-2) liikevaihto oli 42,1 ", "d": "EUR 25-35k build + EUR 2k/month AgentOps. At 193 people with", "pn": "HYPOTHESIS, NOT OBSERVED. Every Hydroline cylinder is built to a customer specification, so each inbound OEM enquiry means extracting bore, stroke, mounting, pressure, co", "su": "https://hydroline.fi/contact/", "tu": "https://hydroline.fi/news/"}, {"c": "Feon Oy", "p": "Petri Kalliokoski", "r": "Toimitusjohtaja (CEO)", "ct": "https://feon.fi/", "ty": "contact_form", "f": "moderate", "v": "corrected", "t": "Ferrum Steel Oy formally merged into the Feon brand on 1 June 2026, completing a process begun when Feon acquired it in autumn 2024 — three production sites now under one company. Q1 2026 revenue was up 22% year on year, which the", "w": "https://feon.fi", "s": "Steel service company / industrial wholesaler with processin", "sz": "~350 employees in Finland, EUR 152M revenue 2025. First-party, from the company's own 1.6.2026 release: 'Yhtiön liikevaihto vuonna 2025 oli 152 miljoo", "d": "EUR 35-50k build + EUR 3-4k/month AgentOps, with genuine ups", "pn": "HYPOTHESIS, NOT OBSERVED. A steel service centre's order intake is the highest-frequency transaction on this list: customers send cutting lists, drawings and material spe", "su": "https://feon.fi/ferrum-steel-on-nyt-feon/", "tu": "https://feon.fi/ferrum-steel-on-nyt-feon/"}, {"c": "Finnglass Oy", "p": "Timo Saukko", "r": "CEO & COO", "ct": "timo.saukko@finnglass.com", "ty": "published_email", "f": "weak", "v": "exact", "t": "Four days old at time of writing. On 27.08.2026 Finnglass announced a EUR 12M investment programme — the largest in its history — covering glass cutting, grinding, lamination, lasering and scanning-based quality assurance, with th", "w": "https://www.finnglass.com", "s": "Manufacturing — special glass, made to order: laminated, hea", "sz": "50 employees. From Yle's 27.08.2026 report, which I fetched: 'Alavudella 50 henkeä työllistävään yritykseen tullaan palkkaamaan investointien myötä li", "d": "EUR 25k build + EUR 2k/month at most, and even that is hard ", "pn": "HYPOTHESIS, NOT OBSERVED. Every unit is project-specific — glass up to 3.2m x 9.3m cut to architectural or vehicle drawings — so quoting means extracting dimensions, buil", "su": "https://www.finnglass.com/contact-us", "tu": "https://yle.fi/a/74-20243046"}, {"c": "Tocca Group Oy", "p": "Jarmo Manninen", "r": "Toimitusjohtaja (CEO), Tocca Group Oy; also chairman of the board and CEO of Tocca HR Uusimaa Oy per the trade register", "ct": "+358 40 593 7474", "ty": "phone", "f": "strong", "v": "exact", "t": "Growth is now visibly eating margin, and it is being absorbed across four duplicated back offices. The Uusimaa entity went EUR 809k → 3.52M → 5.42M revenue and 21 → 52 → 83 employees in three years, but operating margin fell from ", "w": "https://tocca.fi", "s": "Henkilöstöpalvelu / työvoiman vuokraus (staffing and personn", "sz": "Tocca HR Uusimaa Oy alone: EUR 5.42M revenue and 83 employees in FY2025, up 53.9% in revenue and 59.6% in headcount (21 → 52 → 83 across 2023-2025). F", "d": "EUR 35-50k build + EUR 3-4k/month — conditional on confirmin", "pn": "Candidate intake and CV screening for construction/industrial roles arriving through a web form (their site's application form collects name, location, email, phone, sect", "su": "https://tocca.fi/yhteystiedot/", "tu": "https://www.proff.fi/yrityksen/tocca-hr-uusimaa-oy/helsinki/ty%C3%B6voimapalvelut/3360232-3I10LU"}, {"c": "Apuvoima (Apuvoima Pirkanmaa Oy)", "p": "Roope Oksanen", "r": "Toimitusjohtaja (CEO) and board member; Teemu Aalto is chairman", "ct": "roope.oksanen@apuvoima.com", "ty": "published_email", "f": "strong", "v": "exact", "t": "In 2025 the CEO launched a second staffing brand, Hunaja Works Oy in Turku (a partnership with ice hockey club HC TPS), explicitly run on Apuvoima's existing people — the Hunaja Works site states \"Hunaja Worksin liiketoiminnan tau", "w": "https://apuvoima.com", "s": "Henkilöstöpalvelu / työvoiman vuokraus ja rekrytointi — Tamp", "sz": "EUR 6.36M revenue and 142 employees in FY2025 (down from EUR 8.34M and 186 in FY2024), operating profit EUR 450k at a 6.9% margin, equity ratio improv", "d": "EUR 35-50k build + EUR 3-4k/month if two brands are in scope", "pn": "Roughly 300 leased workers across two brands, two cities and international sourcing (they state partnerships with foreign partners for work-permit, housing and language m", "su": "https://apuvoima.com/yhteystiedot/", "tu": "https://hunajaworks.fi/yritys/"}, {"c": "Amiko Group Oy", "p": "Niko Reinikainen", "r": "Liiketoimintajohtaja (Business Director), Amiko Henkilöstöpalvelut — national responsibility for the staffing business", "ct": "niko.reinikainen@amiko.fi", "ty": "published_email", "f": "moderate", "v": "exact", "t": "Reinikainen stepped into the national Liiketoimintajohtaja seat for Amiko Henkilöstöpalvelut in August 2026 — weeks ago — moving up from Lahti regional director, with an explicit growth-and-development mandate. Amiko's own announc", "w": "https://www.amiko.fi", "s": "Henkilöstöpalvelu group — staffing, executive search, person", "sz": "Stated on their own group page: \"Perustettu: 2014  Omistus: yksityisessä suomalaisessa omistuksessa.  Konsernin liikevaihto: 29.2 meur (10/2024)  Toim", "d": "EUR 50-60k build + EUR 4-6k/month on the economics alone, bu", "pn": "EUR 29.2M across 15 offices and 3 countries with an in-house payroll manager and an in-house accounting bureau (Verkkotilit: \"kirjanpito, palkanlaskenta, myynti- ja ostor", "su": "https://www.amiko.fi/amiko-group/johto/", "tu": "https://www.amiko.fi/amiko-group/johto/"}, {"c": "Eilakaisla Oy", "p": "Antti Soro", "r": "Toimitusjohtaja (CEO)", "ct": "+358 (0)50 5163 388", "ty": "phone", "f": "weak", "v": "exact", "t": "First real contraction at a 55-year-old family business: FY2025 revenue fell 18.8% to EUR 1.84M with a −16.4% operating margin and internal headcount cut 18 → 14, after a profitable FY2024. Register classification is \"Tappiolliset", "w": "https://www.eilakaisla.fi", "s": "Henkilöstöpalvelu — recruitment, personnel leasing, outsourc", "sz": "55-year-old Finnish family firm (founded 1971). Parent entity FY2025: EUR 1.84M revenue, down 18.8%, operating margin −16.4%, headcount cut 18 → 14; b", "d": "EUR 25-35k build + EUR 2k/month at most, and realistically t", "pn": "Thirty-plus consultants across the country running candidate screening and assessment coordination (many are SHL/Aon-certified, so assessment scheduling and reporting is ", "su": "https://www.eilakaisla.fi/yhteystiedot/", "tu": "https://b2b.profinder.fi/haku/eilakaisla-oy/01059266"}, {"c": "Varsinais-Suomen Isännöintitalo Oy", "p": "Vesa Keskilä", "r": "Toimitusjohtaja (CEO of V-S Isännöintitalo Oy; group CEO is Ari Kesäläinen, deputy CEO Pete Torkkola, development director Hemmo Lukander)", "ct": "020 722 9922", "ty": "phone", "f": "strong", "v": "corrected", "t": "Back-office institutional knowledge is walking out the door while the firm digitises. Two long-tenured retirements in three months: taloushallinnon asiantuntija Tarja retired 11.12.2025 after a 25-year career, and isännöitsijä Pet", "w": "https://isannointitalo.fi", "s": "Isännöinti (property management) + in-house kiinteistötalous", "sz": "Company site states 'Isännöintitalossa työskentelee tänä päivänä yli 90 isännöintialan osaavaa asiantuntijaa. Vastuullamme on yli 700 asiakasyhtiömme ", "d": "EUR 50–60k build + EUR 4–6k/month AgentOps", "pn": "Twenty-three named taloushallinnon asiantuntijaa produce, for 700+ client housing companies, the same repeating artefacts every month and every spring: vastike- ja vuokra", "su": "https://isannointitalo.fi/yhteystiedot/", "tu": "https://isannointitalo.fi/yhteystiedot/"}, {"c": "Isännöintiliiga Oy", "p": "Juho Ojanperä", "r": "Toimitusjohtaja, owner-entrepreneur and auktorisoitu isännöitsijä (AIT)", "ct": "info@isannointiliiga.fi", "ty": "published_email", "f": "moderate", "v": "exact", "t": "They are absorbing 43% revenue growth by hiring bookkeepers, and the hires are dated on their own team page. Päivi Kuula-Holopainen joined 'kesällä 2025' as taloushallinnon johtava asiantuntija, Jenni Ura in 'syyskuussa 2025', ano", "w": "https://isannointiliiga.fi", "s": "Isännöinti and outsourced kiinteistötaloushallinto sold to o", "sz": "14 employees and EUR 1.203M revenue for FY2025 (revenue +43.2%, headcount 9→14, +55.6%), EBIT EUR 202k / 16.8%, per Asiakastieto and Finder company re", "d": "EUR 25–35k build + EUR 2k/month AgentOps", "pn": "This is the purest Archetype A in the whole slice: their own pitch to the market is 'Isännöitsijä, ulkoista taloushallinnon palvelut Isännöintiliigalle ja voit keskittyä ", "su": "https://isannointiliiga.fi/ota-yhteytta/", "tu": "https://isannointiliiga.fi/ota-yhteytta/"}, {"c": "Fluxio Group (Fluxio Isännöinti Oy and four sister brands)", "p": "Kalle Grönqvist", "r": "Co-founder and toimitusjohtaja of Fluxio Isännöinti Oy (registered as \"Toimitusjohtaja Grönqvist Antti Kalle\" in the Kauppalehti company record; quoted as \"Fluxion toimitusjohtaja Kalle Grönqvist\" in Talouselämä's coverage of the Pamis acquisition)", "ct": "https://fluxiogroup.fi/", "ty": "contact_form", "f": "strong", "v": "exact", "t": "Hiring a bookkeeper for precisely agent-shaped work: taloyhtioiden kirjanpito, tilinpaatokset, lainanhallinta, lainaosuuslaskenta, alv-laskenta, urakkailmoitukset, ostoreskontra - across five rolled-up brands and 280+ staff.", "w": "https://fluxiogroup.fi", "s": "Isännöinti / property management for housing companies — acq", "sz": "'Asiakkaitamme palvelee jo yli 280 ammattiylpeaa osaajaa' - their own kirjanpitaja job ad on rekryo.fi, verified by fetch", "d": "EUR 45–60k build + EUR 4–6k/month AgentOps (EUR 400k+ workfl", "pn": "1,300 housing companies × the same statutory cycle, run by 290 people across five merged brands and multiple systems. The repeating decisions against a written rule set a", "su": "https://fluxiogroup.fi/", "tu": "https://rekryo.fi/fi/job/723813dc3b74b34bfd16ec10a0f88801700e52c7f51c4d51ae29b7c7daee7acd"}, {"c": "Isännöintipalvelu Isarvo Oy", "p": "Pasi Pesonen", "r": "Toimitusjohtaja (also a practising isännöitsijä; took over as CEO on 1.6.2022 from Marcus Johansson per the company's own Meistä page, and is named Pohjois-Savon Vuoden Isännöitsijä)", "ct": "pasi.pesonen@isarvo.fi", "ty": "published_email", "f": "strong", "v": "exact", "t": "Live, continuous recruiting into the back office right now, published on their own careers page: \"Etsimme kahta isännöitsijä harjoittelijaa pääkaupunkiseudun toimipisteelle Helsinkiin\" and \"Etsimme kasvavaan joukkoomme jatkuvasti ", "w": "https://isarvo.fi", "s": "Isännöinti / property management for housing companies (Arch", "sz": "Their own careers page: \"Tarjoamme nykyaikaista isännöintipalvelua yhdeksällä paikkakunnalla. Työllistämme yli 50 palveluhenkistä isännöinnin ammattil", "d": "EUR 25–35k build + EUR 2k/month AgentOps (EUR 120–200k workf", "pn": "550 housing companies served by 50 people across 8–9 offices on the Domus system. The repeating rule-bound work: taloyhtiö bookkeeping and tilinpäätökset, lainalaskenta a", "su": "https://isarvo.fi/ura/", "tu": "https://isarvo.fi/ura/"}, {"c": "Vierumäen Infra Oy / Vierumäki (Keele-konserni)", "p": "Mika Kujala", "r": "Talousjohtaja (CFO) — listed as such on Vierumäki's own contact page alongside toimitusjohtaja Jukka Tiikkaja, and named in the job ad as the person giving further information about the role", "ct": "mika.kujala@vierumaki.fi", "ty": "published_email", "f": "moderate", "v": "exact", "t": "A Finance Operations Specialist posting (published 8.7.2026, deadline 6.8.2026) that is effectively an inbound brief for agent work. They name their existing stack — \"Netvisoria, Vitec Hotellinxiä, Microsoft Power BI:tä, Microsoft", "w": "https://vierumaki.fi", "s": "Sports, education, hospitality and property campus operator ", "sz": "Their own job ad states the group headcount: \"Meitä Vierumäkeläisiä on noin 200.\" The posting entity Vierumäen Infra Oy (Y-tunnus 2281412-8) shows EUR", "d": "EUR 25–35k build + EUR 2k/month AgentOps if the audit finds ", "pn": "Order-to-Cash across a genuinely fragmented revenue base — education, hotel and restaurant, sports and events, property and energy — running on Netvisor plus Vitec Hotell", "su": "https://laura.fi/avoimet-tyopaikat/vierumaen-infra-oy/finance-operations-specialist-talousprosessien-asiantuntija/3820796/", "tu": "https://laura.fi/avoimet-tyopaikat/vierumaen-infra-oy/finance-operations-specialist-talousprosessien-asiantuntija/3820796/"}, {"c": "Asuntopehtoori Oy (Asuntopehtoori Group)", "p": "Miika Vuorensola", "r": "Toimitusjohtaja ja perustajayrittäjä (CEO and founder)", "ct": "toimisto@asuntopehtoori.fi", "ty": "published_email", "f": "strong", "v": "corrected", "t": "Korona Invest's fund took majority ownership in April 2025 (fresh capital plus an explicit mandate to become the domestic market leader). On 14.8.2026 Asuntopehtoori Group announced it had bought Asunto Maisteri Oy as a share deal", "w": "https://www.asuntopehtoori.fi", "s": "Property and rental management, isännöinti (housing-company ", "sz": "\"Yli 100 kiinteistöalan ammattilaisesta koostuva työyhteisö\" and \"Konsernin liikevaihto vuonna 2025 noin 7 M€\" — Korona Invest press release dated 14.", "d": "EUR 25-35k build + EUR 2k/month AgentOps (workflow gross cos", "pn": "The Huolenpitopalvelu back office. Asuntopehtoori's own published job description for a Hallinnointisihteeri lists the workflow verbatim: answering tenant contacts, reali", "su": "https://www.asuntopehtoori.fi/koronainvest/", "tu": "https://koronainvest.fi/asuntopehtoori-vahvistaa-asemaansa-paakaupunkiseudun-isannointimarkkinassa-ja-laajentaa-palvelutarjontaansa-asunto-maisteri-oy-osaksi-konsernia/"}, {"c": "TANOMA Oy (TANOMA-konserni: Warasto Finland, MEK-Trans, Alfaroc, 3PLogistiikka)", "p": "Kari Talvitie", "r": "Konsernijohtaja ja perustaja (Group CEO and founder)", "ct": "kari.talvitie@tanoma.fi", "ty": "published_email", "f": "moderate", "v": "exact", "t": "Three integrations inside twelve months, all with external capital behind them. Alfaroc Oy and Alfaroc Logistics Oy joined in Nov 2025 (+EUR 17M revenue, +300 staff, deal initiated with Wetera Capital Oy). 3PLogistiikka Group Oy w", "w": "https://tanoma.fi", "s": "3PL contract warehousing, huolinta (freight forwarding) and ", "sz": "\"TANOMA-konsernin pro forma -liikevaihto vuonna 2026 on noin 60 miljoonaa euroa, ja konserni työllistää noin 450 henkilöä\" and, post-deal, \"yhtiöt työ", "d": "EUR 50-60k build + EUR 4-6k/month AgentOps — but pitch the b", "pn": "Classic Archetype B transaction density: ~200,000 m2 and ~295,000 pallet positions across four newly-merged operations serving industrial, retail, importer and e-commerce", "su": "https://tanoma.fi/yhteystiedot/", "tu": "https://warasto.fi/ajankohtaista/tanoma-konserni-kasvaa-etela-suomeen-syntyy-yksi-alan-suurimmista-varastopalvelutoimijoista/"}, {"c": "Oiva Isännöinti Group Oy", "p": "Arttu Hollmérus", "r": "Toimitusjohtaja, Oiva Isännöinti Group Oy", "ct": "arttu.hollmerus@oi.fi", "ty": "published_email", "f": "moderate", "v": "exact", "t": "At least four acquisitions closed in 2026 alone — Isännöinti Taloluotsi Oy (Jan), Kuopion Talokeskus Isännöinti (1.6., PwC sell-side), Isännöintitoimisto Asuntotrio.fi (1.6.), LePo Isännöinti Oy (29.5.) — every one of them explici", "w": "https://oi.fi", "s": "Isännöinti — housing-company (taloyhtiö) management and prop", "sz": "\"Liikevaihto: 53 miljoonaa euroa / Henkilöstö: 550 ammattilaista Oulusta Helsinkiin / Toimipisteitä ympäri Suomen: 20 / Isännöitäviä taloyhtiöitä: + 4", "d": "EUR 50-60k build + EUR 4-6k/month AgentOps", "pn": "4,300 housing companies is enormous transaction density and Oiva says out loud that its teams are staffed for it: \"Meillä taloyhtiöstä ei huolehdi vain yksittäinen isännö", "su": "https://oi.fi/ajankohtaista/oiva-saa-vahvistusta-seinajoella-lepo-isannointi-oy-on-jatkossa-osa-oiva-isannointi-konsernia/", "tu": "https://oi.fi/ajankohtaista/oiva-saa-vahvistusta-seinajoella-lepo-isannointi-oy-on-jatkossa-osa-oiva-isannointi-konsernia/"}, {"c": "Eltrea Group Oy", "p": "Janne Levävaara", "r": "Toimitusjohtaja (CEO)", "ct": "+358 40 551 0009", "ty": "phone", "f": "weak", "v": "exact", "t": "Two simultaneous transactions announced 21.5.2026: Vaaka Partners became the largest shareholder, and Eltrea simultaneously acquired Helsinki electrical contractor Sähkö-Vendelin, whose owners rolled into Eltrea equity. The group ", "w": "https://www.eltrea.fi", "s": "Electrical contracting and building services (sähköurakointi", "sz": "\"Järjestely kasvattaa Eltrean liikevaihdon noin 30 miljoonaan euroon [...] Yhtiö työllistää jatkossa noin 120 sähköurakoinnin ammattilaista\" — Vaaka P", "d": "EUR 25-35k build + EUR 2k/month AgentOps, if it qualifies at", "pn": "Tender production and cost allocation across four merged units. Eltrea publishes two people whose entire job title is Tarjoukset (quotations) plus one covering Tarjoukset", "su": "https://www.eltrea.fi/yhteystiedot", "tu": "https://www.vaakapartners.fi/artikkelit/eltrea-ottaa-seuraavan-kasvuaskeleen-vaaka-partners-uutena-paaomistajana-ja-yritysosto-vahvistavat-kykya-rakentaa-energiatehokasta-tulevaisuutta"}, {"c": "Osuma Henkilöstöpalvelut Oy", "p": "Ville Auvinen", "r": "Perustaja ja toimitusjohtaja (founder & CEO)", "ct": "info@osuma.fi", "ty": "published_email", "f": "strong", "v": "corrected", "t": "On 26.8.2026 — five days before this research — Osuma sold its guarding and crowd-control business to X-SEC Oy, described in the release as part of a 'uudistettu strategia' to concentrate group resources on the units where Osuma c", "w": "https://ohp.fi", "s": "Henkilöstöpalvelut / staffing and outsourced workforce — Arc", "sz": "On its own news page ohp.fi: 890 henkilötyövuotta employed through the group in 2023 and EUR 15,200,000 paid out in wages; offices in Kuopio, Iisalmi,", "d": "EUR 35–50k build + EUR 3–4k/month AgentOps", "pn": "Payroll and client invoicing for 600–1,200 leased workers a year under 38 different collective agreements, run by a three-person in-house payroll/invoicing team across si", "su": "https://ohp.fi/osuma-henkilostopalvelut-nousi-henkilostoalan-suurimpien-joukkoon/", "tu": "https://y-lehti.fi/osuma-turvallisuuspalvelut-oyn-liiketoiminta-siirtyy-osaksi-x-sec-oyta/"}, {"c": "Tilitoimisto Mandaatti (Mandaatti Group Oy)", "p": "Karoliina Ahola", "r": "Toimitusjohtaja, Mandaatti Group Oy", "ct": "040 728 1731", "ty": "phone", "f": "strong", "v": "exact", "t": "On 6.10.2025 this family-owned firm appointed its first two independent board members (Toni Rantanen and Juho Jokinen) — co-founder's son Eerik Ahola called it 'uusi aika' for the family company. Firms bring in outside directors i", "w": "https://mandaatti.fi", "s": "Tilitoimisto — outsourced accounting and payroll bureau, fam", "sz": "Hallituspartnerit Tampere's board announcement (6.10.2025): 'Vuonna 2024 Mandaatti teki 3,2 M€ liikevaihtoa ja työllisti lähes 40 henkeä. Mandaatti to", "d": "EUR 25–35k build + EUR 2k/month AgentOps", "pn": "Roughly 40 bookkeepers and payroll clerks — about EUR 2M of fully loaded delivery labour — serving 1,000+ SME clients across seven offices on three different platforms (P", "su": "https://mandaatti.fi/yhteystiedot/tilitoimisto-oulu/", "tu": "https://tampere.hallituspartnerit.fi/toni-rantanen-on-valittu-tilitoimisto-mandaatin-hallituksen-jaseneksi/"}, {"c": "DialOk (Oy DialOk Communications Finland / DialOk Personal Oy, part of SFG Yhtiöt)", "p": "Risto Apell", "r": "Toimitusjohtaja (CEO)", "ct": "https://www.dialok.fi/ota-yhteytta/", "ty": "contact_form", "f": "moderate", "v": "corrected", "t": "On 23.3.2026 DialOk published a signed position piece arguing that AI is restructuring the whole outsourced-service industry, that 'vauhti kiihtyy vuonna 2026', and that the difference between winners and losers will be who can re", "w": "https://www.dialok.fi", "s": "Ulkoistettu asiakaspalvelu, vaihteenhoito ja back office — F", "sz": "From the 'DialOk lukuina' block on its own company/contact page: 'Käsittelemme 2,3 miljoonaa kontaktia vuodessa' and 'Vastauskeskuksemme työllistävät ", "d": "EUR 35–50k build + EUR 3–4k/month AgentOps", "pn": "2.3 million contacts a year across 110 agents, plus a Back Office unit that publicly lists 'asiakastietojen hallinta ja päivitys, tiedonkeräys ja kartoitus, dokumenttien ", "su": "https://www.dialok.fi/yhteystiedot/", "tu": "https://www.dialok.fi/artikkelit/tekoaly-asiakaspalvelussa/"}];
+</script>
+<script>
+(function(){
+  var tb = document.getElementById('tb');
+  function dealShort(d){
+    // "EUR 35-50k build + EUR 3-4k/month AgentOps" -> "€35-50k"
+    var m = String(d||'').match(/EUR\s*([\d]+\s*[-–]\s*[\d]+\s*k)/i);
+    return m ? '\u20ac' + m[1].replace(/\s+/g,'') : String(d||'').slice(0,12);
+  }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  var html = LEADS.map(function(l){
+    var who = [l.p, l.r].filter(Boolean).join(' · ');
+    return '<tr data-f="'+esc(l.f)+'">'
+      + '<td><span class="co">'+esc(l.c)+'</span>'
+        + (who ? '<span class="who">'+esc(who)+'</span>' : '<span class="who">no named contact confirmed</span>')
+        + '<span class="who mono" style="font-size:.72rem">'+esc(l.sz.slice(0,64))+'</span></td>'
+      + '<td><span class="trig">'+esc(l.t)+'</span></td>'
+      + '<td><span class="ct">'+esc(l.ct)+'</span>'
+        + '<span class="vmark v-'+esc(l.v)+'">'+esc(l.v)+' · '+esc(l.ty.replace(/_/g,' '))+'</span></td>'
+      + '<td><span class="tag t-'+esc(l.f)+'">'+esc(l.f)+'</span></td>'
+      + '<td><span class="ct">'+esc(dealShort(l.d))+'</span></td>'
+      + '</tr>';
+  }).join('');
+  tb.innerHTML = html;
+
+  var btns = document.querySelectorAll('.fbtn');
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.dataset.f;
+      btns.forEach(function(x){ x.setAttribute('aria-pressed', String(x===b)); });
+      tb.querySelectorAll('tr').forEach(function(tr){
+        tr.classList.toggle('hide', f!=='all' && tr.dataset.f!==f);
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
