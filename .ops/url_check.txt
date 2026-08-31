@@ -34,3 +34,11 @@ LIVE	https://www.ksml.fi/paikalliset/kooste/9668829/juttu/9674591	fetched via Ex
 LIVE	https://www.proff.fi/yrityksen/tocca-hr-uusimaa-oy/helsinki/ty%C3%B6voimapalvelut/3360232-3I10LU	fetched via Exa, returned real page content matching the company	Tocca Group Oy:trigger_source_url
 LIVE	https://www.tietomylly.fi/henkilosto/	fetched via Exa, returned real page content matching the company	Tilitoimisto Tietomyll:source_url
 LIVE	https://yle.fi/a/74-20243046	fetched via Exa, returned real page content matching the company	Finnglass Oy:trigger_source_url
+LIVE	https://isannointitalo.fi/yhteystiedot/	fetched via Exa, returned real page content matching the company	batch2
+LIVE	https://isannointiliiga.fi/ota-yhteytta/	fetched via Exa, returned real page content matching the company	batch2
+LIVE	https://isarvo.fi/ura/	fetched via Exa, returned real page content matching the company	batch2
+LIVE	https://isarvo.fi/meista/	fetched via Exa, returned real page content matching the company	batch2
+LIVE	https://fluxiogroup.fi/	fetched via Exa, returned real page content matching the company	batch2
+LIVE	https://vierumaki.fi/info/vierumaki_yhteystiedot	fetched via Exa, returned real page content matching the company	batch2
+LIVE	https://laura.fi/avoimet-tyopaikat/vierumaen-infra-oy/finance-operations-specialist-talousprosessien-asiantuntija/3820796/	fetched via Exa, returned real page content matching the company	batch2
+LIVE	https://rekryo.fi/fi/job/723813dc3b74b34bfd16ec10a0f88801700e52c7f51c4d51ae29b7c7daee7acd	fetched via Exa; confirms 280+ staff and the bookkeeping workload	Fluxio:trigger

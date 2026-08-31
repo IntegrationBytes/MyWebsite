@@ -79,3 +79,29 @@ avoided. But one dormant thread is genuinely worth reviving, and Wannado
 already sells AI services, which makes it a live channel rather than a cold
 ask. Recorded in .ops/WARM.md.
 **Exhausted?** No.
+
+## Iteration 4 — verify every lead myself instead of trusting the agents
+**Approach:** The lead-hunt workflow has its own adversarial verifier, but the
+machine has 4 CPUs so workflow concurrency is 2, and ~98 queued agents means
+hours. Rather than gamble the deliverable on it finishing, I re-fetched every
+cited page myself via Exa (batched, far faster than agents) and checked whether
+the claimed contact string literally appears on it.
+**Result:** 25 leads in leads.csv, 44 cited URLs positively confirmed live.
+verify.sh sections A-G2, I, J, K all PASS. Only H fails: 25 leads, need 30.
+**What the check caught — the reason it exists:**
+- Festum: janne.euren@festum.fi was NOT on the cited page. Pattern-guessed.
+- Stremet: matias.soini@stremet.fi likewise absent; page names Janne Mannisto.
+- Feon, Huhtala: same, repointed to published routes.
+- Isannointitalo: phone off by two digits (...9962 vs published ...9922).
+- Tocca: I was WRONG to flag it - the number IS published, on proff.fi.
+  Verification has to run in both directions or it just becomes a different bias.
+- Eilakaisla: EUR1.8M revenue, 14 staff. Below the ICP floor. Demoted.
+- 4 leads dropped as unverifiable. An unconfirmed contact route is not a lead.
+**Also fixed a false PASS in my own checker:** section H counted lines with
+wc -l, but quoted CSV fields contain newlines, so 20 leads read as 96 and the
+check passed. A check that cannot fail is not a check.
+**Learned:** roughly a quarter of agent-supplied email addresses were guessed
+from a name pattern rather than read off a page. The companies and the triggers
+were consistently real - the fabrication was concentrated entirely in contact
+details, which is exactly the field that bounces and burns sender reputation.
+**Exhausted?** No. The approach works; it is just gated on the sweep finishing.
