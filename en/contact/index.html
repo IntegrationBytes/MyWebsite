@@ -5,10 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact – Vincent Viitala</title>
   <meta name="description" content="Book a free 20-minute strategy call. I'll audit one process and show you exactly how much you could save." />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact – Vincent Viitala">
+  <meta property="og:description" content="Book a free 20-minute strategy call. I'll audit one process and show you exactly how much you could save.">
+  <meta property="og:url" content="https://vincentviitala.com/en/contact/">
+  <meta property="og:image" content="https://vincentviitala.com/assets/img/og-default.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact – Vincent Viitala">
+  <meta name="twitter:description" content="Book a free 20-minute strategy call. I'll audit one process and show you exactly how much you could save.">
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../../assets/css/styles.css">
   <link rel="stylesheet" href="../../assets/css/i18n.css">
   <script defer src="../../assets/js/config.js"></script>
+  <link rel="canonical" href="https://vincentviitala.com/en/contact/" />
 </head>
 <body>
 <header class="site-header" role="banner">
@@ -16,14 +25,14 @@
     <a class="brand" href="/en/"><span class="glyph">◇</span> Vincent Viitala</a>
     <nav aria-label="Primary" class="nav">
       <a class="nav-link" href="/en/">Home</a>
-      <a class="nav-link" href="/en/services/">Services</a>
-      <a class="nav-link" href="/en/results/">Results</a>
-      <a class="nav-link active" href="/en/contact/" aria-current="page">Contact</a>
+      <a data-umami-event="nav-services" class="nav-link" href="/en/services/">Services</a>
+      <a data-umami-event="nav-results" class="nav-link" href="/en/results/">Results</a>
+      <a data-umami-event="cta-contact" class="nav-link active" href="/en/contact/" aria-current="page">Contact</a>
     </nav>
     <div class="lang-switcher">
-      <a href="/fi/ota-yhteytta/" class="lang-btn">FI</a>
-      <a href="/en/contact/" class="lang-btn active">EN</a>
-      <a href="/es/contacto/" class="lang-btn">ES</a>
+      <a data-umami-event="cta-contact" href="/fi/ota-yhteytta/" class="lang-btn">FI</a>
+      <a data-umami-event="cta-contact" href="/en/contact/" class="lang-btn active">EN</a>
+      <a data-umami-event="cta-contact" href="/es/contacto/" class="lang-btn">ES</a>
     </div>
   </div>
 </header>
@@ -33,7 +42,8 @@
     <h1>Let's Talk</h1>
     <p class="lead">Tell me where your business is on the AI-native journey. I'll stress-test the thesis, name the next step, and tell you honestly whether we're a fit — no pitch, no obligation.</p>
 
-    <form class="lead-form card" id="contact-en-form">
+    <form class="lead-form card" id="contact-en-form" data-lang="en">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div class="form-row">
         <input type="text" name="name" placeholder="Your name" required>
         <input type="text" name="company" placeholder="Company" required>
@@ -47,14 +57,15 @@
         <option>Not sure yet — I'd like guidance</option>
       </select>
       <textarea name="message" rows="4" placeholder="Describe your business and the workflows you'd most like agents to take over (optional)"></textarea>
-      <button class="btn" type="submit">Book Free Strategy Call</button>
+      <button class="btn" type="submit" data-umami-event="lead-form-click">Book Free Strategy Call</button>
       <p id="contact-en-msg" class="muted form-msg"></p>
     </form>
 
     <div style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(230,243,234,0.1);">
       <p class="small-label">Or reach me directly</p>
-      <p class="muted">I respond to emails same day, usually within a few hours.</p>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <p class="muted">Prefer email? Write to me straight away — I read every message myself and reply the same day.</p>
+      <p style="margin:8px 0 16px;"><a class="contact-email" href="mailto:vincent@wannado.fi" data-umami-event="contact-email-click">vincent@wannado.fi</a></p>
+      <a href="https://linkedin.com/in/vincent-viitala-225737185" target="_blank" rel="noopener" class="tag" data-umami-event="linkedin-click">LinkedIn</a>
       <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="tag">GitHub</a>
     </div>
   </section>
@@ -64,24 +75,10 @@
     <div class="left"><p class="muted">© 2025 Vincent Viitala</p></div>
     <div class="right">
       <a href="/en/" class="tag">Home</a>
-      <a href="/en/services/" class="tag">Services</a>
+      <a data-umami-event="nav-services" href="/en/services/" class="tag">Services</a>
     </div>
   </div>
 </footer>
-<script>
-document.getElementById('contact-en-form')?.addEventListener('submit', async function(e){
-  e.preventDefault();
-  const msg = document.getElementById('contact-en-msg');
-  const data = Object.fromEntries(new FormData(this).entries());
-  data.lang = 'en'; data.ts = Date.now(); data.path = location.pathname;
-  try {
-    if (window.LEADS_WEBHOOK_URL) {
-      await fetch(window.LEADS_WEBHOOK_URL, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data) });
-    }
-    msg.textContent = "Got it — I'll be in touch within 24 hours.";
-    this.reset();
-  } catch { msg.textContent = 'Something went wrong. Please email directly.'; }
-});
-</script>
+<script defer src="/assets/js/leads.js"></script>
 </body>
 </html>

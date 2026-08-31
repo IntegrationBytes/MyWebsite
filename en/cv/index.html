@@ -20,6 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/executive-dark.css">
+  <script defer src="/assets/js/config.js"></script>
 </head>
 <body>
 
@@ -29,8 +30,8 @@
     <a href="/en/" class="nav-brand">Vincent Viitala</a>
     <div class="nav-links">
       <a href="/en/" class="nav-link">Home</a>
-      <a href="/en/cv/" class="nav-link active" aria-current="page">CV</a>
-      <a href="/fi/cv/" class="nav-link">FI</a>
+      <a data-umami-event="nav-cv" href="/en/cv/" class="nav-link active" aria-current="page">CV</a>
+      <a data-umami-event="nav-cv" href="/fi/cv/" class="nav-link">FI</a>
       <a href="/en/#contact" class="btn btn-primary hidden sm:flex">Book a call</a>
     </div>
   </div>
@@ -44,7 +45,7 @@
       Entrepreneur specialising in AI and software development. Running my own business since 2019, registered at the age of 15.
     </p>
     <div class="cv-contact">
-      <a href="mailto:viitala.vincent@gmail.com">viitala.vincent@gmail.com</a>
+      <a data-umami-event="contact-email-click" href="mailto:viitala.vincent@gmail.com">viitala.vincent@gmail.com</a>
       <a href="https://vincentviitala.com">vincentviitala.com</a>
       <a href="https://linkedin.com/in/vincent-viitala-225737185" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener">GitHub</a>
@@ -185,7 +186,7 @@
       <a href="https://x.com/Vincent_Viitala" target="_blank" rel="noopener" class="footer-link">X / Twitter</a>
       <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="footer-link">GitHub</a>
       <a href="https://linkedin.com/in/vincent-viitala-225737185" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
-      <a href="/fi/cv/" class="footer-link">Suomeksi</a>
+      <a data-umami-event="nav-cv" href="/fi/cv/" class="footer-link">Suomeksi</a>
     </div>
   </div>
 </footer>

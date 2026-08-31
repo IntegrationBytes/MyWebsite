@@ -4,9 +4,19 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tulokset – Vincent Viitala</title>
   <meta name="description" content="Asiakas-caset julkaistaan tähän, kun ensimmäiset AI-Native Buildit valmistuvat. Mieluummin näytän tyhjää kuin pumpattuja lukuja." />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tulokset – Vincent Viitala">
+  <meta property="og:description" content="Asiakas-caset julkaistaan tähän, kun ensimmäiset AI-Native Buildit valmistuvat. Mieluummin näytän tyhjää kuin pumpattuja lukuja.">
+  <meta property="og:url" content="https://vincentviitala.com/fi/tulokset/">
+  <meta property="og:image" content="https://vincentviitala.com/assets/img/og-default.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tulokset – Vincent Viitala">
+  <meta name="twitter:description" content="Asiakas-caset julkaistaan tähän, kun ensimmäiset AI-Native Buildit valmistuvat. Mieluummin näytän tyhjää kuin pumpattuja lukuja.">
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../../assets/css/styles.css">
   <link rel="stylesheet" href="../../assets/css/i18n.css">
+  <link rel="canonical" href="https://vincentviitala.com/fi/tulokset/" />
+  <script defer src="/assets/js/config.js"></script>
 </head>
 <body>
 <header class="site-header" role="banner">
@@ -14,14 +24,14 @@
     <a class="brand" href="/fi/"><span class="glyph">◇</span> Vincent Viitala</a>
     <nav class="nav">
       <a class="nav-link" href="/fi/">Etusivu</a>
-      <a class="nav-link" href="/fi/palvelut/">Palvelut</a>
-      <a class="nav-link active" href="/fi/tulokset/" aria-current="page">Tulokset</a>
-      <a class="nav-link" href="/fi/ota-yhteytta/">Ota yhteyttä</a>
+      <a data-umami-event="nav-services" class="nav-link" href="/fi/palvelut/">Palvelut</a>
+      <a data-umami-event="nav-results" class="nav-link active" href="/fi/tulokset/" aria-current="page">Tulokset</a>
+      <a data-umami-event="cta-contact" class="nav-link" href="/fi/ota-yhteytta/">Ota yhteyttä</a>
     </nav>
     <div class="lang-switcher">
-      <a href="/fi/tulokset/" class="lang-btn active">FI</a>
-      <a href="/en/results/" class="lang-btn">EN</a>
-      <a href="/es/resultados/" class="lang-btn">ES</a>
+      <a data-umami-event="nav-results" href="/fi/tulokset/" class="lang-btn active">FI</a>
+      <a data-umami-event="nav-results" href="/en/results/" class="lang-btn">EN</a>
+      <a data-umami-event="nav-results" href="/es/resultados/" class="lang-btn">ES</a>
     </div>
   </div>
 </header>
@@ -33,17 +43,17 @@
   </section>
   <section class="reveal callout console">
     <div class="title">Sitä ennen</div>
-    <p>Mieluummin näytän tyhjää kuin pumpattuja lukuja. <a href="/fi/" style="color:inherit; text-decoration:underline;">Etusivun Track Record -osio</a> kertoo mitä tuon mukanani aiemmista vaiheista — TopicalBase Oy (perustajaosakas), Toiminimi Aiferno (yrittäjä vuodesta 2019), Maastricht (BSc Data Science &amp; AI) ja se pitkä hiljainen lukeminen. Koko <a href="/fi/cv/" style="color:inherit; text-decoration:underline;">ansioluettelo löytyy täältä</a>.</p>
-    <p style="margin-top:12px;">Haluatko olla yksi ensimmäisistä caseista? <a href="/fi/ota-yhteytta/" style="color:inherit; text-decoration:underline;">Varaa ilmainen kartoitus</a> – katsotaan ollaanko sopiva pari.</p>
+    <p>Mieluummin näytän tyhjää kuin pumpattuja lukuja. <a href="/fi/" style="color:inherit; text-decoration:underline;">Etusivun Track Record -osio</a> kertoo mitä tuon mukanani aiemmista vaiheista — TopicalBase Oy (perustajaosakas), Toiminimi Aiferno (yrittäjä vuodesta 2019), Maastricht (BSc Data Science &amp; AI) ja se pitkä hiljainen lukeminen. Koko <a data-umami-event="nav-cv" href="/fi/cv/" style="color:inherit; text-decoration:underline;">ansioluettelo löytyy täältä</a>.</p>
+    <p style="margin-top:12px;">Haluatko olla yksi ensimmäisistä caseista? <a data-umami-event="cta-contact" href="/fi/ota-yhteytta/" style="color:inherit; text-decoration:underline;">Varaa ilmainen kartoitus</a> – katsotaan ollaanko sopiva pari.</p>
   </section>
   <div class="cta-row" style="margin-top:32px;">
-    <a class="btn" href="/fi/ota-yhteytta/">Varaa ilmainen kartoitus</a>
+    <a data-umami-event="cta-contact" class="btn" href="/fi/ota-yhteytta/">Varaa ilmainen kartoitus</a>
   </div>
 </main>
 <footer class="site-footer" role="contentinfo">
   <div class="container footer-inner">
     <div class="left"><p class="muted">© 2025 Vincent Viitala</p></div>
-    <div class="right"><a href="/fi/ota-yhteytta/" class="tag">Ota yhteyttä</a></div>
+    <div class="right"><a data-umami-event="cta-contact" href="/fi/ota-yhteytta/" class="tag">Ota yhteyttä</a></div>
   </div>
 </footer>
 </body>

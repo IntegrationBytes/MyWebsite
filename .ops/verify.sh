@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+# The ONLY definition of done. Never weaken a check to make it pass.
+cd "$(dirname "$0")/.." || exit 1
+FAIL=0
+ok(){ printf '  PASS  %s\n' "$1"; }
+no(){ printf '  FAIL  %s\n' "$1"; FAIL=1; }
+sec(){ printf '\n== %s ==\n' "$1"; }
+
+PAGES=$(find en fi es -name index.html | sort)
+
+sec "A. SITE — lead capture must not silently drop leads"
+# The form must not be able to "succeed" without a delivery endpoint.
+BAD=0
+for f in en/contact/index.html fi/ota-yhteytta/index.html es/contacto/index.html; do
+  [ -f "$f" ] || { no "$f missing"; BAD=1; continue; }
+  # A form whose success message fires regardless of endpoint = silent drop.
+  if grep -q 'if (window.LEADS_WEBHOOK_URL)' "$f"; then no "$f: success shown even with no endpoint (silent lead drop)"; BAD=1; fi
+  grep -q 'assets/js/leads.js' "$f" || { no "$f: does not load leads.js (the module that refuses to fake success)"; BAD=1; }
+  grep -q 'mailto:' "$f" || { no "$f: no direct-email fallback"; BAD=1; }
+done
+grep -q 'LEADS_ENDPOINT' assets/js/config.js || { no "config.js defines no LEADS_ENDPOINT"; BAD=1; }
+grep -q 'r.ok' assets/js/leads.js || { no "leads.js does not gate success on a 2xx response"; BAD=1; }
+[ -f functions/api/lead.js ] || { no "no server-side delivery function"; BAD=1; }
+[ $BAD -eq 0 ] && ok "all 3 forms load leads.js, gate success on 2xx, and fall back to mailto"
+
+sec "B. SITE — every page has one primary CTA and it resolves"
+BAD=0
+for f in $PAGES; do
+  grep -q 'cal.com\|BOOK_URL\|data-cal-link\|cal-inline\|href="/en/contact\|ota-yhteytta\|/contacto\|#contact' "$f" || { no "$f: no path to booking"; BAD=1; }
+done
+[ $BAD -eq 0 ] && ok "every page carries a booking CTA"
+
+sec "C. SITE — no broken internal links"
+BAD=0
+for f in $PAGES 404.html index.html; do
+  for href in $(grep -o 'href="/[^"#?]*"' "$f" | sed 's/href="//;s/"//' | sort -u); do
+    p=".${href}"
+    [ -d "$p" ] && p="${p%/}/index.html"
+    case "$href" in */) : ;; esac
+    if [ ! -e "$p" ] && [ ! -e ".${href}/index.html" ] && [ ! -e ".${href}" ]; then
+      no "$f -> $href (missing)"; BAD=1
+    fi
+  done
+done
+[ $BAD -eq 0 ] && ok "all internal links resolve"
+
+sec "D. SITE — analytics + meta on every page"
+BAD=0
+for f in $PAGES; do
+  grep -q 'umami\|config.js' "$f" || { no "$f: no analytics"; BAD=1; }
+  grep -q 'name="description"' "$f" || { no "$f: no meta description"; BAD=1; }
+  grep -q 'og:title' "$f" || { no "$f: no OG tags"; BAD=1; }
+done
+[ $BAD -eq 0 ] && ok "analytics + description + OG on every page"
+
+sec "E. SITE — conversion instrumentation is wired"
+BAD=0
+grep -q 'trackEvent\|data-umami-event' assets/js/config.js 2>/dev/null || { no "no event-tracking helper in config.js"; BAD=1; }
+CNT=$(grep -ro 'data-umami-event' --include=*.html . | wc -l | tr -d ' ')
+[ "$CNT" -ge 15 ] || { no "only $CNT tracked CTAs (need >=15)"; BAD=1; }
+[ $BAD -eq 0 ] && ok "conversion events instrumented ($CNT tracked elements)"
+
+sec "F. SITE — no unverifiable claims"
+BAD=0
+if grep -rniE 'trusted by [0-9]|[0-9]+\+? (happy )?clients|[0-9]+ companies served|case stud(y|ies) *:' --include=*.html en fi es 2>/dev/null | grep -v 'no case stud' | head -3 | grep -q .; then
+  no "unverifiable client-volume claim found"; BAD=1
+fi
+grep -rq 'lorem ipsum\|TODO\|FIXME\|Lorem' --include=*.html en fi es && { no "placeholder text shipped"; BAD=1; }
+[ $BAD -eq 0 ] && ok "no fabricated social proof or placeholders"
+
+sec "G. SITE — ops files are not publicly served"
+BAD=0
+grep -q '/.ops/' _redirects || { no "_redirects does not block /.ops/"; BAD=1; }
+[ $BAD -eq 0 ] && ok "ops state blocked from public serving"
+
+sec "H. LEADS — file exists and is well-formed"
+L=.ops/leads.csv
+if [ ! -f "$L" ]; then no "leads.csv missing"; else
+  ROWS=$(($(wc -l < "$L") - 1))
+  [ "$ROWS" -ge 30 ] && ok "$ROWS leads present (need >=30)" || no "only $ROWS leads (need >=30)"
+  HDR=$(head -1 "$L")
+  for col in company country person role contact_route source_url trigger icp_fit; do
+    echo "$HDR" | grep -q "$col" || no "leads.csv missing column: $col"
+  done
+  # no empty required cells
+  python3 - "$L" <<'PY'
+import csv,sys
+req=["company","country","person","role","contact_route","source_url","trigger","icp_fit"]
+bad=0;seen=set();n=0
+with open(sys.argv[1],newline='',encoding='utf-8') as f:
+    for r in csv.DictReader(f):
+        n+=1
+        for c in req:
+            if not (r.get(c) or "").strip():
+                print(f"  FAIL  row {n} ({r.get('company','?')}): empty {c}");bad=1
+        if not (r.get("source_url","")).startswith("http"):
+            print(f"  FAIL  row {n}: source_url not a URL");bad=1
+        k=(r.get("company","").strip().lower())
+        if k in seen: print(f"  FAIL  duplicate company: {k}");bad=1
+        seen.add(k)
+print("  PASS  all lead rows complete, unique, with http source_url" if not bad else "")
+sys.exit(bad)
+PY
+  [ $? -ne 0 ] && FAIL=1
+fi
+
+sec "I. LEADS — every source_url was actually reachable"
+if [ -f .ops/url_check.txt ]; then
+  DEAD=$(grep -c 'DEAD' .ops/url_check.txt || true)
+  TOT=$(wc -l < .ops/url_check.txt | tr -d ' ')
+  [ "$DEAD" -eq 0 ] && ok "$TOT source URLs verified live" || no "$DEAD dead source URLs"
+else
+  no ".ops/url_check.txt missing (URLs never verified)"
+fi
+
+sec "J. OFFER + OUTREACH artifacts exist"
+for f in .ops/OFFER.md .ops/outreach/README.md; do
+  [ -s "$f" ] && ok "$f present" || no "$f missing/empty"
+done
+DRAFTS=$(find .ops/outreach -name "*.md" 2>/dev/null | grep -v README | wc -l | tr -d " ")
+[ -z "$DRAFTS" ] && DRAFTS=0
+[ "$DRAFTS" -ge 10 ] && ok "$DRAFTS outreach drafts ready" || no "only $DRAFTS outreach drafts (need >=10)"
+
+sec "K. STATE — loop files current"
+for f in .ops/GOAL.md .ops/PROGRESS.md .ops/ATTEMPTS.md .ops/NEXT.md; do
+  [ -s "$f" ] && ok "$f" || no "$f missing/empty"
+done
+
+printf '\n'
+if [ $FAIL -eq 0 ]; then echo "VERIFY: PASS"; exit 0; else echo "VERIFY: FAIL"; exit 1; fi

@@ -5,10 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ota yhteyttä – Vincent Viitala</title>
   <meta name="description" content="Pyydä ilmainen prosessikartoitus. 20 minuutin puhelu – saat konkreettisen arvion säästöpotentiaalista." />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ota yhteyttä – Vincent Viitala">
+  <meta property="og:description" content="Pyydä ilmainen prosessikartoitus. 20 minuutin puhelu – saat konkreettisen arvion säästöpotentiaalista.">
+  <meta property="og:url" content="https://vincentviitala.com/fi/ota-yhteytta/">
+  <meta property="og:image" content="https://vincentviitala.com/assets/img/og-default.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ota yhteyttä – Vincent Viitala">
+  <meta name="twitter:description" content="Pyydä ilmainen prosessikartoitus. 20 minuutin puhelu – saat konkreettisen arvion säästöpotentiaalista.">
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../../assets/css/styles.css">
   <link rel="stylesheet" href="../../assets/css/i18n.css">
   <script defer src="../../assets/js/config.js"></script>
+  <link rel="canonical" href="https://vincentviitala.com/fi/ota-yhteytta/" />
 </head>
 <body>
 <header class="site-header" role="banner">
@@ -16,14 +25,14 @@
     <a class="brand" href="/fi/"><span class="glyph">◇</span> Vincent Viitala</a>
     <nav aria-label="Päävalikko" class="nav">
       <a class="nav-link" href="/fi/">Etusivu</a>
-      <a class="nav-link" href="/fi/palvelut/">Palvelut</a>
-      <a class="nav-link" href="/fi/tulokset/">Tulokset</a>
-      <a class="nav-link active" href="/fi/ota-yhteytta/" aria-current="page">Ota yhteyttä</a>
+      <a data-umami-event="nav-services" class="nav-link" href="/fi/palvelut/">Palvelut</a>
+      <a data-umami-event="nav-results" class="nav-link" href="/fi/tulokset/">Tulokset</a>
+      <a data-umami-event="cta-contact" class="nav-link active" href="/fi/ota-yhteytta/" aria-current="page">Ota yhteyttä</a>
     </nav>
     <div class="lang-switcher">
-      <a href="/fi/ota-yhteytta/" class="lang-btn active">FI</a>
-      <a href="/en/contact/" class="lang-btn">EN</a>
-      <a href="/es/contacto/" class="lang-btn">ES</a>
+      <a data-umami-event="cta-contact" href="/fi/ota-yhteytta/" class="lang-btn active">FI</a>
+      <a data-umami-event="cta-contact" href="/en/contact/" class="lang-btn">EN</a>
+      <a data-umami-event="cta-contact" href="/es/contacto/" class="lang-btn">ES</a>
     </div>
   </div>
 </header>
@@ -33,7 +42,8 @@
     <h1>Aloitetaan keskustelu</h1>
     <p class="lead">Kerro missä yrityksenne on AI-natiivilla matkalla. Painostan teesin liiketoimintaanne vasten, nimeän seuraavan askeleen ja kerron rehellisesti olemmeko sopiva pari – ilmaiseksi, ilman sitoumuksia.</p>
 
-    <form class="lead-form card" id="contact-fi-form">
+    <form class="lead-form card" id="contact-fi-form" data-lang="fi">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <input type="text" name="name" placeholder="Nimesi" required>
       <input type="text" name="company" placeholder="Yritys" required>
       <input type="email" name="email" placeholder="Sähköpostiosoite" required>
@@ -46,14 +56,15 @@
         <option>En ole vielä varma – haluaisin lisätietoja</option>
       </select>
       <textarea name="message" rows="4" placeholder="Kuvaile yrityksenne ja ne työnkulut, jotka haluaisitte agenttien hoitavan (valinnainen)"></textarea>
-      <button class="btn" type="submit">Varaa ilmainen strategiapuhelu</button>
+      <button class="btn" type="submit" data-umami-event="lead-form-click">Varaa ilmainen strategiapuhelu</button>
       <p id="contact-fi-msg" class="muted form-msg"></p>
     </form>
 
     <div style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(230,243,234,0.1);">
       <p class="small-label">Tai suoraan</p>
       <p class="muted">Vastailen sähköpostiin yleensä saman päivän aikana.</p>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <p style="margin:8px 0 16px;"><a class="contact-email" href="mailto:vincent@wannado.fi" data-umami-event="contact-email-click">vincent@wannado.fi</a></p>
+      <a href="https://linkedin.com/in/vincent-viitala-225737185" target="_blank" rel="noopener" class="tag" data-umami-event="linkedin-click">LinkedIn</a>
       <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="tag">GitHub</a>
     </div>
   </section>
@@ -63,24 +74,10 @@
     <div class="left"><p class="muted">© 2025 Vincent Viitala</p></div>
     <div class="right">
       <a href="/fi/" class="tag">Etusivu</a>
-      <a href="/fi/palvelut/" class="tag">Palvelut</a>
+      <a data-umami-event="nav-services" href="/fi/palvelut/" class="tag">Palvelut</a>
     </div>
   </div>
 </footer>
-<script>
-document.getElementById('contact-fi-form')?.addEventListener('submit', async function(e){
-  e.preventDefault();
-  const msg = document.getElementById('contact-fi-msg');
-  const data = Object.fromEntries(new FormData(this).entries());
-  data.lang = 'fi'; data.ts = Date.now(); data.path = location.pathname;
-  try {
-    if (window.LEADS_WEBHOOK_URL) {
-      await fetch(window.LEADS_WEBHOOK_URL, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data) });
-    }
-    msg.textContent = 'Kiitos! Otan yhteyttä 24 tunnin sisällä.';
-    this.reset();
-  } catch { msg.textContent = 'Jokin meni pieleen. Kokeile sähköpostia suoraan.'; }
-});
-</script>
+<script defer src="/assets/js/leads.js"></script>
 </body>
 </html>

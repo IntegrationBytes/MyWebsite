@@ -21,6 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/executive-dark.css">
   <script defer src="../assets/js/config.js"></script>
+  <link rel="canonical" href="https://vincentviitala.com/fi/" />
 </head>
 <body>
 
@@ -29,7 +30,7 @@
   <div class="container nav-inner">
     <a href="/fi/" class="nav-brand">Vincent Viitala</a>
     <div class="nav-links">
-      <a href="/fi/cv/" class="nav-link">CV</a>
+      <a data-umami-event="nav-cv" href="/fi/cv/" class="nav-link">CV</a>
       <a href="/fi/" class="nav-link active">FI</a>
       <a href="/en/" class="nav-link">EN</a>
       <a href="/es/" class="nav-link">ES</a>
@@ -192,7 +193,7 @@
       </div>
     </div>
     <div style="text-align:center; margin-top: var(--space-8);">
-      <a href="/fi/palvelut/" class="btn btn-secondary btn-lg">Näe koko tarjous →</a>
+      <a data-umami-event="nav-services" href="/fi/palvelut/" class="btn btn-secondary btn-lg">Näe koko tarjous →</a>
     </div>
   </div>
 </section>
@@ -337,7 +338,13 @@
       </p>
     </div>
     <div class="calendly-wrapper">
-      <div id="cal-inline" style="min-width:320px;height:700px;overflow:auto"></div>
+      <div id="cal-inline" style="min-width:320px;height:700px;overflow:auto">
+        <noscript><p class="muted">Varaa maksuton strategiapuhelu: <a href="https://cal.com/vincent-viitala-xkqj0c/30min" data-umami-event="cta-book">Varaa maksuton strategiapuhelu</a></p></noscript>
+      </div>
+      <p class="cal-fallback muted" style="text-align:center;margin-top:16px;font-size:14px;">
+        Jos kalenteri ei lataudu, varaa suoraan osoitteessa <a href="https://cal.com/vincent-viitala-xkqj0c/30min" data-umami-event="cta-book-fallback">cal.com</a>,
+        tai laita sähköpostia <a href="mailto:vincent@wannado.fi" data-umami-event="contact-email-click">vincent@wannado.fi</a>.
+      </p>
     </div>
   </div>
 </section>
@@ -350,7 +357,7 @@
       <a href="https://x.com/Vincent_Viitala" target="_blank" rel="noopener" class="footer-link">X / Twitter</a>
       <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="footer-link">GitHub</a>
       <a href="https://linkedin.com/in/vincent-viitala-225737185" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
-      <a href="/fi/cv/" class="footer-link">CV</a>
+      <a data-umami-event="nav-cv" href="/fi/cv/" class="footer-link">CV</a>
       <a href="/en/" class="footer-link">English</a>
     </div>
   </div>

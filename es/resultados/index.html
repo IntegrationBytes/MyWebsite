@@ -4,9 +4,19 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Casos de Éxito – Vincent Viitala</title>
   <meta name="description" content="Los casos de cliente reales aparecerán aquí a medida que se entreguen los primeros AI-Native Builds. Prefiero no enseñar nada antes que enseñar números inflados." />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Casos de Éxito – Vincent Viitala">
+  <meta property="og:description" content="Los casos de cliente reales aparecerán aquí a medida que se entreguen los primeros AI-Native Builds. Prefiero no enseñar nada antes que enseñar números inflados.">
+  <meta property="og:url" content="https://vincentviitala.com/es/resultados/">
+  <meta property="og:image" content="https://vincentviitala.com/assets/img/og-default.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Casos de Éxito – Vincent Viitala">
+  <meta name="twitter:description" content="Los casos de cliente reales aparecerán aquí a medida que se entreguen los primeros AI-Native Builds. Prefiero no enseñar nada antes que enseñar números inflados.">
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../../assets/css/styles.css">
   <link rel="stylesheet" href="../../assets/css/i18n.css">
+  <link rel="canonical" href="https://vincentviitala.com/es/resultados/" />
+  <script defer src="/assets/js/config.js"></script>
 </head>
 <body>
 <header class="site-header" role="banner">
@@ -14,14 +24,14 @@
     <a class="brand" href="/es/"><span class="glyph">◇</span> Vincent Viitala</a>
     <nav class="nav">
       <a class="nav-link" href="/es/">Inicio</a>
-      <a class="nav-link" href="/es/servicios/">Servicios</a>
-      <a class="nav-link active" href="/es/resultados/" aria-current="page">Resultados</a>
-      <a class="nav-link" href="/es/contacto/">Contacto</a>
+      <a data-umami-event="nav-services" class="nav-link" href="/es/servicios/">Servicios</a>
+      <a data-umami-event="nav-results" class="nav-link active" href="/es/resultados/" aria-current="page">Resultados</a>
+      <a data-umami-event="cta-contact" class="nav-link" href="/es/contacto/">Contacto</a>
     </nav>
     <div class="lang-switcher">
-      <a href="/fi/tulokset/" class="lang-btn">FI</a>
-      <a href="/en/results/" class="lang-btn">EN</a>
-      <a href="/es/resultados/" class="lang-btn active">ES</a>
+      <a data-umami-event="nav-results" href="/fi/tulokset/" class="lang-btn">FI</a>
+      <a data-umami-event="nav-results" href="/en/results/" class="lang-btn">EN</a>
+      <a data-umami-event="nav-results" href="/es/resultados/" class="lang-btn active">ES</a>
     </div>
   </div>
 </header>
@@ -33,17 +43,17 @@
   </section>
   <section class="reveal callout console">
     <div class="title">Mientras tanto</div>
-    <p>Prefiero no enseñar nada antes que enseñar números inflados. La <a href="/es/" style="color:inherit; text-decoration:underline;">sección de Trayectoria en la página principal</a> muestra lo que aporto desde capítulos anteriores — TopicalBase Oy (socio fundador), Aiferno (emprendedor desde 2019), Maastricht (BSc Data Science &amp; AI) y la lectura larga y silenciosa. El <a href="/en/cv/" style="color:inherit; text-decoration:underline;">CV completo está aquí</a>.</p>
-    <p style="margin-top:12px;">¿Quieres ser uno de los primeros casos? <a href="/es/contacto/" style="color:inherit; text-decoration:underline;">Reserva un Diagnóstico gratuito</a> y veamos si encajamos.</p>
+    <p>Prefiero no enseñar nada antes que enseñar números inflados. La <a href="/es/" style="color:inherit; text-decoration:underline;">sección de Trayectoria en la página principal</a> muestra lo que aporto desde capítulos anteriores — TopicalBase Oy (socio fundador), Aiferno (emprendedor desde 2019), Maastricht (BSc Data Science &amp; AI) y la lectura larga y silenciosa. El <a data-umami-event="nav-cv" href="/en/cv/" style="color:inherit; text-decoration:underline;">CV completo está aquí</a>.</p>
+    <p style="margin-top:12px;">¿Quieres ser uno de los primeros casos? <a data-umami-event="cta-contact" href="/es/contacto/" style="color:inherit; text-decoration:underline;">Reserva un Diagnóstico gratuito</a> y veamos si encajamos.</p>
   </section>
   <div class="cta-row" style="margin-top:32px;">
-    <a class="btn" href="/es/contacto/">Reservar Diagnóstico gratuito</a>
+    <a data-umami-event="cta-contact" class="btn" href="/es/contacto/">Reservar Diagnóstico gratuito</a>
   </div>
 </main>
 <footer class="site-footer" role="contentinfo">
   <div class="container footer-inner">
     <div class="left"><p class="muted">© 2025 Vincent Viitala</p></div>
-    <div class="right"><a href="/es/contacto/" class="tag">Contacto</a></div>
+    <div class="right"><a data-umami-event="cta-contact" href="/es/contacto/" class="tag">Contacto</a></div>
   </div>
 </footer>
 </body>

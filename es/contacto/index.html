@@ -5,10 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contacto – Vincent Viitala</title>
   <meta name="description" content="Agenda una llamada estratégica gratuita de 20 minutos. Pongo a prueba la tesis AI-native contra tu negocio y te digo honestamente si encajamos." />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contacto – Vincent Viitala">
+  <meta property="og:description" content="Agenda una llamada estratégica gratuita de 20 minutos. Pongo a prueba la tesis AI-native contra tu negocio y te digo honestamente si encajamos.">
+  <meta property="og:url" content="https://vincentviitala.com/es/contacto/">
+  <meta property="og:image" content="https://vincentviitala.com/assets/img/og-default.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contacto – Vincent Viitala">
+  <meta name="twitter:description" content="Agenda una llamada estratégica gratuita de 20 minutos. Pongo a prueba la tesis AI-native contra tu negocio y te digo honestamente si encajamos.">
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../../assets/css/styles.css">
   <link rel="stylesheet" href="../../assets/css/i18n.css">
   <script defer src="../../assets/js/config.js"></script>
+  <link rel="canonical" href="https://vincentviitala.com/es/contacto/" />
 </head>
 <body>
 <header class="site-header" role="banner">
@@ -16,14 +25,14 @@
     <a class="brand" href="/es/"><span class="glyph">◇</span> Vincent Viitala</a>
     <nav aria-label="Navegación principal" class="nav">
       <a class="nav-link" href="/es/">Inicio</a>
-      <a class="nav-link" href="/es/servicios/">Servicios</a>
-      <a class="nav-link" href="/es/resultados/">Resultados</a>
-      <a class="nav-link active" href="/es/contacto/" aria-current="page">Contacto</a>
+      <a data-umami-event="nav-services" class="nav-link" href="/es/servicios/">Servicios</a>
+      <a data-umami-event="nav-results" class="nav-link" href="/es/resultados/">Resultados</a>
+      <a data-umami-event="cta-contact" class="nav-link active" href="/es/contacto/" aria-current="page">Contacto</a>
     </nav>
     <div class="lang-switcher">
-      <a href="/fi/ota-yhteytta/" class="lang-btn">FI</a>
-      <a href="/en/contact/" class="lang-btn">EN</a>
-      <a href="/es/contacto/" class="lang-btn active">ES</a>
+      <a data-umami-event="cta-contact" href="/fi/ota-yhteytta/" class="lang-btn">FI</a>
+      <a data-umami-event="cta-contact" href="/en/contact/" class="lang-btn">EN</a>
+      <a data-umami-event="cta-contact" href="/es/contacto/" class="lang-btn active">ES</a>
     </div>
   </div>
 </header>
@@ -33,7 +42,8 @@
     <h1>Hablemos</h1>
     <p class="lead">Cuéntame dónde está tu empresa en el camino AI-native. Pongo a prueba la tesis contra tu negocio, nombro el siguiente paso y te digo honestamente si encajamos — sin compromiso ni presión de venta.</p>
 
-    <form class="lead-form card" id="contact-es-form">
+    <form class="lead-form card" id="contact-es-form" data-lang="es">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div class="form-row">
         <input type="text" name="name" placeholder="Tu nombre" required>
         <input type="text" name="company" placeholder="Empresa" required>
@@ -48,14 +58,15 @@
         <option>No estoy seguro/a todavía — me gustaría orientación</option>
       </select>
       <textarea name="message" rows="4" placeholder="Describe tu negocio y los flujos que más te gustaría que un agente se encargara (opcional)"></textarea>
-      <button class="btn" type="submit">Agendar llamada estratégica gratuita</button>
+      <button class="btn" type="submit" data-umami-event="lead-form-click">Agendar llamada estratégica gratuita</button>
       <p id="contact-es-msg" class="muted form-msg"></p>
     </form>
 
     <div style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(230,243,234,0.1);">
       <p class="small-label">O escríbeme directamente</p>
-      <p class="muted">Respondo correos el mismo día, normalmente en pocas horas.</p>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="tag">LinkedIn</a>
+      <p class="muted">¿Prefieres el correo? Escríbeme directamente — leo todos los mensajes y respondo el mismo día.</p>
+      <p style="margin:8px 0 16px;"><a class="contact-email" href="mailto:vincent@wannado.fi" data-umami-event="contact-email-click">vincent@wannado.fi</a></p>
+      <a href="https://linkedin.com/in/vincent-viitala-225737185" target="_blank" rel="noopener" class="tag" data-umami-event="linkedin-click">LinkedIn</a>
       <a href="https://github.com/IntegrationBytes" target="_blank" rel="noopener" class="tag">GitHub</a>
     </div>
   </section>
@@ -65,24 +76,10 @@
     <div class="left"><p class="muted">© 2025 Vincent Viitala</p></div>
     <div class="right">
       <a href="/es/" class="tag">Inicio</a>
-      <a href="/es/servicios/" class="tag">Servicios</a>
+      <a data-umami-event="nav-services" href="/es/servicios/" class="tag">Servicios</a>
     </div>
   </div>
 </footer>
-<script>
-document.getElementById('contact-es-form')?.addEventListener('submit', async function(e){
-  e.preventDefault();
-  const msg = document.getElementById('contact-es-msg');
-  const data = Object.fromEntries(new FormData(this).entries());
-  data.lang = 'es'; data.ts = Date.now(); data.path = location.pathname;
-  try {
-    if (window.LEADS_WEBHOOK_URL) {
-      await fetch(window.LEADS_WEBHOOK_URL, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data) });
-    }
-    msg.textContent = '¡Gracias! Me pondré en contacto en menos de 24 horas.';
-    this.reset();
-  } catch { msg.textContent = 'Algo salió mal. Por favor, escríbeme directamente.'; }
-});
-</script>
+<script defer src="/assets/js/leads.js"></script>
 </body>
 </html>

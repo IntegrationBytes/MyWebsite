@@ -40,3 +40,43 @@ window.CALENDLY_URL = window.BOOK_URL; // back-compat alias for legacy button co
   window.Cal('inline', { elementOrSelector: '#cal-inline', calLink: window.CAL_LINK, layout: 'month_view' });
   window.Cal('ui', { hideEventTypeDetails: false, layout: 'month_view', theme: window.CAL_THEME });
 })();
+
+// --- Contact + lead delivery ---
+// CONTACT_EMAIL is shown on the contact pages and is the mailto: fallback target,
+// so a lead is never lost even when no endpoint is configured.
+window.CONTACT_EMAIL  = window.CONTACT_EMAIL  || 'vincent@wannado.fi';
+
+// Server-side delivery. /api/lead is a Cloudflare Pages Function (see functions/api/lead.js).
+// It forwards to whatever you set as the LEADS_WEBHOOK (or RESEND_API_KEY) environment
+// variable in the Cloudflare dashboard. Until you set one it returns 501 and the form
+// falls back to mailto: — it never pretends a lead was delivered.
+window.LEADS_ENDPOINT = window.LEADS_ENDPOINT || '/api/lead';
+
+// --- Conversion tracking ---
+// One helper so every CTA reports through the same path. Elements carrying
+// data-umami-event are tracked automatically by Umami; this is for JS-driven events.
+window.trackEvent = function (name, data) {
+  try { if (window.umami && window.umami.track) window.umami.track(name, data || {}); }
+  catch (e) { /* analytics must never break the page */ }
+};
+
+// Booking clicks are the money event: fire one wherever a Cal.com link is clicked,
+// no matter which page or which button.
+document.addEventListener('click', function (e) {
+  var a = e.target && e.target.closest && e.target.closest('a[href*="cal.com"]');
+  if (a) window.trackEvent('booking-click', { path: location.pathname, label: (a.textContent || '').trim().slice(0, 40) });
+}, true);
+
+// Scroll depth on the long sales pages tells you where readers fall off.
+(function () {
+  var hits = {}, marks = [25, 50, 75, 90];
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if (h <= 0) return;
+    var pct = (window.scrollY / h) * 100;
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      if (pct >= m && !hits[m]) { hits[m] = 1; window.trackEvent('scroll-depth', { depth: m, path: location.pathname }); }
+    }
+  }, { passive: true });
+})();
