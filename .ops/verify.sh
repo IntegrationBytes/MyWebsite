@@ -228,8 +228,9 @@ if not os.path.exists(sc): print("  FAIL  leads_showcase.csv missing"); sys.exit
 blob=open(sc,encoding="utf-8").read()
 rows=list(csv.DictReader(open(".ops/leads.csv",newline="",encoding="utf-8")))
 bad=0
+hdr=next(csv.reader(open(sc,newline="",encoding="utf-8")))
 for c in ("contact_route","pain_hypothesis","est_deal_size"):
-    if c in blob.splitlines()[0]:
+    if c in hdr:   # exact column match: contact_route_status is fine, contact_route is not
         print(f"  FAIL  showcase exposes column {c}"); bad=1
 leak=[r["contact_route"] for r in rows
       if r["contact_route"] and not r["contact_route"].startswith("http") and r["contact_route"] in blob]
