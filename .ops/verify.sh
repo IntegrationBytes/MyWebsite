@@ -73,6 +73,14 @@ BAD=0
 grep -q '/.ops/' _redirects || { no "_redirects does not block /.ops/"; BAD=1; }
 [ $BAD -eq 0 ] && ok "ops state blocked from public serving"
 
+sec "G2. SITE — crawlability"
+BAD=0
+[ -f sitemap.xml ] || { no "robots.txt advertises a sitemap that does not exist"; BAD=1; }
+grep -q 'sitemap.xml' robots.txt || { no "robots.txt does not reference sitemap"; BAD=1; }
+python3 -c "import xml.dom.minidom,sys; xml.dom.minidom.parse('sitemap.xml')" 2>/dev/null || { no "sitemap.xml is not valid XML"; BAD=1; }
+grep -q 'noindex' en/v2/index.html || { no "orphan /en/v2/ is indexable and competes with /en/"; BAD=1; }
+[ $BAD -eq 0 ] && ok "sitemap valid, robots correct, orphan page deindexed"
+
 sec "H. LEADS — file exists and is well-formed"
 L=.ops/leads.csv
 if [ ! -f "$L" ]; then no "leads.csv missing"; else
