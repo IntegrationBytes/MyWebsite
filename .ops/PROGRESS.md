@@ -5,24 +5,24 @@ Updated: iteration 7 — 79 verified leads, offer = Signal Run
 ## Verification status
 `bash .ops/verify.sh` → **VERIFY: PASS**
 
-Every section green. 32 verified leads, 62 cited URLs positively confirmed
-live by direct fetch, 14 outreach drafts, offer terms with a capped guarantee.
-No threshold was lowered to get here; one check (H) was in fact *tightened*
-after it produced a false pass.
+Every section green. 79 verified leads, 179 cited URLs confirmed live, 15
+outreach drafts, and the Signal Run offer with a capped guarantee. No
+threshold was lowered to get here; three checks were tightened after they
+produced false passes.
 
 ## Checklist
 - [x] A — contact forms deliver leads (browser-tested, both success and failure paths)
 - [x] B — booking CTA on every page + non-JS fallback
 - [x] C — all internal links resolve
 - [x] D — analytics + description + OG + canonical on every page
-- [x] E — conversion events instrumented (129+ elements)
+- [x] E — conversion events instrumented (161 elements)
 - [x] F — no fabricated social proof or placeholders
 - [x] G — ops state blocked from public serving
 - [x] G2 — sitemap valid, robots correct, orphan page deindexed
 - [x] H — 79 verified leads (32 hand-verified + 48 workflow-verified, 1 dropped)
-- [x] I — all 55 cited URLs fetch-checked (+9 rejected candidates)
+- [x] I — all cited URLs checked (179 logged; provenance stated per line)
 - [x] H2/H3/H4 — new guards: unverified size claims, self-contradicting quotes, stale pricing
-- [x] J — OFFER.md + 14 outreach drafts
+- [x] J — OFFER.md + 15 outreach drafts
 - [x] K — loop state files current
 
 ## Proven findings (observed in output, never assumed)
