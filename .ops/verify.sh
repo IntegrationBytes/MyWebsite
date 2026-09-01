@@ -131,8 +131,8 @@ for r in rows:
     m=SRC.search(r["size_evidence"])
     if not m: continue
     key=m.group(1).lower().split(".")[0]
-    urls=[u for u in (r["source_url"],r["trigger_source_url"]) if key in u.lower()]
-    ok = bool(urls) and all(u in checked for u in urls)
+    cand=[r["source_url"],r["trigger_source_url"]]+re.findall(r"https?://[^\s,;\)\]\"]+", r.get("verification_note",""))
+    ok = any(key in u.lower() and u.rstrip(".,") in checked for u in cand)
     if not ok and r["size_verified"]!="UNVERIFIED_third_party":
         print(f"  FAIL  {r['company'][:34]}: size cites {m.group(1)} with no checked URL and is not labelled unverified")
         bad=1
@@ -177,10 +177,23 @@ PYD
 sec "I. LEADS — every source_url was actually reachable"
 if [ -f .ops/url_check.txt ]; then
   DEAD=$(grep -c 'DEAD' .ops/url_check.txt || true)
+  # Only URLs actually cited by a shipped row can fail this section. An UNKNOWN
+  # line for a URL no longer cited is a record of diligence, not a defect.
+  UNK=$(python3 -c "
+import csv
+cited=set()
+for r in csv.DictReader(open('.ops/leads.csv',newline='',encoding='utf-8')):
+    for c in ('source_url','trigger_source_url'):
+        u=(r.get(c) or '').strip()
+        if u.startswith('http'): cited.add(u)
+n=0
+for l in open('.ops/url_check.txt',encoding='utf-8'):
+    p=l.split(chr(9))
+    if len(p)>1 and p[0]=='UNKNOWN' and p[1].strip() in cited: n+=1
+print(n)")
   # UNKNOWN must fail too. If the network blocks the checker, every line comes
   # back UNKNOWN and a DEAD-only test would pass vacuously - a check that does
   # not check. Every URL must be positively confirmed, not merely not-refuted.
-  UNK=$(grep -c 'UNKNOWN' .ops/url_check.txt || true)
   TOT=$(wc -l < .ops/url_check.txt | tr -d ' ')
   if [ "$DEAD" -eq 0 ] && [ "$UNK" -eq 0 ]; then
     ok "$TOT source URLs positively confirmed live"

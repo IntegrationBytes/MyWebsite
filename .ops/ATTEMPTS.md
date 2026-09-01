@@ -165,3 +165,34 @@ sloppiness enormously. Three reviewers found the 62 in four minutes. Added
 harness checks H2, H3 and H4 so each class of error fails the build rather
 than reaching a prospect.
 **Exhausted?** No. Pre-flight items remain, listed in NEXT.md.
+
+## Iteration 7 — lead-hunt lands (95 agents, 3.1h); I was wrong about the paywall
+**Approach:** Integrate the completed lead-hunt workflow: 69 adversarially
+verified survivors, 7 refuted. All 7 rejections were on commercial FIT, not
+fabrication - the sweep agents' factual work held up under attack.
+**MY ERROR, found by the workflow contradicting me:** I had withdrawn Varova's
+and LTP's size claims as "paywalled, NOT substantiated". The workflow's verifier
+reported fetching those exact pages and quoted verbatim financials. I refetched
+with a larger character budget and the verifier was right: asiakastieto.fi
+publishes headline revenue/headcount/margin/equity PUBLICLY, below the login
+boilerplate. My original check used maxCharacters=350 and stopped above the
+data. I withdrew two TRUE claims and reported the withdrawal to Vincent.
+Both restored with verbatim quotes; the url_check lines corrected.
+**Lesson that generalises:** a truncated fetch is not a negative result. "I did
+not see it" was recorded as "it is not there." The same 350-char default is
+probably why several proff.fi and finder.fi claims are still labelled
+unverified - those sites use the same public-headline pattern.
+**Spot-check of the workflow's own verification:** 8 URLs sampled at random,
+8/8 live and matching. That is why the merged URLs are logged as verified by
+the workflow rather than by me, with the provenance stated per line.
+**Result:** 79 leads (was 32), 179 URLs logged, VERIFY: PASS.
+- 1 lead dropped (Kittle Property Group): its only contact source was a
+  login-walled LinkedIn profile, so the contact route cannot be confirmed.
+- 2 leads had their trigger citation repointed off LinkedIn and the trigger
+  itself marked UNCONFIRMED rather than quietly kept.
+- 39 of 79 size claims are labelled UNVERIFIED_third_party - honest, and a
+  known follow-up now that the public-headline pattern is understood.
+- Section I rescoped to judge only URLs a shipped row actually cites; an
+  UNKNOWN line for an uncited URL is a record of diligence, not a defect.
+**Exhausted?** No. Remaining: re-verify the 39 unverified size claims using the
+public-headline pattern, and re-score all 79 against the new revenue-side test.

@@ -1,6 +1,6 @@
 # PROGRESS — current best state
 
-Updated: iteration 6 — offer pivoted to Signal Run
+Updated: iteration 7 — 79 verified leads, offer = Signal Run
 
 ## Verification status
 `bash .ops/verify.sh` → **VERIFY: PASS**
@@ -19,7 +19,7 @@ after it produced a false pass.
 - [x] F — no fabricated social proof or placeholders
 - [x] G — ops state blocked from public serving
 - [x] G2 — sitemap valid, robots correct, orphan page deindexed
-- [x] H — 32 verified leads
+- [x] H — 79 verified leads (32 hand-verified + 48 workflow-verified, 1 dropped)
 - [x] I — all 55 cited URLs fetch-checked (+9 rejected candidates)
 - [x] H2/H3/H4 — new guards: unverified size claims, self-contradicting quotes, stale pricing
 - [x] J — OFFER.md + 14 outreach drafts
